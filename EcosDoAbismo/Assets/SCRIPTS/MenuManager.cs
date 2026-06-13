@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
 
     [Header("Cursor")]
     public RectTransform cursor;
+    public RectTransform[] cursorAnchors;
 
     [Header("Cores")]
     public Color normalColor = Color.white;
@@ -49,6 +50,7 @@ public class MenuManager : MonoBehaviour
 
     void UpdateMenuVisual()
     {
+        // Atualiza as cores dos textos
         for (int i = 0; i < menuOptions.Length; i++)
         {
             if (i == selectedIndex)
@@ -61,15 +63,12 @@ public class MenuManager : MonoBehaviour
             }
         }
 
-        if (cursor != null)
+        // Move o cursor para o Anchor correspondente
+        if (cursor != null &&
+            cursorAnchors != null &&
+            cursorAnchors.Length > selectedIndex)
         {
-            Vector3 cursorPos = cursor.position;
-
-            cursor.position = new Vector3(
-                cursorPos.x,
-                menuOptions[selectedIndex].transform.position.y,
-                cursorPos.z
-            );
+            cursor.position = cursorAnchors[selectedIndex].position;
         }
     }
 }
