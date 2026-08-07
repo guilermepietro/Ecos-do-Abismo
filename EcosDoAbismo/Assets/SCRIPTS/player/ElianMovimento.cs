@@ -16,6 +16,8 @@ public class ElianMovimento : MonoBehaviour
 
     private bool estaNoChao;
 
+    public bool podeMover = true;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,6 +45,13 @@ void VerificarChao()
 
     void Movimento()
     {
+
+
+        if (!podeMover)
+    {
+    return;
+    }
+
         float movimentoHorizontal = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("velocidade", Mathf.Abs(movimentoHorizontal));
 
