@@ -52,6 +52,7 @@ private ElianMovimento movimento;
 
     Debug.Log("Vida do Elian: " + vidaAtual);
 
+    HitStop.instancia.Executar(0.05f);
     animator.SetTrigger("RecebeuDano");
     AplicarEmpurrao();
 
