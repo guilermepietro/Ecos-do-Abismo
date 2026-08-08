@@ -101,7 +101,7 @@ void AplicarEmpurrao()
 {
     movimento.podeMover = false;
 
-    float direcao = transform.localScale.x > 0 ? -1 : 1;
+    float direcao = spriteRenderer.flipX ? 1 : -1;
 
     rb.linearVelocity = new Vector2(
     direcao * forcaEmpurrao,
