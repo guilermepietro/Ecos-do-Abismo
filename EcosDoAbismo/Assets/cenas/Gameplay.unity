@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 142652952}
   - component: {fileID: 142652953}
   - component: {fileID: 142652954}
+  - component: {fileID: 142652955}
   m_Layer: 0
   m_Name: elian
   m_TagString: Untagged
@@ -338,6 +339,18 @@ MonoBehaviour:
   forcaEmpurrao: 5
   forcaEmpurraoVertical: 4
   tempoInvencibilidade: 2
+--- !u!114 &142652955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142652946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6770161d3d39ea45874db1db5ab72a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElianAtaque
 --- !u!1 &280921635
 GameObject:
   m_ObjectHideFlags: 0
