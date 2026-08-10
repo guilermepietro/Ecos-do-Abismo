@@ -62,13 +62,15 @@ void VerificarChao()
 
         // Virar o Elian
         if (movimentoHorizontal > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (movimentoHorizontal < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
+{
+    spriteRenderer.flipX = false;
+    GetComponent<HitboxControle>().AtualizarDirecao(false);
+}
+else if (movimentoHorizontal < 0)
+{
+    spriteRenderer.flipX = true;
+    GetComponent<HitboxControle>().AtualizarDirecao(true);
+}
         
     }
 

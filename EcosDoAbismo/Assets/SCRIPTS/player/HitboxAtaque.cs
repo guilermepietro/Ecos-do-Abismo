@@ -7,7 +7,7 @@ public class HitboxAtaque : MonoBehaviour
 
     private BoxCollider2D boxCollider;
     private List<GameObject> inimigosAtingidos = new List<GameObject>();
-
+    public float forcaKnockback = 3f;
     void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -42,11 +42,25 @@ public class HitboxAtaque : MonoBehaviour
                     VidaInimigo vida = inimigo.GetComponent<VidaInimigo>();
 
                     if (vida != null)
-                    {
-                        vida.ReceberDano(danoAtual);
-                    }
+{
+    vida.ReceberDano(danoAtual);
+}
+
+KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
+
+if (knockback != null)
+{
+    float direcao = transform.position.x < inimigo.transform.position.x ? 1f : -1f;
+
+    knockback.AplicarEmpurrao(forcaKnockback, direcao);
+}
                 }
             }
         }
     }
+
+    public void DefinirKnockback(float forca)
+{
+    forcaKnockback = forca;
+}
 }
