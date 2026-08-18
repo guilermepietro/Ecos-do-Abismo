@@ -117,4 +117,16 @@ IEnumerator LiberarMovimento()
 
     movimento.podeMover = true;
 }
+
+public void Curar(int quantidade)
+{
+    vidaAtual += quantidade;
+
+    if (vidaAtual > vidaMaxima)
+    {
+        vidaAtual = vidaMaxima;
+    }
+
+    Debug.Log("Elian foi curado! Vida atual: " + vidaAtual);
+}
 }
