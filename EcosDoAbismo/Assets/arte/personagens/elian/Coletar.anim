@@ -51,8 +51,27 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings: []
-    pptrCurveMapping: []
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    pptrCurveMapping:
+    - {fileID: -8864930558273572242, guid: cab1f79252a4a074bb97346b3bbe4a02, type: 3}
+    - {fileID: -365489497620597645, guid: cab1f79252a4a074bb97346b3bbe4a02, type: 3}
+    - {fileID: 8326062790621206143, guid: cab1f79252a4a074bb97346b3bbe4a02, type: 3}
+    - {fileID: 6342738288746491674, guid: cab1f79252a4a074bb97346b3bbe4a02, type: 3}
+    - {fileID: -7330305277516655359, guid: cab1f79252a4a074bb97346b3bbe4a02, type: 3}
+    - {fileID: 163514829287000984, guid: cab1f79252a4a074bb97346b3bbe4a02, type: 3}
+    - {fileID: 8755655710091421862, guid: cab1f79252a4a074bb97346b3bbe4a02, type: 3}
+    - {fileID: 5224713554072839354, guid: cab1f79252a4a074bb97346b3bbe4a02, type: 3}
+    - {fileID: 4645148992453565413, guid: cab1f79252a4a074bb97346b3bbe4a02, type: 3}
+    - {fileID: 4645148992453565413, guid: cab1f79252a4a074bb97346b3bbe4a02, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -77,4 +96,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.4
+    functionName: ExecutarColeta
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.89
+    functionName: FinalizarColeta
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
