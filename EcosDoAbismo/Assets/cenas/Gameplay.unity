@@ -808,6 +808,98 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.47835878, y: 0.5746492}
   m_EdgeRadius: 0
+--- !u!1 &605545641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 605545644}
+  - component: {fileID: 605545643}
+  - component: {fileID: 605545642}
+  m_Layer: 0
+  m_Name: AtivadorVoragul
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &605545642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605545641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6d71f5f7b14b64fa965c0c6ae3c16f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AtivadorVoragul
+  voragul: {fileID: 2121363422}
+--- !u!61 &605545643
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605545641}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.34987175, y: 0.5292921}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 7.4770985, y: 2.058584}
+  m_EdgeRadius: 0
+--- !u!4 &605545644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605545641}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 56.88, y: -2.679, z: 0}
+  m_LocalScale: {x: 4.128506, y: 4.128506, z: 4.128506}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &634031316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,6 +1748,7 @@ MonoBehaviour:
   velocidade: 1.5
   elian: {fileID: 142652950}
   podeMover: 1
+  lutaIniciada: 0
 --- !u!70 &2121363423
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1705,7 +1798,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -1842,3 +1935,4 @@ SceneRoots:
   - {fileID: 748873944}
   - {fileID: 779008469}
   - {fileID: 2121363427}
+  - {fileID: 605545644}
