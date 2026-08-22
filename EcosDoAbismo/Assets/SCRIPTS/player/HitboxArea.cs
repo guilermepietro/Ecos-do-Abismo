@@ -26,19 +26,17 @@ public class HitboxArea : MonoBehaviour
             {
                 VidaInimigo vida = inimigo.GetComponent<VidaInimigo>();
 
-                if (vida != null)
-                {
-                    vida.ReceberDano(dano);
-                }
+if (vida != null)
+{
+    vida.ReceberDano(dano);
+}
 
-                KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
+VoragulVida vidaVoragul = inimigo.GetComponent<VoragulVida>();
 
-                if (knockback != null)
-                {
-                    float direcao = transform.position.x < inimigo.transform.position.x ? 1f : -1f;
-
-                    knockback.AplicarEmpurrao(5f, direcao);
-                }
+if (vidaVoragul != null)
+{
+    vidaVoragul.ReceberDano(dano);
+}
             }
         }
     }

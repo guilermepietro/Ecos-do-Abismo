@@ -41,9 +41,16 @@ public class HitboxAtaque : MonoBehaviour
 
                     VidaInimigo vida = inimigo.GetComponent<VidaInimigo>();
 
-                    if (vida != null)
+if (vida != null)
 {
     vida.ReceberDano(danoAtual);
+}
+
+VoragulVida vidaVoragul = inimigo.GetComponent<VoragulVida>();
+
+if (vidaVoragul != null)
+{
+    vidaVoragul.ReceberDano(danoAtual);
 }
 
 KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
