@@ -37,6 +37,13 @@ if (vidaVoragul != null)
 {
     vidaVoragul.ReceberDano(dano);
 }
+
+RakthasVida vidaRakthas = inimigo.GetComponent<RakthasVida>();
+
+if (vidaRakthas != null)
+{
+    vidaRakthas.ReceberDano(dano);
+}
             }
         }
     }

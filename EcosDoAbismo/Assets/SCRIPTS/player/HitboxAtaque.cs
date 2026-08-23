@@ -53,6 +53,14 @@ if (vidaVoragul != null)
     vidaVoragul.ReceberDano(danoAtual);
 }
 
+
+RakthasVida vidaRakthas = inimigo.GetComponent<RakthasVida>();
+
+if (vidaRakthas != null)
+{
+    vidaRakthas.ReceberDano(danoAtual);
+}
+
 KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
 
 if (knockback != null)
