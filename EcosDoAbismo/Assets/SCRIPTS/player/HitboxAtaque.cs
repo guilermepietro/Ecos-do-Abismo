@@ -61,6 +61,13 @@ if (vidaRakthas != null)
     vidaRakthas.ReceberDano(danoAtual);
 }
 
+SalenthraVida vidaSalenthra = inimigo.GetComponent<SalenthraVida>();
+
+if (vidaSalenthra != null)
+{
+    vidaSalenthra.ReceberDano(danoAtual);
+}
+
 KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
 
 if (knockback != null)
