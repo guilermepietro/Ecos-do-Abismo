@@ -241,7 +241,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 104, y: -2.47, z: 0}
+  m_LocalPosition: {x: 162.82, y: -2.47, z: 0}
   m_LocalScale: {x: 3.103375, y: 3.103375, z: 3.103375}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -321,7 +321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36263266bde589749a5104d6caffe0a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElianMovimento
-  velocidade: 5
+  velocidade: 4
+  velocidadeCorrida: 8
+  velocidadeAnimacaoCorrida: 1.8
   forcaPulo: 15
   pontoDeChao: {fileID: 458144955}
   raioChao: 0.2
