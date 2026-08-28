@@ -84,4 +84,9 @@ public class VoragulVida : MonoBehaviour
         movimento.podeMover = true;
     }
 }
+
+public bool EstaMorto()
+{
+    return morto;
+}
 }

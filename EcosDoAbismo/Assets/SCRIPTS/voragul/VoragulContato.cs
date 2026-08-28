@@ -6,10 +6,19 @@ public class VoragulContato : MonoBehaviour
     public float tempoEntreDanos = 0.8f;
 
     private bool podeDarDano = true;
+    private VoragulVida vidaVoragul;
+
+    private void Awake()
+    {
+        vidaVoragul = GetComponent<VoragulVida>();
+    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (!podeDarDano)
+            return;
+
+        if (vidaVoragul != null && vidaVoragul.EstaMorto())
             return;
 
         if (collision.gameObject.CompareTag("Player"))

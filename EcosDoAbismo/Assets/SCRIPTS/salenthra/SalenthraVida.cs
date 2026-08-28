@@ -22,6 +22,7 @@ public class SalenthraVida : MonoBehaviour
     {
         vidaAtualFase1 = vidaMaximaFase1;
         vidaAtualFase2 = vidaMaximaFase2;
+        
 
         movimento = GetComponent<SalenthraMovimento>();
     }
@@ -91,8 +92,15 @@ public class SalenthraVida : MonoBehaviour
         animator.SetTrigger("Transformar");
     }
 
+    public bool EstaMorta
+{
+    get { return morta; }
+}
+
     public void IniciarFase2()
 {
+
+    
     Debug.Log("FASE 2 INICIADA");
 
     faseAtual = 2;

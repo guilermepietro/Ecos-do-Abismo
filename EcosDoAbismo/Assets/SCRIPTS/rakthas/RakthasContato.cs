@@ -7,9 +7,18 @@ public class RakthasContato : MonoBehaviour
     public float cooldownContato = 1f;
 
     private float proximoDano = 0f;
+    private RakthasVida vida;
+
+    private void Awake()
+    {
+        vida = GetComponent<RakthasVida>();
+    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (vida != null && vida.EstaMorto)
+            return;
+
         if (!collision.gameObject.CompareTag("Player"))
             return;
 

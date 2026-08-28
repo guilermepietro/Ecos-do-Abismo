@@ -241,7 +241,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 148.9, y: -2.47, z: 0}
+  m_LocalPosition: {x: 104, y: -2.47, z: 0}
   m_LocalScale: {x: 3.103375, y: 3.103375, z: 3.103375}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -344,7 +344,7 @@ MonoBehaviour:
   vidaMaxima: 100
   forcaEmpurrao: 5
   forcaEmpurraoVertical: 4
-  tempoInvencibilidade: 2
+  tempoInvencibilidade: 1
 --- !u!114 &142652955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2241,7 +2241,8 @@ GameObject:
   - component: {fileID: 2059395983}
   - component: {fileID: 2059395982}
   - component: {fileID: 2059395988}
-  - component: {fileID: 2059395989}
+  - component: {fileID: 2059395990}
+  - component: {fileID: 2059395991}
   m_Layer: 0
   m_Name: rakthas
   m_TagString: Inimigo
@@ -2426,6 +2427,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2122699213}
+  - {fileID: 2066980240}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2059395988
@@ -2440,9 +2442,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0adcacc02e84314da6c862ed636c21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RakthasVida
-  vidaMaxima: 500
+  vidaMaxima: 100
   animator: {fileID: 2059395985}
---- !u!114 &2059395989
+--- !u!114 &2059395990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059395981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c723355db22464dbde7695cdfef4bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RakthasAtaques
+  hitboxRaio: {fileID: 2066980237}
+  posicaoXDireita: 0.352
+  posicaoXEsquerda: -1.054
+--- !u!114 &2059395991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2454,8 +2471,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c18896e5564d184ca2ab8f09d61525b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RakthasContato
-  danoContato: 10
-  cooldownContato: 1
+  danoContato: 5
+  cooldownContato: 3
+--- !u!1 &2066980237
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2066980240}
+  - component: {fileID: 2066980239}
+  - component: {fileID: 2066980238}
+  m_Layer: 0
+  m_Name: HitboxRaio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2066980238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066980237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48d4827de39ef840b763ad557f42e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RakthasRaioHitbox
+  dano: 20
+--- !u!61 &2066980239
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066980237}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.41110492, y: -0.115561604}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.1270812, y: 0.7688768}
+  m_EdgeRadius: 0
+--- !u!4 &2066980240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066980237}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.352, y: 0.502, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2059395987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2121076977
 GameObject:
   m_ObjectHideFlags: 0

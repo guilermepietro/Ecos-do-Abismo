@@ -7,6 +7,7 @@ public class RakthasMovimento : MonoBehaviour
     private RakthasVida vida;
     public Animator animator;
     private bool ativado = false;
+    private RakthasAtaques ataques;
 
     [Header("Movimento")]
     public float velocidadeNormal = 3.5f;
@@ -21,12 +22,18 @@ public class RakthasMovimento : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         vida = GetComponent<RakthasVida>();
+        ataques = GetComponent<RakthasAtaques>();
     }
 
     private void FixedUpdate()
     {
 
-        
+        if (ataques != null && ataques.EstaAtacando)
+{
+    rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+    animator.SetBool("estaCorrendo", false);
+    return;
+}
         if (vida != null && vida.EstaMorto)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
