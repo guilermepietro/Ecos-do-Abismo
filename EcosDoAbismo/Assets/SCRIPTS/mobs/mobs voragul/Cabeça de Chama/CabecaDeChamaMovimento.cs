@@ -10,8 +10,11 @@ public class CabecaDeChamaMovimento : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Transform elian;
+
     public Transform hitboxAtaque;
+
     private ElianVida vidaElian;
+    private KnockbackInimigo knockback;
 
     private float proximoAtaque;
 
@@ -20,34 +23,42 @@ public class CabecaDeChamaMovimento : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        knockback = GetComponent<KnockbackInimigo>();
 
         GameObject jogador = GameObject.Find("elian");
+
         if (jogador != null)
-{
-    elian = jogador.transform;
-    vidaElian = jogador.GetComponent<ElianVida>();
-}
-
-
+        {
+            elian = jogador.transform;
+            vidaElian = jogador.GetComponent<ElianVida>();
+        }
     }
 
     void FixedUpdate()
     {
+        if (elian == null)
+            return;
+
         if (vidaElian != null && vidaElian.EstaMorto)
-{
-    rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
 
-    animator.SetBool("Andando", false);
-    animator.ResetTrigger("Atacar");
+            animator.SetBool("Andando", false);
+            animator.ResetTrigger("Atacar");
 
-    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-    {
-        animator.Play("Idle");
-    }
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                animator.Play("Idle");
+            }
 
-    return;
-}
-            
+            return;
+        }
+
+        if (knockback != null && knockback.EstaEmKnockback)
+        {
+            animator.SetBool("Andando", false);
+            return;
+        }
 
         AnimatorStateInfo estado = animator.GetCurrentAnimatorStateInfo(0);
 
@@ -64,6 +75,7 @@ public class CabecaDeChamaMovimento : MonoBehaviour
         float direcao = Mathf.Sign(elian.position.x - transform.position.x);
 
         spriteRenderer.flipX = direcao < 0;
+
         Vector3 posicaoHitbox = hitboxAtaque.localPosition;
         posicaoHitbox.x = Mathf.Abs(posicaoHitbox.x) * (direcao < 0 ? -1 : 1);
         hitboxAtaque.localPosition = posicaoHitbox;
@@ -91,10 +103,11 @@ public class CabecaDeChamaMovimento : MonoBehaviour
     }
 
     public void AcertarAtaque()
-{
-    CabecaDeChamaAtaque ataque = GetComponentInChildren<CabecaDeChamaAtaque>();
+    {
+        CabecaDeChamaAtaque ataque =
+            GetComponentInChildren<CabecaDeChamaAtaque>();
 
-    if (ataque != null)
-        ataque.VerificarAcerto();
-}
+        if (ataque != null)
+            ataque.VerificarAcerto();
+    }
 }

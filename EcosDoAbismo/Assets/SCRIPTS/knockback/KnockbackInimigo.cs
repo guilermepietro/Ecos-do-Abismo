@@ -5,6 +5,8 @@ public class KnockbackInimigo : MonoBehaviour
 {
     private Rigidbody2D rb;
 
+    public bool EstaEmKnockback { get; private set; }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -13,6 +15,8 @@ public class KnockbackInimigo : MonoBehaviour
     public void AplicarEmpurrao(float forca, float direcao)
     {
         StopAllCoroutines();
+
+        EstaEmKnockback = true;
 
         rb.linearVelocity = new Vector2(
             direcao * forca,
@@ -27,5 +31,7 @@ public class KnockbackInimigo : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         rb.linearVelocity = Vector2.zero;
+
+        EstaEmKnockback = false;
     }
 }
