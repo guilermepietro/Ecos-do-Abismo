@@ -67,6 +67,12 @@ if (vidaSalenthra != null)
 {
     vidaSalenthra.ReceberDano(danoAtual);
 }
+CabecaDeChamaVida vidaCabecaDeChama = inimigo.GetComponent<CabecaDeChamaVida>();
+
+if (vidaCabecaDeChama != null)
+{
+    vidaCabecaDeChama.ReceberDano(danoAtual);
+}
 
 KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
 

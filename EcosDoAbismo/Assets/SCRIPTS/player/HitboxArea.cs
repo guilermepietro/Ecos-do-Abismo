@@ -51,9 +51,17 @@ if (vidaSalenthra != null)
 {
     vidaSalenthra.ReceberDano(dano);
 }
+CabecaDeChamaVida vidaCabecaDeChama = inimigo.GetComponent<CabecaDeChamaVida>();
+
+if (vidaCabecaDeChama != null)
+{
+    vidaCabecaDeChama.ReceberDano(dano);
+}
             }
         }
     }
+
+    
 
     public void AtivarHitbox()
 {

@@ -12,6 +12,7 @@ public class ElianVida : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private Rigidbody2D rb;
+    public bool EstaMorto { get; private set; }
 
     [Header("Dano")]
 public float forcaEmpurrao = 5f;
@@ -43,6 +44,10 @@ private ElianMovimento movimento;
 
     public void ReceberDano(int dano)
 {
+    if (EstaMorto)
+{
+    return;
+}
     if (invencivel)
     {
         return;
@@ -65,11 +70,13 @@ private ElianMovimento movimento;
 }
 
     void Morrer()
-    {
-        animator.SetTrigger("Morreu");
+{
+    EstaMorto = true;
 
-        Debug.Log("Elian morreu!");
-    }
+    animator.SetTrigger("Morreu");
+
+    Debug.Log("Elian morreu!");
+}
 
     IEnumerator TempoInvencibilidade()
 {
