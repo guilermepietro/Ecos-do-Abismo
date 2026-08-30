@@ -57,6 +57,18 @@ if (vidaCabecaDeChama != null)
 {
     vidaCabecaDeChama.ReceberDano(dano);
 }
+EsqueleticoVida vidaEsqueletico = inimigo.GetComponent<EsqueleticoVida>();
+
+if (vidaEsqueletico != null)
+{
+    vidaEsqueletico.ReceberDano(dano);
+}
+GosmaHumanoideVida vidaGosma = inimigo.GetComponent<GosmaHumanoideVida>();
+
+if (vidaGosma != null)
+{
+    vidaGosma.ReceberDano(dano);
+}
             }
         }
     }
