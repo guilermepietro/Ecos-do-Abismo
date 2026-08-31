@@ -86,6 +86,13 @@ if (vidaGosma != null)
     vidaGosma.ReceberDano(danoAtual);
 }
 
+CerberoVida vidaCerbero = inimigo.GetComponent<CerberoVida>();
+
+if (vidaCerbero != null)
+{
+    vidaCerbero.ReceberDano(danoAtual);
+}
+
 KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
 
 if (knockback != null)
