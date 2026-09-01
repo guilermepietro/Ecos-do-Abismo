@@ -93,6 +93,13 @@ if (vidaCerbero != null)
     vidaCerbero.ReceberDano(danoAtual);
 }
 
+MorcegoVida vidaMorcego = inimigo.GetComponent<MorcegoVida>();
+
+if (vidaMorcego != null)
+{
+    vidaMorcego.ReceberDano(danoAtual);
+}
+
 KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
 
 if (knockback != null)

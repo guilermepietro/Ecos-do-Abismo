@@ -19,6 +19,7 @@ public float forcaEmpurrao = 5f;
 public float forcaEmpurraoVertical = 4f;
 
     private bool invencivel = false;
+    private bool invencivelDash = false;
 
 public float tempoInvencibilidade = 1f;
 
@@ -48,10 +49,10 @@ private ElianMovimento movimento;
 {
     return;
 }
-    if (invencivel)
-    {
-        return;
-    }
+    if (invencivel || invencivelDash)
+{
+    return;
+}
 
     vidaAtual -= dano;
 
@@ -76,6 +77,16 @@ private ElianMovimento movimento;
     animator.SetTrigger("Morreu");
 
     Debug.Log("Elian morreu!");
+}
+
+public void AtivarInvencibilidadeDash()
+{
+    invencivelDash = true;
+}
+
+public void DesativarInvencibilidadeDash()
+{
+    invencivelDash = false;
 }
 
     IEnumerator TempoInvencibilidade()

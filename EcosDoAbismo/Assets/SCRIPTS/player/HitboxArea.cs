@@ -76,6 +76,13 @@ if (vidaCerbero != null)
 {
     vidaCerbero.ReceberDano(dano);
 }
+
+MorcegoVida vidaMorcego = inimigo.GetComponent<MorcegoVida>();
+
+if (vidaMorcego != null)
+{
+    vidaMorcego.ReceberDano(dano);
+}
             }
         }
     }
