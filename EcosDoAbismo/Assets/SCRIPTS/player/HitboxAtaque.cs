@@ -100,6 +100,13 @@ if (vidaMorcego != null)
     vidaMorcego.ReceberDano(danoAtual);
 }
 
+GolemVida vidaGolem = inimigo.GetComponent<GolemVida>();
+
+if (vidaGolem != null)
+{
+    vidaGolem.ReceberDano(danoAtual);
+}
+
 KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
 
 if (knockback != null)

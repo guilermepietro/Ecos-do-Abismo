@@ -8,7 +8,7 @@ public class ElianVida : MonoBehaviour
 
     private int vidaAtual;
     private Animator animator;
-    
+    private ElianDefesa defesa;
     private SpriteRenderer spriteRenderer;
 
     private Rigidbody2D rb;
@@ -33,6 +33,7 @@ private ElianMovimento movimento;
     spriteRenderer = GetComponent<SpriteRenderer>();
     rb = GetComponent<Rigidbody2D>();
     movimento = GetComponent<ElianMovimento>();
+    defesa = GetComponent<ElianDefesa>();
 }
 
     void Update()
@@ -52,6 +53,16 @@ private ElianMovimento movimento;
     if (invencivel || invencivelDash)
 {
     return;
+}
+
+if (defesa != null && defesa.EstaDefendendo())
+{
+    dano = defesa.ReceberDanoEscudo(dano);
+
+    if (dano <= 0)
+    {
+        return;
+    }
 }
 
     vidaAtual -= dano;
