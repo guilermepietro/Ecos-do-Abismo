@@ -20,6 +20,7 @@ public class ElianMovimento : MonoBehaviour
     [Header("Chao")]
     public Transform pontoDeChao;
     public float raioChao = 0.2f;
+    
     public LayerMask camadaChao;
 
     private Animator animator;
@@ -54,21 +55,20 @@ public class ElianMovimento : MonoBehaviour
     }
 
     void VerificarChao()
-    {
-        if (estaNoChao)
 {
-    dashAereoDisponivel = true;
-}
-        estaNoChao = Physics2D.OverlapCircle(
-            pontoDeChao.position,
-            raioChao,
-            camadaChao
-        );
+    estaNoChao = Physics2D.OverlapCircle(
+        pontoDeChao.position,
+        raioChao,
+        camadaChao
+    );
 
-        animator.SetBool("estaNoChao", estaNoChao);
-
-        
+    if (estaNoChao)
+    {
+        dashAereoDisponivel = true;
     }
+
+    animator.SetBool("estaNoChao", estaNoChao);
+}
 
     void Movimento()
     {

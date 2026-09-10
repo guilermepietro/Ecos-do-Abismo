@@ -90,6 +90,21 @@ if (vidaGolem != null)
 {
     vidaGolem.ReceberDano(dano);
 }
+
+
+EstatuaVida estatua = inimigo.GetComponent<EstatuaVida>();
+
+if (estatua != null)
+{
+    estatua.ReceberDano(dano);
+}
+
+RestosVida vidaRestos = inimigo.GetComponent<RestosVida>();
+
+if (vidaRestos != null)
+{
+    vidaRestos.ReceberDano(dano);
+}
             }
         }
     }

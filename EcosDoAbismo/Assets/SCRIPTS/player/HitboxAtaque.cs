@@ -107,6 +107,20 @@ if (vidaGolem != null)
     vidaGolem.ReceberDano(danoAtual);
 }
 
+EstatuaVida vidaEstatua = inimigo.GetComponent<EstatuaVida>();
+
+if (vidaEstatua != null)
+{
+    vidaEstatua.ReceberDano(danoAtual);
+}
+
+RestosVida vidaRestos = inimigo.GetComponent<RestosVida>();
+
+if (vidaRestos != null)
+{
+    vidaRestos.ReceberDano(danoAtual);
+}
+
 KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
 
 if (knockback != null)
