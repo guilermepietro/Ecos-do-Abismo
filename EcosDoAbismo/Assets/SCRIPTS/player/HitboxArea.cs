@@ -105,6 +105,13 @@ if (vidaRestos != null)
 {
     vidaRestos.ReceberDano(dano);
 }
+
+CarcacaVida vidaCarcaca = inimigo.GetComponent<CarcacaVida>();
+
+if (vidaCarcaca != null)
+{
+    vidaCarcaca.ReceberDano(dano);
+}
             }
         }
     }
