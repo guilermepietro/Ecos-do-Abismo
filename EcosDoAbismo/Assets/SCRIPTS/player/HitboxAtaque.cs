@@ -128,6 +128,13 @@ if (vidaCarcaca != null)
     vidaCarcaca.ReceberDano(danoAtual);
 }
 
+RastejadorVida vidaRastejador = inimigo.GetComponent<RastejadorVida>();
+
+if (vidaRastejador != null)
+{
+    vidaRastejador.ReceberDano(danoAtual);
+}
+
 KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
 
 if (knockback != null)
