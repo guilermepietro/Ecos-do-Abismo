@@ -367,7 +367,7 @@ AnimatorStateMachine:
     m_Position: {x: 40, y: 510, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3938163176893025654}
-    m_Position: {x: -100, y: 380, z: 0}
+    m_Position: {x: -100, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7244608231990838635}
     m_Position: {x: 701.3322, y: 492.2431, z: 0}
@@ -576,7 +576,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ataque1
-  m_Speed: 1
+  m_Speed: 1.3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7903619116345118652}
@@ -969,7 +969,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ataque3
-  m_Speed: 1
+  m_Speed: 1.3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4952246134795283234}
@@ -1242,7 +1242,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ataque2
-  m_Speed: 1
+  m_Speed: 1.3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2734075348165482039}

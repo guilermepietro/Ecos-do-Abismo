@@ -142,6 +142,20 @@ if (vidaMonge != null)
     vidaMonge.ReceberDano(danoAtual);
 }
 
+SombraVida vidaSombra = inimigo.GetComponent<SombraVida>();
+
+if (vidaSombra != null)
+{
+    vidaSombra.ReceberDano(danoAtual);
+}
+
+CriaturaVida vidaCriatura = inimigo.GetComponent<CriaturaVida>();
+
+if (vidaCriatura != null)
+{
+    vidaCriatura.ReceberDano(danoAtual);
+}
+
 KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
 
 if (knockback != null)
