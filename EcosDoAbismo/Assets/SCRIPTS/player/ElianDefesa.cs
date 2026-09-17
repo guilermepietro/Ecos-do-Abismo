@@ -13,7 +13,7 @@ public class ElianDefesa : MonoBehaviour
 
     [Header("Impacto do Escudo")]
     public float forcaKnockbackEscudo = 3f;
-    public float forcaKnockbackVerticalEscudo = 3f;
+    
 
     [Header("Escudo")]
     public int vidaMaximaEscudo = 50;
@@ -108,7 +108,7 @@ public class ElianDefesa : MonoBehaviour
 
     rb.linearVelocity = new Vector2(
         direcao * forcaKnockbackEscudo,
-        forcaKnockbackVerticalEscudo
+        rb.linearVelocity.y
     );
 }
 
