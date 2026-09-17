@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-
 public class ElianDefesa : MonoBehaviour
 {
     private Animator animator;
@@ -14,6 +13,7 @@ public class ElianDefesa : MonoBehaviour
 
     [Header("Impacto do Escudo")]
     public float forcaKnockbackEscudo = 3f;
+    public float forcaKnockbackVerticalEscudo = 3f;
 
     [Header("Escudo")]
     public int vidaMaximaEscudo = 50;
@@ -26,14 +26,13 @@ public class ElianDefesa : MonoBehaviour
     [Header("Quebra do Escudo")]
     public int danoAoQuebrar = 5;
 
-    
-
     void Start()
     {
         animator = GetComponent<Animator>();
         movimento = GetComponent<ElianMovimento>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         vidaEscudo = vidaMaximaEscudo;
     }
 
@@ -50,57 +49,58 @@ public class ElianDefesa : MonoBehaviour
         }
     }
 
-    
+    void IniciarDefesa()
+    {
+        if (!escudoDisponivel)
+        {
+            return;
+        }
 
-public void QuebrarDefesa()
-{
-    defendendo = false;
-    escudoDisponivel = false;
+        defendendo = true;
 
-    animator.speed = 1f;
-    animator.SetBool("Defendendo", false);
+        movimento.podeMover = false;
 
-    movimento.podeMover = true;
+        animator.SetFloat("velocidade", 0);
+        animator.SetBool("Defendendo", true);
+    }
 
-    StartCoroutine(RecarregarEscudo());
-}
+    void FinalizarDefesa()
+    {
+        defendendo = false;
 
-IEnumerator RecarregarEscudo()
-{
-    yield return new WaitForSeconds(tempoRecargaEscudo);
+        animator.SetBool("Defendendo", false);
 
-    vidaEscudo = vidaMaximaEscudo;
-    escudoDisponivel = true;
-
-    Debug.Log("Escudo recuperado!");
-}
+        movimento.podeMover = true;
+    }
 
     public int ReceberDanoEscudo(int dano)
-{
-    if (!defendendo)
     {
-        return dano;
+        if (!defendendo)
+        {
+            return dano;
+        }
+
+        ReceberImpactoEscudo();
+
+        vidaEscudo -= dano;
+
+        if (vidaEscudo > 0)
+        {
+            animator.SetTrigger("ImpactoEscudo");
+
+            Debug.Log("Vida do escudo: " + vidaEscudo);
+
+            return 0;
+        }
+
+        vidaEscudo = 0;
+
+        Debug.Log("Escudo quebrado!");
+
+        QuebrarDefesa();
+
+        return danoAoQuebrar;
     }
-
-    ReceberImpactoEscudo();
-    
-
-    vidaEscudo -= dano;
-
-    if (vidaEscudo > 0)
-    {
-        Debug.Log("Vida do escudo: " + vidaEscudo);
-        return 0;
-    }
-
-    vidaEscudo = 0;
-
-    Debug.Log("Escudo quebrado!");
-
-    QuebrarDefesa();
-
-    return danoAoQuebrar;
-}
 
     public void ReceberImpactoEscudo()
 {
@@ -108,45 +108,34 @@ IEnumerator RecarregarEscudo()
 
     rb.linearVelocity = new Vector2(
         direcao * forcaKnockbackEscudo,
-        rb.linearVelocity.y
+        forcaKnockbackVerticalEscudo
     );
 }
 
-    void IniciarDefesa()
-{
-    if (!escudoDisponivel)
+    public void QuebrarDefesa()
     {
-        return;
+        defendendo = false;
+        escudoDisponivel = false;
+
+        animator.SetBool("Defendendo", false);
+
+        movimento.podeMover = true;
+
+        StartCoroutine(RecarregarEscudo());
     }
 
-    defendendo = true;
+    IEnumerator RecarregarEscudo()
+    {
+        yield return new WaitForSeconds(tempoRecargaEscudo);
 
-    movimento.podeMover = false;
+        vidaEscudo = vidaMaximaEscudo;
+        escudoDisponivel = true;
 
-    animator.SetFloat("velocidade", 0);
-    animator.SetBool("Defendendo", true);
-}
-
-    void FinalizarDefesa()
-{
-    defendendo = false;
-
-    animator.speed = 1f;
-    animator.SetBool("Defendendo", false);
-
-    movimento.podeMover = true;
-}
+        Debug.Log("Escudo recuperado!");
+    }
 
     public bool EstaDefendendo()
     {
         return defendendo;
     }
-
-    public void TravarDefesa()
-{
-    if (defendendo)
-    {
-        animator.speed = 0f;
-    }
-}
 }

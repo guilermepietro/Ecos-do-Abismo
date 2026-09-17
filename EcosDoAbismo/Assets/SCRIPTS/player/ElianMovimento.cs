@@ -165,6 +165,10 @@ void IgnorarColisaoInimigos(bool ignorar)
     estaDashando = true;
     dashDisponivel = false;
 
+    bool dashNoAr = !estaNoChao;
+
+    float gravidadeOriginal = rb.gravityScale;
+
     GetComponent<ElianVida>().AtivarInvencibilidadeDash();
 
     IgnorarColisaoInimigos(true);
@@ -174,12 +178,24 @@ void IgnorarColisaoInimigos(bool ignorar)
 
     float direcao = spriteRenderer.flipX ? -1f : 1f;
 
+    // Se estiver no ar, congela a queda durante o dash
+    if (dashNoAr)
+    {
+        rb.gravityScale = 0f;
+    }
+
     rb.linearVelocity = new Vector2(
         direcao * velocidadeDash,
-        rb.linearVelocity.y
+        0f
     );
 
     yield return new WaitForSeconds(tempoDash);
+
+    // Restaura a gravidade depois do dash aéreo
+    if (dashNoAr)
+    {
+        rb.gravityScale = gravidadeOriginal;
+    }
 
     GetComponent<ElianVida>().DesativarInvencibilidadeDash();
 

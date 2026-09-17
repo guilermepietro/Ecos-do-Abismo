@@ -653,7 +653,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbad746cf25745f4988eb5e20754da2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElianDefesa
-  forcaKnockbackEscudo: 3
+  forcaKnockbackEscudo: 4
+  forcaKnockbackVerticalEscudo: 4
   vidaMaximaEscudo: 50
   tempoRecargaEscudo: 3
   danoAoQuebrar: 5
