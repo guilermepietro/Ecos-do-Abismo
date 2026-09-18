@@ -1,0 +1,1379 @@
+fileFormatVersion: 2
+guid: 5eff8d37be23e9544b743ec5b83322ab
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4989062798342557062
+    second: Tilemap Floresta_0
+  - first:
+      213: -4672268375978169741
+    second: Tilemap Floresta_1
+  - first:
+      213: -8221519597075711767
+    second: Tilemap Floresta_2
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: VisionOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Tilemap Floresta_0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 436
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a72fcae61d943cab0800000000000000
+      internalID: -4989062798342557062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 436
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37aa782baa4c82fb0800000000000000
+      internalID: -4672268375978169741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 436
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e8b3666c7b47ed80800000000000000
+      internalID: -8221519597075711767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 436
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85d2f1fd3c981a44eb7ed54cfca4eef7
+      internalID: -304807934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 436
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c46ce5b25cfdb54097c35842d6498a8
+      internalID: -2094948875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_5
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 436
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f32cbace925cff640b63053ec77f7d57
+      internalID: -834935162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_6
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 436
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cdefe5c415b0df44b4c2b8c27c21135
+      internalID: -1005263755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 372
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6571303cc0f8f84894e7ddaf3bc153b
+      internalID: -867921172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 372
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50248c7c80116f24abeb7577c25ab79d
+      internalID: 907852143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_9
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 372
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50872bce968f05147a55562b25360ed3
+      internalID: -465909327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 372
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ed5fa9f171d3e14a9b596906a9cef27
+      internalID: 744603481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_11
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 372
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3c877010f496f84e8c3d8a9e085afc4
+      internalID: 1569732455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 372
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ce4a5daaccc4c645ab523b8dac0f941
+      internalID: 321421360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_13
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 372
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ed4297579335f74e8a893b40117dacb
+      internalID: 762092256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 308
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c485c1549066064586ae39e7cadd552
+      internalID: 1040163472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_15
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 308
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9115907f384f9374eac9d4c86f822f76
+      internalID: -1067071402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 308
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b7ec346d8619a74d93a471847f1cff8
+      internalID: 226671482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_17
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 308
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0224ca044eb17644b36a5632b5a2b17
+      internalID: 727284928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 308
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 057972eb50a34194da61b90292cea21c
+      internalID: 354929701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_19
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 308
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34c168dbb3783ea498cac26a4d9dde01
+      internalID: 1721100597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 244
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 806d4d54086115a41b9355c69195ff36
+      internalID: 1712350396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 244
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9732e3336be931840bb810368a9f67bd
+      internalID: 912865075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_22
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 244
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58f687d8cf6d1174f9586c73bcb5906d
+      internalID: -756323579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_23
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 244
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85d7b91af36a5014da271078d859214f
+      internalID: 1748323507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_24
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 244
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3af57db2ecdc6f0449f8d2d010c7a057
+      internalID: 2051007084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_25
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 244
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aab12c5da91c8e49944407a169f131e
+      internalID: -945516550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_26
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 244
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62b48b1d9e0d9644793122886eaa6d63
+      internalID: -1313453254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_27
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 244
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ccaa0881e5ab6c419f90f3995546ee3
+      internalID: -2009022064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_28
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 244
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dcc637be4c96af44a8b4fd34f099fdb
+      internalID: -1397534333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31235a3f4172b584486247fe79d2d0d0
+      internalID: -382690768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_30
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 180
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 837d3cbf53db9c043af7021170cc49b6
+      internalID: 2100754725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_31
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 180
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4235013616b92842b1402d635deee1f
+      internalID: -1685112930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_32
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 180
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d8ef7f9cf28184494b2daaa46965db
+      internalID: -2073782991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_33
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 180
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac3728e40494e62449e264cd53c4659a
+      internalID: -951515645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_34
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 180
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1733739c1e07494395bdf758dcab405
+      internalID: 1191739858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 116
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bfc15f5c4cec924fb5b3ba0ad47bc41
+      internalID: 1448862501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_36
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 116
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 949fd17b451b213419a4dd61a9c26bd9
+      internalID: 1965525334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_37
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 116
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70b8351b31564974381628dd5d480397
+      internalID: -1188948742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_38
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 116
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdea1c0014164ad4b85d90ab7e5cc5e8
+      internalID: -971134339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_39
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 116
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2ca7198f85fef144a0c53a051cb650f
+      internalID: 1364582658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_40
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 116
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15388898305857b41af6ab11650634f1
+      internalID: 1330842541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_41
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 116
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5c8ceff73572d4459846e6682f08900
+      internalID: -843411424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64707ff168790ad46b698d00d1c72bf0
+      internalID: -1858427301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_43
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70d15b9c779e09e4a835301772a63b69
+      internalID: -1080955751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_44
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0187290b857d81a46910ec091a8908e7
+      internalID: 1118619591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_45
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b6b28f5adce04440a12e39767dc2242
+      internalID: 1594307078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_46
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6553bc276ae895e4c98637caf6f601b1
+      internalID: -18802341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_47
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81fa51af733a2a145998ad1acb57e689
+      internalID: -1272464542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_48
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 362b8b60e2bea81408c8478ce6b7c004
+      internalID: 312203903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_49
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af3ef5d68095233489ded2da60b7c336
+      internalID: -1382242332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Floresta_50
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52b8fe42c5c493f4abc0717a8ef83b4c
+      internalID: 1128674223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 961a635d3f8ef554c8c223633a3bbb04
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Tilemap Floresta_0: -4989062798342557062
+      Tilemap Floresta_1: -4672268375978169741
+      Tilemap Floresta_10: 744603481
+      Tilemap Floresta_11: 1569732455
+      Tilemap Floresta_12: 321421360
+      Tilemap Floresta_13: 762092256
+      Tilemap Floresta_14: 1040163472
+      Tilemap Floresta_15: -1067071402
+      Tilemap Floresta_16: 226671482
+      Tilemap Floresta_17: 727284928
+      Tilemap Floresta_18: 354929701
+      Tilemap Floresta_19: 1721100597
+      Tilemap Floresta_2: -8221519597075711767
+      Tilemap Floresta_20: 1712350396
+      Tilemap Floresta_21: 912865075
+      Tilemap Floresta_22: -756323579
+      Tilemap Floresta_23: 1748323507
+      Tilemap Floresta_24: 2051007084
+      Tilemap Floresta_25: -945516550
+      Tilemap Floresta_26: -1313453254
+      Tilemap Floresta_27: -2009022064
+      Tilemap Floresta_28: -1397534333
+      Tilemap Floresta_29: -382690768
+      Tilemap Floresta_3: -304807934
+      Tilemap Floresta_30: 2100754725
+      Tilemap Floresta_31: -1685112930
+      Tilemap Floresta_32: -2073782991
+      Tilemap Floresta_33: -951515645
+      Tilemap Floresta_34: 1191739858
+      Tilemap Floresta_35: 1448862501
+      Tilemap Floresta_36: 1965525334
+      Tilemap Floresta_37: -1188948742
+      Tilemap Floresta_38: -971134339
+      Tilemap Floresta_39: 1364582658
+      Tilemap Floresta_4: -2094948875
+      Tilemap Floresta_40: 1330842541
+      Tilemap Floresta_41: -843411424
+      Tilemap Floresta_42: -1858427301
+      Tilemap Floresta_43: -1080955751
+      Tilemap Floresta_44: 1118619591
+      Tilemap Floresta_45: 1594307078
+      Tilemap Floresta_46: -18802341
+      Tilemap Floresta_47: -1272464542
+      Tilemap Floresta_48: 312203903
+      Tilemap Floresta_49: -1382242332
+      Tilemap Floresta_5: -834935162
+      Tilemap Floresta_50: 1128674223
+      Tilemap Floresta_6: -1005263755
+      Tilemap Floresta_7: -867921172
+      Tilemap Floresta_8: 907852143
+      Tilemap Floresta_9: -465909327
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
