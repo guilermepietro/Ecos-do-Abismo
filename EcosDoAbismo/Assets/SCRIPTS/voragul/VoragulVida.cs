@@ -27,6 +27,12 @@ public class VoragulVida : MonoBehaviour
             Morrer();
             return;
         }
+        VoragulAtaque1 ataque = GetComponent<VoragulAtaque1>();
+
+if (ataque != null && ataque.EstaAtacando())
+{
+    return;
+}
 
         if (!levandoDano)
         {
