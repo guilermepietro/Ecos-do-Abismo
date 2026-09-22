@@ -8,6 +8,7 @@ public class VoragulAtaque1 : MonoBehaviour
     public float tempoRecuperacao = 1f;
     public float tempoEntreAtaques = 2f;
     public VoragulHitboxAtaque1 hitboxAtaque1;
+    private CameraFollow cameraFollow;
 
     private VoragulMovimento movimento;
     private VoragulVida vida;
@@ -21,6 +22,7 @@ public class VoragulAtaque1 : MonoBehaviour
         movimento = GetComponent<VoragulMovimento>();
         vida = GetComponent<VoragulVida>();
         animator = GetComponent<Animator>();
+        cameraFollow = FindFirstObjectByType<CameraFollow>();
     }
 
     private void Update()
@@ -87,6 +89,11 @@ public void ImpactoAtaque1()
     if (hitboxAtaque1 != null)
     {
         hitboxAtaque1.VerificarAcerto();
+    }
+
+    if (cameraFollow != null)
+    {
+        cameraFollow.TremerCamera();
     }
 }
 }
