@@ -482,7 +482,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.51, y: -2.36, z: 0}
+  m_LocalPosition: {x: 109.9, y: -2.36, z: 0}
   m_LocalScale: {x: 1.9408507, y: 1.9408507, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1446,7 +1446,7 @@ Transform:
   m_GameObject: {fileID: 312620312}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48, y: 1.5, z: -10}
+  m_LocalPosition: {x: 115.9, y: 1.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1510,6 +1510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   alvo: {fileID: 142652950}
   velocidade: 1
+  duracaoTremor: 0.2
+  intensidadeTremor: 0.15
 --- !u!1 &354861916
 GameObject:
   m_ObjectHideFlags: 0
