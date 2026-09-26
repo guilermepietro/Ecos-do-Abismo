@@ -20,6 +20,10 @@ public class RakthasAtaques : MonoBehaviour
     public BoxCollider2D hitboxSocoDireita;
     public BoxCollider2D hitboxSocoEsquerda;
 
+    [Header("Velocidade do Soco")]
+    public float velocidadeInicialSoco = 2f;
+    public float velocidadeFinalSoco = 0.6f;
+
     public bool EstaAtacando => atacando;
 
     private void Awake()
@@ -60,13 +64,35 @@ private void Update()
     // TESTE DO SOCO DE FOGO
     if (Input.GetKeyDown(KeyCode.B) && !atacando)
     {
-        atacando = true;
+    atacando = true;
 
+    Animator animator = GetComponent<Animator>();
+
+    animator.speed = velocidadeInicialSoco;
+    animator.SetBool("estaCorrendo", false);
+    animator.SetTrigger("Ataque3");
+    }
+
+    // DESACELERAÇÃO PROGRESSIVA DO SOCO
+    if (atacando)
+    {
         Animator animator = GetComponent<Animator>();
 
-        animator.speed = 1f;
-        animator.SetBool("estaCorrendo", false);
-        animator.SetTrigger("Ataque3");
+        AnimatorStateInfo estado =
+            animator.GetCurrentAnimatorStateInfo(0);
+
+             if (estado.IsName("Attack3"))
+            {
+                float progresso = Mathf.Clamp01(
+                estado.normalizedTime
+                );
+
+                animator.speed = Mathf.Lerp(
+                velocidadeInicialSoco,
+                velocidadeFinalSoco,
+                progresso
+                );
+            }
     }
 }
 
@@ -187,6 +213,9 @@ public void DesativarHitboxSoco()
 public void FinalizarAtaque3()
 {
     atacando = false;
+
+    Animator animator = GetComponent<Animator>();
+    animator.speed = 1f;
 }
 
 }

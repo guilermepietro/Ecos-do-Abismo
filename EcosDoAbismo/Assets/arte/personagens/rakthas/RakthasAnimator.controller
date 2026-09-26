@@ -389,7 +389,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Ataque 3_Clip
-  m_Speed: 1.7
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -161766726263654126}
@@ -462,7 +462,7 @@ AnimatorStateMachine:
     m_Position: {x: -480, y: 670, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5028441808015064113}
-    m_Position: {x: -247.28882, y: 747.0991, z: 0}
+    m_Position: {x: -240, y: 740, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -3145635160421507173}
