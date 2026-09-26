@@ -16,6 +16,10 @@ public class RakthasAtaques : MonoBehaviour
     public BoxCollider2D hitboxOndaDireita;
     public BoxCollider2D hitboxOndaEsquerda;
 
+    [Header("Hitboxes do Soco")]
+    public BoxCollider2D hitboxSocoDireita;
+    public BoxCollider2D hitboxSocoEsquerda;
+
     public bool EstaAtacando => atacando;
 
     private void Awake()
@@ -24,12 +28,13 @@ public class RakthasAtaques : MonoBehaviour
     }
 
     
+
 private void Update()
 {
     AtualizarPosicaoHitboxRaio();
 
     // TESTE DO RAIO
-    if (Input.GetKeyDown(KeyCode.N) && !atacando)
+    if (Input.GetKeyDown(KeyCode.M) && !atacando)
     {
         atacando = true;
 
@@ -41,7 +46,7 @@ private void Update()
     }
 
     // TESTE DA ONDA DE FOGO
-    if (Input.GetKeyDown(KeyCode.M) && !atacando)
+    if (Input.GetKeyDown(KeyCode.N) && !atacando)
     {
         atacando = true;
 
@@ -51,7 +56,20 @@ private void Update()
         animator.SetBool("estaCorrendo", false);
         animator.SetTrigger("Ataque1");
     }
+
+    // TESTE DO SOCO DE FOGO
+    if (Input.GetKeyDown(KeyCode.B) && !atacando)
+    {
+        atacando = true;
+
+        Animator animator = GetComponent<Animator>();
+
+        animator.speed = 1f;
+        animator.SetBool("estaCorrendo", false);
+        animator.SetTrigger("Ataque3");
+    }
 }
+
 
     private void AtualizarPosicaoHitboxRaio()
     {
@@ -131,4 +149,44 @@ public void FinalizarAtaque1()
 {
     atacando = false;
 }
+
+
+public void AtivarHitboxSoco()
+{
+    if (hitboxSocoDireita == null || hitboxSocoEsquerda == null)
+        return;
+
+    hitboxSocoDireita.enabled = false;
+    hitboxSocoEsquerda.enabled = false;
+
+    BoxCollider2D hitboxAtual = spriteRenderer.flipX
+        ? hitboxSocoEsquerda
+        : hitboxSocoDireita;
+
+    RakthasSocoHitbox soco =
+        hitboxAtual.GetComponent<RakthasSocoHitbox>();
+
+    if (soco != null)
+        soco.ReiniciarAcertos();
+
+    hitboxAtual.enabled = true;
+
+    if (soco != null)
+        soco.VerificarDano();
+}
+
+public void DesativarHitboxSoco()
+{
+    if (hitboxSocoDireita != null)
+        hitboxSocoDireita.enabled = false;
+
+    if (hitboxSocoEsquerda != null)
+        hitboxSocoEsquerda.enabled = false;
+}
+
+public void FinalizarAtaque3()
+{
+    atacando = false;
+}
+
 }
