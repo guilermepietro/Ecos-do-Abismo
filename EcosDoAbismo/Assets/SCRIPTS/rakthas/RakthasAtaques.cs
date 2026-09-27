@@ -1,12 +1,14 @@
+
 using UnityEngine;
 
 public class RakthasAtaques : MonoBehaviour
 {
+    [Header("Hitbox do Raio")]
     public GameObject hitboxRaio;
-    
 
     private bool atacando = false;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
     [Header("Posição da Hitbox do Raio")]
     public float posicaoXDireita = 0.352f;
@@ -21,81 +23,175 @@ public class RakthasAtaques : MonoBehaviour
     public BoxCollider2D hitboxSocoEsquerda;
 
     [Header("Velocidade do Soco")]
-    public float velocidadeInicialSoco = 2f;
-    public float velocidadeFinalSoco = 0.6f;
+    public AnimationCurve curvaVelocidadeSoco =
+        new AnimationCurve(
+            new Keyframe(0f, 1.25f),
+            new Keyframe(0.25f, 1.25f),
+            new Keyframe(0.40f, 1.70f),
+            new Keyframe(0.58f, 1f),
+            new Keyframe(0.80f, 0.70f),
+            new Keyframe(1f, 0.70f)
+        );
+
+    [Header("Inteligência Artificial")]
+    public float distanciaSoco = 2.2f;
+    public float distanciaCorrente = 5f;
+    public float distanciaMaximaRaio = 8f;
+
+    public float intervaloAtaques = 1.5f;
+    public float esperaInicial = 1f;
+
+    private float proximoAtaque;
+    private bool iniciouCombate = false;
+
+    private RakthasMovimento movimento;
+    private RakthasVida vida;
 
     public bool EstaAtacando => atacando;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        movimento = GetComponent<RakthasMovimento>();
+        vida = GetComponent<RakthasVida>();
     }
 
-    
-
-private void Update()
-{
-    AtualizarPosicaoHitboxRaio();
-
-    // TESTE DO RAIO
-    if (Input.GetKeyDown(KeyCode.M) && !atacando)
+    private void Update()
     {
-        atacando = true;
+        AtualizarPosicaoHitboxRaio();
 
-        Animator animator = GetComponent<Animator>();
+        // VELOCIDADE VARIÁVEL DO SOCO
+        if (atacando)
+        {
+            AnimatorStateInfo estado =
+                animator.GetCurrentAnimatorStateInfo(0);
 
-        animator.speed = 1f;
-        animator.SetBool("estaCorrendo", false);
-        animator.SetTrigger("Raio");
-    }
-
-    // TESTE DA ONDA DE FOGO
-    if (Input.GetKeyDown(KeyCode.N) && !atacando)
-    {
-        atacando = true;
-
-        Animator animator = GetComponent<Animator>();
-
-        animator.speed = 1f;
-        animator.SetBool("estaCorrendo", false);
-        animator.SetTrigger("Ataque1");
-    }
-
-    // TESTE DO SOCO DE FOGO
-    if (Input.GetKeyDown(KeyCode.B) && !atacando)
-    {
-    atacando = true;
-
-    Animator animator = GetComponent<Animator>();
-
-    animator.speed = velocidadeInicialSoco;
-    animator.SetBool("estaCorrendo", false);
-    animator.SetTrigger("Ataque3");
-    }
-
-    // DESACELERAÇÃO PROGRESSIVA DO SOCO
-    if (atacando)
-    {
-        Animator animator = GetComponent<Animator>();
-
-        AnimatorStateInfo estado =
-            animator.GetCurrentAnimatorStateInfo(0);
-
-             if (estado.IsName("Attack3"))
+            if (estado.IsName("Attack3"))
             {
                 float progresso = Mathf.Clamp01(
-                estado.normalizedTime
+                    estado.normalizedTime
                 );
 
-                animator.speed = Mathf.Lerp(
-                velocidadeInicialSoco,
-                velocidadeFinalSoco,
-                progresso
-                );
+                animator.speed =
+                    curvaVelocidadeSoco.Evaluate(progresso);
             }
-    }
-}
+        }
 
+        // TECLAS TEMPORÁRIAS PARA TESTES
+        if (PodeAtacar())
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                IniciarAtaque("Raio");
+            }
+            else if (Input.GetKeyDown(KeyCode.N))
+            {
+                IniciarAtaque("Ataque1");
+            }
+            else if (Input.GetKeyDown(KeyCode.B))
+            {
+                IniciarAtaque("Ataque3");
+            }
+        }
+
+        // INTELIGÊNCIA ARTIFICIAL
+        EscolherAtaque();
+    }
+
+    private bool PodeAtacar()
+    {
+        if (atacando)
+            return false;
+
+        if (vida != null &&
+            (vida.EstaMorto || vida.EstaTomandoDano))
+            return false;
+
+        return true;
+    }
+
+    private void EscolherAtaque()
+    {
+        if (movimento == null || !movimento.EstaAtivado)
+        {
+            iniciouCombate = false;
+            return;
+        }
+
+        if (!iniciouCombate)
+        {
+            iniciouCombate = true;
+            proximoAtaque = Time.time + esperaInicial;
+            return;
+        }
+
+        if (!PodeAtacar())
+            return;
+
+        if (Time.time < proximoAtaque)
+            return;
+
+        if (movimento.elian == null)
+            return;
+
+        float distancia = Mathf.Abs(
+            movimento.elian.position.x - transform.position.x
+        );
+
+        // FORA DO ALCANCE DE TODOS OS ATAQUES
+        if (distancia > distanciaMaximaRaio)
+            return;
+
+        // SOCO
+        if (distancia <= distanciaSoco)
+        {
+            IniciarAtaque("Ataque3");
+        }
+
+        // CORRENTE DE FOGO
+        else if (distancia <= distanciaCorrente)
+        {
+            IniciarAtaque("Ataque1");
+        }
+
+        // RAIO
+        else
+        {
+            IniciarAtaque("Raio");
+        }
+    }
+
+    private void IniciarAtaque(string nomeAtaque)
+    {
+        if (!PodeAtacar())
+            return;
+
+        // DEFINE A DIREÇÃO ANTES DO ATAQUE
+        if (movimento != null && movimento.elian != null)
+        {
+            float diferencaX =
+                movimento.elian.position.x - transform.position.x;
+
+            if (diferencaX > 0.1f)
+                spriteRenderer.flipX = false;
+            else if (diferencaX < -0.1f)
+                spriteRenderer.flipX = true;
+        }
+
+        atacando = true;
+
+        animator.speed = nomeAtaque == "Ataque3"
+            ? curvaVelocidadeSoco.Evaluate(0f)
+            : 1f;
+
+        animator.SetBool("estaCorrendo", false);
+        animator.SetTrigger(nomeAtaque);
+    }
+
+    // =========================
+    // RAIO
+    // =========================
 
     private void AtualizarPosicaoHitboxRaio()
     {
@@ -113,17 +209,18 @@ private void Update()
     }
 
     public void AtivarHitboxRaio()
-{
-    if (hitboxRaio != null)
     {
-        hitboxRaio.SetActive(true);
+        if (hitboxRaio != null)
+        {
+            hitboxRaio.SetActive(true);
 
-        RakthasRaioHitbox raio = hitboxRaio.GetComponent<RakthasRaioHitbox>();
+            RakthasRaioHitbox raio =
+                hitboxRaio.GetComponent<RakthasRaioHitbox>();
 
-        if (raio != null)
-            raio.VerificarDano();
+            if (raio != null)
+                raio.VerificarDano();
+        }
     }
-}
 
     public void DesativarHitboxRaio()
     {
@@ -134,88 +231,94 @@ private void Update()
     public void FinalizarRaio()
     {
         atacando = false;
+        proximoAtaque = Time.time + intervaloAtaques;
     }
 
-    
+    // =========================
+    // CORRENTE DE FOGO
+    // =========================
 
-public void AtivarHitboxOnda()
-{
-    if (hitboxOndaDireita == null || hitboxOndaEsquerda == null)
-        return;
+    public void AtivarHitboxOnda()
+    {
+        if (hitboxOndaDireita == null || hitboxOndaEsquerda == null)
+            return;
 
-    hitboxOndaDireita.enabled = false;
-    hitboxOndaEsquerda.enabled = false;
-
-    BoxCollider2D hitboxAtual = spriteRenderer.flipX
-        ? hitboxOndaEsquerda
-        : hitboxOndaDireita;
-
-    RakthasOndaHitbox onda =
-        hitboxAtual.GetComponent<RakthasOndaHitbox>();
-
-    if (onda != null)
-        onda.ReiniciarAcertos();
-
-    hitboxAtual.enabled = true;
-
-    if (onda != null)
-        onda.VerificarDano();
-}
-
-public void DesativarHitboxOnda()
-{
-    if (hitboxOndaDireita != null)
         hitboxOndaDireita.enabled = false;
-
-    if (hitboxOndaEsquerda != null)
         hitboxOndaEsquerda.enabled = false;
-}
 
-public void FinalizarAtaque1()
-{
-    atacando = false;
-}
+        BoxCollider2D hitboxAtual = spriteRenderer.flipX
+            ? hitboxOndaEsquerda
+            : hitboxOndaDireita;
 
+        RakthasOndaHitbox onda =
+            hitboxAtual.GetComponent<RakthasOndaHitbox>();
 
-public void AtivarHitboxSoco()
-{
-    if (hitboxSocoDireita == null || hitboxSocoEsquerda == null)
-        return;
+        if (onda != null)
+            onda.ReiniciarAcertos();
 
-    hitboxSocoDireita.enabled = false;
-    hitboxSocoEsquerda.enabled = false;
+        hitboxAtual.enabled = true;
 
-    BoxCollider2D hitboxAtual = spriteRenderer.flipX
-        ? hitboxSocoEsquerda
-        : hitboxSocoDireita;
+        if (onda != null)
+            onda.VerificarDano();
+    }
 
-    RakthasSocoHitbox soco =
-        hitboxAtual.GetComponent<RakthasSocoHitbox>();
+    public void DesativarHitboxOnda()
+    {
+        if (hitboxOndaDireita != null)
+            hitboxOndaDireita.enabled = false;
 
-    if (soco != null)
-        soco.ReiniciarAcertos();
+        if (hitboxOndaEsquerda != null)
+            hitboxOndaEsquerda.enabled = false;
+    }
 
-    hitboxAtual.enabled = true;
+    public void FinalizarAtaque1()
+    {
+        atacando = false;
+        proximoAtaque = Time.time + intervaloAtaques;
+    }
 
-    if (soco != null)
-        soco.VerificarDano();
-}
+    // =========================
+    // SOCO DE FOGO
+    // =========================
 
-public void DesativarHitboxSoco()
-{
-    if (hitboxSocoDireita != null)
+    public void AtivarHitboxSoco()
+    {
+        if (hitboxSocoDireita == null || hitboxSocoEsquerda == null)
+            return;
+
         hitboxSocoDireita.enabled = false;
-
-    if (hitboxSocoEsquerda != null)
         hitboxSocoEsquerda.enabled = false;
-}
 
-public void FinalizarAtaque3()
-{
-    atacando = false;
+        BoxCollider2D hitboxAtual = spriteRenderer.flipX
+            ? hitboxSocoEsquerda
+            : hitboxSocoDireita;
 
-    Animator animator = GetComponent<Animator>();
-    animator.speed = 1f;
-}
+        RakthasSocoHitbox soco =
+            hitboxAtual.GetComponent<RakthasSocoHitbox>();
 
+        if (soco != null)
+            soco.ReiniciarAcertos();
+
+        hitboxAtual.enabled = true;
+
+        if (soco != null)
+            soco.VerificarDano();
+    }
+
+    public void DesativarHitboxSoco()
+    {
+        if (hitboxSocoDireita != null)
+            hitboxSocoDireita.enabled = false;
+
+        if (hitboxSocoEsquerda != null)
+            hitboxSocoEsquerda.enabled = false;
+    }
+
+    public void FinalizarAtaque3()
+    {
+        atacando = false;
+        animator.speed = 1f;
+
+        proximoAtaque = Time.time + intervaloAtaques;
+    }
 }

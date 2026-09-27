@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class RakthasMovimento : MonoBehaviour
@@ -6,7 +7,10 @@ public class RakthasMovimento : MonoBehaviour
     public Transform elian;
     private RakthasVida vida;
     public Animator animator;
+
     private bool ativado = false;
+    public bool EstaAtivado => ativado;
+
     private RakthasAtaques ataques;
 
     [Header("Movimento")]
@@ -27,44 +31,53 @@ public class RakthasMovimento : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        if (ataques != null && ataques.EstaAtacando)
-{
-    rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-    animator.SetBool("estaCorrendo", false);
-    return;
-}
+        // MORTE
         if (vida != null && vida.EstaMorto)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             return;
         }
 
+        // DANO
         if (vida != null && vida.EstaTomandoDano)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             return;
         }
 
+        // ATAQUE
+        if (ataques != null && ataques.EstaAtacando)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            animator.SetBool("estaCorrendo", false);
+            return;
+        }
+
+        // ZONA DE ATIVAÇÃO
         if (!ativado)
-{
-    rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-    animator.SetBool("estaCorrendo", false);
-    return;
-}
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            animator.SetBool("estaCorrendo", false);
+            return;
+        }
 
         if (elian == null)
             return;
 
-        float distancia = Mathf.Abs(elian.position.x - transform.position.x);
+        float distancia = Mathf.Abs(
+            elian.position.x - transform.position.x
+        );
 
-        bool corridaAgressiva = distancia >= distanciaParaCorridaAgressiva;
+        bool corridaAgressiva =
+            distancia >= distanciaParaCorridaAgressiva;
 
         float velocidadeAtual = corridaAgressiva
             ? velocidadeAgressiva
             : velocidadeNormal;
 
-        float direcao = Mathf.Sign(elian.position.x - transform.position.x);
+        float direcao = Mathf.Sign(
+            elian.position.x - transform.position.x
+        );
 
         rb.linearVelocity = new Vector2(
             direcao * velocidadeAtual,
@@ -78,6 +91,7 @@ public class RakthasMovimento : MonoBehaviour
         else
             animator.speed = 1f;
 
+        // DIREÇÃO ORIGINAL QUE ESTAVA FUNCIONANDO
         if (direcao > 0)
             spriteRenderer.flipX = false;
         else if (direcao < 0)
@@ -85,7 +99,7 @@ public class RakthasMovimento : MonoBehaviour
     }
 
     public void AtivarRakthas()
-{
-    ativado = true;
-}
+    {
+        ativado = true;
+    }
 }
