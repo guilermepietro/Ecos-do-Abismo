@@ -38,8 +38,12 @@ public class RakthasAtaques : MonoBehaviour
     public float distanciaCorrente = 5f;
     public float distanciaMaximaRaio = 8f;
 
-    public float intervaloAtaques = 1.5f;
-    public float esperaInicial = 1f;
+    [Header("Recuperação dos Ataques")]
+    public float recuperacaoRaio = 0.8f;
+    public float recuperacaoCorrente = 1.2f;
+    public float recuperacaoSoco = 1.5f;
+
+public float esperaInicial = 1f;
 
     private float proximoAtaque;
     private bool iniciouCombate = false;
@@ -47,7 +51,20 @@ public class RakthasAtaques : MonoBehaviour
     private RakthasMovimento movimento;
     private RakthasVida vida;
 
+    // NOVA MECÂNICA
+    private bool perseguicaoAgressivaObrigatoria = false;
+
+    // MEMÓRIA DO ÚLTIMO ATAQUE
+    private string ultimoAtaque = "";
+
     public bool EstaAtacando => atacando;
+
+    public bool PerseguicaoAgressivaObrigatoria
+        => perseguicaoAgressivaObrigatoria;
+
+    public float DistanciaSoco => distanciaSoco;
+
+    public float DistanciaMaximaRaio => distanciaMaximaRaio;
 
     private void Awake()
     {
@@ -78,7 +95,7 @@ public class RakthasAtaques : MonoBehaviour
             }
         }
 
-        // TECLAS TEMPORÁRIAS PARA TESTES
+        // TECLAS TEMPORÁRIAS
         if (PodeAtacar())
         {
             if (Input.GetKeyDown(KeyCode.M))
@@ -95,7 +112,6 @@ public class RakthasAtaques : MonoBehaviour
             }
         }
 
-        // INTELIGÊNCIA ARTIFICIAL
         EscolherAtaque();
     }
 
@@ -129,33 +145,57 @@ public class RakthasAtaques : MonoBehaviour
         if (!PodeAtacar())
             return;
 
-        if (Time.time < proximoAtaque)
-            return;
-
         if (movimento.elian == null)
             return;
 
         float distancia = Mathf.Abs(
-            movimento.elian.position.x - transform.position.x
+            movimento.elian.position.x -
+            transform.position.x
         );
 
-        // FORA DO ALCANCE DE TODOS OS ATAQUES
+        // PERSEGUIÇÃO AGRESSIVA OBRIGATÓRIA
+        if (perseguicaoAgressivaObrigatoria)
+        {
+            // Aguarda o cooldown e persegue
+            // até alcançar a distância do soco.
+            if (distancia <= distanciaSoco &&
+                Time.time >= proximoAtaque)
+            {
+                IniciarAtaque("Ataque3");
+            }
+
+            return;
+        }
+
+        // FORA DO ALCANCE MÁXIMO
         if (distancia > distanciaMaximaRaio)
             return;
 
-        // SOCO
+        if (Time.time < proximoAtaque)
+            return;
+
+        // ELIAN PRÓXIMO
         if (distancia <= distanciaSoco)
         {
-            IniciarAtaque("Ataque3");
+            // Se acabou de usar o soco,
+            // utiliza a Corrente de Fogo.
+            if (ultimoAtaque == "Ataque3")
+            {
+                IniciarAtaque("Ataque1");
+            }
+            else
+            {
+                IniciarAtaque("Ataque3");
+            }
         }
 
-        // CORRENTE DE FOGO
+        // MÉDIO ALCANCE
         else if (distancia <= distanciaCorrente)
         {
             IniciarAtaque("Ataque1");
         }
 
-        // RAIO
+        // LONGO ALCANCE
         else
         {
             IniciarAtaque("Raio");
@@ -167,11 +207,12 @@ public class RakthasAtaques : MonoBehaviour
         if (!PodeAtacar())
             return;
 
-        // DEFINE A DIREÇÃO ANTES DO ATAQUE
+        // DIREÇÃO ANTES DO ATAQUE
         if (movimento != null && movimento.elian != null)
         {
             float diferencaX =
-                movimento.elian.position.x - transform.position.x;
+                movimento.elian.position.x -
+                transform.position.x;
 
             if (diferencaX > 0.1f)
                 spriteRenderer.flipX = false;
@@ -180,6 +221,8 @@ public class RakthasAtaques : MonoBehaviour
         }
 
         atacando = true;
+
+        ultimoAtaque = nomeAtaque;
 
         animator.speed = nomeAtaque == "Ataque3"
             ? curvaVelocidadeSoco.Evaluate(0f)
@@ -198,7 +241,8 @@ public class RakthasAtaques : MonoBehaviour
         if (hitboxRaio == null || spriteRenderer == null)
             return;
 
-        Vector3 posicao = hitboxRaio.transform.localPosition;
+        Vector3 posicao =
+            hitboxRaio.transform.localPosition;
 
         if (spriteRenderer.flipX)
             posicao.x = posicaoXEsquerda;
@@ -229,10 +273,13 @@ public class RakthasAtaques : MonoBehaviour
     }
 
     public void FinalizarRaio()
-    {
-        atacando = false;
-        proximoAtaque = Time.time + intervaloAtaques;
-    }
+{
+    atacando = false;
+
+    proximoAtaque = Time.time + recuperacaoRaio;
+
+    perseguicaoAgressivaObrigatoria = true;
+}
 
     // =========================
     // CORRENTE DE FOGO
@@ -240,7 +287,8 @@ public class RakthasAtaques : MonoBehaviour
 
     public void AtivarHitboxOnda()
     {
-        if (hitboxOndaDireita == null || hitboxOndaEsquerda == null)
+        if (hitboxOndaDireita == null ||
+            hitboxOndaEsquerda == null)
             return;
 
         hitboxOndaDireita.enabled = false;
@@ -272,10 +320,13 @@ public class RakthasAtaques : MonoBehaviour
     }
 
     public void FinalizarAtaque1()
-    {
-        atacando = false;
-        proximoAtaque = Time.time + intervaloAtaques;
-    }
+{
+    atacando = false;
+
+    proximoAtaque = Time.time + recuperacaoCorrente;
+
+    perseguicaoAgressivaObrigatoria = true;
+}
 
     // =========================
     // SOCO DE FOGO
@@ -283,7 +334,8 @@ public class RakthasAtaques : MonoBehaviour
 
     public void AtivarHitboxSoco()
     {
-        if (hitboxSocoDireita == null || hitboxSocoEsquerda == null)
+        if (hitboxSocoDireita == null ||
+            hitboxSocoEsquerda == null)
             return;
 
         hitboxSocoDireita.enabled = false;
@@ -315,10 +367,13 @@ public class RakthasAtaques : MonoBehaviour
     }
 
     public void FinalizarAtaque3()
-    {
-        atacando = false;
-        animator.speed = 1f;
+{
+    atacando = false;
 
-        proximoAtaque = Time.time + intervaloAtaques;
-    }
+    animator.speed = 1f;
+
+    proximoAtaque = Time.time + recuperacaoSoco;
+
+    perseguicaoAgressivaObrigatoria = false;
+}
 }

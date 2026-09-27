@@ -7994,9 +7994,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RakthasMovimento
   elian: {fileID: 142652950}
   animator: {fileID: 2059395985}
-  velocidadeNormal: 2
+  velocidadeNormal: 1.6
   velocidadeAgressiva: 4
-  distanciaParaCorridaAgressiva: 6
 --- !u!70 &2059395983
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -8257,10 +8256,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  distanciaSoco: 2.2
-  distanciaCorrente: 4
-  distanciaMaximaRaio: 6
-  intervaloAtaques: 1.5
+  distanciaSoco: 2.7
+  distanciaCorrente: 3.4
+  distanciaMaximaRaio: 4.2
+  recuperacaoRaio: 0.8
+  recuperacaoCorrente: 1.2
+  recuperacaoSoco: 1.5
   esperaInicial: 1
 --- !u!114 &2059395991
 MonoBehaviour:
