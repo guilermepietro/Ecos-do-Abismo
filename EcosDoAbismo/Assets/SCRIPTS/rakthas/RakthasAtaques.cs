@@ -38,6 +38,16 @@ public class RakthasAtaques : MonoBehaviour
     public float distanciaCorrente = 5f;
     public float distanciaMaximaRaio = 8f;
 
+    [Header("Preparação da Corrente")]
+    public float preparacaoCorrente = 0.35f;
+    private bool preparandoCorrente = false;
+    private float momentoAtaqueCorrente;
+
+    [Header("Preparação do Raio")]
+    public float preparacaoRaio = 0.2f;
+    private bool preparandoRaio = false;
+    private float momentoAtaqueRaio;
+
     [Header("Recuperação dos Ataques")]
     public float recuperacaoRaio = 0.8f;
     public float recuperacaoCorrente = 1.2f;
@@ -76,6 +86,37 @@ public float esperaInicial = 1f;
 
     private void Update()
     {
+
+        // PREPARAÇÃO DA CORRENTE
+if (preparandoCorrente &&
+    Time.time >= momentoAtaqueCorrente)
+{
+    preparandoCorrente = false;
+
+    if (vida != null &&
+        (vida.EstaMorto || vida.EstaTomandoDano))
+    {
+        atacando = false;
+        return;
+    }
+
+    animator.SetTrigger("Ataque1");
+}
+
+// PREPARAÇÃO DO RAIO
+if (preparandoRaio && Time.time >= momentoAtaqueRaio)
+{
+    preparandoRaio = false;
+
+    if (vida != null &&
+        (vida.EstaMorto || vida.EstaTomandoDano))
+    {
+        atacando = false;
+        return;
+    }
+
+    animator.SetTrigger("Raio");
+}
         AtualizarPosicaoHitboxRaio();
 
         // VELOCIDADE VARIÁVEL DO SOCO
@@ -202,35 +243,58 @@ public float esperaInicial = 1f;
         }
     }
 
-    private void IniciarAtaque(string nomeAtaque)
+    
+private void IniciarAtaque(string nomeAtaque)
+{
+    if (!PodeAtacar())
+        return;
+
+    // DEFINE A DIREÇÃO ANTES DO ATAQUE
+    if (movimento != null && movimento.elian != null)
     {
-        if (!PodeAtacar())
-            return;
+        float diferencaX =
+            movimento.elian.position.x - transform.position.x;
 
-        // DIREÇÃO ANTES DO ATAQUE
-        if (movimento != null && movimento.elian != null)
-        {
-            float diferencaX =
-                movimento.elian.position.x -
-                transform.position.x;
+        if (diferencaX > 0.1f)
+            spriteRenderer.flipX = false;
+        else if (diferencaX < -0.1f)
+            spriteRenderer.flipX = true;
+    }
 
-            if (diferencaX > 0.1f)
-                spriteRenderer.flipX = false;
-            else if (diferencaX < -0.1f)
-                spriteRenderer.flipX = true;
-        }
+    atacando = true;
 
-        atacando = true;
+    ultimoAtaque = nomeAtaque;
 
-        ultimoAtaque = nomeAtaque;
+    // VELOCIDADE DA ANIMAÇÃO
+    animator.speed = nomeAtaque == "Ataque3"
+        ? curvaVelocidadeSoco.Evaluate(0f)
+        : 1f;
 
-        animator.speed = nomeAtaque == "Ataque3"
-            ? curvaVelocidadeSoco.Evaluate(0f)
-            : 1f;
+    animator.SetBool("estaCorrendo", false);
 
-        animator.SetBool("estaCorrendo", false);
+    // PREPARAÇÃO DA CORRENTE DE FOGO
+    if (nomeAtaque == "Ataque1")
+    {
+        preparandoCorrente = true;
+        momentoAtaqueCorrente =
+            Time.time + preparacaoCorrente;
+    }
+
+    // PREPARAÇÃO DO RAIO
+    else if (nomeAtaque == "Raio")
+    {
+        preparandoRaio = true;
+        momentoAtaqueRaio =
+            Time.time + preparacaoRaio;
+    }
+
+    // SOCO DE FOGO
+    else
+    {
         animator.SetTrigger(nomeAtaque);
     }
+}
+
 
     // =========================
     // RAIO
