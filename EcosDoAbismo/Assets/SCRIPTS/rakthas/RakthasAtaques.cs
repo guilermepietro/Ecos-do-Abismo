@@ -53,6 +53,11 @@ public class RakthasAtaques : MonoBehaviour
     public float recuperacaoCorrente = 1.2f;
     public float recuperacaoSoco = 1.5f;
 
+    [Header("Variação após o Raio")]
+    [Range(0f, 1f)]
+    public float chanceCorrenteAposRaio = 0.4f;
+    private bool perseguirAteCorrente = false;
+
 public float esperaInicial = 1f;
 
     private float proximoAtaque;
@@ -194,19 +199,33 @@ if (preparandoRaio && Time.time >= momentoAtaqueRaio)
             transform.position.x
         );
 
-        // PERSEGUIÇÃO AGRESSIVA OBRIGATÓRIA
-        if (perseguicaoAgressivaObrigatoria)
-        {
-            // Aguarda o cooldown e persegue
-            // até alcançar a distância do soco.
-            if (distancia <= distanciaSoco &&
-                Time.time >= proximoAtaque)
-            {
-                IniciarAtaque("Ataque3");
-            }
+        
+if (perseguicaoAgressivaObrigatoria)
+{
+    if (Time.time < proximoAtaque)
+        return;
 
-            return;
-        }
+    // Se Elian estiver muito próximo,
+    // Rakthas utiliza o Soco.
+    if (distancia <= distanciaSoco)
+    {
+        perseguirAteCorrente = false;
+        IniciarAtaque("Ataque3");
+    }
+
+    // Se escolheu a Corrente após o Raio,
+    // interrompe a perseguição ao
+    // alcançar a distância necessária.
+    else if (perseguirAteCorrente &&
+             distancia <= distanciaCorrente)
+    {
+        perseguirAteCorrente = false;
+        IniciarAtaque("Ataque1");
+    }
+
+    return;
+}
+
 
         // FORA DO ALCANCE MÁXIMO
         if (distancia > distanciaMaximaRaio)
@@ -336,14 +355,22 @@ private void IniciarAtaque(string nomeAtaque)
             hitboxRaio.SetActive(false);
     }
 
-    public void FinalizarRaio()
+    
+public void FinalizarRaio()
 {
     atacando = false;
 
     proximoAtaque = Time.time + recuperacaoRaio;
 
+    // Continua perseguindo agressivamente.
     perseguicaoAgressivaObrigatoria = true;
+
+    // Decide uma única vez qual será
+    // o próximo ataque.
+    perseguirAteCorrente =
+        Random.value < chanceCorrenteAposRaio;
 }
+
 
     // =========================
     // CORRENTE DE FOGO
@@ -389,7 +416,9 @@ private void IniciarAtaque(string nomeAtaque)
 
     proximoAtaque = Time.time + recuperacaoCorrente;
 
+    perseguirAteCorrente = false;
     perseguicaoAgressivaObrigatoria = true;
+    
 }
 
     // =========================
