@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 142652957}
   - component: {fileID: 142652958}
   - component: {fileID: 142652959}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: elian
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -657,7 +657,7 @@ MonoBehaviour:
   velocidade: 4
   velocidadeCorrida: 8
   velocidadeAnimacaoCorrida: 1.8
-  forcaPulo: 15
+  forcaPulo: 13
   cooldownDash: 1
   velocidadeDash: 15
   tempoDash: 0.5
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElianDefesa
   forcaKnockbackEscudo: 4
-  vidaMaximaEscudo: 50
+  vidaMaximaEscudo: 100
   tempoRecargaEscudo: 3
   danoAoQuebrar: 5
 --- !u!1 &175657608
@@ -2452,7 +2452,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -6829,7 +6829,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -7971,9 +7971,8 @@ GameObject:
   - component: {fileID: 2059395982}
   - component: {fileID: 2059395988}
   - component: {fileID: 2059395990}
-  - component: {fileID: 2059395991}
   - component: {fileID: 2059395992}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rakthas
   m_TagString: Inimigo
   m_Icon: {fileID: 0}
@@ -7996,6 +7995,10 @@ MonoBehaviour:
   animator: {fileID: 2059395985}
   velocidadeNormal: 1.6
   velocidadeAgressiva: 4
+  duracaoArrancada: 0.8
+  intervaloArrancadas: 1.2
+  preparacaoArrancada: 0.15
+  velocidadeAnimacaoArrancada: 1.55
 --- !u!70 &2059395983
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -8030,8 +8033,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.007412895, y: 0.45911232}
-  m_Size: {x: 0.6096555, y: 0.8584947}
+  m_Offset: {x: -0.027214509, y: 0.45911232}
+  m_Size: {x: 0.60842896, y: 0.8584947}
   m_Direction: 0
 --- !u!50 &2059395984
 Rigidbody2D:
@@ -8059,7 +8062,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!95 &2059395985
 Animator:
   serializedVersion: 7
@@ -8175,7 +8178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0adcacc02e84314da6c862ed636c21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RakthasVida
-  vidaMaxima: 100
+  vidaMaxima: 200
   animator: {fileID: 2059395985}
 --- !u!114 &2059395990
 MonoBehaviour:
@@ -8259,24 +8262,16 @@ MonoBehaviour:
   distanciaSoco: 2.7
   distanciaCorrente: 3.4
   distanciaMaximaRaio: 4.2
+  preparacaoCorrente: 0.3
+  preparacaoRaio: 0.2
   recuperacaoRaio: 0.8
   recuperacaoCorrente: 1.2
   recuperacaoSoco: 1.5
+  chanceCorrenteAposRaio: 0.45
+  chancePausaDecisao: 0.4
+  pausaDecisaoMinima: 0.3
+  pausaDecisaoMaxima: 0.6
   esperaInicial: 1
---- !u!114 &2059395991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2059395981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c18896e5564d184ca2ab8f09d61525b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RakthasContato
-  danoContato: 5
-  cooldownContato: 3
 --- !u!114 &2059395992
 MonoBehaviour:
   m_ObjectHideFlags: 0

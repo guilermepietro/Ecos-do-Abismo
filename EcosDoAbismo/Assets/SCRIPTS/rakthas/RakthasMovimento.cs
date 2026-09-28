@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class RakthasMovimento : MonoBehaviour
@@ -14,8 +13,21 @@ public class RakthasMovimento : MonoBehaviour
     private RakthasAtaques ataques;
 
     [Header("Movimento")]
-    public float velocidadeNormal = 3.5f;
-    public float velocidadeAgressiva = 5.5f;
+    public float velocidadeNormal = 1.6f;
+    public float velocidadeAgressiva = 4f;
+
+    [Header("Arrancada")]
+    public float duracaoArrancada = 0.8f;
+    public float intervaloArrancadas = 1.2f;
+    public float preparacaoArrancada = 0.15f;
+    public float velocidadeAnimacaoArrancada = 1.55f;
+
+    private bool emArrancada = false;
+    private bool preparandoArrancada = false;
+
+    private float fimArrancada;
+    private float proximaArrancada;
+    private float fimPreparacaoArrancada;
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -32,27 +44,31 @@ public class RakthasMovimento : MonoBehaviour
     {
         if (vida != null && vida.EstaMorto)
         {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            PararMovimento();
             return;
         }
 
         if (vida != null && vida.EstaTomandoDano)
         {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            PararMovimento();
             return;
         }
 
         if (ataques != null && ataques.EstaAtacando)
         {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-            animator.SetBool("estaCorrendo", false);
+            PararMovimento();
             return;
         }
 
+        if (ataques != null && ataques.EstaEmPausaDecisao)
+{
+    PararMovimento();
+    return;
+}
+
         if (!ativado)
         {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-            animator.SetBool("estaCorrendo", false);
+            PararMovimento();
             return;
         }
 
@@ -73,9 +89,32 @@ public class RakthasMovimento : MonoBehaviour
         else if (direcao < 0)
             spriteRenderer.flipX = true;
 
-        // PARA QUANDO ALCANÇA A DISTÂNCIA DO SOCO
+        // SE JÁ ESTÁ NA DISTÂNCIA DO SOCO
         if (ataques != null &&
             distancia <= ataques.DistanciaSoco)
+        {
+            PararMovimento();
+            return;
+        }
+
+        bool precisaPressionar = false;
+
+        if (ataques != null)
+        {
+            // Perseguição agressiva após certos ataques
+            if (ataques.PerseguicaoAgressivaObrigatoria)
+                precisaPressionar = true;
+
+            // Elian está longe demais
+            else if (distancia > ataques.DistanciaMaximaRaio)
+                precisaPressionar = true;
+        }
+
+        // =========================
+        // PREPARAÇÃO DA ARRANCADA
+        // =========================
+
+        if (preparandoArrancada)
         {
             rb.linearVelocity = new Vector2(
                 0,
@@ -84,44 +123,82 @@ public class RakthasMovimento : MonoBehaviour
 
             animator.SetBool("estaCorrendo", false);
             animator.speed = 1f;
+
+            if (Time.time >= fimPreparacaoArrancada)
+            {
+                preparandoArrancada = false;
+                emArrancada = true;
+
+                fimArrancada =
+                    Time.time + duracaoArrancada;
+            }
+
             return;
         }
 
-        // CORRIDA AGRESSIVA
-        bool corridaAgressiva = false;
+        // =========================
+        // ARRANCADA
+        // =========================
 
-        if (ataques != null)
+        if (emArrancada)
         {
-            if (ataques.PerseguicaoAgressivaObrigatoria)
+            rb.linearVelocity = new Vector2(
+                direcao * velocidadeAgressiva,
+                rb.linearVelocity.y
+            );
+
+            animator.SetBool("estaCorrendo", true);
+            animator.speed = velocidadeAnimacaoArrancada;
+
+            if (Time.time >= fimArrancada)
             {
-                corridaAgressiva = true;
+                emArrancada = false;
+
+                proximaArrancada =
+                    Time.time + intervaloArrancadas;
+
+                animator.speed = 1f;
             }
-            else if (distancia > ataques.DistanciaMaximaRaio)
-            {
-                corridaAgressiva = true;
-            }
+
+            return;
         }
 
-        float velocidadeAtual = corridaAgressiva
-            ? velocidadeAgressiva
-            : velocidadeNormal;
+        // =========================
+        // INICIAR NOVA ARRANCADA
+        // =========================
+
+        if (precisaPressionar &&
+            Time.time >= proximaArrancada)
+        {
+            preparandoArrancada = true;
+
+            fimPreparacaoArrancada =
+                Time.time + preparacaoArrancada;
+
+            PararMovimento();
+            return;
+        }
+
+        
 
         rb.linearVelocity = new Vector2(
-            direcao * velocidadeAtual,
+            direcao * velocidadeNormal,
             rb.linearVelocity.y
         );
 
         animator.SetBool("estaCorrendo", true);
+        animator.speed = 1f;
+    }
 
-        if (corridaAgressiva)
-        {
-            animator.speed =
-                velocidadeAgressiva / velocidadeNormal;
-        }
-        else
-        {
-            animator.speed = 1f;
-        }
+    private void PararMovimento()
+    {
+        rb.linearVelocity = new Vector2(
+            0,
+            rb.linearVelocity.y
+        );
+
+        animator.SetBool("estaCorrendo", false);
+        animator.speed = 1f;
     }
 
     public void AtivarRakthas()

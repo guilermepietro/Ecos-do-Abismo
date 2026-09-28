@@ -7,10 +7,11 @@ public class ElianAtaque : MonoBehaviour
     private bool atacando = false;
     private bool comboAtaque2 = false;
     private bool comboAtaque3 = false;
-    private bool ataqueAreaDisponivel = true;
-    public float tempoCooldownArea = 5f;
 
-    
+    private bool ataqueAreaDisponivel = true;
+    private bool ataqueAreaEmExecucao = false;
+
+    public float tempoCooldownArea = 5f;
 
     void Start()
     {
@@ -18,90 +19,93 @@ public class ElianAtaque : MonoBehaviour
     }
 
     void Update()
-{
-    // ATAQUE EM ÁREA
-    if (Input.GetKeyDown(KeyCode.K) && animator.GetBool("estaNoChao") && !atacando && ataqueAreaDisponivel)
-{
-    animator.SetTrigger("AtaqueArea");
-    ataqueAreaDisponivel = false;
-}
-
-    // COMBO NORMAL
-    if (Input.GetKeyDown(KeyCode.J) && animator.GetBool("estaNoChao"))
     {
-        if (!atacando)
+        // ATAQUE EM ÁREA
+        if (Input.GetKeyDown(KeyCode.K) &&
+            animator.GetBool("estaNoChao") &&
+            !atacando &&
+            ataqueAreaDisponivel)
         {
-            animator.ResetTrigger("Ataque2");
-            animator.ResetTrigger("Ataque3");
+            animator.SetTrigger("AtaqueArea");
 
-            animator.SetTrigger("Atacar");
-            atacando = true;
+            ataqueAreaDisponivel = false;
+            ataqueAreaEmExecucao = true;
         }
-        else if (!comboAtaque2)
+
+        // COMBO NORMAL
+        if (Input.GetKeyDown(KeyCode.J) && animator.GetBool("estaNoChao"))
         {
-            comboAtaque2 = true;
-            animator.SetTrigger("Ataque2");
-        }
-        else if (!comboAtaque3)
-        {
-            comboAtaque3 = true;
-            animator.SetTrigger("Ataque3");
-        }
-    }
-}
+            if (!atacando)
+            {
+                animator.ResetTrigger("Ataque2");
+                animator.ResetTrigger("Ataque3");
 
-
-
-
-public void AtivarHitboxArea()
-{
-    Transform hitbox = transform.Find("HitboxArea");
-
-    if (hitbox != null)
-    {
-        hitbox.gameObject.SetActive(true);
-    }
-}
-
-public void DesativarHitboxArea()
-{
-    Transform hitbox = transform.Find("HitboxArea");
-
-    if (hitbox != null)
-    {
-        hitbox.gameObject.SetActive(false);
-    }
-}
-
-public void VerificarDanoArea()
-{
-    Transform hitbox = transform.Find("HitboxArea");
-
-    if (hitbox != null)
-    {
-        HitboxArea area = hitbox.GetComponent<HitboxArea>();
-
-        if (area != null)
-        {
-            area.VerificarAcerto();
+                animator.SetTrigger("Atacar");
+                atacando = true;
+            }
+            else if (!comboAtaque2)
+            {
+                comboAtaque2 = true;
+                animator.SetTrigger("Ataque2");
+            }
+            else if (!comboAtaque3)
+            {
+                comboAtaque3 = true;
+                animator.SetTrigger("Ataque3");
+            }
         }
     }
-}
 
-public void VerificarAcertoArea()
-{
-    Transform hitbox = transform.Find("HitboxArea");
-
-    if (hitbox != null)
+    public void AtivarHitboxArea()
     {
-        HitboxArea area = hitbox.GetComponent<HitboxArea>();
+        Transform hitbox = transform.Find("HitboxArea");
 
-        if (area != null)
+        if (hitbox != null)
         {
-            area.VerificarAcerto();
+            hitbox.gameObject.SetActive(true);
         }
     }
-}
+
+    public void DesativarHitboxArea()
+    {
+        Transform hitbox = transform.Find("HitboxArea");
+
+        if (hitbox != null)
+        {
+            hitbox.gameObject.SetActive(false);
+        }
+    }
+
+    public void VerificarDanoArea()
+    {
+        Transform hitbox = transform.Find("HitboxArea");
+
+        if (hitbox != null)
+        {
+            HitboxArea area = hitbox.GetComponent<HitboxArea>();
+
+            if (area != null)
+            {
+                area.VerificarAcerto();
+            }
+        }
+    }
+
+    public void VerificarAcertoArea()
+    {
+        Transform hitbox = transform.Find("HitboxArea");
+
+        if (hitbox != null)
+        {
+            HitboxArea area = hitbox.GetComponent<HitboxArea>();
+
+            if (area != null)
+            {
+                area.VerificarAcerto();
+            }
+        }
+    }
+
     public void FinalizarAtaque1()
     {
         if (!comboAtaque2)
@@ -130,12 +134,48 @@ public void VerificarAcertoArea()
     }
 
     private void ReativarAtaqueArea()
-{
-    ataqueAreaDisponivel = true;
-}
+    {
+        ataqueAreaDisponivel = true;
+    }
 
-public void IniciarCooldownArea()
-{
-    Invoke(nameof(ReativarAtaqueArea), tempoCooldownArea);
-}
+    public void IniciarCooldownArea()
+    {
+        ataqueAreaEmExecucao = false;
+
+        CancelInvoke(nameof(ReativarAtaqueArea));
+        Invoke(nameof(ReativarAtaqueArea), tempoCooldownArea);
+    }
+
+    public void CancelarAtaquePorDano()
+    {
+        // RESET DO COMBO
+        atacando = false;
+        comboAtaque2 = false;
+        comboAtaque3 = false;
+
+        animator.ResetTrigger("Atacar");
+        animator.ResetTrigger("Ataque2");
+        animator.ResetTrigger("Ataque3");
+
+        // DESLIGA HITBOX DO COMBO
+        HitboxControle hitboxControle = GetComponent<HitboxControle>();
+
+        if (hitboxControle != null)
+        {
+            hitboxControle.DesativarHitbox();
+        }
+
+        // SE O ATAQUE EM ÁREA FOI INTERROMPIDO
+        if (ataqueAreaEmExecucao)
+        {
+            ataqueAreaEmExecucao = false;
+
+            animator.ResetTrigger("AtaqueArea");
+
+            DesativarHitboxArea();
+
+            CancelInvoke(nameof(ReativarAtaqueArea));
+            Invoke(nameof(ReativarAtaqueArea), tempoCooldownArea);
+        }
+    }
 }

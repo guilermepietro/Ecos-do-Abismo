@@ -58,6 +58,18 @@ public class RakthasAtaques : MonoBehaviour
     public float chanceCorrenteAposRaio = 0.4f;
     private bool perseguirAteCorrente = false;
 
+    [Header("Pausa de Decisão")]
+    [Range(0f, 1f)]
+    public float chancePausaDecisao = 0.4f;
+
+    public float pausaDecisaoMinima = 0.3f;
+    public float pausaDecisaoMaxima = 0.6f;
+
+    private bool emPausaDecisao = false;
+    private float fimPausaDecisao;
+
+public bool EstaEmPausaDecisao => emPausaDecisao;
+
 public float esperaInicial = 1f;
 
     private float proximoAtaque;
@@ -158,8 +170,34 @@ if (preparandoRaio && Time.time >= momentoAtaqueRaio)
             }
         }
 
+        // PAUSA DE DECISÃO
+if (emPausaDecisao)
+{
+    if (Time.time >= fimPausaDecisao)
+    {
+        emPausaDecisao = false;
+    }
+    else
+    {
+        return;
+    }
+}
+
         EscolherAtaque();
     }
+
+    private void TentarPausaDecisao()
+{
+    if (Random.value > chancePausaDecisao)
+        return;
+
+    emPausaDecisao = true;
+
+    fimPausaDecisao = Time.time + Random.Range(
+        pausaDecisaoMinima,
+        pausaDecisaoMaxima
+    );
+}
 
     private bool PodeAtacar()
     {
@@ -465,8 +503,41 @@ public void FinalizarRaio()
 
     animator.speed = 1f;
 
-    proximoAtaque = Time.time + recuperacaoSoco;
+    proximoAtaque =
+        Time.time + recuperacaoSoco;
 
     perseguicaoAgressivaObrigatoria = false;
+
+    TentarPausaDecisao();
+}
+
+public void CancelarAtaque()
+{
+    atacando = false;
+
+    // Cancela preparações que possam estar acontecendo.
+    preparandoCorrente = false;
+    preparandoRaio = false;
+
+    // Desliga todas as hitboxes
+    if (hitboxRaio != null)
+        hitboxRaio.SetActive(false);
+
+    if (hitboxOndaDireita != null)
+        hitboxOndaDireita.enabled = false;
+
+    if (hitboxOndaEsquerda != null)
+        hitboxOndaEsquerda.enabled = false;
+
+    if (hitboxSocoDireita != null)
+        hitboxSocoDireita.enabled = false;
+
+    if (hitboxSocoEsquerda != null)
+        hitboxSocoEsquerda.enabled = false;
+
+    // Garante que a velocidade do Animator não fique alterada
+    animator.speed = 1f;
+
+    animator.SetBool("estaCorrendo", false);
 }
 }
