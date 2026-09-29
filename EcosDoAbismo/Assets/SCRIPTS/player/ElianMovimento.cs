@@ -20,6 +20,11 @@ public class ElianMovimento : MonoBehaviour
     [Header("Chao")]
     public Transform pontoDeChao;
     public float raioChao = 0.2f;
+
+    [Header("Movimento Externo")]
+    public float tempoPuxao = 0.25f;
+
+    private bool sendoPuxado = false;
     
     public LayerMask camadaChao;
 
@@ -41,18 +46,18 @@ public class ElianMovimento : MonoBehaviour
     }
 
     void Update()
+{
+    VerificarChao();
+
+    if (estaDashando || sendoPuxado)
     {
-        VerificarChao();
-
-        if (estaDashando)
-        {
-            return;
-        }
-
-        Movimento();
-        Pulo();
-        Dash();
+        return;
     }
+
+    Movimento();
+    Pulo();
+    Dash();
+}
 
     void VerificarChao()
 {
@@ -211,5 +216,29 @@ void IgnorarColisaoInimigos(bool ignorar)
     yield return new WaitForSeconds(cooldownDash);
 
     dashDisponivel = true;
+}
+
+public void AplicarPuxao(float direcao, float forca)
+{
+    if (estaDashando)
+        return;
+
+    StartCoroutine(ExecutarPuxao(direcao, forca));
+}
+
+IEnumerator ExecutarPuxao(float direcao, float forca)
+{
+    sendoPuxado = true;
+
+    animator.SetFloat("velocidade", 0f);
+
+    rb.linearVelocity = new Vector2(
+        direcao * forca,
+        rb.linearVelocity.y
+    );
+
+    yield return new WaitForSeconds(tempoPuxao);
+
+    sendoPuxado = false;
 }
 }

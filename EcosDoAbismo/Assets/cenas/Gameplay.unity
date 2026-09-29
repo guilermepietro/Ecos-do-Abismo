@@ -574,7 +574,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 161.44, y: -2.36, z: 0}
+  m_LocalPosition: {x: 159.39, y: -2.36, z: 0}
   m_LocalScale: {x: 1.9408507, y: 1.9408507, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -663,6 +663,7 @@ MonoBehaviour:
   tempoDash: 0.5
   pontoDeChao: {fileID: 458144955}
   raioChao: 0.2
+  tempoPuxao: 0.25
   camadaChao:
     serializedVersion: 2
     m_Bits: 8
@@ -6580,6 +6581,9 @@ MonoBehaviour:
   distanciaDash: 4
   velocidadeDash: 8
   tempoEntreDashes: 3
+  distanciaPuxao: 6
+  forcaPuxao: 8
+  tempoEntrePuxoes: 3
   podeMover: 1
   ativada: 0
 --- !u!70 &1573473950

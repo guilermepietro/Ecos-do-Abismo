@@ -6,10 +6,12 @@ public class SalenthraDanoContato : MonoBehaviour
     public int dano = 20;
 
     private SalenthraVida vidaSalenthra;
+    private SalenthraMovimento movimento;
 
     private void Awake()
     {
         vidaSalenthra = GetComponent<SalenthraVida>();
+        movimento = GetComponent<SalenthraMovimento>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -22,6 +24,11 @@ public class SalenthraDanoContato : MonoBehaviour
         if (vidaElian != null)
         {
             vidaElian.ReceberDano(dano);
+
+            if (movimento != null)
+            {
+                movimento.PararDashAoAcertar();
+            }
         }
     }
 }
