@@ -574,7 +574,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 109.9, y: -2.36, z: 0}
+  m_LocalPosition: {x: 161.44, y: -2.36, z: 0}
   m_LocalScale: {x: 1.9408507, y: 1.9408507, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1538,7 +1538,7 @@ Transform:
   m_GameObject: {fileID: 312620312}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 115.9, y: 1.5, z: -10}
+  m_LocalPosition: {x: 172.21, y: 1.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6575,8 +6575,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SalenthraMovimento
   elian: {fileID: 142652950}
   animator: {fileID: 1573473952}
-  distanciaParada: 1.5
   velocidade: 3
+  distanciaParada: 1.5
+  distanciaDash: 4
+  velocidadeDash: 8
+  tempoEntreDashes: 3
   podeMover: 1
   ativada: 0
 --- !u!70 &1573473950
@@ -8456,7 +8459,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.016571522, y: 0.14084285}
+  m_Offset: {x: -0.72762847, y: 0.1408428}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8466,7 +8469,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.010754, y: 1.2816855}
+  m_Size: {x: 3.499154, y: 2.2304144}
   m_EdgeRadius: 0
 --- !u!1 &2121363421
 GameObject:
