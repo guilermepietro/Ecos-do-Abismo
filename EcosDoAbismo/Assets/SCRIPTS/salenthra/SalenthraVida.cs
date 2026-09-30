@@ -97,10 +97,8 @@ public class SalenthraVida : MonoBehaviour
     get { return morta; }
 }
 
-    public void IniciarFase2()
+   public void IniciarFase2()
 {
-
-    
     Debug.Log("FASE 2 INICIADA");
 
     faseAtual = 2;
@@ -109,6 +107,7 @@ public class SalenthraVida : MonoBehaviour
 
     if (movimento != null)
     {
+        movimento.EntrarFase2();
         movimento.podeMover = true;
     }
 }

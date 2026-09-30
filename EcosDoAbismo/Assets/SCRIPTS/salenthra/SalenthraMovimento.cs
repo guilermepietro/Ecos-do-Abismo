@@ -22,6 +22,7 @@ public class SalenthraMovimento : MonoBehaviour
 
     public bool podeMover = true;
     public bool ativada = false;
+    private bool fase2 = false;
 
     private Rigidbody2D rb;
     private Rigidbody2D rbElian;
@@ -102,25 +103,26 @@ public class SalenthraMovimento : MonoBehaviour
         // ATAQUE 2 - PUXÃO
         // Só usa quando Elian está mais longe que a área do dash
         if (
-            distancia > distanciaDash &&
-            distancia <= distanciaPuxao &&
-            Time.time >= proximoPuxao
-        )
-        {
-            IniciarPuxao();
-            return;
-        }
+    !fase2 &&
+    distancia > distanciaDash &&
+    distancia <= distanciaPuxao &&
+    Time.time >= proximoPuxao
+)
+{
+    IniciarPuxao();
+    return;
+}
 
         // ATAQUE 1 - DASH
         if (
-            distancia <= distanciaDash &&
-            Time.time >= proximoDash
-        )
-        {
-            IniciarDash();
-            
-            return;
-        }
+    !fase2 &&
+    distancia <= distanciaDash &&
+    Time.time >= proximoDash
+)
+{
+    IniciarDash();
+    return;
+}
 
         // Para quando está próxima do Elian
         if (distancia <= distanciaParada)
@@ -305,4 +307,21 @@ public class SalenthraMovimento : MonoBehaviour
     {
         ativada = true;
     }
+
+    public void EntrarFase2()
+{
+    fase2 = true;
+
+    atacandoDash = false;
+    atacandoPuxao = false;
+    movendoNoDash = false;
+    dashParadoAoAcertar = false;
+
+    rb.linearVelocity = new Vector2(
+        0f,
+        rb.linearVelocity.y
+    );
+
+    animator.SetBool("Andando", false);
+}
 }
