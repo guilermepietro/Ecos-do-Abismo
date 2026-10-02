@@ -574,7 +574,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 159.39, y: -2.36, z: 0}
+  m_LocalPosition: {x: 168.71, y: -2.36, z: 0}
   m_LocalScale: {x: 1.9408507, y: 1.9408507, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6538,6 +6538,55 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.64601487, y: 0.7404146}
   m_EdgeRadius: 0
+--- !u!1 &1514097464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1514097465}
+  - component: {fileID: 1514097466}
+  m_Layer: 0
+  m_Name: AreaChuvaEspadas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1514097465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514097464}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.408, y: 2.346, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1573473954}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1514097466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514097464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f24b70e16d346ba458947265a69eaa45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChuvaEspadas
+  espadaPrefab: {fileID: 1808237558607517919, guid: 47dbac39d3eb14c4086fa914ae87a014, type: 3}
+  salenthra: {fileID: 1573473949}
+  larguraArea: 15
+  quantidadeEspadas: 30
+  intervaloEntreEspadas: 0.2
 --- !u!1 &1573473948
 GameObject:
   m_ObjectHideFlags: 0
@@ -6586,6 +6635,8 @@ MonoBehaviour:
   tempoEntrePuxoes: 3
   podeMover: 1
   ativada: 0
+  chuvaEspadas: {fileID: 1514097466}
+  tempoEntreChuvas: 5
 --- !u!70 &1573473950
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -6746,6 +6797,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2121076978}
+  - {fileID: 1514097465}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1573473955

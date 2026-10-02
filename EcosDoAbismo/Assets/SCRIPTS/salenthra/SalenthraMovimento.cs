@@ -24,6 +24,13 @@ public class SalenthraMovimento : MonoBehaviour
     public bool ativada = false;
     private bool fase2 = false;
 
+    [Header("Ataque Chuva")]
+    public ChuvaEspadas chuvaEspadas;
+    public float tempoEntreChuvas = 5f;
+
+    private bool atacandoChuva = false;
+    private float proximaChuva = 0f;
+
     private Rigidbody2D rb;
     private Rigidbody2D rbElian;
     private SpriteRenderer spriteRenderer;
@@ -62,6 +69,15 @@ public class SalenthraMovimento : MonoBehaviour
             animator.SetBool("Andando", false);
             return;
         }
+
+        if (
+                !fase2 &&
+                Time.time >= proximaChuva
+            )
+            {
+                IniciarAtaqueChuva();
+                return;
+            }
 
         if (atacandoDash)
         {
@@ -157,6 +173,44 @@ public class SalenthraMovimento : MonoBehaviour
             spriteRenderer.flipX = true;
         }
     }
+
+    private void IniciarAtaqueChuva()
+{
+    if (atacandoDash || atacandoPuxao || atacandoChuva)
+        return;
+
+    atacandoChuva = true;
+
+    rb.linearVelocity = new Vector2(
+        0f,
+        rb.linearVelocity.y
+    );
+
+    animator.SetBool("Andando", false);
+    animator.SetTrigger("AtaqueChuva");
+}
+
+public void InvocarChuva()
+{
+    if (!atacandoChuva)
+        return;
+
+    if (chuvaEspadas != null)
+    {
+        chuvaEspadas.IniciarChuva();
+    }
+}
+
+public void FinalizarAtaqueChuva()
+{
+    atacandoChuva = false;
+
+    proximaChuva = Time.time + tempoEntreChuvas;
+
+    animator.SetTrigger("FinalizarChuva");
+}
+
+
 
     // =========================
     // ATAQUE 1 - DASH
