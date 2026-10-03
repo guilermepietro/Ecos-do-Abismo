@@ -18,66 +18,72 @@ public class SalenthraVida : MonoBehaviour
     private bool transformando = false;
     private bool morta = false;
 
+    public bool EstaMorta
+    {
+        get { return morta; }
+    }
+
     private void Awake()
     {
         vidaAtualFase1 = vidaMaximaFase1;
         vidaAtualFase2 = vidaMaximaFase2;
-        
 
         movimento = GetComponent<SalenthraMovimento>();
     }
 
+    private void Update()
+    {
+        if (
+            transformando &&
+            animator.GetCurrentAnimatorStateInfo(0).IsName("Idle Fase 2")
+        )
+        {
+            IniciarFase2();
+        }
+    }
+
     public void ReceberDano(int dano)
-{
-    Debug.Log("Salenthra recebeu tentativa de dano: " + dano);
-    Debug.Log("Fase atual: " + faseAtual);
-    Debug.Log("Transformando: " + transformando);
-    Debug.Log("Morta: " + morta);
-
-    if (transformando || morta)
-        return;
-
-    if (faseAtual == 1)
     {
-        vidaAtualFase1 -= dano;
-
-        Debug.Log("Vida Fase 1: " + vidaAtualFase1);
-
-        if (vidaAtualFase1 <= 0)
-        {
-            vidaAtualFase1 = 0;
-            IniciarTransformacao();
+        if (transformando || morta)
             return;
-        }
 
-        if (movimento != null)
+        if (faseAtual == 1)
         {
-            movimento.podeMover = false;
-        }
+            vidaAtualFase1 -= dano;
 
-        animator.SetTrigger("Dano");
+            if (vidaAtualFase1 <= 0)
+            {
+                vidaAtualFase1 = 0;
+                IniciarTransformacao();
+                return;
+            }
+
+            if (movimento != null)
+            {
+                movimento.podeMover = false;
+            }
+
+            animator.SetTrigger("Dano");
+        }
+        else if (faseAtual == 2)
+        {
+            vidaAtualFase2 -= dano;
+
+            if (vidaAtualFase2 <= 0)
+            {
+                vidaAtualFase2 = 0;
+                MorrerFase2();
+                return;
+            }
+
+            if (movimento != null)
+            {
+                movimento.podeMover = false;
+            }
+
+            animator.SetTrigger("DanoFase2");
+        }
     }
-    else if (faseAtual == 2)
-    {
-        vidaAtualFase2 -= dano;
-
-        Debug.Log("Vida Fase 2: " + vidaAtualFase2);
-
-        if (vidaAtualFase2 <= 0)
-        {
-            vidaAtualFase2 = 0;
-            MorrerFase2();
-            return;
-        }
-
-        if (movimento != null)
-        {
-            movimento.podeMover = false;
-        }
-
-        animator.SetTrigger("DanoFase2");
-    }
-}
 
     private void IniciarTransformacao()
     {
@@ -92,52 +98,18 @@ public class SalenthraVida : MonoBehaviour
         animator.SetTrigger("Transformar");
     }
 
-    public bool EstaMorta
-{
-    get { return morta; }
-}
-
-public int CalcularDano(int danoBase)
-{
-    float porcentagemVida;
-
-    if (faseAtual == 1)
+    public void IniciarFase2()
     {
-        porcentagemVida = (float)vidaAtualFase1 / vidaMaximaFase1;
+        faseAtual = 2;
+        transformando = false;
+        vidaAtualFase2 = vidaMaximaFase2;
+
+        if (movimento != null)
+        {
+            movimento.EntrarFase2();
+            movimento.podeMover = true;
+        }
     }
-    else
-    {
-        porcentagemVida = (float)vidaAtualFase2 / vidaMaximaFase2;
-    }
-
-    float multiplicador = 1f;
-
-    if (porcentagemVida <= 0.30f)
-    {
-        multiplicador = 1.4f;
-    }
-    else if (porcentagemVida <= 0.60f)
-    {
-        multiplicador = 1.2f;
-    }
-
-    return Mathf.RoundToInt(danoBase * multiplicador);
-}
-
-   public void IniciarFase2()
-{
-    Debug.Log("FASE 2 INICIADA");
-
-    faseAtual = 2;
-    transformando = false;
-    vidaAtualFase2 = vidaMaximaFase2;
-
-    if (movimento != null)
-    {
-        movimento.EntrarFase2();
-        movimento.podeMover = true;
-    }
-}
 
     public void FinalizarDano()
     {
@@ -174,11 +146,46 @@ public int CalcularDano(int danoBase)
         animator.SetTrigger("MorteFase2");
     }
 
-    private void Update()
-{
-    if (transformando && animator.GetCurrentAnimatorStateInfo(0).IsName("Idle Fase 2"))
+    public int CalcularDano(int danoBase)
     {
-        IniciarFase2();
+        float porcentagemVida;
+
+        if (faseAtual == 1)
+        {
+            porcentagemVida =
+                (float)vidaAtualFase1 / vidaMaximaFase1;
+        }
+        else
+        {
+            porcentagemVida =
+                (float)vidaAtualFase2 / vidaMaximaFase2;
+        }
+
+        float multiplicador = 1f;
+
+        if (porcentagemVida <= 0.30f)
+        {
+            multiplicador = 1.4f;
+        }
+        else if (porcentagemVida <= 0.60f)
+        {
+            multiplicador = 1.2f;
+        }
+
+        return Mathf.RoundToInt(
+            danoBase * multiplicador
+        );
     }
-}
+
+    public float ObterPorcentagemVidaAtual()
+    {
+        if (faseAtual == 1)
+        {
+            return (float)vidaAtualFase1 /
+                   vidaMaximaFase1;
+        }
+
+        return (float)vidaAtualFase2 /
+               vidaMaximaFase2;
+    }
 }

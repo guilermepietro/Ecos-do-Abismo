@@ -7,6 +7,7 @@ public class ChuvaEspadas : MonoBehaviour
     public GameObject espadaPrefab;
     public SalenthraMovimento salenthra;
     public SalenthraVida vidaSalenthra;
+    public Transform elian;
 
     [Header("Área")]
     public float larguraArea = 12f;
@@ -14,6 +15,10 @@ public class ChuvaEspadas : MonoBehaviour
     [Header("Chuva")]
     public int quantidadeEspadas = 10;
     public float intervaloEntreEspadas = 0.25f;
+
+    [Header("Perseguição")]
+    public int intervaloEspadaMira = 3;
+    public float variacaoMira = 0.5f;
 
     private int espadasAtivas = 0;
     private bool terminouDeGerar = false;
@@ -30,13 +35,31 @@ public class ChuvaEspadas : MonoBehaviour
     {
         for (int i = 0; i < quantidadeEspadas; i++)
         {
-            float xAleatorio = Random.Range(
-                transform.position.x - larguraArea / 2f,
-                transform.position.x + larguraArea / 2f
-            );
+            float xSpawn;
+
+            bool mirarNoElian =
+                elian != null &&
+                i > 0 &&
+                intervaloEspadaMira > 0 &&
+                i % intervaloEspadaMira == 0;
+
+            if (mirarNoElian)
+            {
+                xSpawn = elian.position.x + Random.Range(
+                    -variacaoMira,
+                    variacaoMira
+                );
+            }
+            else
+            {
+                xSpawn = Random.Range(
+                    transform.position.x - larguraArea / 2f,
+                    transform.position.x + larguraArea / 2f
+                );
+            }
 
             Vector3 posicaoSpawn = new Vector3(
-                xAleatorio,
+                xSpawn,
                 transform.position.y,
                 0f
             );
@@ -47,7 +70,8 @@ public class ChuvaEspadas : MonoBehaviour
                 Quaternion.identity
             );
 
-            EspadaChuva espada = novaEspada.GetComponent<EspadaChuva>();
+            EspadaChuva espada =
+                novaEspada.GetComponent<EspadaChuva>();
 
             if (espada != null)
             {
@@ -57,7 +81,9 @@ public class ChuvaEspadas : MonoBehaviour
                 espadasAtivas++;
             }
 
-            yield return new WaitForSeconds(intervaloEntreEspadas);
+            yield return new WaitForSeconds(
+                intervaloEntreEspadas
+            );
         }
 
         terminouDeGerar = true;
@@ -70,7 +96,9 @@ public class ChuvaEspadas : MonoBehaviour
         espadasAtivas--;
 
         if (espadasAtivas < 0)
+        {
             espadasAtivas = 0;
+        }
 
         VerificarFimChuva();
     }
@@ -93,7 +121,11 @@ public class ChuvaEspadas : MonoBehaviour
     {
         Gizmos.DrawWireCube(
             transform.position,
-            new Vector3(larguraArea, 0.5f, 0f)
+            new Vector3(
+                larguraArea,
+                0.5f,
+                0f
+            )
         );
     }
 }

@@ -194,3 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cd6161bfbe9144b9633cfa0e16b13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EspadaChuva
+  velocidadeQueda: 10
+  dano: 20
+  tempoDestruir: 4
+  chuvaEspadas: {fileID: 0}
+  vidaSalenthra: {fileID: 0}

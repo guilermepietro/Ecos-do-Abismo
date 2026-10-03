@@ -6564,7 +6564,7 @@ Transform:
   m_GameObject: {fileID: 1514097464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.408, y: 2.346, z: 0}
+  m_LocalPosition: {x: -4.073, y: 2.346, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6585,9 +6585,12 @@ MonoBehaviour:
   espadaPrefab: {fileID: 1808237558607517919, guid: 47dbac39d3eb14c4086fa914ae87a014, type: 3}
   salenthra: {fileID: 1573473949}
   vidaSalenthra: {fileID: 1573473955}
-  larguraArea: 15
-  quantidadeEspadas: 30
+  elian: {fileID: 142652950}
+  larguraArea: 20
+  quantidadeEspadas: 50
   intervaloEntreEspadas: 0.2
+  intervaloEspadaMira: 3
+  variacaoMira: 0.5
 --- !u!1 &1573473948
 GameObject:
   m_ObjectHideFlags: 0
@@ -6626,18 +6629,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SalenthraMovimento
   elian: {fileID: 142652950}
   animator: {fileID: 1573473952}
+  vidaSalenthra: {fileID: 1573473955}
   velocidade: 3
   distanciaParada: 1.5
+  tempoEntreDecisoes: 0.4
   distanciaDash: 4
   velocidadeDash: 8
   tempoEntreDashes: 3
   distanciaPuxao: 6
   forcaPuxao: 8
   tempoEntrePuxoes: 3
-  podeMover: 1
-  ativada: 0
   chuvaEspadas: {fileID: 1514097466}
   tempoEntreChuvas: 5
+  podeMover: 1
+  ativada: 0
 --- !u!70 &1573473950
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
