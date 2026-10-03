@@ -23,7 +23,14 @@ public class SalenthraDanoContato : MonoBehaviour
 
         if (vidaElian != null)
         {
-            vidaElian.ReceberDano(dano);
+           int danoFinal = dano;
+
+if (vidaSalenthra != null)
+{
+    danoFinal = vidaSalenthra.CalcularDano(dano);
+}
+
+vidaElian.ReceberDano(danoFinal);
 
             if (movimento != null)
             {

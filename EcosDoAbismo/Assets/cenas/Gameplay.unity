@@ -6584,6 +6584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChuvaEspadas
   espadaPrefab: {fileID: 1808237558607517919, guid: 47dbac39d3eb14c4086fa914ae87a014, type: 3}
   salenthra: {fileID: 1573473949}
+  vidaSalenthra: {fileID: 1573473955}
   larguraArea: 15
   quantidadeEspadas: 30
   intervaloEntreEspadas: 0.2

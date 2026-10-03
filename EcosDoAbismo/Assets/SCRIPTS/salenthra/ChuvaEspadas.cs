@@ -6,6 +6,7 @@ public class ChuvaEspadas : MonoBehaviour
     [Header("Referências")]
     public GameObject espadaPrefab;
     public SalenthraMovimento salenthra;
+    public SalenthraVida vidaSalenthra;
 
     [Header("Área")]
     public float larguraArea = 12f;
@@ -51,6 +52,8 @@ public class ChuvaEspadas : MonoBehaviour
             if (espada != null)
             {
                 espada.chuvaEspadas = this;
+                espada.vidaSalenthra = vidaSalenthra;
+
                 espadasAtivas++;
             }
 

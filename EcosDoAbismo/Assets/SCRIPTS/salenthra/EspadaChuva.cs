@@ -5,11 +5,17 @@ public class EspadaChuva : MonoBehaviour
     [Header("Queda")]
     public float velocidadeQueda = 8f;
 
+    [Header("Dano")]
+    public int dano = 20;
+
     [Header("Vida")]
     public float tempoDestruir = 4f;
 
     [HideInInspector]
     public ChuvaEspadas chuvaEspadas;
+
+    [HideInInspector]
+    public SalenthraVida vidaSalenthra;
 
     private Rigidbody2D rb;
 
@@ -31,6 +37,23 @@ public class EspadaChuva : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Chao"))
         {
+            DestruirEspada();
+            return;
+        }
+
+        ElianVida vidaElian = collision.gameObject.GetComponent<ElianVida>();
+
+        if (vidaElian != null)
+        {
+            int danoFinal = dano;
+
+if (vidaSalenthra != null)
+{
+    danoFinal = vidaSalenthra.CalcularDano(dano);
+}
+
+vidaElian.ReceberDano(danoFinal);
+
             DestruirEspada();
         }
     }

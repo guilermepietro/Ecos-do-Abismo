@@ -97,6 +97,33 @@ public class SalenthraVida : MonoBehaviour
     get { return morta; }
 }
 
+public int CalcularDano(int danoBase)
+{
+    float porcentagemVida;
+
+    if (faseAtual == 1)
+    {
+        porcentagemVida = (float)vidaAtualFase1 / vidaMaximaFase1;
+    }
+    else
+    {
+        porcentagemVida = (float)vidaAtualFase2 / vidaMaximaFase2;
+    }
+
+    float multiplicador = 1f;
+
+    if (porcentagemVida <= 0.30f)
+    {
+        multiplicador = 1.4f;
+    }
+    else if (porcentagemVida <= 0.60f)
+    {
+        multiplicador = 1.2f;
+    }
+
+    return Mathf.RoundToInt(danoBase * multiplicador);
+}
+
    public void IniciarFase2()
 {
     Debug.Log("FASE 2 INICIADA");
