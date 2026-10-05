@@ -619,9 +619,9 @@ public class SalenthraMovimento : MonoBehaviour
         );
 
         movimentoElian.AplicarPuxao(
-            direcao,
-            forcaPuxao
-        );
+    direcao,
+    forcaPuxao
+);
     }
 
     public void FinalizarPuxao()
