@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System.Collections;
 
@@ -7,6 +6,9 @@ public class CameraFollow : MonoBehaviour
     public Transform alvo;
 
     public float velocidade = 5f;
+
+    [Header("Posição da Câmera")]
+    public float alturaCamera = 1.5f;
 
     [Header("Tremor da Câmera")]
     public float duracaoTremor = 0.2f;
@@ -24,22 +26,24 @@ public class CameraFollow : MonoBehaviour
 
         Vector3 novaPosicao = new Vector3(
             alvo.position.x,
-            alvo.position.y,
+            alvo.position.y + alturaCamera,
             transform.position.z
         );
 
-        // Remove o deslocamento do tremor anterior.
-        Vector3 posicaoBase = transform.position - deslocamentoAnterior;
+        // Remove o deslocamento do tremor anterior
+        Vector3 posicaoBase =
+            transform.position - deslocamentoAnterior;
 
-        // Mantém o acompanhamento normal do Elian.
+        // Mantém o acompanhamento normal do Elian
         Vector3 posicaoSuave = Vector3.Lerp(
             posicaoBase,
             novaPosicao,
             velocidade * Time.deltaTime
         );
 
-        // Adiciona o tremor sem interferir no acompanhamento.
-        transform.position = posicaoSuave + deslocamentoTremor;
+        // Adiciona o tremor sem interferir no acompanhamento
+        transform.position =
+            posicaoSuave + deslocamentoTremor;
 
         deslocamentoAnterior = deslocamentoTremor;
     }
@@ -49,7 +53,8 @@ public class CameraFollow : MonoBehaviour
         if (tremorAtual != null)
             StopCoroutine(tremorAtual);
 
-        tremorAtual = StartCoroutine(ExecutarTremor());
+        tremorAtual =
+            StartCoroutine(ExecutarTremor());
     }
 
     private IEnumerator ExecutarTremor()
@@ -59,7 +64,8 @@ public class CameraFollow : MonoBehaviour
         while (tempo < duracaoTremor)
         {
             deslocamentoTremor = (Vector3)(
-                Random.insideUnitCircle * intensidadeTremor
+                Random.insideUnitCircle *
+                intensidadeTremor
             );
 
             tempo += Time.deltaTime;
