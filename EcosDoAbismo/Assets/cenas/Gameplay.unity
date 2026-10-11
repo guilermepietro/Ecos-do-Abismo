@@ -5912,7 +5912,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.08367747, y: -0.029692113}
+  m_Offset: {x: -0.14374545, y: -0.029692113}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5922,7 +5922,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.83264506, y: 0.7030791}
+  m_Size: {x: 0.952781, y: 0.7030791}
   m_EdgeRadius: 0
 --- !u!4 &1431194603
 Transform:
@@ -6501,6 +6501,8 @@ MonoBehaviour:
   elian: {fileID: 142652950}
   animator: {fileID: 1573473952}
   vidaSalenthra: {fileID: 1573473955}
+  colliderSalenthra: {fileID: 1573473950}
+  colliderElian: {fileID: 142652951}
   velocidade: 3
   distanciaParada: 1.5
   tempoEntreDecisoes: 0.4
@@ -6514,14 +6516,16 @@ MonoBehaviour:
   tempoEntreChuvas: 5
   hitboxAtaque1Fase2: {fileID: 1431194601}
   transformHitboxAtaque1Fase2: {fileID: 1431194603}
-  distanciaAtaque1Fase2: 2
+  distanciaAtaque1Fase2: 1.5
   tempoEntreAtaques1Fase2: 1.5
   posicaoHitboxDireita: 0.54
   posicaoHitboxEsquerda: -0.54
   hitboxAtaque2Fase2: {fileID: 1358735787}
   distanciaAtaque2Fase2: 7
   velocidadeAtaque2Fase2: 19
-  tempoEntreAtaques2Fase2: 2.5
+  cooldownDashVidaAlta: 3.2
+  cooldownDashVidaMedia: 2.7
+  cooldownDashVidaBaixa: 2.2
   projetilLuaPrefab: {fileID: 432535421615011022, guid: c9df4d2705daae241966de1f23dcc34d, type: 3}
   pontoDisparoLua: {fileID: 33115227}
   distanciaAtaque3Fase2: 12

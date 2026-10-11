@@ -47,9 +47,18 @@ public class SalenthraVida : MonoBehaviour
         if (transformando || morta)
             return;
 
+        // =========================
+        // FASE 1
+        // =========================
+
         if (faseAtual == 1)
         {
             vidaAtualFase1 -= dano;
+
+            if (movimento != null)
+            {
+                movimento.CancelarAtaquesPorDano();
+            }
 
             if (vidaAtualFase1 <= 0)
             {
@@ -65,16 +74,46 @@ public class SalenthraVida : MonoBehaviour
 
             animator.SetTrigger("Dano");
         }
+
+        // =========================
+        // FASE 2
+        // =========================
+
         else if (faseAtual == 2)
         {
             vidaAtualFase2 -= dano;
 
+            // MORTE SEMPRE TEM PRIORIDADE
             if (vidaAtualFase2 <= 0)
             {
                 vidaAtualFase2 = 0;
+
+                if (movimento != null)
+                {
+                    movimento.CancelarAtaquesPorDano();
+                }
+
                 MorrerFase2();
                 return;
             }
+
+            // =========================
+            // SE ESTIVER ATACANDO:
+            // RECEBE DANO, MAS CONTINUA O ATAQUE
+            // =========================
+
+            if (
+                movimento != null &&
+                movimento.EstaAtacandoFase2
+            )
+            {
+                return;
+            }
+
+            // =========================
+            // SE NÃO ESTIVER ATACANDO:
+            // TOCA A ANIMAÇÃO DE DANO
+            // =========================
 
             if (movimento != null)
             {
@@ -153,12 +192,14 @@ public class SalenthraVida : MonoBehaviour
         if (faseAtual == 1)
         {
             porcentagemVida =
-                (float)vidaAtualFase1 / vidaMaximaFase1;
+                (float)vidaAtualFase1 /
+                vidaMaximaFase1;
         }
         else
         {
             porcentagemVida =
-                (float)vidaAtualFase2 / vidaMaximaFase2;
+                (float)vidaAtualFase2 /
+                vidaMaximaFase2;
         }
 
         float multiplicador = 1f;
@@ -181,11 +222,13 @@ public class SalenthraVida : MonoBehaviour
     {
         if (faseAtual == 1)
         {
-            return (float)vidaAtualFase1 /
-                   vidaMaximaFase1;
+            return
+                (float)vidaAtualFase1 /
+                vidaMaximaFase1;
         }
 
-        return (float)vidaAtualFase2 /
-               vidaMaximaFase2;
+        return
+            (float)vidaAtualFase2 /
+            vidaMaximaFase2;
     }
 }
