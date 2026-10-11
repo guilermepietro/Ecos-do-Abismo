@@ -23,19 +23,70 @@ public class SalenthraMovimento : MonoBehaviour
     private int ultimoAtaque = 0;
     private int ataqueAnterior = 0;
 
+    // =========================
+    // FASE 1 - DASH
+    // =========================
+
     [Header("Ataque Dash")]
     public float distanciaDash = 4f;
     public float velocidadeDash = 8f;
     public float tempoEntreDashes = 2f;
+
+    // =========================
+    // FASE 1 - PUXÃO
+    // =========================
 
     [Header("Ataque Puxão")]
     public float distanciaPuxao = 6f;
     public float forcaPuxao = 8f;
     public float tempoEntrePuxoes = 3f;
 
+    // =========================
+    // FASE 1 - CHUVA
+    // =========================
+
     [Header("Ataque Chuva")]
     public ChuvaEspadas chuvaEspadas;
     public float tempoEntreChuvas = 5f;
+
+    // =========================
+    // FASE 2 - ATAQUE 1
+    // =========================
+
+    [Header("Ataque 1 Fase 2")]
+    public SalenthraHitboxAtaque1Fase2 hitboxAtaque1Fase2;
+    public Transform transformHitboxAtaque1Fase2;
+
+    public float distanciaAtaque1Fase2 = 2f;
+    public float tempoEntreAtaques1Fase2 = 1.5f;
+
+    public float posicaoHitboxDireita = 1f;
+    public float posicaoHitboxEsquerda = -1f;
+
+    // =========================
+    // FASE 2 - ATAQUE 2
+    // =========================
+
+    [Header("Ataque 2 Fase 2 - Dash")]
+    public SalenthraHitboxAtaque2Fase2 hitboxAtaque2Fase2;
+
+    public float distanciaAtaque2Fase2 = 7f;
+    public float velocidadeAtaque2Fase2 = 22f;
+    public float tempoEntreAtaques2Fase2 = 2.5f;
+
+    // =========================
+    // FASE 2 - ATAQUE 3
+    // =========================
+
+    [Header("Ataque 3 Fase 2 - Lua")]
+    public GameObject projetilLuaPrefab;
+    public Transform pontoDisparoLua;
+
+    public float distanciaAtaque3Fase2 = 12f;
+    public float tempoEntreAtaques3Fase2 = 2.2f;
+
+    public float posicaoPontoLuaDireita = 1f;
+    public float posicaoPontoLuaEsquerda = -1f;
 
     public bool podeMover = true;
     public bool ativada = false;
@@ -46,7 +97,7 @@ public class SalenthraMovimento : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     // =========================
-    // DASH
+    // DASH FASE 1
     // =========================
 
     private bool atacandoDash = false;
@@ -57,18 +108,41 @@ public class SalenthraMovimento : MonoBehaviour
     private bool movendoNoDash = false;
 
     // =========================
-    // PUXÃO
+    // PUXÃO FASE 1
     // =========================
 
     private bool atacandoPuxao = false;
     private float proximoPuxao = 0f;
 
     // =========================
-    // CHUVA
+    // CHUVA FASE 1
     // =========================
 
     private bool atacandoChuva = false;
     private float proximaChuva = 0f;
+
+    // =========================
+    // ATAQUE 1 FASE 2
+    // =========================
+
+    private bool atacandoAtaque1Fase2 = false;
+    private float proximoAtaque1Fase2 = 0f;
+
+    // =========================
+    // ATAQUE 2 FASE 2
+    // =========================
+
+    private bool atacandoAtaque2Fase2 = false;
+    private bool movendoAtaque2Fase2 = false;
+    private float direcaoAtaque2Fase2;
+    private float proximoAtaque2Fase2 = 0f;
+
+    // =========================
+    // ATAQUE 3 FASE 2
+    // =========================
+
+    private bool atacandoAtaque3Fase2 = false;
+    private float proximoAtaque3Fase2 = 0f;
 
     private void Awake()
     {
@@ -88,15 +162,12 @@ public class SalenthraMovimento : MonoBehaviour
             return;
 
         // =========================
-        // ATAQUES EM ANDAMENTO
+        // ATAQUES FASE 1
         // =========================
 
         if (atacandoDash)
         {
-            if (
-                movendoNoDash &&
-                !dashParadoAoAcertar
-            )
+            if (movendoNoDash && !dashParadoAoAcertar)
             {
                 rb.linearVelocity = new Vector2(
                     direcaoDash * velocidadeDash,
@@ -127,12 +198,100 @@ public class SalenthraMovimento : MonoBehaviour
             return;
         }
 
+        // =========================
+        // ATAQUE 1 FASE 2
+        // =========================
+
+        if (atacandoAtaque1Fase2)
+        {
+            PararMovimento();
+            return;
+        }
+
+        // =========================
+        // ATAQUE 2 FASE 2
+        // =========================
+
+        if (atacandoAtaque2Fase2)
+        {
+            animator.SetBool("Andando", false);
+
+            if (movendoAtaque2Fase2)
+            {
+                rb.linearVelocity = new Vector2(
+                    direcaoAtaque2Fase2 * velocidadeAtaque2Fase2,
+                    rb.linearVelocity.y
+                );
+
+                if (hitboxAtaque2Fase2 != null)
+                {
+                    hitboxAtaque2Fase2.VerificarAcerto();
+                }
+            }
+            else
+            {
+                rb.linearVelocity = new Vector2(
+                    0f,
+                    rb.linearVelocity.y
+                );
+            }
+
+            return;
+        }
+
+        // =========================
+        // ATAQUE 3 FASE 2
+        // =========================
+
+        if (atacandoAtaque3Fase2)
+        {
+            PararMovimento();
+            return;
+        }
+
         float distancia = Mathf.Abs(
-            elian.position.x - transform.position.x
+            elian.position.x -
+            transform.position.x
         );
 
         // =========================
-        // IA DA FASE 1
+        // FASE 2
+        // =========================
+
+        if (fase2)
+        {
+            if (
+                distancia <= distanciaAtaque1Fase2 &&
+                Time.time >= proximoAtaque1Fase2
+            )
+            {
+                IniciarAtaque1Fase2();
+                return;
+            }
+
+            if (
+                distancia > distanciaAtaque1Fase2 &&
+                distancia <= distanciaAtaque2Fase2 &&
+                Time.time >= proximoAtaque2Fase2
+            )
+            {
+                IniciarAtaque2Fase2();
+                return;
+            }
+
+            if (
+                distancia > distanciaAtaque2Fase2 &&
+                distancia <= distanciaAtaque3Fase2 &&
+                Time.time >= proximoAtaque3Fase2
+            )
+            {
+                IniciarAtaque3Fase2();
+                return;
+            }
+        }
+
+        // =========================
+        // IA FASE 1
         // =========================
 
         if (
@@ -165,7 +324,8 @@ public class SalenthraMovimento : MonoBehaviour
         }
 
         float direcao = Mathf.Sign(
-            elian.position.x - transform.position.x
+            elian.position.x -
+            transform.position.x
         );
 
         rb.linearVelocity = new Vector2(
@@ -198,14 +358,10 @@ public class SalenthraMovimento : MonoBehaviour
             vidaSalenthra.ObterPorcentagemVidaAtual();
 
         if (porcentagem <= 0.30f)
-        {
             return tempoEntreDecisoes * 0.5f;
-        }
 
         if (porcentagem <= 0.60f)
-        {
             return tempoEntreDecisoes * 0.75f;
-        }
 
         return tempoEntreDecisoes;
     }
@@ -221,20 +377,16 @@ public class SalenthraMovimento : MonoBehaviour
             vidaSalenthra.ObterPorcentagemVidaAtual();
 
         if (porcentagem <= 0.30f)
-        {
             return cooldownBase * 0.70f;
-        }
 
         if (porcentagem <= 0.60f)
-        {
             return cooldownBase * 0.85f;
-        }
 
         return cooldownBase;
     }
 
     // =========================
-    // IA - ESCOLHA DE ATAQUE
+    // IA FASE 1
     // =========================
 
     private bool EscolherAtaqueFase1(
@@ -245,10 +397,6 @@ public class SalenthraMovimento : MonoBehaviour
         float pesoPuxao = 0f;
         float pesoChuva = 0f;
 
-        // =========================
-        // DASH
-        // =========================
-
         if (
             distancia <= distanciaDash &&
             Time.time >= proximoDash
@@ -256,10 +404,6 @@ public class SalenthraMovimento : MonoBehaviour
         {
             pesoDash = 60f;
         }
-
-        // =========================
-        // PUXÃO
-        // =========================
 
         if (
             distancia > distanciaDash &&
@@ -270,26 +414,14 @@ public class SalenthraMovimento : MonoBehaviour
             pesoPuxao = 60f;
         }
 
-        // =========================
-        // CHUVA
-        // =========================
-
         if (Time.time >= proximaChuva)
         {
             if (distancia <= distanciaDash)
-            {
                 pesoChuva = 30f;
-            }
-            else if (
-                distancia <= distanciaPuxao
-            )
-            {
+            else if (distancia <= distanciaPuxao)
                 pesoChuva = 40f;
-            }
             else
-            {
                 pesoChuva = 70f;
-            }
         }
 
         float porcentagemVida = 1f;
@@ -297,67 +429,40 @@ public class SalenthraMovimento : MonoBehaviour
         if (vidaSalenthra != null)
         {
             porcentagemVida =
-                vidaSalenthra
-                .ObterPorcentagemVidaAtual();
+                vidaSalenthra.ObterPorcentagemVidaAtual();
         }
 
-        // =========================
-        // MEMÓRIA DE COMBOS
-        // =========================
-
-        // PUXÃO -> DASH
         if (
             ultimoAtaque == 2 &&
             pesoDash > 0f
         )
         {
             if (porcentagemVida <= 0.30f)
-            {
                 pesoDash *= 4f;
-            }
-            else if (
-                porcentagemVida <= 0.60f
-            )
-            {
+            else if (porcentagemVida <= 0.60f)
                 pesoDash *= 3f;
-            }
             else
-            {
                 pesoDash *= 2.5f;
-            }
         }
 
-        // CHUVA -> PRESSÃO
         if (ultimoAtaque == 3)
         {
             if (pesoDash > 0f)
             {
                 if (porcentagemVida <= 0.30f)
-                {
                     pesoDash *= 2.2f;
-                }
                 else
-                {
                     pesoDash *= 1.7f;
-                }
             }
 
             if (pesoPuxao > 0f)
             {
                 if (porcentagemVida <= 0.30f)
-                {
                     pesoPuxao *= 1.8f;
-                }
                 else
-                {
                     pesoPuxao *= 1.4f;
-                }
             }
         }
-
-        // =========================
-        // EVITAR PADRÕES REPETITIVOS
-        // =========================
 
         if (
             ataqueAnterior == 1 &&
@@ -383,24 +488,14 @@ public class SalenthraMovimento : MonoBehaviour
             pesoChuva *= 0.35f;
         }
 
-        // =========================
-        // EVITAR REPETIÇÃO IMEDIATA
-        // =========================
-
         if (ultimoAtaque == 1)
-        {
             pesoDash = 0f;
-        }
 
         if (ultimoAtaque == 2)
-        {
             pesoPuxao = 0f;
-        }
 
         if (ultimoAtaque == 3)
-        {
             pesoChuva = 0f;
-        }
 
         float pesoTotal =
             pesoDash +
@@ -415,10 +510,6 @@ public class SalenthraMovimento : MonoBehaviour
             pesoTotal
         );
 
-        // =========================
-        // DASH
-        // =========================
-
         if (escolha < pesoDash)
         {
             ataqueAnterior = ultimoAtaque;
@@ -431,10 +522,6 @@ public class SalenthraMovimento : MonoBehaviour
 
         escolha -= pesoDash;
 
-        // =========================
-        // PUXÃO
-        // =========================
-
         if (escolha < pesoPuxao)
         {
             ataqueAnterior = ultimoAtaque;
@@ -444,10 +531,6 @@ public class SalenthraMovimento : MonoBehaviour
 
             return true;
         }
-
-        // =========================
-        // CHUVA
-        // =========================
 
         ataqueAnterior = ultimoAtaque;
         ultimoAtaque = 3;
@@ -464,11 +547,14 @@ public class SalenthraMovimento : MonoBehaviour
             rb.linearVelocity.y
         );
 
-        animator.SetBool("Andando", false);
+        animator.SetBool(
+            "Andando",
+            false
+        );
     }
 
     // =========================
-    // ATAQUE 1 - DASH
+    // DASH FASE 1
     // =========================
 
     private void IniciarDash()
@@ -491,13 +577,9 @@ public class SalenthraMovimento : MonoBehaviour
         );
 
         if (direcaoDash > 0)
-        {
             spriteRenderer.flipX = false;
-        }
         else if (direcaoDash < 0)
-        {
             spriteRenderer.flipX = true;
-        }
 
         animator.SetBool(
             "Andando",
@@ -521,10 +603,7 @@ public class SalenthraMovimento : MonoBehaviour
     {
         movendoNoDash = false;
 
-        rb.linearVelocity = new Vector2(
-            0f,
-            rb.linearVelocity.y
-        );
+        PararMovimento();
     }
 
     public void PararDashAoAcertar()
@@ -534,10 +613,7 @@ public class SalenthraMovimento : MonoBehaviour
 
         dashParadoAoAcertar = true;
 
-        rb.linearVelocity = new Vector2(
-            0f,
-            rb.linearVelocity.y
-        );
+        PararMovimento();
     }
 
     public void FinalizarDash()
@@ -545,12 +621,10 @@ public class SalenthraMovimento : MonoBehaviour
         atacandoDash = false;
 
         movendoNoDash = false;
+
         dashParadoAoAcertar = false;
 
-        rb.linearVelocity = new Vector2(
-            0f,
-            rb.linearVelocity.y
-        );
+        PararMovimento();
 
         proximoDash =
             Time.time +
@@ -564,7 +638,7 @@ public class SalenthraMovimento : MonoBehaviour
     }
 
     // =========================
-    // ATAQUE 2 - PUXÃO
+    // PUXÃO FASE 1
     // =========================
 
     private void IniciarPuxao()
@@ -584,13 +658,9 @@ public class SalenthraMovimento : MonoBehaviour
         );
 
         if (direcao > 0)
-        {
             spriteRenderer.flipX = false;
-        }
         else if (direcao < 0)
-        {
             spriteRenderer.flipX = true;
-        }
 
         PararMovimento();
 
@@ -619,9 +689,9 @@ public class SalenthraMovimento : MonoBehaviour
         );
 
         movimentoElian.AplicarPuxao(
-    direcao,
-    forcaPuxao
-);
+            direcao,
+            forcaPuxao
+        );
     }
 
     public void FinalizarPuxao()
@@ -642,7 +712,7 @@ public class SalenthraMovimento : MonoBehaviour
     }
 
     // =========================
-    // ATAQUE 3 - CHUVA
+    // CHUVA FASE 1
     // =========================
 
     private void IniciarAtaqueChuva()
@@ -694,6 +764,292 @@ public class SalenthraMovimento : MonoBehaviour
     }
 
     // =========================
+    // ATAQUE 1 FASE 2
+    // =========================
+
+    private void IniciarAtaque1Fase2()
+    {
+        if (!fase2)
+            return;
+
+        if (
+            atacandoAtaque1Fase2 ||
+            atacandoAtaque2Fase2 ||
+            atacandoAtaque3Fase2
+        )
+            return;
+
+        atacandoAtaque1Fase2 = true;
+
+        float direcao = Mathf.Sign(
+            elian.position.x -
+            transform.position.x
+        );
+
+        if (direcao > 0)
+        {
+            spriteRenderer.flipX = false;
+
+            AtualizarHitboxAtaque1Fase2(
+                false
+            );
+        }
+        else if (direcao < 0)
+        {
+            spriteRenderer.flipX = true;
+
+            AtualizarHitboxAtaque1Fase2(
+                true
+            );
+        }
+
+        PararMovimento();
+
+        animator.SetTrigger(
+            "Ataque1Fase2"
+        );
+    }
+
+    private void AtualizarHitboxAtaque1Fase2(
+        bool esquerda
+    )
+    {
+        if (transformHitboxAtaque1Fase2 == null)
+            return;
+
+        Vector3 posicao =
+            transformHitboxAtaque1Fase2.localPosition;
+
+        if (esquerda)
+            posicao.x = posicaoHitboxEsquerda;
+        else
+            posicao.x = posicaoHitboxDireita;
+
+        transformHitboxAtaque1Fase2.localPosition =
+            posicao;
+    }
+
+    public void AcertarAtaque1Fase2()
+    {
+        if (!atacandoAtaque1Fase2)
+            return;
+
+        if (hitboxAtaque1Fase2 != null)
+        {
+            hitboxAtaque1Fase2.VerificarAcerto();
+        }
+    }
+
+    public void FinalizarAtaque1Fase2()
+    {
+        atacandoAtaque1Fase2 = false;
+
+        proximoAtaque1Fase2 =
+            Time.time +
+            AjustarCooldownPorVida(
+                tempoEntreAtaques1Fase2
+            );
+    }
+
+    // =========================
+    // ATAQUE 2 FASE 2
+    // =========================
+
+    private void IniciarAtaque2Fase2()
+    {
+        if (!fase2)
+            return;
+
+        if (
+            atacandoAtaque1Fase2 ||
+            atacandoAtaque2Fase2 ||
+            atacandoAtaque3Fase2
+        )
+            return;
+
+        atacandoAtaque2Fase2 = true;
+
+        movendoAtaque2Fase2 = false;
+
+        direcaoAtaque2Fase2 =
+            Mathf.Sign(
+                elian.position.x -
+                transform.position.x
+            );
+
+        if (direcaoAtaque2Fase2 > 0)
+            spriteRenderer.flipX = false;
+        else if (direcaoAtaque2Fase2 < 0)
+            spriteRenderer.flipX = true;
+
+        if (hitboxAtaque2Fase2 != null)
+        {
+            hitboxAtaque2Fase2.PrepararNovoDash();
+        }
+
+        PararMovimento();
+
+        animator.SetTrigger(
+            "Ataque2Fase2"
+        );
+    }
+
+    public void ComecarMovimentoAtaque2Fase2()
+    {
+        if (!atacandoAtaque2Fase2)
+            return;
+
+        movendoAtaque2Fase2 = true;
+    }
+
+    public void PararMovimentoAtaque2Fase2()
+    {
+        movendoAtaque2Fase2 = false;
+
+        rb.linearVelocity =
+            new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
+    }
+
+    public void FinalizarAtaque2Fase2()
+    {
+        atacandoAtaque2Fase2 = false;
+
+        movendoAtaque2Fase2 = false;
+
+        rb.linearVelocity =
+            new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
+
+        proximoAtaque2Fase2 =
+            Time.time +
+            AjustarCooldownPorVida(
+                tempoEntreAtaques2Fase2
+            );
+    }
+
+    // =========================
+    // ATAQUE 3 FASE 2
+    // PROJÉTIL LUA
+    // =========================
+
+    private void IniciarAtaque3Fase2()
+    {
+        if (!fase2)
+            return;
+
+        if (
+            atacandoAtaque1Fase2 ||
+            atacandoAtaque2Fase2 ||
+            atacandoAtaque3Fase2
+        )
+            return;
+
+        atacandoAtaque3Fase2 = true;
+
+        float direcao = Mathf.Sign(
+            elian.position.x -
+            transform.position.x
+        );
+
+        if (direcao > 0)
+        {
+            spriteRenderer.flipX = false;
+
+            AtualizarPontoDisparoLua(false);
+        }
+        else if (direcao < 0)
+        {
+            spriteRenderer.flipX = true;
+
+            AtualizarPontoDisparoLua(true);
+        }
+
+        PararMovimento();
+
+        animator.SetTrigger(
+            "Ataque3Fase2"
+        );
+    }
+
+    private void AtualizarPontoDisparoLua(
+        bool esquerda
+    )
+    {
+        if (pontoDisparoLua == null)
+            return;
+
+        Vector3 posicao =
+            pontoDisparoLua.localPosition;
+
+        if (esquerda)
+        {
+            posicao.x =
+                posicaoPontoLuaEsquerda;
+        }
+        else
+        {
+            posicao.x =
+                posicaoPontoLuaDireita;
+        }
+
+        pontoDisparoLua.localPosition =
+            posicao;
+    }
+
+    public void DispararProjetilLua()
+    {
+        if (!atacandoAtaque3Fase2)
+            return;
+
+        if (projetilLuaPrefab == null)
+            return;
+
+        if (pontoDisparoLua == null)
+            return;
+
+        if (elian == null)
+            return;
+
+        float direcao = Mathf.Sign(
+            elian.position.x -
+            pontoDisparoLua.position.x
+        );
+
+        GameObject novaLua =
+            Instantiate(
+                projetilLuaPrefab,
+                pontoDisparoLua.position,
+                Quaternion.identity
+            );
+
+        ProjetilLua projetil =
+            novaLua.GetComponent<ProjetilLua>();
+
+        if (projetil != null)
+        {
+            projetil.direcao = direcao;
+            projetil.vidaSalenthra =
+                vidaSalenthra;
+        }
+    }
+
+    public void FinalizarAtaque3Fase2()
+    {
+        atacandoAtaque3Fase2 = false;
+
+        proximoAtaque3Fase2 =
+            Time.time +
+            AjustarCooldownPorVida(
+                tempoEntreAtaques3Fase2
+            );
+    }
+
+    // =========================
     // ATIVAÇÃO
     // =========================
 
@@ -718,7 +1074,13 @@ public class SalenthraMovimento : MonoBehaviour
         atacandoPuxao = false;
         atacandoChuva = false;
 
+        atacandoAtaque1Fase2 = false;
+        atacandoAtaque2Fase2 = false;
+        atacandoAtaque3Fase2 = false;
+
         movendoNoDash = false;
+        movendoAtaque2Fase2 = false;
+
         dashParadoAoAcertar = false;
 
         PararMovimento();
