@@ -6532,6 +6532,12 @@ MonoBehaviour:
   tempoEntreAtaques3Fase2: 2.2
   posicaoPontoLuaDireita: 0.752
   posicaoPontoLuaEsquerda: -0.752
+  raioFase2: {fileID: 0}
+  transformRaioFase2: {fileID: 0}
+  animatorRaioFase2: {fileID: 0}
+  tempoEntreAtaques4Fase2: 5
+  posicaoRaioDireita: 1
+  posicaoRaioEsquerda: -1
   podeMover: 1
   ativada: 0
 --- !u!70 &1573473950

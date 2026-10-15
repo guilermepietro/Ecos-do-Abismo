@@ -105,6 +105,20 @@ public class SalenthraMovimento : MonoBehaviour
     public float posicaoPontoLuaDireita = 1f;
     public float posicaoPontoLuaEsquerda = -1f;
 
+    // =========================
+    // FASE 2 - ATAQUE 4
+    // =========================
+
+    [Header("Ataque 4 Fase 2 - Raio")]
+    public GameObject raioFase2;
+    public Transform transformRaioFase2;
+    public Animator animatorRaioFase2;
+
+    public float tempoEntreAtaques4Fase2 = 5f;
+
+    public float posicaoRaioDireita = 1f;
+    public float posicaoRaioEsquerda = -1f;
+
     public bool podeMover = true;
     public bool ativada = false;
 
@@ -164,6 +178,13 @@ public class SalenthraMovimento : MonoBehaviour
     private float proximoAtaque3Fase2 = 0f;
 
     // =========================
+    // ATAQUE 4 FASE 2
+    // =========================
+
+    private bool atacandoAtaque4Fase2 = false;
+    private float proximoAtaque4Fase2 = 0f;
+
+    // =========================
     // ESTADO PÚBLICO FASE 2
     // =========================
 
@@ -174,7 +195,8 @@ public class SalenthraMovimento : MonoBehaviour
             return
                 atacandoAtaque1Fase2 ||
                 atacandoAtaque2Fase2 ||
-                atacandoAtaque3Fase2;
+                atacandoAtaque3Fase2 ||
+                atacandoAtaque4Fase2;
         }
     }
 
@@ -182,6 +204,11 @@ public class SalenthraMovimento : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (raioFase2 != null)
+        {
+            raioFase2.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
@@ -279,6 +306,16 @@ public class SalenthraMovimento : MonoBehaviour
         // =========================
 
         if (atacandoAtaque3Fase2)
+        {
+            PararMovimento();
+            return;
+        }
+
+        // =========================
+        // ATAQUE 4 FASE 2
+        // =========================
+
+        if (atacandoAtaque4Fase2)
         {
             PararMovimento();
             return;
@@ -382,11 +419,17 @@ public class SalenthraMovimento : MonoBehaviour
         atacandoAtaque1Fase2 = false;
         atacandoAtaque2Fase2 = false;
         atacandoAtaque3Fase2 = false;
+        atacandoAtaque4Fase2 = false;
 
         movendoAtaque2Fase2 = false;
         dashesRestantesFase2 = 0;
 
         IgnorarColisaoDashFase2(false);
+
+        if (raioFase2 != null)
+        {
+            raioFase2.SetActive(false);
+        }
 
         rb.linearVelocity = new Vector2(
             0f,
@@ -402,6 +445,7 @@ public class SalenthraMovimento : MonoBehaviour
         animator.ResetTrigger("Ataque1Fase2");
         animator.ResetTrigger("Ataque2Fase2");
         animator.ResetTrigger("Ataque3Fase2");
+        animator.ResetTrigger("Ataque4Fase2");
     }
 
     // =========================
@@ -1055,7 +1099,8 @@ public class SalenthraMovimento : MonoBehaviour
         if (
             atacandoAtaque1Fase2 ||
             atacandoAtaque2Fase2 ||
-            atacandoAtaque3Fase2
+            atacandoAtaque3Fase2 ||
+            atacandoAtaque4Fase2
         )
             return;
 
@@ -1157,7 +1202,8 @@ public class SalenthraMovimento : MonoBehaviour
         if (
             atacandoAtaque1Fase2 ||
             atacandoAtaque2Fase2 ||
-            atacandoAtaque3Fase2
+            atacandoAtaque3Fase2 ||
+            atacandoAtaque4Fase2
         )
             return;
 
@@ -1289,8 +1335,6 @@ public class SalenthraMovimento : MonoBehaviour
 
         IgnorarColisaoDashFase2(false);
 
-        // O dash possui cooldown próprio baseado
-        // na vida da Salenthra.
         proximoAtaque2Fase2 =
             Time.time +
             ObterCooldownDashFase2();
@@ -1313,7 +1357,8 @@ public class SalenthraMovimento : MonoBehaviour
         if (
             atacandoAtaque1Fase2 ||
             atacandoAtaque2Fase2 ||
-            atacandoAtaque3Fase2
+            atacandoAtaque3Fase2 ||
+            atacandoAtaque4Fase2
         )
             return;
 
@@ -1426,6 +1471,125 @@ public class SalenthraMovimento : MonoBehaviour
     }
 
     // =========================
+    // ATAQUE 4 FASE 2
+    // RAIO
+    // =========================
+
+    public void IniciarAtaque4Fase2()
+    {
+        if (!fase2)
+            return;
+
+        if (
+            atacandoAtaque1Fase2 ||
+            atacandoAtaque2Fase2 ||
+            atacandoAtaque3Fase2 ||
+            atacandoAtaque4Fase2
+        )
+            return;
+
+        atacandoAtaque4Fase2 = true;
+
+        float direcao = Mathf.Sign(
+            elian.position.x -
+            transform.position.x
+        );
+
+        if (direcao > 0)
+        {
+            spriteRenderer.flipX = false;
+            AtualizarRaioFase2(false);
+        }
+        else if (direcao < 0)
+        {
+            spriteRenderer.flipX = true;
+            AtualizarRaioFase2(true);
+        }
+
+        if (raioFase2 != null)
+        {
+            raioFase2.SetActive(false);
+        }
+
+        PararMovimento();
+
+        animator.SetTrigger(
+            "Ataque4Fase2"
+        );
+    }
+
+    private void AtualizarRaioFase2(
+        bool esquerda
+    )
+    {
+        if (transformRaioFase2 == null)
+            return;
+
+        Vector3 posicao =
+            transformRaioFase2.localPosition;
+
+        Vector3 escala =
+            transformRaioFase2.localScale;
+
+        if (esquerda)
+        {
+            posicao.x =
+                posicaoRaioEsquerda;
+
+            escala.x =
+                -Mathf.Abs(escala.x);
+        }
+        else
+        {
+            posicao.x =
+                posicaoRaioDireita;
+
+            escala.x =
+                Mathf.Abs(escala.x);
+        }
+
+        transformRaioFase2.localPosition =
+            posicao;
+
+        transformRaioFase2.localScale =
+            escala;
+    }
+
+    public void DispararRaioFase2()
+    {
+        if (raioFase2 == null)
+            return;
+
+        raioFase2.SetActive(true);
+
+        if (animatorRaioFase2 != null)
+        {
+            animatorRaioFase2.Rebind();
+            animatorRaioFase2.Update(0f);
+        }
+    }
+
+    public void FinalizarAtaque4Fase2()
+    {
+        atacandoAtaque4Fase2 = false;
+
+        if (raioFase2 != null)
+        {
+            raioFase2.SetActive(false);
+        }
+
+        proximoAtaque4Fase2 =
+            Time.time +
+            AjustarCooldownPorVida(
+                tempoEntreAtaques4Fase2
+            );
+
+        proximaDecisaoFase2 =
+            Time.time +
+            ObterTempoDecisaoAtual();
+    }
+
+    // =========================
     // ATIVAÇÃO
     // =========================
 
@@ -1453,6 +1617,7 @@ public class SalenthraMovimento : MonoBehaviour
         atacandoAtaque1Fase2 = false;
         atacandoAtaque2Fase2 = false;
         atacandoAtaque3Fase2 = false;
+        atacandoAtaque4Fase2 = false;
 
         movendoNoDash = false;
         movendoAtaque2Fase2 = false;
@@ -1465,6 +1630,11 @@ public class SalenthraMovimento : MonoBehaviour
         ataqueAnteriorFase2 = 0;
 
         IgnorarColisaoDashFase2(false);
+
+        if (raioFase2 != null)
+        {
+            raioFase2.SetActive(false);
+        }
 
         proximaDecisaoFase2 =
             Time.time +
