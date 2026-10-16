@@ -33,6 +33,7 @@ public class SalenthraMovimento : MonoBehaviour
     // 1 = espada
     // 2 = dash
     // 3 = lua
+    // 4 = raio
     private int ultimoAtaqueFase2 = 0;
     private int ataqueAnteriorFase2 = 0;
 
@@ -114,6 +115,7 @@ public class SalenthraMovimento : MonoBehaviour
     public Transform transformRaioFase2;
     public Animator animatorRaioFase2;
 
+    public float distanciaAtaque4Fase2 = 6f;
     public float tempoEntreAtaques4Fase2 = 5f;
 
     public float posicaoRaioDireita = 1f;
@@ -210,8 +212,6 @@ public class SalenthraMovimento : MonoBehaviour
             raioFase2.SetActive(false);
         }
     }
-
-    
 
     private void FixedUpdate()
     {
@@ -631,10 +631,11 @@ public class SalenthraMovimento : MonoBehaviour
         if (pesoTotal <= 0f)
             return false;
 
-        float escolha = Random.Range(
-            0f,
-            pesoTotal
-        );
+        float escolha =
+            Random.Range(
+                0f,
+                pesoTotal
+            );
 
         if (escolha < pesoDash)
         {
@@ -677,6 +678,7 @@ public class SalenthraMovimento : MonoBehaviour
         float pesoEspada = 0f;
         float pesoDash = 0f;
         float pesoLua = 0f;
+        float pesoRaio = 0f;
 
         // =========================
         // DISTÂNCIA PERTO
@@ -687,6 +689,7 @@ public class SalenthraMovimento : MonoBehaviour
             pesoEspada = 80f;
             pesoDash = 45f;
             pesoLua = 20f;
+            pesoRaio = 25f;
         }
 
         // =========================
@@ -698,6 +701,7 @@ public class SalenthraMovimento : MonoBehaviour
             pesoEspada = 5f;
             pesoDash = 80f;
             pesoLua = 55f;
+            pesoRaio = 70f;
         }
 
         // =========================
@@ -709,6 +713,14 @@ public class SalenthraMovimento : MonoBehaviour
             pesoEspada = 0f;
             pesoDash = 60f;
             pesoLua = 80f;
+            pesoRaio = 0f;
+        }
+
+        // O raio só pode ser escolhido se
+        // o Elian estiver dentro do alcance dele.
+        if (distancia > distanciaAtaque4Fase2)
+        {
+            pesoRaio = 0f;
         }
 
         // =========================
@@ -728,6 +740,11 @@ public class SalenthraMovimento : MonoBehaviour
         if (Time.time < proximoAtaque3Fase2)
         {
             pesoLua = 0f;
+        }
+
+        if (Time.time < proximoAtaque4Fase2)
+        {
+            pesoRaio = 0f;
         }
 
         // =========================
@@ -783,6 +800,14 @@ public class SalenthraMovimento : MonoBehaviour
             pesoLua *= 0.35f;
         }
 
+        if (
+            ataqueAnteriorFase2 == 4 &&
+            pesoRaio > 0f
+        )
+        {
+            pesoRaio *= 0.35f;
+        }
+
         // =========================
         // NÃO REPETIR
         // =========================
@@ -802,10 +827,16 @@ public class SalenthraMovimento : MonoBehaviour
             pesoLua = 0f;
         }
 
+        if (ultimoAtaqueFase2 == 4)
+        {
+            pesoRaio = 0f;
+        }
+
         float pesoTotal =
             pesoEspada +
             pesoDash +
-            pesoLua;
+            pesoLua +
+            pesoRaio;
 
         if (pesoTotal <= 0f)
             return false;
@@ -850,16 +881,34 @@ public class SalenthraMovimento : MonoBehaviour
             return true;
         }
 
+        escolha -= pesoDash;
+
         // =========================
         // LUA
+        // =========================
+
+        if (escolha < pesoLua)
+        {
+            ataqueAnteriorFase2 =
+                ultimoAtaqueFase2;
+
+            ultimoAtaqueFase2 = 3;
+
+            IniciarAtaque3Fase2();
+
+            return true;
+        }
+
+        // =========================
+        // RAIO
         // =========================
 
         ataqueAnteriorFase2 =
             ultimoAtaqueFase2;
 
-        ultimoAtaqueFase2 = 3;
+        ultimoAtaqueFase2 = 4;
 
-        IniciarAtaque3Fase2();
+        IniciarAtaque4Fase2();
 
         return true;
     }
@@ -1500,11 +1549,13 @@ public class SalenthraMovimento : MonoBehaviour
         if (direcao > 0)
         {
             spriteRenderer.flipX = false;
+
             AtualizarRaioFase2(false);
         }
         else if (direcao < 0)
         {
             spriteRenderer.flipX = true;
+
             AtualizarRaioFase2(true);
         }
 
@@ -1559,6 +1610,9 @@ public class SalenthraMovimento : MonoBehaviour
 
     public void DispararRaioFase2()
     {
+        if (!atacandoAtaque4Fase2)
+            return;
+
         if (raioFase2 == null)
             return;
 
@@ -1573,6 +1627,9 @@ public class SalenthraMovimento : MonoBehaviour
 
     public void FinalizarAtaque4Fase2()
     {
+        if (!atacandoAtaque4Fase2)
+            return;
+
         atacandoAtaque4Fase2 = false;
 
         if (raioFase2 != null)

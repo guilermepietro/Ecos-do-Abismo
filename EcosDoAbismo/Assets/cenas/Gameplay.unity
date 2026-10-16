@@ -6535,6 +6535,7 @@ MonoBehaviour:
   raioFase2: {fileID: 2052947408}
   transformRaioFase2: {fileID: 2052947410}
   animatorRaioFase2: {fileID: 2052947409}
+  distanciaAtaque4Fase2: 6
   tempoEntreAtaques4Fase2: 5
   posicaoRaioDireita: 1.763
   posicaoRaioEsquerda: -1.763
@@ -11856,7 +11857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &2052947409
 Animator:
   serializedVersion: 7
@@ -11888,8 +11889,8 @@ Transform:
   m_GameObject: {fileID: 2052947408}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.763, y: 0.261, z: 0}
-  m_LocalScale: {x: 1.9776704, y: 1.9776704, z: 1.9776704}
+  m_LocalPosition: {x: 1.8454, y: 0.2397, z: 0}
+  m_LocalScale: {x: 2.1534853, y: 2.1534853, z: 2.1534853}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1573473954}
