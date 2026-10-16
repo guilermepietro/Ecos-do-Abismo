@@ -7,6 +7,7 @@ public class VoragulVida : MonoBehaviour
     private int vidaAtual;
     private bool morto = false;
     private bool levandoDano = false;
+
     private Animator animator;
 
     private void Awake()
@@ -27,12 +28,24 @@ public class VoragulVida : MonoBehaviour
             Morrer();
             return;
         }
-        VoragulAtaque1 ataque = GetComponent<VoragulAtaque1>();
 
-if (ataque != null && ataque.EstaAtacando())
-{
-    return;
-}
+        // Se estiver executando o Ataque 1,
+        // recebe o dano, mas não interrompe a animação.
+        VoragulAtaque1 ataque1 = GetComponent<VoragulAtaque1>();
+
+        if (ataque1 != null && ataque1.EstaAtacando())
+        {
+            return;
+        }
+
+        // Se estiver executando o Ataque 2,
+        // recebe o dano, mas não interrompe a animação.
+        VoragulAtaque2 ataque2 = GetComponent<VoragulAtaque2>();
+
+        if (ataque2 != null && ataque2.EstaAtacando())
+        {
+            return;
+        }
 
         if (!levandoDano)
         {
@@ -50,49 +63,53 @@ if (ataque != null && ataque.EstaAtacando())
     }
 
     private void Morrer()
-{
-    morto = true;
-
-    CancelInvoke(nameof(LiberarMovimento));
-
-    VoragulMovimento movimento = GetComponent<VoragulMovimento>();
-
-    if (movimento != null)
     {
-        movimento.podeMover = false;
+        morto = true;
+
+        CancelInvoke(nameof(LiberarMovimento));
+
+        VoragulMovimento movimento = GetComponent<VoragulMovimento>();
+
+        if (movimento != null)
+        {
+            movimento.podeMover = false;
+        }
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+        {
+            rb.linearVelocity = new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
+        }
+
+        animator.SetTrigger("Morte");
     }
-
-    Rigidbody2D rb = GetComponent<Rigidbody2D>();
-
-    if (rb != null)
-    {
-        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-    }
-
-    animator.SetTrigger("Morte");
-}
 
     public void FinalizarDano()
     {
         levandoDano = false;
-        Invoke(nameof(LiberarMovimento), 2.5f);
+
+        Invoke(nameof(LiberarMovimento), 1.1f);
     }
 
     private void LiberarMovimento()
-{
-    if (morto)
-        return;
-
-    VoragulMovimento movimento = GetComponent<VoragulMovimento>();
-
-    if (movimento != null)
     {
-        movimento.podeMover = true;
-    }
-}
+        if (morto)
+            return;
 
-public bool EstaMorto()
-{
-    return morto;
-}
+        VoragulMovimento movimento = GetComponent<VoragulMovimento>();
+
+        if (movimento != null)
+        {
+            movimento.podeMover = true;
+        }
+    }
+
+    public bool EstaMorto()
+    {
+        return morto;
+    }
 }
