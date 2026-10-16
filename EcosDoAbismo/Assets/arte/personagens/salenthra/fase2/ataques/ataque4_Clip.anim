@@ -59,8 +59,32 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings: []
-    pptrCurveMapping: []
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+      metaData: 0
+    pptrCurveMapping:
+    - {fileID: -5473251212242262843, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: 1492034286419276860, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: -3410359372734897461, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: 6483821592764470361, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: 5866623632368550448, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: -3320466543214776331, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: 1491358274300362156, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: 743350772822575239, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: 6862190996480479760, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: -8868775181703431755, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: 7806493776538333340, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: -660969613152362136, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: -7901311193872325628, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
+    - {fileID: -7901311193872325628, guid: 286394587a76c7e408810f32e07c3f31, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -85,4 +109,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.5
+    functionName: DispararRaioFase2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.29
+    functionName: FinalizarAtaque4Fase2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

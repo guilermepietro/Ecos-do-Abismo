@@ -211,6 +211,8 @@ public class SalenthraMovimento : MonoBehaviour
         }
     }
 
+    
+
     private void FixedUpdate()
     {
         if (!ativada || !podeMover)
