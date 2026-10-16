@@ -30,18 +30,15 @@ public class CameraFollow : MonoBehaviour
             transform.position.z
         );
 
-        // Remove o deslocamento do tremor anterior
         Vector3 posicaoBase =
             transform.position - deslocamentoAnterior;
 
-        // Mantém o acompanhamento normal do Elian
         Vector3 posicaoSuave = Vector3.Lerp(
             posicaoBase,
             novaPosicao,
             velocidade * Time.deltaTime
         );
 
-        // Adiciona o tremor sem interferir no acompanhamento
         transform.position =
             posicaoSuave + deslocamentoTremor;
 
@@ -50,22 +47,41 @@ public class CameraFollow : MonoBehaviour
 
     public void TremerCamera()
     {
+        TremerCamera(
+            duracaoTremor,
+            intensidadeTremor
+        );
+    }
+
+    public void TremerCamera(
+        float duracao,
+        float intensidade
+    )
+    {
         if (tremorAtual != null)
             StopCoroutine(tremorAtual);
 
         tremorAtual =
-            StartCoroutine(ExecutarTremor());
+            StartCoroutine(
+                ExecutarTremor(
+                    duracao,
+                    intensidade
+                )
+            );
     }
 
-    private IEnumerator ExecutarTremor()
+    private IEnumerator ExecutarTremor(
+        float duracao,
+        float intensidade
+    )
     {
         float tempo = 0f;
 
-        while (tempo < duracaoTremor)
+        while (tempo < duracao)
         {
             deslocamentoTremor = (Vector3)(
                 Random.insideUnitCircle *
-                intensidadeTremor
+                intensidade
             );
 
             tempo += Time.deltaTime;
@@ -74,6 +90,7 @@ public class CameraFollow : MonoBehaviour
         }
 
         deslocamentoTremor = Vector3.zero;
+        deslocamentoAnterior = Vector3.zero;
         tremorAtual = null;
     }
 }

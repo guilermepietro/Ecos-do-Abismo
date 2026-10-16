@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class VoragulHitboxAtaque2 : MonoBehaviour
 {
-
     [Header("Posição da Hitbox")]
-public float posicaoDireita = 0.5f;
-public float posicaoEsquerda = -0.5f;
+    public float posicaoDireita = 0.5f;
+    public float posicaoEsquerda = -0.5f;
 
-private SpriteRenderer spriteVoragul;
     public int dano = 25;
 
+    private SpriteRenderer spriteVoragul;
     private BoxCollider2D boxCollider;
+
+    private bool danoAtivo = false;
+    private bool elianJaAtingido = false;
 
     private void Awake()
     {
@@ -19,27 +21,42 @@ private SpriteRenderer spriteVoragul;
     }
 
     private void LateUpdate()
-{
-    if (spriteVoragul == null)
-        return;
+    {
+        if (spriteVoragul != null)
+        {
+            Vector3 posicao = transform.localPosition;
 
-    Vector3 posicao = transform.localPosition;
+            posicao.x = spriteVoragul.flipX
+                ? posicaoEsquerda
+                : posicaoDireita;
 
-    posicao.x = spriteVoragul.flipX
-        ? posicaoEsquerda
-        : posicaoDireita;
+            transform.localPosition = posicao;
+        }
 
-    transform.localPosition = posicao;
-}
+        if (danoAtivo && !elianJaAtingido)
+        {
+            VerificarAcerto();
+        }
+    }
 
-    public void VerificarAcerto()
+    public void AtivarDano()
+    {
+        danoAtivo = true;
+        elianJaAtingido = false;
+    }
+
+    public void DesativarDano()
+    {
+        danoAtivo = false;
+    }
+
+    private void VerificarAcerto()
     {
         Collider2D[] atingidos = Physics2D.OverlapBoxAll(
             boxCollider.bounds.center,
             boxCollider.bounds.size,
             0f
         );
-        
 
         foreach (Collider2D atingido in atingidos)
         {
@@ -50,7 +67,10 @@ private SpriteRenderer spriteVoragul;
                 if (vida != null)
                 {
                     vida.ReceberDano(dano);
+                    elianJaAtingido = true;
                 }
+
+                return;
             }
         }
     }

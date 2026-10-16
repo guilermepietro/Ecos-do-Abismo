@@ -25,12 +25,11 @@ public class VoragulVida : MonoBehaviour
 
         if (vidaAtual <= 0)
         {
+            vidaAtual = 0;
             Morrer();
             return;
         }
 
-        // Se estiver executando o Ataque 1,
-        // recebe o dano, mas não interrompe a animação.
         VoragulAtaque1 ataque1 = GetComponent<VoragulAtaque1>();
 
         if (ataque1 != null && ataque1.EstaAtacando())
@@ -38,11 +37,16 @@ public class VoragulVida : MonoBehaviour
             return;
         }
 
-        // Se estiver executando o Ataque 2,
-        // recebe o dano, mas não interrompe a animação.
         VoragulAtaque2 ataque2 = GetComponent<VoragulAtaque2>();
 
         if (ataque2 != null && ataque2.EstaAtacando())
+        {
+            return;
+        }
+
+        VoragulAtaque3 ataque3 = GetComponent<VoragulAtaque3>();
+
+        if (ataque3 != null && ataque3.EstaAtacando())
         {
             return;
         }
@@ -111,5 +115,13 @@ public class VoragulVida : MonoBehaviour
     public bool EstaMorto()
     {
         return morto;
+    }
+
+    public float ObterPorcentagemVida()
+    {
+        if (vidaMaxima <= 0)
+            return 0f;
+
+        return (float)vidaAtual / vidaMaxima;
     }
 }

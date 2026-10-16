@@ -4,15 +4,16 @@ public class VoragulAtaque2 : MonoBehaviour
 {
     [Header("Ataque 2")]
     public float distanciaMinima = 3.1f;
-    public float distanciaMaxima = 7f;
+    public float distanciaMaxima = 12f;
     public float tempoRecuperacao = 1.5f;
     public float tempoEntreAtaques = 2f;
+
+    public VoragulHitboxAtaque2 hitboxAtaque2;
 
     private VoragulMovimento movimento;
     private VoragulVida vida;
     private VoragulAtaque1 ataque1;
     private Animator animator;
-    public VoragulHitboxAtaque2 hitboxAtaque2;
 
     private bool atacando = false;
     private float proximoAtaque = 0f;
@@ -25,36 +26,6 @@ public class VoragulAtaque2 : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-        if (movimento == null)
-            return;
-
-        if (!movimento.lutaIniciada || !movimento.podeMover)
-            return;
-
-        if (atacando || Time.time < proximoAtaque)
-            return;
-
-        if (vida != null && vida.EstaMorto())
-            return;
-
-        if (ataque1 != null && ataque1.EstaAtacando())
-            return;
-
-        if (movimento.elian == null)
-            return;
-
-        float distancia = Mathf.Abs(
-            movimento.elian.position.x - transform.position.x
-        );
-
-        if (distancia >= distanciaMinima && distancia <= distanciaMaxima)
-        {
-            IniciarAtaque2();
-        }
-    }
-
     private void IniciarAtaque2()
     {
         atacando = true;
@@ -65,16 +36,49 @@ public class VoragulAtaque2 : MonoBehaviour
         animator.SetTrigger("Ataque2");
     }
 
-    public void ImpactoAtaque2()
-{
-    if (vida != null && vida.EstaMorto())
-        return;
-
-    if (hitboxAtaque2 != null)
+    public void ForcarAtaque()
     {
-        hitboxAtaque2.VerificarAcerto();
+        if (!PodeAtacar())
+            return;
+
+        IniciarAtaque2();
     }
-}
+
+    public bool PodeAtacar()
+    {
+        if (atacando)
+            return false;
+
+        if (Time.time < proximoAtaque)
+            return false;
+
+        if (vida != null && vida.EstaMorto())
+            return false;
+
+        if (movimento == null || !movimento.lutaIniciada)
+            return false;
+
+        return true;
+    }
+
+    public void AtivarDanoAtaque2()
+    {
+        if (vida != null && vida.EstaMorto())
+            return;
+
+        if (hitboxAtaque2 != null)
+        {
+            hitboxAtaque2.AtivarDano();
+        }
+    }
+
+    public void DesativarDanoAtaque2()
+    {
+        if (hitboxAtaque2 != null)
+        {
+            hitboxAtaque2.DesativarDano();
+        }
+    }
 
     public void FinalizarAtaque2()
     {
@@ -98,5 +102,3 @@ public class VoragulAtaque2 : MonoBehaviour
         return atacando;
     }
 }
-
-//dsdsdsdsds
