@@ -17,7 +17,20 @@ public class VoragulIA : MonoBehaviour
     public float intervaloDecisao = 0.3f;
 
     [Header("Movimento entre ataques")]
-    public float tempoMovimentoAposAtaque = 1.2f;
+    public float tempoMovimentoInicio = 1.5f;
+    public float tempoMovimentoMeio = 1.15f;
+    public float tempoMovimentoFinal = 0.8f;
+
+    [Header("Memória de Distância")]
+    public float tempoParaAdaptar = 3f;
+    public float bonusAdaptacao = 20f;
+
+    [Header("Anti-Abuso de Distância")]
+    public float tempoParaConfirmarNovaZona = 0.45f;
+
+    [Header("Combinações Contextuais")]
+    public float bonusContextual = 25f;
+    public float janelaContextual = 4f;
 
     private float proximaDecisao = 0f;
 
@@ -25,6 +38,16 @@ public class VoragulIA : MonoBehaviour
     private int penultimoAtaque = 0;
 
     private bool estavaAtacando = false;
+
+    private float tempoCurta = 0f;
+    private float tempoMedia = 0f;
+    private float tempoLonga = 0f;
+
+    private int zonaAtual = 0;
+    private int zonaCandidata = 0;
+    private float tempoNaZonaCandidata = 0f;
+
+    private float tempoUltimoAtaque = -100f;
 
     private void Awake()
     {
@@ -55,6 +78,9 @@ public class VoragulIA : MonoBehaviour
         if (vida != null && vida.EstaMorto())
             return;
 
+        AtualizarZonaEstabilizada();
+        AtualizarMemoriaDistancia();
+
         bool ataqueEmAndamento = AtaqueEmAndamento();
 
         if (ataqueEmAndamento)
@@ -63,13 +89,12 @@ public class VoragulIA : MonoBehaviour
             return;
         }
 
-        // Acabou de terminar um ataque.
         if (estavaAtacando)
         {
             estavaAtacando = false;
 
             proximaDecisao =
-                Time.time + tempoMovimentoAposAtaque;
+                Time.time + ObterTempoMovimentoAtual();
 
             return;
         }
@@ -84,6 +109,123 @@ public class VoragulIA : MonoBehaviour
             Time.time + intervaloDecisao;
 
         EscolherAtaque();
+    }
+
+    private float ObterTempoMovimentoAtual()
+    {
+        if (vida == null)
+            return tempoMovimentoInicio;
+
+        float porcentagemVida =
+            vida.ObterPorcentagemVida();
+
+        if (porcentagemVida > 0.70f)
+        {
+            return tempoMovimentoInicio;
+        }
+
+        if (porcentagemVida > 0.35f)
+        {
+            return tempoMovimentoMeio;
+        }
+
+        return tempoMovimentoFinal;
+    }
+
+    private void AtualizarZonaEstabilizada()
+    {
+        float distancia = Mathf.Abs(
+            movimento.elian.position.x - transform.position.x
+        );
+
+        int novaZona = ObterZonaPorDistancia(distancia);
+
+        if (zonaAtual == 0)
+        {
+            zonaAtual = novaZona;
+            zonaCandidata = novaZona;
+            tempoNaZonaCandidata = 0f;
+            return;
+        }
+
+        if (novaZona == zonaAtual)
+        {
+            zonaCandidata = zonaAtual;
+            tempoNaZonaCandidata = 0f;
+            return;
+        }
+
+        if (novaZona != zonaCandidata)
+        {
+            zonaCandidata = novaZona;
+            tempoNaZonaCandidata = 0f;
+            return;
+        }
+
+        tempoNaZonaCandidata += Time.deltaTime;
+
+        if (tempoNaZonaCandidata >= tempoParaConfirmarNovaZona)
+        {
+            zonaAtual = zonaCandidata;
+            tempoNaZonaCandidata = 0f;
+        }
+    }
+
+    private int ObterZonaPorDistancia(float distancia)
+    {
+        if (distancia <= distanciaCurta)
+            return 1;
+
+        if (distancia <= distanciaMedia)
+            return 2;
+
+        return 3;
+    }
+
+    private void AtualizarMemoriaDistancia()
+    {
+        if (zonaAtual == 1)
+        {
+            tempoCurta += Time.deltaTime;
+
+            tempoMedia = Mathf.Max(
+                0f,
+                tempoMedia - Time.deltaTime
+            );
+
+            tempoLonga = Mathf.Max(
+                0f,
+                tempoLonga - Time.deltaTime
+            );
+        }
+        else if (zonaAtual == 2)
+        {
+            tempoMedia += Time.deltaTime;
+
+            tempoCurta = Mathf.Max(
+                0f,
+                tempoCurta - Time.deltaTime
+            );
+
+            tempoLonga = Mathf.Max(
+                0f,
+                tempoLonga - Time.deltaTime
+            );
+        }
+        else if (zonaAtual == 3)
+        {
+            tempoLonga += Time.deltaTime;
+
+            tempoCurta = Mathf.Max(
+                0f,
+                tempoCurta - Time.deltaTime
+            );
+
+            tempoMedia = Mathf.Max(
+                0f,
+                tempoMedia - Time.deltaTime
+            );
+        }
     }
 
     private bool AtaqueEmAndamento()
@@ -102,10 +244,6 @@ public class VoragulIA : MonoBehaviour
 
     private void EscolherAtaque()
     {
-        float distancia = Mathf.Abs(
-            movimento.elian.position.x - transform.position.x
-        );
-
         float porcentagemVida = 1f;
 
         if (vida != null)
@@ -121,7 +259,6 @@ public class VoragulIA : MonoBehaviour
         if (porcentagemVida > 0.70f)
         {
             PesosInicio(
-                distancia,
                 ref pesoAtaque1,
                 ref pesoAtaque2,
                 ref pesoAtaque3
@@ -130,7 +267,6 @@ public class VoragulIA : MonoBehaviour
         else if (porcentagemVida > 0.35f)
         {
             PesosMeio(
-                distancia,
                 ref pesoAtaque1,
                 ref pesoAtaque2,
                 ref pesoAtaque3
@@ -139,12 +275,29 @@ public class VoragulIA : MonoBehaviour
         else
         {
             PesosFinal(
-                distancia,
                 ref pesoAtaque1,
                 ref pesoAtaque2,
                 ref pesoAtaque3
             );
         }
+
+        AplicarAdaptacaoDistancia(
+            ref pesoAtaque1,
+            ref pesoAtaque2,
+            ref pesoAtaque3
+        );
+
+        AplicarCombinacaoContextual(
+            ref pesoAtaque1,
+            ref pesoAtaque2,
+            ref pesoAtaque3
+        );
+
+        AplicarLimitesContextuais(
+            ref pesoAtaque1,
+            ref pesoAtaque2,
+            ref pesoAtaque3
+        );
 
         if (ataque1 == null || !ataque1.PodeAtacar())
             pesoAtaque1 = 0f;
@@ -179,20 +332,86 @@ public class VoragulIA : MonoBehaviour
         ExecutarAtaque(ataqueEscolhido);
     }
 
-    private void PesosInicio(
-        float distancia,
+    private void AplicarLimitesContextuais(
         ref float peso1,
         ref float peso2,
         ref float peso3
     )
     {
-        if (distancia <= distanciaCurta)
+        if (zonaAtual == 1)
+        {
+            peso3 = 0f;
+        }
+        else if (zonaAtual == 2)
+        {
+            return;
+        }
+        else if (zonaAtual == 3)
+        {
+            peso1 = 0f;
+        }
+    }
+
+    private void AplicarCombinacaoContextual(
+        ref float peso1,
+        ref float peso2,
+        ref float peso3
+    )
+    {
+        if (ultimoAtaque == 0)
+            return;
+
+        if (Time.time - tempoUltimoAtaque > janelaContextual)
+            return;
+
+        if (ultimoAtaque == 1)
+        {
+            if (zonaAtual == 2)
+            {
+                peso2 += bonusContextual;
+            }
+            else if (zonaAtual == 3)
+            {
+                peso3 += bonusContextual;
+            }
+        }
+        else if (ultimoAtaque == 2)
+        {
+            if (zonaAtual == 1)
+            {
+                peso1 += bonusContextual;
+            }
+            else if (zonaAtual == 3)
+            {
+                peso3 += bonusContextual;
+            }
+        }
+        else if (ultimoAtaque == 3)
+        {
+            if (zonaAtual == 1)
+            {
+                peso1 += bonusContextual;
+            }
+            else if (zonaAtual == 2)
+            {
+                peso2 += bonusContextual;
+            }
+        }
+    }
+
+    private void PesosInicio(
+        ref float peso1,
+        ref float peso2,
+        ref float peso3
+    )
+    {
+        if (zonaAtual == 1)
         {
             peso1 = 80f;
             peso2 = 18f;
             peso3 = 2f;
         }
-        else if (distancia <= distanciaMedia)
+        else if (zonaAtual == 2)
         {
             peso1 = 15f;
             peso2 = 75f;
@@ -207,19 +426,18 @@ public class VoragulIA : MonoBehaviour
     }
 
     private void PesosMeio(
-        float distancia,
         ref float peso1,
         ref float peso2,
         ref float peso3
     )
     {
-        if (distancia <= distanciaCurta)
+        if (zonaAtual == 1)
         {
             peso1 = 65f;
             peso2 = 28f;
             peso3 = 7f;
         }
-        else if (distancia <= distanciaMedia)
+        else if (zonaAtual == 2)
         {
             peso1 = 22f;
             peso2 = 58f;
@@ -234,19 +452,18 @@ public class VoragulIA : MonoBehaviour
     }
 
     private void PesosFinal(
-        float distancia,
         ref float peso1,
         ref float peso2,
         ref float peso3
     )
     {
-        if (distancia <= distanciaCurta)
+        if (zonaAtual == 1)
         {
             peso1 = 55f;
             peso2 = 35f;
             peso3 = 10f;
         }
-        else if (distancia <= distanciaMedia)
+        else if (zonaAtual == 2)
         {
             peso1 = 27f;
             peso2 = 46f;
@@ -260,6 +477,28 @@ public class VoragulIA : MonoBehaviour
         }
     }
 
+    private void AplicarAdaptacaoDistancia(
+        ref float peso1,
+        ref float peso2,
+        ref float peso3
+    )
+    {
+        if (tempoCurta >= tempoParaAdaptar)
+        {
+            peso1 += bonusAdaptacao;
+        }
+
+        if (tempoMedia >= tempoParaAdaptar)
+        {
+            peso2 += bonusAdaptacao;
+        }
+
+        if (tempoLonga >= tempoParaAdaptar)
+        {
+            peso3 += bonusAdaptacao;
+        }
+    }
+
     private void AplicarMemoria(
         ref float peso1,
         ref float peso2,
@@ -267,34 +506,32 @@ public class VoragulIA : MonoBehaviour
         float porcentagemVida
     )
     {
-        float penalidadeRepeticao;
         float penalidadeABA;
 
         if (porcentagemVida > 0.70f)
         {
-            penalidadeRepeticao = 0.10f;
             penalidadeABA = 0.35f;
         }
         else if (porcentagemVida > 0.35f)
         {
-            penalidadeRepeticao = 0.15f;
             penalidadeABA = 0.45f;
         }
         else
         {
-            penalidadeRepeticao = 0.20f;
             penalidadeABA = 0.55f;
         }
 
+        // Proíbe repetição imediata.
         if (ultimoAtaque == 1)
-            peso1 *= penalidadeRepeticao;
+            peso1 = 0f;
 
         if (ultimoAtaque == 2)
-            peso2 *= penalidadeRepeticao;
+            peso2 = 0f;
 
         if (ultimoAtaque == 3)
-            peso3 *= penalidadeRepeticao;
+            peso3 = 0f;
 
+        // Reduz a chance de padrão A-B-A.
         if (penultimoAtaque == 1)
             peso1 *= penalidadeABA;
 
@@ -339,18 +576,12 @@ public class VoragulIA : MonoBehaviour
             ataque1.ForcarAtaque();
             executou = true;
         }
-        else if (
-            ataqueEscolhido == 2 &&
-            ataque2 != null
-        )
+        else if (ataqueEscolhido == 2 && ataque2 != null)
         {
             ataque2.ForcarAtaque();
             executou = true;
         }
-        else if (
-            ataqueEscolhido == 3 &&
-            ataque3 != null
-        )
+        else if (ataqueEscolhido == 3 && ataque3 != null)
         {
             ataque3.ForcarAtaque();
             executou = true;
@@ -360,6 +591,8 @@ public class VoragulIA : MonoBehaviour
         {
             penultimoAtaque = ultimoAtaque;
             ultimoAtaque = ataqueEscolhido;
+
+            tempoUltimoAtaque = Time.time;
         }
     }
 }
