@@ -605,7 +605,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 57.07, y: -2.3, z: 0}
+  m_LocalPosition: {x: 99.7, y: -2.3, z: 0}
   m_LocalScale: {x: 1.9408507, y: 1.9408507, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12447,6 +12447,30 @@ MonoBehaviour:
   distanciaSoco: 2.7
   distanciaCorrente: 3.4
   distanciaMaximaRaio: 4.2
+  pesoSocoPerto: 70
+  pesoCorrentePerto: 30
+  pesoSocoMedio: 15
+  pesoCorrenteMedio: 65
+  pesoRaioMedio: 20
+  pesoCorrenteLonge: 25
+  pesoRaioLonge: 75
+  intervaloLeituraElian: 0.2
+  diferencaMinimaMovimento: 0.15
+  bonusSocoAproximando: 25
+  bonusCorrenteAproximando: 10
+  penalidadeRaioAproximando: 15
+  bonusRaioAfastando: 25
+  bonusCorrenteAfastando: 10
+  penalidadeSocoAfastando: 15
+  tempoParaConsiderarFuga: 1.2
+  tempoParaConsiderarAproximacao: 1
+  tempoParaEsquecerComportamento: 0.6
+  bonusRaioFugaProlongada: 20
+  bonusCorrenteFugaProlongada: 15
+  penalidadeSocoFugaProlongada: 10
+  bonusSocoAproximacaoProlongada: 20
+  bonusCorrenteAproximacaoProlongada: 10
+  penalidadeRaioAproximacaoProlongada: 10
   preparacaoCorrente: 0.3
   preparacaoRaio: 0.2
   recuperacaoRaio: 0.8
@@ -12958,7 +12982,14 @@ MonoBehaviour:
   distanciaCurta: 3
   distanciaMedia: 12
   intervaloDecisao: 0.3
-  tempoMovimentoAposAtaque: 1.2
+  tempoMovimentoInicio: 1.5
+  tempoMovimentoMeio: 1.15
+  tempoMovimentoFinal: 0.8
+  tempoParaAdaptar: 3
+  bonusAdaptacao: 20
+  tempoParaConfirmarNovaZona: 0.45
+  bonusContextual: 25
+  janelaContextual: 4
 --- !u!1 &2122699212
 GameObject:
   m_ObjectHideFlags: 0

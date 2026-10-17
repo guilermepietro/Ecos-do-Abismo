@@ -4,10 +4,13 @@ public class RakthasMovimento : MonoBehaviour
 {
     [Header("Referências")]
     public Transform elian;
+
     private RakthasVida vida;
+
     public Animator animator;
 
     private bool ativado = false;
+
     public bool EstaAtivado => ativado;
 
     private RakthasAtaques ataques;
@@ -35,36 +38,46 @@ public class RakthasMovimento : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        vida = GetComponent<RakthasVida>();
-        ataques = GetComponent<RakthasAtaques>();
+
+        spriteRenderer =
+            GetComponent<SpriteRenderer>();
+
+        vida =
+            GetComponent<RakthasVida>();
+
+        ataques =
+            GetComponent<RakthasAtaques>();
     }
 
     private void FixedUpdate()
     {
-        if (vida != null && vida.EstaMorto)
+        if (vida != null &&
+            vida.EstaMorto)
         {
             PararMovimento();
             return;
         }
 
-        if (vida != null && vida.EstaTomandoDano)
+        if (vida != null &&
+            vida.EstaTomandoDano)
         {
             PararMovimento();
             return;
         }
 
-        if (ataques != null && ataques.EstaAtacando)
+        if (ataques != null &&
+            ataques.EstaAtacando)
         {
             PararMovimento();
             return;
         }
 
-        if (ataques != null && ataques.EstaEmPausaDecisao)
-{
-    PararMovimento();
-    return;
-}
+        if (ataques != null &&
+            ataques.EstaEmPausaDecisao)
+        {
+            PararMovimento();
+            return;
+        }
 
         if (!ativado)
         {
@@ -75,23 +88,38 @@ public class RakthasMovimento : MonoBehaviour
         if (elian == null)
             return;
 
-        float distancia = Mathf.Abs(
-            elian.position.x - transform.position.x
-        );
+        float distancia =
+            Mathf.Abs(
+                elian.position.x -
+                transform.position.x
+            );
 
-        float direcao = Mathf.Sign(
-            elian.position.x - transform.position.x
-        );
+        float direcao =
+            Mathf.Sign(
+                elian.position.x -
+                transform.position.x
+            );
 
+        // =========================
         // DIREÇÃO ORIGINAL
-        if (direcao > 0)
-            spriteRenderer.flipX = false;
-        else if (direcao < 0)
-            spriteRenderer.flipX = true;
+        // =========================
 
-        // SE JÁ ESTÁ NA DISTÂNCIA DO SOCO
+        if (direcao > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (direcao < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+
+        // =========================
+        // DISTÂNCIA DO SOCO
+        // =========================
+
         if (ataques != null &&
-            distancia <= ataques.DistanciaSoco)
+            distancia <=
+            ataques.DistanciaSoco)
         {
             PararMovimento();
             return;
@@ -101,13 +129,29 @@ public class RakthasMovimento : MonoBehaviour
 
         if (ataques != null)
         {
-            // Perseguição agressiva após certos ataques
-            if (ataques.PerseguicaoAgressivaObrigatoria)
+            // Pressão criada pela sequência
+            // normal dos ataques.
+            if (ataques
+                .PerseguicaoAgressivaObrigatoria)
+            {
                 precisaPressionar = true;
+            }
 
-            // Elian está longe demais
-            else if (distancia > ataques.DistanciaMaximaRaio)
+            // NOVO:
+            // Rakthas percebeu que Elian
+            // está abusando da fuga.
+            else if (ataques.ElianFugindoMuito)
+            {
                 precisaPressionar = true;
+            }
+
+            // Continua existindo o
+            // comportamento antigo.
+            else if (distancia >
+                     ataques.DistanciaMaximaRaio)
+            {
+                precisaPressionar = true;
+            }
         }
 
         // =========================
@@ -116,21 +160,30 @@ public class RakthasMovimento : MonoBehaviour
 
         if (preparandoArrancada)
         {
-            rb.linearVelocity = new Vector2(
-                0,
-                rb.linearVelocity.y
+            rb.linearVelocity =
+                new Vector2(
+                    0f,
+                    rb.linearVelocity.y
+                );
+
+            animator.SetBool(
+                "estaCorrendo",
+                false
             );
 
-            animator.SetBool("estaCorrendo", false);
             animator.speed = 1f;
 
-            if (Time.time >= fimPreparacaoArrancada)
+            if (Time.time >=
+                fimPreparacaoArrancada)
             {
-                preparandoArrancada = false;
+                preparandoArrancada =
+                    false;
+
                 emArrancada = true;
 
                 fimArrancada =
-                    Time.time + duracaoArrancada;
+                    Time.time +
+                    duracaoArrancada;
             }
 
             return;
@@ -142,20 +195,30 @@ public class RakthasMovimento : MonoBehaviour
 
         if (emArrancada)
         {
-            rb.linearVelocity = new Vector2(
-                direcao * velocidadeAgressiva,
-                rb.linearVelocity.y
+            rb.linearVelocity =
+                new Vector2(
+                    direcao *
+                    velocidadeAgressiva,
+
+                    rb.linearVelocity.y
+                );
+
+            animator.SetBool(
+                "estaCorrendo",
+                true
             );
 
-            animator.SetBool("estaCorrendo", true);
-            animator.speed = velocidadeAnimacaoArrancada;
+            animator.speed =
+                velocidadeAnimacaoArrancada;
 
-            if (Time.time >= fimArrancada)
+            if (Time.time >=
+                fimArrancada)
             {
                 emArrancada = false;
 
                 proximaArrancada =
-                    Time.time + intervaloArrancadas;
+                    Time.time +
+                    intervaloArrancadas;
 
                 animator.speed = 1f;
             }
@@ -164,40 +227,57 @@ public class RakthasMovimento : MonoBehaviour
         }
 
         // =========================
-        // INICIAR NOVA ARRANCADA
+        // COMEÇA NOVA ARRANCADA
         // =========================
 
         if (precisaPressionar &&
-            Time.time >= proximaArrancada)
+            Time.time >=
+            proximaArrancada)
         {
             preparandoArrancada = true;
 
             fimPreparacaoArrancada =
-                Time.time + preparacaoArrancada;
+                Time.time +
+                preparacaoArrancada;
 
             PararMovimento();
+
             return;
         }
 
-        
+        // =========================
+        // CORRIDA NORMAL
+        // =========================
 
-        rb.linearVelocity = new Vector2(
-            direcao * velocidadeNormal,
-            rb.linearVelocity.y
+        rb.linearVelocity =
+            new Vector2(
+                direcao *
+                velocidadeNormal,
+
+                rb.linearVelocity.y
+            );
+
+        animator.SetBool(
+            "estaCorrendo",
+            true
         );
 
-        animator.SetBool("estaCorrendo", true);
         animator.speed = 1f;
     }
 
     private void PararMovimento()
     {
-        rb.linearVelocity = new Vector2(
-            0,
-            rb.linearVelocity.y
+        rb.linearVelocity =
+            new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
+
+        animator.SetBool(
+            "estaCorrendo",
+            false
         );
 
-        animator.SetBool("estaCorrendo", false);
         animator.speed = 1f;
     }
 
