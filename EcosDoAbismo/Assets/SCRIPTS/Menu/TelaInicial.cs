@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
@@ -6,7 +7,10 @@ using UnityEngine.InputSystem;
 public class TelaInicial : MonoBehaviour
 {
     [Header("Cena de Destino")]
-    public string nomeCenaMenu = "Menu";
+    public string nomeCenaCarregamento = "Carregamento";
+
+    [Header("Transição")]
+    public TransicaoTela transicaoTela;
 
     private bool transicaoIniciada = false;
 
@@ -37,7 +41,15 @@ public class TelaInicial : MonoBehaviour
         if (tecladoPressionado || controlePressionado)
         {
             transicaoIniciada = true;
-            SceneManager.LoadScene(nomeCenaMenu);
+            StartCoroutine(IniciarTransicao());
         }
+    }
+
+    IEnumerator IniciarTransicao()
+    {
+        if (transicaoTela != null)
+            yield return StartCoroutine(transicaoTela.Escurecer());
+
+        SceneManager.LoadScene(nomeCenaCarregamento);
     }
 }
