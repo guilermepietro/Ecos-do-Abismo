@@ -26,6 +26,9 @@ public class MenuManager : MonoBehaviour
     [Header("Tela de Opções")]
     public GameObject telaOpcoes;
 
+    [Header("Tela de Seleção de Salvamentos")]
+    public GameObject telaSelecaoSave;
+
     private int selectedIndex = 0;
 
     private Vector3 velocidadeCursor;
@@ -46,6 +49,9 @@ public class MenuManager : MonoBehaviour
             telaOpcoes.SetActive(false);
         }
 
+        if (telaSelecaoSave != null)
+            telaSelecaoSave.SetActive(false);
+
         UpdateMenuVisual();
 
         if (cursor != null &&
@@ -64,6 +70,9 @@ public class MenuManager : MonoBehaviour
             return;
 
         if (telaOpcoes != null && telaOpcoes.activeSelf)
+            return;
+
+        if (telaSelecaoSave != null && telaSelecaoSave.activeSelf)
             return;
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -107,7 +116,7 @@ public class MenuManager : MonoBehaviour
     {
         if (selectedIndex == 0)
         {
-            StartCoroutine(IniciarJogo());
+            AbrirSelecaoSave();
         }
         else if (selectedIndex == 1)
         {
@@ -116,6 +125,17 @@ public class MenuManager : MonoBehaviour
         else if (selectedIndex == 2)
         {
             StartCoroutine(SairDoJogo());
+        }
+    }
+
+    void AbrirSelecaoSave()
+    {
+        if (telaSelecaoSave != null)
+        {
+            telaSelecaoSave.SetActive(true);
+
+            if (cursor != null)
+                cursor.gameObject.SetActive(false);
         }
     }
 
@@ -134,6 +154,9 @@ public class MenuManager : MonoBehaviour
     {
         if (telaOpcoes != null)
             telaOpcoes.SetActive(false);
+
+        if (telaSelecaoSave != null)
+            telaSelecaoSave.SetActive(false);
 
         if (cursor != null)
             cursor.gameObject.SetActive(true);

@@ -2176,13 +2176,14 @@ GameObject:
   m_Component:
   - component: {fileID: 638445719}
   - component: {fileID: 638445720}
+  - component: {fileID: 638445721}
   m_Layer: 5
   m_Name: TelaSelecaoSave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &638445719
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2219,6 +2220,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638445718}
   m_CullTransparentMesh: 1
+--- !u!114 &638445721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638445718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77348159a006db2468c23d98efe74909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuSelecaoSave
+  slots:
+  - {fileID: 109606531}
+  - {fileID: 709677877}
+  - {fileID: 349773576}
+  slotNormal: {fileID: 21300000, guid: 7d9111a013f78314b99ea2991e723bfb, type: 3}
+  slotSelecionado: {fileID: 21300000, guid: d7579a8a2c2fde448b11f0a91ba48212, type: 3}
+  menuManager: {fileID: 703664917}
 --- !u!1 &643423408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,6 +2529,7 @@ MonoBehaviour:
   selectedColor: {r: 0.8509804, g: 0.46666667, b: 0.46666667, a: 1}
   transicaoTela: {fileID: 56124383}
   telaOpcoes: {fileID: 1347491421}
+  telaSelecaoSave: {fileID: 638445718}
 --- !u!4 &703664918
 Transform:
   m_ObjectHideFlags: 0
