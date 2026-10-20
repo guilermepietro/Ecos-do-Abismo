@@ -421,7 +421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &239072729
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2141,6 +2141,11 @@ MonoBehaviour:
   menuManager: {fileID: 703664917}
   teclaContinuar: {fileID: 2120954219}
   teclaAplicar: {fileID: 1824066937}
+  barraVolumeGeral: {fileID: 2094080361}
+  barraMusica: {fileID: 109126055}
+  barraEfeitosSonoros: {fileID: 31501390}
+  passoVolume: 0.05
+  mixerEcosDoAbismo: {fileID: 24100000, guid: efce899dc2da8024f9f5d231a4eb9523, type: 2}
 --- !u!1 &1423166977
 GameObject:
   m_ObjectHideFlags: 0
@@ -2862,7 +2867,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -256, y: 117}
-  m_SizeDelta: {x: 240, y: 60}
+  m_SizeDelta: {x: 240, y: 80}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1589548734
 MonoBehaviour:
@@ -3480,8 +3485,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -600, y: 117}
-  m_SizeDelta: {x: 240, y: 60}
+  m_AnchoredPosition: {x: -600, y: 110}
+  m_SizeDelta: {x: 240, y: 94.087}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1824066939
 MonoBehaviour:
@@ -4101,7 +4106,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -600, y: 117}
-  m_SizeDelta: {x: 240, y: 60}
+  m_SizeDelta: {x: 240, y: 80}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &2120954221
 MonoBehaviour:

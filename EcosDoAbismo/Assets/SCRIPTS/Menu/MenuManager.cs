@@ -36,7 +36,15 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         if (telaOpcoes != null)
+        {
+            MenuOpcoes menuOpcoes =
+                telaOpcoes.GetComponent<MenuOpcoes>();
+
+            if (menuOpcoes != null)
+                menuOpcoes.InicializarVolumes();
+
             telaOpcoes.SetActive(false);
+        }
 
         UpdateMenuVisual();
 
