@@ -1,0 +1,819 @@
+fileFormatVersion: 2
+guid: bbcc088caac0b0140be2caf74ce3dd2e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7221334323594436733
+    second: IlustracaoLateral_Opcoes_0
+  - first:
+      213: 1951270871184319113
+    second: IlustracaoLateral_Opcoes_1
+  - first:
+      213: -7603737305776315457
+    second: IlustracaoLateral_Opcoes_2
+  - first:
+      213: -2756045295875099523
+    second: IlustracaoLateral_Opcoes_3
+  - first:
+      213: -5612265888621553566
+    second: IlustracaoLateral_Opcoes_4
+  - first:
+      213: -7580877451692250811
+    second: IlustracaoLateral_Opcoes_5
+  - first:
+      213: 8384706369327040638
+    second: IlustracaoLateral_Opcoes_6
+  - first:
+      213: 8045248077186198985
+    second: IlustracaoLateral_Opcoes_7
+  - first:
+      213: 2084388518345130161
+    second: IlustracaoLateral_Opcoes_8
+  - first:
+      213: 4318625691369674764
+    second: IlustracaoLateral_Opcoes_9
+  - first:
+      213: -919465630485424081
+    second: IlustracaoLateral_Opcoes_10
+  - first:
+      213: -4814981706104889689
+    second: IlustracaoLateral_Opcoes_11
+  - first:
+      213: 2898564726244534977
+    second: IlustracaoLateral_Opcoes_12
+  - first:
+      213: 4210700490198996667
+    second: IlustracaoLateral_Opcoes_13
+  - first:
+      213: 1747921419762509827
+    second: IlustracaoLateral_Opcoes_14
+  - first:
+      213: 1545059320752997587
+    second: IlustracaoLateral_Opcoes_15
+  - first:
+      213: 6222725464178888160
+    second: IlustracaoLateral_Opcoes_16
+  - first:
+      213: 4437202559358366237
+    second: IlustracaoLateral_Opcoes_17
+  - first:
+      213: -1771412031200916021
+    second: IlustracaoLateral_Opcoes_18
+  - first:
+      213: -2227694899708127093
+    second: IlustracaoLateral_Opcoes_19
+  - first:
+      213: 5417816055805639776
+    second: IlustracaoLateral_Opcoes_20
+  - first:
+      213: -3050460565071952927
+    second: IlustracaoLateral_Opcoes_21
+  - first:
+      213: 4901178518623386763
+    second: IlustracaoLateral_Opcoes_22
+  - first:
+      213: 4988380978754852772
+    second: IlustracaoLateral_Opcoes_23
+  - first:
+      213: -6347992316840777787
+    second: IlustracaoLateral_Opcoes_24
+  - first:
+      213: -6358620885944348755
+    second: IlustracaoLateral_Opcoes_25
+  - first:
+      213: -6008144398335189371
+    second: IlustracaoLateral_Opcoes_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 0
+        width: 689
+        height: 2172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d70ae2a9e45573460800000000000000
+      internalID: 7221334323594436733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_1
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 1932
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9822281e48e441b10800000000000000
+      internalID: 1951270871184319113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_2
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1841
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb321dbe4391a7690800000000000000
+      internalID: -7603737305776315457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_3
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1816
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d747a72d76f80c9d0800000000000000
+      internalID: -2756045295875099523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_4
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 1790
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2689babc8e93d12b0800000000000000
+      internalID: -5612265888621553566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_5
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1182
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5496d167f105bc690800000000000000
+      internalID: -7580877451692250811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_6
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 1069
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7881b1d4067c5470800000000000000
+      internalID: 8384706369327040638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_7
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 1052
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cde39a208676af60800000000000000
+      internalID: 8045248077186198985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_8
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 1037
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b04dd9505c3dec10800000000000000
+      internalID: 2084388518345130161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_9
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 1041
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0817fb6f27deeb30800000000000000
+      internalID: 4318625691369674764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_10
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 1029
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f285cbf61e66d33f0800000000000000
+      internalID: -919465630485424081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_11
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 980
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ae1d9f26afbd2db0800000000000000
+      internalID: -4814981706104889689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_12
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 991
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca6842e245c93820800000000000000
+      internalID: 2898564726244534977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_13
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 966
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb6dfdd59c96f6a30800000000000000
+      internalID: 4210700490198996667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_14
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 992
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 308ad38354dd14810800000000000000
+      internalID: 1747921419762509827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_15
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 958
+        width: 26
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d483622447217510800000000000000
+      internalID: 1545059320752997587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_16
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 899
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ed092b17df8b5650800000000000000
+      internalID: 6222725464178888160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_17
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 793
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d12720be73c149d30800000000000000
+      internalID: 4437202559358366237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_18
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 793
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcd8a69942eaa67e0800000000000000
+      internalID: -1771412031200916021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_19
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 773
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8892f2aa43a511e0800000000000000
+      internalID: -2227694899708127093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_20
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 725
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06cf3b87ff2ff2b40800000000000000
+      internalID: 5417816055805639776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_21
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 678
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e38c8137469aa5d0800000000000000
+      internalID: -3050460565071952927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_22
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 536
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8c725725eb740440800000000000000
+      internalID: 4901178518623386763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_23
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 478
+        width: 25
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a79ff2121a4a3540800000000000000
+      internalID: 4988380978754852772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_24
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 449
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c7ebc5fe9667e7a0800000000000000
+      internalID: -6347992316840777787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_25
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 445
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daf48ef5ef3a1c7a0800000000000000
+      internalID: -6358620885944348755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IlustracaoLateral_Opcoes_26
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 403
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58e5af19088ce9ca0800000000000000
+      internalID: -6008144398335189371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      IlustracaoLateral_Opcoes_0: 7221334323594436733
+      IlustracaoLateral_Opcoes_1: 1951270871184319113
+      IlustracaoLateral_Opcoes_10: -919465630485424081
+      IlustracaoLateral_Opcoes_11: -4814981706104889689
+      IlustracaoLateral_Opcoes_12: 2898564726244534977
+      IlustracaoLateral_Opcoes_13: 4210700490198996667
+      IlustracaoLateral_Opcoes_14: 1747921419762509827
+      IlustracaoLateral_Opcoes_15: 1545059320752997587
+      IlustracaoLateral_Opcoes_16: 6222725464178888160
+      IlustracaoLateral_Opcoes_17: 4437202559358366237
+      IlustracaoLateral_Opcoes_18: -1771412031200916021
+      IlustracaoLateral_Opcoes_19: -2227694899708127093
+      IlustracaoLateral_Opcoes_2: -7603737305776315457
+      IlustracaoLateral_Opcoes_20: 5417816055805639776
+      IlustracaoLateral_Opcoes_21: -3050460565071952927
+      IlustracaoLateral_Opcoes_22: 4901178518623386763
+      IlustracaoLateral_Opcoes_23: 4988380978754852772
+      IlustracaoLateral_Opcoes_24: -6347992316840777787
+      IlustracaoLateral_Opcoes_25: -6358620885944348755
+      IlustracaoLateral_Opcoes_26: -6008144398335189371
+      IlustracaoLateral_Opcoes_3: -2756045295875099523
+      IlustracaoLateral_Opcoes_4: -5612265888621553566
+      IlustracaoLateral_Opcoes_5: -7580877451692250811
+      IlustracaoLateral_Opcoes_6: 8384706369327040638
+      IlustracaoLateral_Opcoes_7: 8045248077186198985
+      IlustracaoLateral_Opcoes_8: 2084388518345130161
+      IlustracaoLateral_Opcoes_9: 4318625691369674764
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

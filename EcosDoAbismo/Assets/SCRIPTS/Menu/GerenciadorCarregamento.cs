@@ -11,8 +11,16 @@ public class GerenciadorCarregamento : MonoBehaviour
     [Header("Tempo de Carregamento")]
     public float tempoMinimo = 1.5f;
 
+    public static string proximaCena = "";
+
     void Start()
     {
+        if (!string.IsNullOrEmpty(proximaCena))
+        {
+            nomeCenaDestino = proximaCena;
+            proximaCena = "";
+        }
+
         StartCoroutine(CarregarCena());
     }
 
