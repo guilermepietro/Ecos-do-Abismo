@@ -23,6 +23,9 @@ public class MenuManager : MonoBehaviour
     [Header("Transição")]
     public TransicaoTela transicaoTela;
 
+    [Header("Tela de Opções")]
+    public GameObject telaOpcoes;
+
     private int selectedIndex = 0;
 
     private Vector3 velocidadeCursor;
@@ -32,6 +35,9 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
+        if (telaOpcoes != null)
+            telaOpcoes.SetActive(false);
+
         UpdateMenuVisual();
 
         if (cursor != null &&
@@ -47,6 +53,9 @@ public class MenuManager : MonoBehaviour
     void Update()
     {
         if (emTransicao)
+            return;
+
+        if (telaOpcoes != null && telaOpcoes.activeSelf)
             return;
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -92,10 +101,34 @@ public class MenuManager : MonoBehaviour
         {
             StartCoroutine(IniciarJogo());
         }
+        else if (selectedIndex == 1)
+        {
+            AbrirOpcoes();
+        }
         else if (selectedIndex == 2)
         {
             StartCoroutine(SairDoJogo());
         }
+    }
+
+    void AbrirOpcoes()
+    {
+        if (telaOpcoes != null)
+        {
+            telaOpcoes.SetActive(true);
+
+            if (cursor != null)
+                cursor.gameObject.SetActive(false);
+        }
+    }
+
+    public void VoltarAoMenu()
+    {
+        if (telaOpcoes != null)
+            telaOpcoes.SetActive(false);
+
+        if (cursor != null)
+            cursor.gameObject.SetActive(true);
     }
 
     IEnumerator IniciarJogo()
