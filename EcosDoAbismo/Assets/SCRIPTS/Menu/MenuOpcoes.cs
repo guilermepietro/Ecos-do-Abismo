@@ -15,15 +15,24 @@ public class MenuOpcoes : MonoBehaviour
     [Header("Menu Principal")]
     public MenuManager menuManager;
 
+    [Header("Indicadores de Controle")]
+    public GameObject teclaContinuar;
+    public GameObject teclaAplicar;
+
     private int indiceSelecionado = 0;
 
     private Vector3 destinoCursor;
     private Vector3 velocidadeCursor;
 
+    private bool editandoOpcao = false;
+
     void OnEnable()
     {
         indiceSelecionado = 0;
         velocidadeCursor = Vector3.zero;
+        editandoOpcao = false;
+
+        AtualizarIndicadores();
 
         if (cursorOpcoes != null &&
             pontosSelecao != null &&
@@ -40,32 +49,53 @@ public class MenuOpcoes : MonoBehaviour
         if (pontosSelecao == null || pontosSelecao.Length == 0)
             return;
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            indiceSelecionado++;
-
-            if (indiceSelecionado >= pontosSelecao.Length)
-                indiceSelecionado = 0;
-
-            AtualizarDestino();
-        }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            indiceSelecionado--;
-
-            if (indiceSelecionado < 0)
-                indiceSelecionado = pontosSelecao.Length - 1;
-
-            AtualizarDestino();
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (menuManager != null)
-                menuManager.VoltarAoMenu();
+            if (editandoOpcao)
+            {
+                CancelarEdicao();
+            }
+            else
+            {
+                if (menuManager != null)
+                    menuManager.VoltarAoMenu();
+            }
 
             return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return) ||
+            Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            if (editandoOpcao)
+                AplicarEdicao();
+            else
+                IniciarEdicao();
+
+            return;
+        }
+
+        if (!editandoOpcao)
+        {
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                indiceSelecionado++;
+
+                if (indiceSelecionado >= pontosSelecao.Length)
+                    indiceSelecionado = 0;
+
+                AtualizarDestino();
+            }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                indiceSelecionado--;
+
+                if (indiceSelecionado < 0)
+                    indiceSelecionado = pontosSelecao.Length - 1;
+
+                AtualizarDestino();
+            }
         }
 
         if (cursorOpcoes != null)
@@ -77,6 +107,33 @@ public class MenuOpcoes : MonoBehaviour
                 tempoDeslizamento
             );
         }
+    }
+
+    void IniciarEdicao()
+    {
+        editandoOpcao = true;
+        AtualizarIndicadores();
+    }
+
+    void AplicarEdicao()
+    {
+        editandoOpcao = false;
+        AtualizarIndicadores();
+    }
+
+    void CancelarEdicao()
+    {
+        editandoOpcao = false;
+        AtualizarIndicadores();
+    }
+
+    void AtualizarIndicadores()
+    {
+        if (teclaContinuar != null)
+            teclaContinuar.SetActive(!editandoOpcao);
+
+        if (teclaAplicar != null)
+            teclaAplicar.SetActive(editandoOpcao);
     }
 
     void AtualizarDestino()
