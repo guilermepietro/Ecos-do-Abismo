@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 7d9111a013f78314b99ea2991e723bfb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7820718867688636115
+    second: SlotSave_Base_0
+  - first:
+      213: -4882499385179536465
+    second: SlotSave_Base_1
+  - first:
+      213: 4782718773205994888
+    second: SlotSave_Base_2
+  - first:
+      213: 7278429188462813433
+    second: SlotSave_Base_3
+  - first:
+      213: 3159622201409197081
+    second: SlotSave_Base_4
+  - first:
+      213: 5072242716143614590
+    second: SlotSave_Base_5
+  - first:
+      213: 3661276354750596179
+    second: SlotSave_Base_6
+  - first:
+      213: -8899625167808824002
+    second: SlotSave_Base_7
+  - first:
+      213: 1136293136028754457
+    second: SlotSave_Base_8
+  - first:
+      213: -5677278733948558535
+    second: SlotSave_Base_9
+  - first:
+      213: 7880709613981920348
+    second: SlotSave_Base_10
+  - first:
+      213: 2479072721737386386
+    second: SlotSave_Base_11
+  - first:
+      213: 2261589368279847329
+    second: SlotSave_Base_12
+  - first:
+      213: 2236700082553567653
+    second: SlotSave_Base_13
+  - first:
+      213: 8094805864888248804
+    second: SlotSave_Base_14
+  - first:
+      213: -4381120574551900473
+    second: SlotSave_Base_15
+  - first:
+      213: -7986423617829974038
+    second: SlotSave_Base_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SlotSave_Base_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 39
+        width: 2141
+        height: 685
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3deb6cccf56c88c60800000000000000
+      internalID: 7820718867688636115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_1
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 642
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa38f428da0ed3cb0800000000000000
+      internalID: -4882499385179536465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_2
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 642
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88d09816261af5240800000000000000
+      internalID: 4782718773205994888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_3
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 648
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f0292db8cc220560800000000000000
+      internalID: 7278429188462813433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_4
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 628
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 914de6bd6ab39db20800000000000000
+      internalID: 3159622201409197081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_5
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 630
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a7d4e50e9346640800000000000000
+      internalID: 5072242716143614590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_6
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 630
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 354427542777fc230800000000000000
+      internalID: 3661276354750596179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_7
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 626
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3df0a6ef0e2e7480800000000000000
+      internalID: -8899625167808824002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_8
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 626
+        width: 8
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91265bd369ce4cf00800000000000000
+      internalID: 1136293136028754457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_9
+      rect:
+        serializedVersion: 2
+        x: 1663
+        y: 631
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 933ed1c22114631b0800000000000000
+      internalID: -5677278733948558535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_10
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 624
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5ce56fd3a7ed5d60800000000000000
+      internalID: 7880709613981920348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_11
+      rect:
+        serializedVersion: 2
+        x: 1711
+        y: 626
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2998487718f676220800000000000000
+      internalID: 2479072721737386386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_12
+      rect:
+        serializedVersion: 2
+        x: 1719
+        y: 625
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a1de1c4c87c26f10800000000000000
+      internalID: 2261589368279847329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_13
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 182
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a931b1efda5a0f10800000000000000
+      internalID: 2236700082553567653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_14
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 130
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e9a966cb07865070800000000000000
+      internalID: 8094805864888248804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_15
+      rect:
+        serializedVersion: 2
+        x: 1512
+        y: 130
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cebda3bc022333c0800000000000000
+      internalID: -4381120574551900473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlotSave_Base_16
+      rect:
+        serializedVersion: 2
+        x: 1846
+        y: 120
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aef447198068a2190800000000000000
+      internalID: -7986423617829974038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SlotSave_Base_0: 7820718867688636115
+      SlotSave_Base_1: -4882499385179536465
+      SlotSave_Base_10: 7880709613981920348
+      SlotSave_Base_11: 2479072721737386386
+      SlotSave_Base_12: 2261589368279847329
+      SlotSave_Base_13: 2236700082553567653
+      SlotSave_Base_14: 8094805864888248804
+      SlotSave_Base_15: -4381120574551900473
+      SlotSave_Base_16: -7986423617829974038
+      SlotSave_Base_2: 4782718773205994888
+      SlotSave_Base_3: 7278429188462813433
+      SlotSave_Base_4: 3159622201409197081
+      SlotSave_Base_5: 5072242716143614590
+      SlotSave_Base_6: 3661276354750596179
+      SlotSave_Base_7: -8899625167808824002
+      SlotSave_Base_8: 1136293136028754457
+      SlotSave_Base_9: -5677278733948558535
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
