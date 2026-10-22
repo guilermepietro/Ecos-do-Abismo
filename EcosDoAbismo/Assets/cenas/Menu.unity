@@ -7613,13 +7613,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1269482651}
   - component: {fileID: 1269482652}
+  - component: {fileID: 1269482653}
   m_Layer: 5
   m_Name: TelaControles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1269482651
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7664,6 +7665,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269482650}
   m_CullTransparentMesh: 1
+--- !u!114 &1269482653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269482650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a2a6ba98e16bb4396173d6f648e71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuControles
+  textosEsquerda:
+  - {fileID: 191601971}
+  - {fileID: 836832342}
+  - {fileID: 1849959297}
+  - {fileID: 117473837}
+  - {fileID: 1577299951}
+  destaquesEsquerda:
+  - {fileID: 596081737}
+  - {fileID: 320964467}
+  - {fileID: 1914657481}
+  - {fileID: 647410138}
+  - {fileID: 1761019811}
+  textosDireita:
+  - {fileID: 1798880207}
+  - {fileID: 1501986576}
+  - {fileID: 320820755}
+  - {fileID: 1482614618}
+  destaquesDireita:
+  - {fileID: 1736242992}
+  - {fileID: 878413873}
+  - {fileID: 1131981824}
+  - {fileID: 1822061139}
+  corNormal: {r: 1, g: 1, b: 1, a: 1}
+  corSelecionada: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &1278921644
 GameObject:
   m_ObjectHideFlags: 0
@@ -11766,7 +11803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1761019812
 RectTransform:
   m_ObjectHideFlags: 0
