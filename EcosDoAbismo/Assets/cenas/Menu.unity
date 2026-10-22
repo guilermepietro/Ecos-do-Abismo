@@ -1232,7 +1232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -595, y: 250}
+  m_AnchoredPosition: {x: -637, y: 250}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &117473837
@@ -1719,7 +1719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -595, y: 250}
+  m_AnchoredPosition: {x: -637, y: 250}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &191601971
@@ -5132,7 +5132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -595, y: 250}
+  m_AnchoredPosition: {x: -637, y: 250}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &836832342
@@ -7707,6 +7707,16 @@ MonoBehaviour:
   imagemTeclaAtaqueArea: {fileID: 422077508}
   textoTeclaDefender: {fileID: 912172871}
   imagemTeclaDefender: {fileID: 1595457603}
+  textoTeclaCura: {fileID: 56877616}
+  imagemTeclaCura: {fileID: 749248831}
+  textoTeclaInteragir: {fileID: 1993565658}
+  imagemTeclaInteragir: {fileID: 1478184478}
+  textoTeclaCorrer: {fileID: 2111915408}
+  imagemTeclaCorrer: {fileID: 1054798106}
+  textoTeclaPular: {fileID: 566210442}
+  imagemTeclaPular: {fileID: 403014729}
+  textoTeclaDash: {fileID: 1318723015}
+  imagemTeclaDash: {fileID: 1300811753}
   spriteQuadrado: {fileID: 21300000, guid: 8e67e70533cfcda40abbf875e1bc8a50, type: 3}
   spriteMedio: {fileID: 21300000, guid: 17ef6ba2b6fd5034d92a174e825bbb40, type: 3}
   spriteLongo: {fileID: 21300000, guid: 389010b1f9db9f74bac80cbdf360fd15, type: 3}
@@ -7715,13 +7725,28 @@ MonoBehaviour:
   tamanhoLongo: {x: 290, y: 190}
   posicaoXQuadrado: -396
   posicaoXMedio: -385.9
-  posicaoXLongo: -380
-  deslocamentoXAreaQuadrado: 0
-  deslocamentoXAreaMedio: -40
-  deslocamentoXAreaLongo: -50
-  deslocamentoXDefenderQuadrado: 0
-  deslocamentoXDefenderMedio: 50
-  deslocamentoXDefenderLongo: 85
+  posicaoXLongo: -396
+  posicaoXAreaQuadrado: -396
+  posicaoXAreaMedio: -450
+  posicaoXAreaLongo: -450
+  posicaoXDefenderQuadrado: -240
+  posicaoXDefenderMedio: -295
+  posicaoXDefenderLongo: -295
+  posicaoXCuraQuadrado: -240
+  posicaoXCuraMedio: -295
+  posicaoXCuraLongo: -295
+  posicaoXInteragirQuadrado: -240
+  posicaoXInteragirMedio: -295
+  posicaoXInteragirLongo: -295
+  posicaoXCorrerQuadrado: -396
+  posicaoXCorrerMedio: -385.9
+  posicaoXCorrerLongo: -396
+  posicaoXPularQuadrado: -396
+  posicaoXPularMedio: -385.9
+  posicaoXPularLongo: -396
+  posicaoXDashQuadrado: -396
+  posicaoXDashMedio: -385.9
+  posicaoXDashLongo: -396
   corNormal: {r: 1, g: 1, b: 1, a: 1}
   corSelecionada: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &1278921644
@@ -10306,7 +10331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -595, y: 250}
+  m_AnchoredPosition: {x: -637, y: 250}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1577299951
@@ -12826,7 +12851,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -595, y: 250}
+  m_AnchoredPosition: {x: -637, y: 250}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1849959297
