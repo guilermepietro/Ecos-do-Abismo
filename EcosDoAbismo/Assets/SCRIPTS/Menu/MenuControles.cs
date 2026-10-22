@@ -54,6 +54,14 @@ public class MenuControles : MonoBehaviour
     public TextMeshProUGUI textoTeclaDash;
     public Image imagemTeclaDash;
 
+    [Header("Remapeamento - Andar Esquerda")]
+    public TextMeshProUGUI textoTeclaAndarEsquerda;
+    public Image imagemTeclaAndarEsquerda;
+
+    [Header("Remapeamento - Andar Direita")]
+    public TextMeshProUGUI textoTeclaAndarDireita;
+    public Image imagemTeclaAndarDireita;
+
     [Header("Sprites das Teclas")]
     public Sprite spriteQuadrado;
     public Sprite spriteMedio;
@@ -139,6 +147,16 @@ public class MenuControles : MonoBehaviour
     [FormerlySerializedAs("deslocamentoXDashLongo")]
     public float posicaoXDashLongo;
 
+    [Header("Posicoes X - Andar Esquerda")]
+    public float posicaoXAndarEsquerdaQuadrado;
+    public float posicaoXAndarEsquerdaMedio;
+    public float posicaoXAndarEsquerdaLongo;
+
+    [Header("Posicoes X - Andar Direita")]
+    public float posicaoXAndarDireitaQuadrado;
+    public float posicaoXAndarDireitaMedio;
+    public float posicaoXAndarDireitaLongo;
+
     [Header("Cores")]
     public Color corNormal = Color.white;
     public Color corSelecionada = Color.yellow;
@@ -158,9 +176,18 @@ public class MenuControles : MonoBehaviour
     private KeyCode teclaPular = KeyCode.Space;
     private KeyCode teclaDash = KeyCode.LeftControl;
 
+    private KeyCode teclaAndarEsquerda = KeyCode.A;
+    private KeyCode teclaAndarDireita = KeyCode.D;
+
     private KeyCode teclaAnterior;
+    private KeyCode teclaAnteriorAndarEsquerda;
+    private KeyCode teclaAnteriorAndarDireita;
+
     private int comandoEmEdicao = -1;
     private int quadroInicioEdicao;
+
+    // 0 = Esquerda, 1 = Direita, 2 = Aplicar
+    private int etapaEdicaoAndar = 0;
 
     void OnEnable()
     {
@@ -170,6 +197,7 @@ public class MenuControles : MonoBehaviour
         editandoTecla = false;
         aguardandoNovaTecla = false;
         comandoEmEdicao = -1;
+        etapaEdicaoAndar = 0;
 
         AtualizarSelecao();
         AtualizarIndicadores();
@@ -208,6 +236,8 @@ public class MenuControles : MonoBehaviour
             {
                 if (linhaSelecionada == 0)
                     IniciarEdicao(0);
+                else if (linhaSelecionada == 1)
+                    IniciarEdicao(8);
                 else if (linhaSelecionada == 2)
                     IniciarEdicao(5);
                 else if (linhaSelecionada == 3)
@@ -286,6 +316,16 @@ public class MenuControles : MonoBehaviour
                 if (textoTeclaDash != null)
                     textoTeclaDash.text = "";
                 break;
+
+            case 8:
+                teclaAnteriorAndarEsquerda = teclaAndarEsquerda;
+                teclaAnteriorAndarDireita = teclaAndarDireita;
+
+                etapaEdicaoAndar = 0;
+
+                if (textoTeclaAndarEsquerda != null)
+                    textoTeclaAndarEsquerda.text = "";
+                break;
         }
 
         AtualizarIndicadores();
@@ -309,10 +349,42 @@ public class MenuControles : MonoBehaviour
 
                 if (Input.GetKeyDown(tecla))
                 {
-                    DefinirTeclaEmEdicao(tecla);
+                    if (comandoEmEdicao == 8)
+                    {
+                        // Andar aceita apenas teclas
+                        // que utilizam o sprite quadrado.
+                        string nomeTecla = ObterNomeTecla(tecla);
 
-                    aguardandoNovaTecla = false;
-                    AtualizarTeclas();
+                        if (nomeTecla.Length > 2)
+                            return;
+
+                        if (etapaEdicaoAndar == 0)
+                        {
+                            teclaAndarEsquerda = tecla;
+                            etapaEdicaoAndar = 1;
+
+                            AtualizarTeclas();
+
+                            if (textoTeclaAndarDireita != null)
+                                textoTeclaAndarDireita.text = "";
+                        }
+                        else if (etapaEdicaoAndar == 1)
+                        {
+                            teclaAndarDireita = tecla;
+                            etapaEdicaoAndar = 2;
+                            aguardandoNovaTecla = false;
+
+                            AtualizarTeclas();
+                        }
+                    }
+                    else
+                    {
+                        DefinirTeclaEmEdicao(tecla);
+
+                        aguardandoNovaTecla = false;
+                        AtualizarTeclas();
+                    }
+
                     return;
                 }
             }
@@ -379,17 +451,27 @@ public class MenuControles : MonoBehaviour
         editandoTecla = false;
         aguardandoNovaTecla = false;
         comandoEmEdicao = -1;
+        etapaEdicaoAndar = 0;
 
         AtualizarIndicadores();
     }
 
     void CancelarEdicao()
     {
-        DefinirTeclaEmEdicao(teclaAnterior);
+        if (comandoEmEdicao == 8)
+        {
+            teclaAndarEsquerda = teclaAnteriorAndarEsquerda;
+            teclaAndarDireita = teclaAnteriorAndarDireita;
+        }
+        else
+        {
+            DefinirTeclaEmEdicao(teclaAnterior);
+        }
 
         editandoTecla = false;
         aguardandoNovaTecla = false;
         comandoEmEdicao = -1;
+        etapaEdicaoAndar = 0;
 
         AtualizarTeclas();
         AtualizarIndicadores();
@@ -405,6 +487,12 @@ public class MenuControles : MonoBehaviour
         string nomeCorrer = ObterNomeTecla(teclaCorrer);
         string nomePular = ObterNomeTecla(teclaPular);
         string nomeDash = ObterNomeTecla(teclaDash);
+
+        string nomeAndarEsquerda =
+            ObterNomeTecla(teclaAndarEsquerda);
+
+        string nomeAndarDireita =
+            ObterNomeTecla(teclaAndarDireita);
 
         if (textoTeclaAtaque != null)
             textoTeclaAtaque.text = nomeAtaque;
@@ -429,6 +517,12 @@ public class MenuControles : MonoBehaviour
 
         if (textoTeclaDash != null)
             textoTeclaDash.text = nomeDash;
+
+        if (textoTeclaAndarEsquerda != null)
+            textoTeclaAndarEsquerda.text = nomeAndarEsquerda;
+
+        if (textoTeclaAndarDireita != null)
+            textoTeclaAndarDireita.text = nomeAndarDireita;
 
         AtualizarImagemTecla(
             imagemTeclaAtaque,
@@ -492,6 +586,22 @@ public class MenuControles : MonoBehaviour
             posicaoXDashQuadrado,
             posicaoXDashMedio,
             posicaoXDashLongo
+        );
+
+        AtualizarImagemTecla(
+            imagemTeclaAndarEsquerda,
+            nomeAndarEsquerda,
+            posicaoXAndarEsquerdaQuadrado,
+            posicaoXAndarEsquerdaMedio,
+            posicaoXAndarEsquerdaLongo
+        );
+
+        AtualizarImagemTecla(
+            imagemTeclaAndarDireita,
+            nomeAndarDireita,
+            posicaoXAndarDireitaQuadrado,
+            posicaoXAndarDireitaMedio,
+            posicaoXAndarDireitaLongo
         );
     }
 
@@ -565,7 +675,6 @@ public class MenuControles : MonoBehaviour
             imagem.sprite = novoSprite;
 
         RectTransform rect = imagem.rectTransform;
-
         rect.sizeDelta = novoTamanho;
 
         Vector2 posicao = rect.anchoredPosition;

@@ -7717,6 +7717,10 @@ MonoBehaviour:
   imagemTeclaPular: {fileID: 403014729}
   textoTeclaDash: {fileID: 1318723015}
   imagemTeclaDash: {fileID: 1300811753}
+  textoTeclaAndarEsquerda: {fileID: 2019188852}
+  imagemTeclaAndarEsquerda: {fileID: 1803440488}
+  textoTeclaAndarDireita: {fileID: 74175946}
+  imagemTeclaAndarDireita: {fileID: 1822019446}
   spriteQuadrado: {fileID: 21300000, guid: 8e67e70533cfcda40abbf875e1bc8a50, type: 3}
   spriteMedio: {fileID: 21300000, guid: 17ef6ba2b6fd5034d92a174e825bbb40, type: 3}
   spriteLongo: {fileID: 21300000, guid: 389010b1f9db9f74bac80cbdf360fd15, type: 3}
@@ -7747,6 +7751,12 @@ MonoBehaviour:
   posicaoXDashQuadrado: -396
   posicaoXDashMedio: -385.9
   posicaoXDashLongo: -396
+  posicaoXAndarEsquerdaQuadrado: -455.8
+  posicaoXAndarEsquerdaMedio: 0
+  posicaoXAndarEsquerdaLongo: 0
+  posicaoXAndarDireitaQuadrado: -342
+  posicaoXAndarDireitaMedio: 0
+  posicaoXAndarDireitaLongo: 0
   corNormal: {r: 1, g: 1, b: 1, a: 1}
   corSelecionada: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &1278921644
