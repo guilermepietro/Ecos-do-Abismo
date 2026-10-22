@@ -7699,6 +7699,9 @@ MonoBehaviour:
   - {fileID: 878413873}
   - {fileID: 1131981824}
   - {fileID: 1822061139}
+  teclaContinuar: {fileID: 248000295}
+  teclaAplicar: {fileID: 146833667}
+  textoTeclaAtaque: {fileID: 1278921646}
   corNormal: {r: 1, g: 1, b: 1, a: 1}
   corSelecionada: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &1278921644

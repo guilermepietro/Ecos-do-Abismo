@@ -88,11 +88,20 @@ public class MenuManager : MonoBehaviour
             telaCategoriasOpcoes.activeSelf)
             return;
 
-        // Permite voltar da tela de Controles com Esc.
         if (telaControles != null && telaControles.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
-                VoltarAoMenu();
+            {
+                MenuControles menuControles =
+                    telaControles.GetComponent<MenuControles>();
+
+                bool cancelouEdicao =
+                    menuControles != null &&
+                    menuControles.CancelarEdicaoSeAtiva();
+
+                if (!cancelouEdicao)
+                    VoltarAoMenu();
+            }
 
             return;
         }
@@ -190,7 +199,6 @@ public class MenuManager : MonoBehaviour
         if (subtela == null)
             return;
 
-        // Ativa a nova tela antes de esconder a anterior.
         subtela.SetActive(true);
 
         if (telaCategoriasOpcoes != null)
