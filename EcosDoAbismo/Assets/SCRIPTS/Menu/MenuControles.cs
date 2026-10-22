@@ -1,6 +1,7 @@
 
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuControles : MonoBehaviour
 {
@@ -22,6 +23,22 @@ public class MenuControles : MonoBehaviour
 
     [Header("Teste de Remapeamento - Ataque")]
     public TextMeshProUGUI textoTeclaAtaque;
+    public Image imagemTeclaAtaque;
+
+    [Header("Sprites das Teclas")]
+    public Sprite spriteQuadrado;
+    public Sprite spriteMedio;
+    public Sprite spriteLongo;
+
+    [Header("Tamanhos das Teclas")]
+    public Vector2 tamanhoQuadrado = new Vector2(120f, 120f);
+    public Vector2 tamanhoMedio = new Vector2(220f, 300f);
+    public Vector2 tamanhoLongo = new Vector2(290f, 190f);
+
+    [Header("Posicoes X das Teclas")]
+    public float posicaoXQuadrado = -396f;
+    public float posicaoXMedio = -346f;
+    public float posicaoXLongo = -311f;
 
     [Header("Cores")]
     public Color corNormal = Color.white;
@@ -166,8 +183,85 @@ public class MenuControles : MonoBehaviour
 
     void AtualizarTextoAtaque()
     {
+        string nomeTecla = ObterNomeTecla(teclaAtaque);
+
         if (textoTeclaAtaque != null)
-            textoTeclaAtaque.text = teclaAtaque.ToString();
+            textoTeclaAtaque.text = nomeTecla;
+
+        AtualizarImagemTecla(nomeTecla);
+    }
+
+    string ObterNomeTecla(KeyCode tecla)
+    {
+        switch (tecla)
+        {
+            case KeyCode.Space:
+                return "ESPAÇO";
+
+            case KeyCode.LeftShift:
+            case KeyCode.RightShift:
+                return "SHIFT";
+
+            case KeyCode.LeftControl:
+            case KeyCode.RightControl:
+                return "CTRL";
+
+            case KeyCode.LeftAlt:
+            case KeyCode.RightAlt:
+                return "ALT";
+
+            case KeyCode.Backspace:
+                return "BACKSPACE";
+
+            case KeyCode.UpArrow:
+                return "↑";
+
+            case KeyCode.DownArrow:
+                return "↓";
+
+            case KeyCode.LeftArrow:
+                return "←";
+
+            case KeyCode.RightArrow:
+                return "→";
+
+            default:
+                return tecla.ToString().ToUpper();
+        }
+    }
+
+    void AtualizarImagemTecla(string nomeTecla)
+    {
+        if (imagemTeclaAtaque == null)
+            return;
+
+        Sprite novoSprite = spriteQuadrado;
+        Vector2 novoTamanho = tamanhoQuadrado;
+        float novaPosicaoX = posicaoXQuadrado;
+
+        if (nomeTecla.Length > 5)
+        {
+            novoSprite = spriteLongo;
+            novoTamanho = tamanhoLongo;
+            novaPosicaoX = posicaoXLongo;
+        }
+        else if (nomeTecla.Length > 2)
+        {
+            novoSprite = spriteMedio;
+            novoTamanho = tamanhoMedio;
+            novaPosicaoX = posicaoXMedio;
+        }
+
+        if (novoSprite != null)
+            imagemTeclaAtaque.sprite = novoSprite;
+
+        RectTransform rect = imagemTeclaAtaque.rectTransform;
+
+        rect.sizeDelta = novoTamanho;
+
+        Vector2 posicao = rect.anchoredPosition;
+        posicao.x = novaPosicaoX;
+        rect.anchoredPosition = posicao;
     }
 
     void AtualizarIndicadores()

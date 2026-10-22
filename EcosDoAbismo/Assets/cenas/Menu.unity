@@ -7702,6 +7702,16 @@ MonoBehaviour:
   teclaContinuar: {fileID: 248000295}
   teclaAplicar: {fileID: 146833667}
   textoTeclaAtaque: {fileID: 1278921646}
+  imagemTeclaAtaque: {fileID: 53106321}
+  spriteQuadrado: {fileID: 21300000, guid: 8e67e70533cfcda40abbf875e1bc8a50, type: 3}
+  spriteMedio: {fileID: 21300000, guid: 17ef6ba2b6fd5034d92a174e825bbb40, type: 3}
+  spriteLongo: {fileID: 21300000, guid: 389010b1f9db9f74bac80cbdf360fd15, type: 3}
+  tamanhoQuadrado: {x: 120, y: 120}
+  tamanhoMedio: {x: 220, y: 300}
+  tamanhoLongo: {x: 290, y: 190}
+  posicaoXQuadrado: -396
+  posicaoXMedio: -385.9
+  posicaoXLongo: -380
   corNormal: {r: 1, g: 1, b: 1, a: 1}
   corSelecionada: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &1278921644
