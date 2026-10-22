@@ -29,6 +29,10 @@ public class MenuControles : MonoBehaviour
     public TextMeshProUGUI textoTeclaAtaqueArea;
     public Image imagemTeclaAtaqueArea;
 
+    [Header("Remapeamento - Defender")]
+    public TextMeshProUGUI textoTeclaDefender;
+    public Image imagemTeclaDefender;
+
     [Header("Sprites das Teclas")]
     public Sprite spriteQuadrado;
     public Sprite spriteMedio;
@@ -49,6 +53,11 @@ public class MenuControles : MonoBehaviour
     public float deslocamentoXAreaMedio = 50f;
     public float deslocamentoXAreaLongo = 85f;
 
+    [Header("Deslocamentos X - Defender")]
+    public float deslocamentoXDefenderQuadrado = 0f;
+    public float deslocamentoXDefenderMedio = 50f;
+    public float deslocamentoXDefenderLongo = 85f;
+
     [Header("Cores")]
     public Color corNormal = Color.white;
     public Color corSelecionada = Color.yellow;
@@ -61,12 +70,16 @@ public class MenuControles : MonoBehaviour
 
     private KeyCode teclaAtaque = KeyCode.J;
     private KeyCode teclaAtaqueArea = KeyCode.K;
+    private KeyCode teclaDefender = KeyCode.Q;
 
     private KeyCode teclaAnterior;
-    private int colunaEmEdicao;
+
+    // 0 = Ataque, 1 = Ataque em Area, 2 = Defender
+    private int comandoEmEdicao = -1;
     private int quadroInicioEdicao;
 
     private float posicaoOriginalXArea;
+    private float posicaoOriginalXDefender;
 
     void Awake()
     {
@@ -74,6 +87,12 @@ public class MenuControles : MonoBehaviour
         {
             posicaoOriginalXArea =
                 imagemTeclaAtaqueArea.rectTransform.anchoredPosition.x;
+        }
+
+        if (imagemTeclaDefender != null)
+        {
+            posicaoOriginalXDefender =
+                imagemTeclaDefender.rectTransform.anchoredPosition.x;
         }
     }
 
@@ -84,10 +103,10 @@ public class MenuControles : MonoBehaviour
 
         editandoTecla = false;
         aguardandoNovaTecla = false;
+        comandoEmEdicao = -1;
 
         AtualizarSelecao();
         AtualizarIndicadores();
-
         AtualizarTeclas();
     }
 
@@ -119,34 +138,49 @@ public class MenuControles : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) ||
             Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            if (linhaSelecionada == 0)
+            if (colunaSelecionada == 0 && linhaSelecionada == 0)
             {
-                IniciarEdicao();
+                IniciarEdicao(0);
+            }
+            else if (colunaSelecionada == 1 && linhaSelecionada == 0)
+            {
+                IniciarEdicao(1);
+            }
+            else if (colunaSelecionada == 1 && linhaSelecionada == 1)
+            {
+                IniciarEdicao(2);
             }
         }
     }
 
-    void IniciarEdicao()
+    void IniciarEdicao(int comando)
     {
         editandoTecla = true;
         aguardandoNovaTecla = true;
 
-        colunaEmEdicao = colunaSelecionada;
+        comandoEmEdicao = comando;
         quadroInicioEdicao = Time.frameCount;
 
-        if (colunaEmEdicao == 0)
+        if (comandoEmEdicao == 0)
         {
             teclaAnterior = teclaAtaque;
 
             if (textoTeclaAtaque != null)
                 textoTeclaAtaque.text = "";
         }
-        else
+        else if (comandoEmEdicao == 1)
         {
             teclaAnterior = teclaAtaqueArea;
 
             if (textoTeclaAtaqueArea != null)
                 textoTeclaAtaqueArea.text = "";
+        }
+        else if (comandoEmEdicao == 2)
+        {
+            teclaAnterior = teclaDefender;
+
+            if (textoTeclaDefender != null)
+                textoTeclaDefender.text = "";
         }
 
         AtualizarIndicadores();
@@ -170,12 +204,15 @@ public class MenuControles : MonoBehaviour
 
                 if (Input.GetKeyDown(tecla))
                 {
-                    if (colunaEmEdicao == 0)
+                    if (comandoEmEdicao == 0)
                         teclaAtaque = tecla;
-                    else
+                    else if (comandoEmEdicao == 1)
                         teclaAtaqueArea = tecla;
+                    else if (comandoEmEdicao == 2)
+                        teclaDefender = tecla;
 
                     aguardandoNovaTecla = false;
+
                     AtualizarTeclas();
                     return;
                 }
@@ -204,19 +241,23 @@ public class MenuControles : MonoBehaviour
     {
         editandoTecla = false;
         aguardandoNovaTecla = false;
+        comandoEmEdicao = -1;
 
         AtualizarIndicadores();
     }
 
     void CancelarEdicao()
     {
-        if (colunaEmEdicao == 0)
+        if (comandoEmEdicao == 0)
             teclaAtaque = teclaAnterior;
-        else
+        else if (comandoEmEdicao == 1)
             teclaAtaqueArea = teclaAnterior;
+        else if (comandoEmEdicao == 2)
+            teclaDefender = teclaAnterior;
 
         editandoTecla = false;
         aguardandoNovaTecla = false;
+        comandoEmEdicao = -1;
 
         AtualizarTeclas();
         AtualizarIndicadores();
@@ -226,12 +267,16 @@ public class MenuControles : MonoBehaviour
     {
         string nomeAtaque = ObterNomeTecla(teclaAtaque);
         string nomeAtaqueArea = ObterNomeTecla(teclaAtaqueArea);
+        string nomeDefender = ObterNomeTecla(teclaDefender);
 
         if (textoTeclaAtaque != null)
             textoTeclaAtaque.text = nomeAtaque;
 
         if (textoTeclaAtaqueArea != null)
             textoTeclaAtaqueArea.text = nomeAtaqueArea;
+
+        if (textoTeclaDefender != null)
+            textoTeclaDefender.text = nomeDefender;
 
         AtualizarImagemTecla(
             imagemTeclaAtaque,
@@ -247,6 +292,14 @@ public class MenuControles : MonoBehaviour
             posicaoOriginalXArea + deslocamentoXAreaQuadrado,
             posicaoOriginalXArea + deslocamentoXAreaMedio,
             posicaoOriginalXArea + deslocamentoXAreaLongo
+        );
+
+        AtualizarImagemTecla(
+            imagemTeclaDefender,
+            nomeDefender,
+            posicaoOriginalXDefender + deslocamentoXDefenderQuadrado,
+            posicaoOriginalXDefender + deslocamentoXDefenderMedio,
+            posicaoOriginalXDefender + deslocamentoXDefenderLongo
         );
     }
 
@@ -389,10 +442,8 @@ public class MenuControles : MonoBehaviour
     int QuantidadeItensColuna()
     {
         if (colunaSelecionada == 0)
-        {
             return textosEsquerda != null
                 ? textosEsquerda.Length : 0;
-        }
 
         return textosDireita != null
             ? textosDireita.Length : 0;
@@ -400,17 +451,8 @@ public class MenuControles : MonoBehaviour
 
     void AtualizarSelecao()
     {
-        AtualizarColuna(
-            textosEsquerda,
-            destaquesEsquerda,
-            0
-        );
-
-        AtualizarColuna(
-            textosDireita,
-            destaquesDireita,
-            1
-        );
+        AtualizarColuna(textosEsquerda, destaquesEsquerda, 0);
+        AtualizarColuna(textosDireita, destaquesDireita, 1);
     }
 
     void AtualizarColuna(
