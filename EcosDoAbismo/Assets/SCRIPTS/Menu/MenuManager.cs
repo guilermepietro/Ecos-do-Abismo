@@ -23,8 +23,14 @@ public class MenuManager : MonoBehaviour
     [Header("Transição")]
     public TransicaoTela transicaoTela;
 
-    [Header("Tela de Opções")]
+    [Header("Tela de Opções - Som")]
     public GameObject telaOpcoes;
+
+    [Header("Tela de Categorias")]
+    public GameObject telaCategoriasOpcoes;
+
+    [Header("Tela de Controles")]
+    public GameObject telaControles;
 
     [Header("Tela de Seleção de Salvamentos")]
     public GameObject telaSelecaoSave;
@@ -49,6 +55,12 @@ public class MenuManager : MonoBehaviour
             telaOpcoes.SetActive(false);
         }
 
+        if (telaCategoriasOpcoes != null)
+            telaCategoriasOpcoes.SetActive(false);
+
+        if (telaControles != null)
+            telaControles.SetActive(false);
+
         if (telaSelecaoSave != null)
             telaSelecaoSave.SetActive(false);
 
@@ -71,6 +83,19 @@ public class MenuManager : MonoBehaviour
 
         if (telaOpcoes != null && telaOpcoes.activeSelf)
             return;
+
+        if (telaCategoriasOpcoes != null &&
+            telaCategoriasOpcoes.activeSelf)
+            return;
+
+        // Permite voltar da tela de Controles com Esc.
+        if (telaControles != null && telaControles.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                VoltarAoMenu();
+
+            return;
+        }
 
         if (telaSelecaoSave != null && telaSelecaoSave.activeSelf)
             return;
@@ -141,19 +166,67 @@ public class MenuManager : MonoBehaviour
 
     void AbrirOpcoes()
     {
-        if (telaOpcoes != null)
+        if (telaCategoriasOpcoes != null)
         {
-            telaOpcoes.SetActive(true);
+            telaCategoriasOpcoes.SetActive(true);
 
             if (cursor != null)
                 cursor.gameObject.SetActive(false);
         }
     }
 
+    public void AbrirSom()
+    {
+        AbrirSubtela(telaOpcoes);
+    }
+
+    public void AbrirControles()
+    {
+        AbrirSubtela(telaControles);
+    }
+
+    void AbrirSubtela(GameObject subtela)
+    {
+        if (subtela == null)
+            return;
+
+        // Ativa a nova tela antes de esconder a anterior.
+        subtela.SetActive(true);
+
+        if (telaCategoriasOpcoes != null)
+            telaCategoriasOpcoes.SetActive(false);
+    }
+
     public void VoltarAoMenu()
     {
+        bool estavaEmSubtela =
+            (telaOpcoes != null && telaOpcoes.activeSelf) ||
+            (telaControles != null && telaControles.activeSelf);
+
+        if (estavaEmSubtela && telaCategoriasOpcoes != null)
+        {
+            telaCategoriasOpcoes.SetActive(true);
+
+            if (telaOpcoes != null)
+                telaOpcoes.SetActive(false);
+
+            if (telaControles != null)
+                telaControles.SetActive(false);
+
+            if (cursor != null)
+                cursor.gameObject.SetActive(false);
+
+            return;
+        }
+
         if (telaOpcoes != null)
             telaOpcoes.SetActive(false);
+
+        if (telaControles != null)
+            telaControles.SetActive(false);
+
+        if (telaCategoriasOpcoes != null)
+            telaCategoriasOpcoes.SetActive(false);
 
         if (telaSelecaoSave != null)
             telaSelecaoSave.SetActive(false);
