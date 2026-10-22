@@ -21,9 +21,13 @@ public class MenuControles : MonoBehaviour
     public GameObject teclaContinuar;
     public GameObject teclaAplicar;
 
-    [Header("Teste de Remapeamento - Ataque")]
+    [Header("Remapeamento - Ataque")]
     public TextMeshProUGUI textoTeclaAtaque;
     public Image imagemTeclaAtaque;
+
+    [Header("Remapeamento - Ataque em Area")]
+    public TextMeshProUGUI textoTeclaAtaqueArea;
+    public Image imagemTeclaAtaqueArea;
 
     [Header("Sprites das Teclas")]
     public Sprite spriteQuadrado;
@@ -35,10 +39,15 @@ public class MenuControles : MonoBehaviour
     public Vector2 tamanhoMedio = new Vector2(220f, 300f);
     public Vector2 tamanhoLongo = new Vector2(290f, 190f);
 
-    [Header("Posicoes X das Teclas")]
+    [Header("Posicoes X - Ataque")]
     public float posicaoXQuadrado = -396f;
     public float posicaoXMedio = -346f;
     public float posicaoXLongo = -311f;
+
+    [Header("Deslocamentos X - Ataque em Area")]
+    public float deslocamentoXAreaQuadrado = 0f;
+    public float deslocamentoXAreaMedio = 50f;
+    public float deslocamentoXAreaLongo = 85f;
 
     [Header("Cores")]
     public Color corNormal = Color.white;
@@ -51,8 +60,22 @@ public class MenuControles : MonoBehaviour
     private bool aguardandoNovaTecla = false;
 
     private KeyCode teclaAtaque = KeyCode.J;
+    private KeyCode teclaAtaqueArea = KeyCode.K;
+
     private KeyCode teclaAnterior;
+    private int colunaEmEdicao;
     private int quadroInicioEdicao;
+
+    private float posicaoOriginalXArea;
+
+    void Awake()
+    {
+        if (imagemTeclaAtaqueArea != null)
+        {
+            posicaoOriginalXArea =
+                imagemTeclaAtaqueArea.rectTransform.anchoredPosition.x;
+        }
+    }
 
     void OnEnable()
     {
@@ -64,7 +87,8 @@ public class MenuControles : MonoBehaviour
 
         AtualizarSelecao();
         AtualizarIndicadores();
-        AtualizarTextoAtaque();
+
+        AtualizarTeclas();
     }
 
     void Update()
@@ -95,24 +119,35 @@ public class MenuControles : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) ||
             Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            if (colunaSelecionada == 0 &&
-                linhaSelecionada == 0)
+            if (linhaSelecionada == 0)
             {
-                IniciarEdicaoAtaque();
+                IniciarEdicao();
             }
         }
     }
 
-    void IniciarEdicaoAtaque()
+    void IniciarEdicao()
     {
         editandoTecla = true;
         aguardandoNovaTecla = true;
 
-        teclaAnterior = teclaAtaque;
+        colunaEmEdicao = colunaSelecionada;
         quadroInicioEdicao = Time.frameCount;
 
-        if (textoTeclaAtaque != null)
-            textoTeclaAtaque.text = "";
+        if (colunaEmEdicao == 0)
+        {
+            teclaAnterior = teclaAtaque;
+
+            if (textoTeclaAtaque != null)
+                textoTeclaAtaque.text = "";
+        }
+        else
+        {
+            teclaAnterior = teclaAtaqueArea;
+
+            if (textoTeclaAtaqueArea != null)
+                textoTeclaAtaqueArea.text = "";
+        }
 
         AtualizarIndicadores();
     }
@@ -135,10 +170,13 @@ public class MenuControles : MonoBehaviour
 
                 if (Input.GetKeyDown(tecla))
                 {
-                    teclaAtaque = tecla;
-                    aguardandoNovaTecla = false;
+                    if (colunaEmEdicao == 0)
+                        teclaAtaque = tecla;
+                    else
+                        teclaAtaqueArea = tecla;
 
-                    AtualizarTextoAtaque();
+                    aguardandoNovaTecla = false;
+                    AtualizarTeclas();
                     return;
                 }
             }
@@ -172,23 +210,44 @@ public class MenuControles : MonoBehaviour
 
     void CancelarEdicao()
     {
-        teclaAtaque = teclaAnterior;
+        if (colunaEmEdicao == 0)
+            teclaAtaque = teclaAnterior;
+        else
+            teclaAtaqueArea = teclaAnterior;
 
         editandoTecla = false;
         aguardandoNovaTecla = false;
 
-        AtualizarTextoAtaque();
+        AtualizarTeclas();
         AtualizarIndicadores();
     }
 
-    void AtualizarTextoAtaque()
+    void AtualizarTeclas()
     {
-        string nomeTecla = ObterNomeTecla(teclaAtaque);
+        string nomeAtaque = ObterNomeTecla(teclaAtaque);
+        string nomeAtaqueArea = ObterNomeTecla(teclaAtaqueArea);
 
         if (textoTeclaAtaque != null)
-            textoTeclaAtaque.text = nomeTecla;
+            textoTeclaAtaque.text = nomeAtaque;
 
-        AtualizarImagemTecla(nomeTecla);
+        if (textoTeclaAtaqueArea != null)
+            textoTeclaAtaqueArea.text = nomeAtaqueArea;
+
+        AtualizarImagemTecla(
+            imagemTeclaAtaque,
+            nomeAtaque,
+            posicaoXQuadrado,
+            posicaoXMedio,
+            posicaoXLongo
+        );
+
+        AtualizarImagemTecla(
+            imagemTeclaAtaqueArea,
+            nomeAtaqueArea,
+            posicaoOriginalXArea + deslocamentoXAreaQuadrado,
+            posicaoOriginalXArea + deslocamentoXAreaMedio,
+            posicaoOriginalXArea + deslocamentoXAreaLongo
+        );
     }
 
     string ObterNomeTecla(KeyCode tecla)
@@ -230,32 +289,37 @@ public class MenuControles : MonoBehaviour
         }
     }
 
-    void AtualizarImagemTecla(string nomeTecla)
+    void AtualizarImagemTecla(
+        Image imagem,
+        string nomeTecla,
+        float xQuadrado,
+        float xMedio,
+        float xLongo)
     {
-        if (imagemTeclaAtaque == null)
+        if (imagem == null)
             return;
 
         Sprite novoSprite = spriteQuadrado;
         Vector2 novoTamanho = tamanhoQuadrado;
-        float novaPosicaoX = posicaoXQuadrado;
+        float novaPosicaoX = xQuadrado;
 
         if (nomeTecla.Length > 5)
         {
             novoSprite = spriteLongo;
             novoTamanho = tamanhoLongo;
-            novaPosicaoX = posicaoXLongo;
+            novaPosicaoX = xLongo;
         }
         else if (nomeTecla.Length > 2)
         {
             novoSprite = spriteMedio;
             novoTamanho = tamanhoMedio;
-            novaPosicaoX = posicaoXMedio;
+            novaPosicaoX = xMedio;
         }
 
         if (novoSprite != null)
-            imagemTeclaAtaque.sprite = novoSprite;
+            imagem.sprite = novoSprite;
 
-        RectTransform rect = imagemTeclaAtaque.rectTransform;
+        RectTransform rect = imagem.rectTransform;
 
         rect.sizeDelta = novoTamanho;
 
