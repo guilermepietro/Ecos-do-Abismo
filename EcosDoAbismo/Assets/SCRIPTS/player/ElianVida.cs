@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class ElianVida : MonoBehaviour
@@ -24,6 +25,11 @@ public class ElianVida : MonoBehaviour
     private bool invencivelDash = false;
 
     public float tempoInvencibilidade = 1f;
+
+    [Header("Renascimento")]
+    public TransicaoTela transicaoTela;
+
+    private bool renascimentoIniciado = false;
 
     private ElianMovimento movimento;
 
@@ -102,7 +108,6 @@ public class ElianVida : MonoBehaviour
 
         EstaMorto = true;
 
-        // Bloqueia o movimento ao morrer
         movimento.podeMover = false;
 
         rb.linearVelocity = Vector2.zero;
@@ -113,13 +118,60 @@ public class ElianVida : MonoBehaviour
         Debug.Log("Elian morreu!");
     }
 
-    // Chamado pelo último frame da animação de morte
+    // Animation Event no final da animação de morte
     public void FinalizarMorte()
     {
-        if (!EstaMorto)
+        if (!EstaMorto || renascimentoIniciado)
             return;
 
         Debug.Log("Animação de morte do Elian finalizada!");
+
+        int slot = MenuSelecaoSave.slotPartidaAtual;
+
+        if (slot < 1 || slot > 3)
+        {
+            Debug.LogWarning(
+                "Nenhum slot selecionado. " +
+                "Renascimento não iniciado."
+            );
+            return;
+        }
+
+        if (GerenciadorSalvamento.Carregar(slot) == null)
+        {
+            Debug.LogError(
+                "Não foi possível carregar o salvamento. " +
+                "Renascimento cancelado."
+            );
+            return;
+        }
+
+        if (transicaoTela == null)
+        {
+            Debug.LogError(
+                "TransicaoTela não configurada no ElianVida!"
+            );
+            return;
+        }
+
+        renascimentoIniciado = true;
+
+        StartCoroutine(ExecutarRenascimento());
+    }
+
+    IEnumerator ExecutarRenascimento()
+    {
+        Debug.Log("Iniciando renascimento do Elian...");
+
+        yield return StartCoroutine(
+            transicaoTela.Escurecer()
+        );
+
+        Debug.Log("Recarregando Gameplay...");
+
+        SceneManager.LoadScene(
+            SceneManager.GetActiveScene().name
+        );
     }
 
     public void AtivarInvencibilidadeDash()

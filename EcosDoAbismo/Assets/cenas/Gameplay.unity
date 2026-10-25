@@ -715,6 +715,7 @@ MonoBehaviour:
   forcaEmpurrao: 5
   forcaEmpurraoVertical: 4
   tempoInvencibilidade: 1
+  transicaoTela: {fileID: 164015846}
 --- !u!114 &142652955
 MonoBehaviour:
   m_ObjectHideFlags: 0
