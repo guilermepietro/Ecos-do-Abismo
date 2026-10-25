@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -96,11 +97,29 @@ public class ElianVida : MonoBehaviour
 
     void Morrer()
     {
+        if (EstaMorto)
+            return;
+
         EstaMorto = true;
 
+        // Bloqueia o movimento ao morrer
+        movimento.podeMover = false;
+
+        rb.linearVelocity = Vector2.zero;
+
+        animator.SetFloat("velocidade", 0f);
         animator.SetTrigger("Morreu");
 
         Debug.Log("Elian morreu!");
+    }
+
+    // Chamado pelo último frame da animação de morte
+    public void FinalizarMorte()
+    {
+        if (!EstaMorto)
+            return;
+
+        Debug.Log("Animação de morte do Elian finalizada!");
     }
 
     public void AtivarInvencibilidadeDash()
@@ -122,6 +141,9 @@ public class ElianVida : MonoBehaviour
 
         while (tempoPassado < tempoInvencibilidade)
         {
+            if (EstaMorto)
+                break;
+
             spriteRenderer.enabled = false;
 
             yield return new WaitForSeconds(tempoPiscada);
@@ -140,6 +162,9 @@ public class ElianVida : MonoBehaviour
 
     void AplicarEmpurrao()
     {
+        if (EstaMorto)
+            return;
+
         movimento.podeMover = false;
 
         float direcao = spriteRenderer.flipX ? 1f : -1f;
@@ -156,7 +181,8 @@ public class ElianVida : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
-        movimento.podeMover = true;
+        if (!EstaMorto)
+            movimento.podeMover = true;
     }
 
     public void Curar(int quantidade)

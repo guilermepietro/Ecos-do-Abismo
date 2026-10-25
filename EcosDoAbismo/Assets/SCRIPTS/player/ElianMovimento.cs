@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -29,6 +30,7 @@ public class ElianMovimento : MonoBehaviour
     private Collider2D colisorElian;
 
     private ElianAtaque ataque;
+    private ElianVida vida;
 
     private bool estaNoChao;
 
@@ -49,10 +51,24 @@ public class ElianMovimento : MonoBehaviour
         colisorElian = GetComponent<Collider2D>();
 
         ataque = GetComponent<ElianAtaque>();
+        vida = GetComponent<ElianVida>();
     }
 
     void Update()
     {
+        // Bloqueia comandos de movimento após a morte
+        if (vida != null && vida.EstaMorto)
+        {
+            podeMover = false;
+
+            rb.linearVelocity = new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
+
+            return;
+        }
+
         VerificarChao();
 
         if (estaDashando || sendoPuxado)
@@ -188,6 +204,9 @@ public class ElianMovimento : MonoBehaviour
 
     public void AplicarPuxao(float direcao, float forca)
     {
+        if (vida != null && vida.EstaMorto)
+            return;
+
         if (estaDashando)
             return;
 
