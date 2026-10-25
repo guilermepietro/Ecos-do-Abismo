@@ -120,10 +120,8 @@ public class VoragulVida : MonoBehaviour
             );
         }
 
-        // Registra a derrota no salvamento
         RegistrarDerrota();
 
-        // Mantém a animação de morte original
         animator.SetTrigger("Morte");
     }
 
@@ -164,11 +162,21 @@ public class VoragulVida : MonoBehaviour
         {
             dados.chefesDerrotados.Add("Voragul");
 
+            // Atualiza o tempo antes de gravar a derrota
+            if (ContadorTempoJogo.instancia != null)
+            {
+                ContadorTempoJogo.instancia
+                    .AtualizarTempoNosDados(dados);
+            }
+
             if (GerenciadorSalvamento.Salvar(slot, dados))
             {
                 Debug.Log(
                     "Voragul derrotado permanentemente!" +
-                    "\nSlot: " + slot
+                    "\nSlot: " + slot +
+                    "\nTempo: " +
+                    dados.tempoTotalJogado.ToString("F1") +
+                    " segundos"
                 );
             }
             else

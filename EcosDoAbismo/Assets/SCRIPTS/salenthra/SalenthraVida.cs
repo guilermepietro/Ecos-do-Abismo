@@ -246,11 +246,21 @@ public class SalenthraVida : MonoBehaviour
         {
             dados.chefesDerrotados.Add("Salenthra");
 
+            // Atualiza o tempo antes de salvar a derrota
+            if (ContadorTempoJogo.instancia != null)
+            {
+                ContadorTempoJogo.instancia
+                    .AtualizarTempoNosDados(dados);
+            }
+
             if (GerenciadorSalvamento.Salvar(slot, dados))
             {
                 Debug.Log(
                     "Salenthra derrotada permanentemente!" +
-                    "\nSlot: " + slot
+                    "\nSlot: " + slot +
+                    "\nTempo: " +
+                    dados.tempoTotalJogado.ToString("F1") +
+                    " segundos"
                 );
             }
             else

@@ -116,23 +116,25 @@ public class CheckpointArvore : MonoBehaviour
                 new List<string>();
         }
 
-        // Registra a árvore ativada
         if (!dados.checkpointsAtivados.Contains(idCheckpoint))
         {
             dados.checkpointsAtivados.Add(idCheckpoint);
         }
 
-        // Define o checkpoint atual
         dados.idCheckpoint = idCheckpoint;
 
-        // Registra a cena correspondente
         dados.cenaCheckpoint =
             SceneManager.GetActiveScene().name;
 
-        // Registra a região atual de Elian
         dados.nomeArea = GerenciadorArea.areaAtual;
 
-        // Grava o progresso antes de ativar visualmente
+        // Atualiza o tempo antes de gravar o checkpoint
+        if (ContadorTempoJogo.instancia != null)
+        {
+            ContadorTempoJogo.instancia
+                .AtualizarTempoNosDados(dados);
+        }
+
         if (!GerenciadorSalvamento.Salvar(slot, dados))
         {
             Debug.LogError(
@@ -147,7 +149,9 @@ public class CheckpointArvore : MonoBehaviour
             "\nSlot: " + slot +
             "\nÁrea: " + dados.nomeArea +
             "\nCena: " + dados.cenaCheckpoint +
-            "\nCheckpoint: " + dados.idCheckpoint
+            "\nCheckpoint: " + dados.idCheckpoint +
+            "\nTempo: " + dados.tempoTotalJogado.ToString("F1") +
+            " segundos"
         );
 
         if (!ativada)

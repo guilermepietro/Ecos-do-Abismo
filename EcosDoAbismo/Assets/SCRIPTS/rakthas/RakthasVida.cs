@@ -154,11 +154,21 @@ public class RakthasVida : MonoBehaviour
         {
             dados.chefesDerrotados.Add("Rakthas");
 
+            // Atualiza o tempo antes de salvar a derrota
+            if (ContadorTempoJogo.instancia != null)
+            {
+                ContadorTempoJogo.instancia
+                    .AtualizarTempoNosDados(dados);
+            }
+
             if (GerenciadorSalvamento.Salvar(slot, dados))
             {
                 Debug.Log(
                     "Rakthas derrotado permanentemente!" +
-                    "\nSlot: " + slot
+                    "\nSlot: " + slot +
+                    "\nTempo: " +
+                    dados.tempoTotalJogado.ToString("F1") +
+                    " segundos"
                 );
             }
             else
