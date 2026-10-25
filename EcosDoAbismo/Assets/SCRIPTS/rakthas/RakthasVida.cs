@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class RakthasVida : MonoBehaviour
@@ -21,6 +22,31 @@ public class RakthasVida : MonoBehaviour
     {
         vidaAtual = vidaMaxima;
         ataques = GetComponent<RakthasAtaques>();
+
+        VerificarSalvamento();
+    }
+
+    private void VerificarSalvamento()
+    {
+        int slot = MenuSelecaoSave.slotPartidaAtual;
+
+        if (slot < 1 || slot > 3)
+            return;
+
+        DadosSalvamento dados =
+            GerenciadorSalvamento.Carregar(slot);
+
+        if (dados == null || dados.chefesDerrotados == null)
+            return;
+
+        if (dados.chefesDerrotados.Contains("Rakthas"))
+        {
+            Debug.Log(
+                "Rakthas já foi derrotado no slot " + slot
+            );
+
+            gameObject.SetActive(false);
+        }
     }
 
     public void ReceberDano(int dano)
@@ -85,6 +111,62 @@ public class RakthasVida : MonoBehaviour
                 0,
                 rb.linearVelocity.y
             );
+        }
+
+        // Registra a derrota no salvamento
+        RegistrarDerrota();
+    }
+
+    private void RegistrarDerrota()
+    {
+        int slot = MenuSelecaoSave.slotPartidaAtual;
+
+        if (slot < 1 || slot > 3)
+        {
+            Debug.LogWarning(
+                "Rakthas derrotado sem slot selecionado. " +
+                "A derrota não será salva."
+            );
+            return;
+        }
+
+        DadosSalvamento dados =
+            GerenciadorSalvamento.Carregar(slot);
+
+        if (dados == null)
+        {
+            Debug.LogError(
+                "Não foi possível carregar o salvamento " +
+                "para registrar a derrota do Rakthas."
+            );
+            return;
+        }
+
+        if (dados.chefesDerrotados == null)
+        {
+            Debug.LogError(
+                "Lista de chefes derrotados indisponível."
+            );
+            return;
+        }
+
+        if (!dados.chefesDerrotados.Contains("Rakthas"))
+        {
+            dados.chefesDerrotados.Add("Rakthas");
+
+            if (GerenciadorSalvamento.Salvar(slot, dados))
+            {
+                Debug.Log(
+                    "Rakthas derrotado permanentemente!" +
+                    "\nSlot: " + slot
+                );
+            }
+            else
+            {
+                Debug.LogError(
+                    "Falha ao salvar a derrota do Rakthas."
+                );
+            }
         }
     }
 

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class SalenthraVida : MonoBehaviour
@@ -29,6 +30,34 @@ public class SalenthraVida : MonoBehaviour
         vidaAtualFase2 = vidaMaximaFase2;
 
         movimento = GetComponent<SalenthraMovimento>();
+    }
+
+    private void Start()
+    {
+        VerificarSalvamento();
+    }
+
+    private void VerificarSalvamento()
+    {
+        int slot = MenuSelecaoSave.slotPartidaAtual;
+
+        if (slot < 1 || slot > 3)
+            return;
+
+        DadosSalvamento dados =
+            GerenciadorSalvamento.Carregar(slot);
+
+        if (dados == null || dados.chefesDerrotados == null)
+            return;
+
+        if (dados.chefesDerrotados.Contains("Salenthra"))
+        {
+            Debug.Log(
+                "Salenthra já foi derrotada no slot " + slot
+            );
+
+            gameObject.SetActive(false);
+        }
     }
 
     private void Update()
@@ -97,11 +126,8 @@ public class SalenthraVida : MonoBehaviour
                 return;
             }
 
-            // =========================
             // SE ESTIVER ATACANDO:
             // RECEBE DANO, MAS CONTINUA O ATAQUE
-            // =========================
-
             if (
                 movimento != null &&
                 movimento.EstaAtacandoFase2
@@ -109,11 +135,6 @@ public class SalenthraVida : MonoBehaviour
             {
                 return;
             }
-
-            // =========================
-            // SE NÃO ESTIVER ATACANDO:
-            // TOCA A ANIMAÇÃO DE DANO
-            // =========================
 
             if (movimento != null)
             {
@@ -183,6 +204,62 @@ public class SalenthraVida : MonoBehaviour
 
         animator.SetBool("Andando", false);
         animator.SetTrigger("MorteFase2");
+
+        // Registra apenas a morte definitiva
+        RegistrarDerrota();
+    }
+
+    private void RegistrarDerrota()
+    {
+        int slot = MenuSelecaoSave.slotPartidaAtual;
+
+        if (slot < 1 || slot > 3)
+        {
+            Debug.LogWarning(
+                "Salenthra derrotada sem slot selecionado. " +
+                "A derrota não será salva."
+            );
+            return;
+        }
+
+        DadosSalvamento dados =
+            GerenciadorSalvamento.Carregar(slot);
+
+        if (dados == null)
+        {
+            Debug.LogError(
+                "Não foi possível carregar o salvamento " +
+                "para registrar a derrota da Salenthra."
+            );
+            return;
+        }
+
+        if (dados.chefesDerrotados == null)
+        {
+            Debug.LogError(
+                "Lista de chefes derrotados indisponível."
+            );
+            return;
+        }
+
+        if (!dados.chefesDerrotados.Contains("Salenthra"))
+        {
+            dados.chefesDerrotados.Add("Salenthra");
+
+            if (GerenciadorSalvamento.Salvar(slot, dados))
+            {
+                Debug.Log(
+                    "Salenthra derrotada permanentemente!" +
+                    "\nSlot: " + slot
+                );
+            }
+            else
+            {
+                Debug.LogError(
+                    "Falha ao salvar a derrota da Salenthra."
+                );
+            }
+        }
     }
 
     public int CalcularDano(int danoBase)

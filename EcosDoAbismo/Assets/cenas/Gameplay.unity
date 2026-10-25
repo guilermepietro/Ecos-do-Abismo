@@ -711,7 +711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a271fb7d5599744fb30c0c15bfa11a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElianVida
-  vidaMaxima: 20
+  vidaMaxima: 150
   forcaEmpurrao: 5
   forcaEmpurraoVertical: 4
   tempoInvencibilidade: 1
@@ -7172,7 +7172,7 @@ Transform:
   m_GameObject: {fileID: 1573473948}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 185.9535, y: -2.663, z: 0}
+  m_LocalPosition: {x: 49.7, y: -58.4, z: 0}
   m_LocalScale: {x: 2.9022865, y: 2.9022865, z: 2.9022865}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7196,8 +7196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be38db17e070d24e99698dad33efb46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SalenthraVida
-  vidaMaximaFase1: 100
-  vidaMaximaFase2: 150
+  vidaMaximaFase1: 20
+  vidaMaximaFase2: 20
   animator: {fileID: 1573473952}
 --- !u!114 &1573473956
 MonoBehaviour:
@@ -13174,7 +13174,7 @@ Transform:
   m_GameObject: {fileID: 2059395981}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 124.97463, y: -2.5933, z: -0.001670148}
+  m_LocalPosition: {x: 103.6, y: -1.9, z: -0.001670148}
   m_LocalScale: {x: 3.5641396, y: 3.5641396, z: 3.5641396}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13198,7 +13198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0adcacc02e84314da6c862ed636c21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RakthasVida
-  vidaMaxima: 200
+  vidaMaxima: 20
   animator: {fileID: 2059395985}
 --- !u!114 &2059395990
 MonoBehaviour:
@@ -13710,7 +13710,7 @@ Transform:
   m_GameObject: {fileID: 2121363421}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.72, y: -58.4, z: 0}
+  m_LocalPosition: {x: 32.72, y: -1.4, z: 0}
   m_LocalScale: {x: 4.128506, y: 4.128506, z: 4.128506}
   m_ConstrainProportionsScale: 0
   m_Children:
