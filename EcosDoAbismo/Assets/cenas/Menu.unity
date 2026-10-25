@@ -3507,7 +3507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.003921569}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3835,11 +3835,11 @@ RectTransform:
   - {fileID: 643423409}
   - {fileID: 1054561191}
   - {fileID: 306989658}
-  - {fileID: 540444147}
   - {fileID: 1347491422}
   - {fileID: 638445719}
   - {fileID: 1269482651}
   - {fileID: 896953174}
+  - {fileID: 540444147}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4095,6 +4095,30 @@ MonoBehaviour:
   - {fileID: 349773576}
   slotNormal: {fileID: 21300000, guid: 7d9111a013f78314b99ea2991e723bfb, type: 3}
   slotSelecionado: {fileID: 21300000, guid: d7579a8a2c2fde448b11f0a91ba48212, type: 3}
+  textosLocal:
+  - {fileID: 746886072}
+  - {fileID: 1067051297}
+  - {fileID: 1050508395}
+  textosTempo:
+  - {fileID: 513291791}
+  - {fileID: 69064350}
+  - {fileID: 2023709194}
+  retratos:
+  - {fileID: 1501502463}
+  - {fileID: 1525483618}
+  - {fileID: 1098014071}
+  textosNome:
+  - {fileID: 1620908128}
+  - {fileID: 1825804910}
+  - {fileID: 1470693264}
+  textosStatus:
+  - {fileID: 1526494438}
+  - {fileID: 816746977}
+  - {fileID: 1128202242}
+  iconesExcluir:
+  - {fileID: 1788094097}
+  - {fileID: 1151146717}
+  - {fileID: 45554397}
   menuManager: {fileID: 703664917}
 --- !u!1 &643423408
 GameObject:
@@ -6871,7 +6895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7620,7 +7644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1269482651
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9903,7 +9927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

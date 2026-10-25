@@ -243,6 +243,15 @@ public class MenuManager : MonoBehaviour
             cursor.gameObject.SetActive(true);
     }
 
+    // NOVO: inicia o jogo após selecionar um save
+    public void IniciarJogoSelecionado()
+    {
+        if (emTransicao)
+            return;
+
+        StartCoroutine(IniciarJogo());
+    }
+
     IEnumerator IniciarJogo()
     {
         emTransicao = true;
