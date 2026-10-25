@@ -28,7 +28,6 @@ public class MenuSelecaoSave : MonoBehaviour
     private int indiceSelecionado = 0;
     private Color[] coresOriginaisRetratos;
 
-    // Slot utilizado pela partida atual
     public static int slotPartidaAtual = 0;
 
     private bool iniciandoPartida = false;
@@ -92,10 +91,36 @@ public class MenuSelecaoSave : MonoBehaviour
             AtualizarSelecao();
         }
 
+        // Excluir diretamente com K
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ExcluirSlot();
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Return) ||
             Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             ConfirmarSlot();
+        }
+    }
+
+    void ExcluirSlot()
+    {
+        int numeroSlot = indiceSelecionado + 1;
+
+        // Não faz nada se o slot estiver vazio
+        if (!GerenciadorSalvamento.ExisteSalvamento(numeroSlot))
+            return;
+
+        if (GerenciadorSalvamento.Excluir(numeroSlot))
+        {
+            Debug.Log(
+                "Partida do slot " + numeroSlot +
+                " excluída com sucesso."
+            );
+
+            AtualizarInformacoes();
         }
     }
 
@@ -112,7 +137,7 @@ public class MenuSelecaoSave : MonoBehaviour
             {
                 Debug.LogError(
                     "O slot " + numeroSlot +
-                    " possui um salvamento que não pôde ser carregado."
+                    " possui um salvamento inválido."
                 );
 
                 return;
@@ -122,14 +147,7 @@ public class MenuSelecaoSave : MonoBehaviour
                 GerenciadorSalvamento.CriarNovoJogo(numeroSlot);
 
             if (dados == null)
-            {
-                Debug.LogError(
-                    "Não foi possível criar a partida no slot " +
-                    numeroSlot
-                );
-
                 return;
-            }
 
             Debug.Log(
                 "Nova partida criada no slot " + numeroSlot
@@ -138,9 +156,7 @@ public class MenuSelecaoSave : MonoBehaviour
         else
         {
             Debug.Log(
-                "Continuando partida do slot " + numeroSlot +
-                "\nÁrea: " + dados.nomeArea +
-                "\nTempo: " + dados.tempoTotalJogado
+                "Continuando partida do slot " + numeroSlot
             );
         }
 
@@ -148,15 +164,11 @@ public class MenuSelecaoSave : MonoBehaviour
 
         if (menuManager == null)
         {
-            Debug.LogError(
-                "MenuManager não configurado!"
-            );
+            Debug.LogError("MenuManager não configurado!");
             return;
         }
 
-        // Guarda qual arquivo pertence à partida
         slotPartidaAtual = numeroSlot;
-
         iniciandoPartida = true;
 
         Debug.Log(
@@ -200,10 +212,8 @@ public class MenuSelecaoSave : MonoBehaviour
                 i < retratos.Length &&
                 retratos[i] != null)
             {
-                if (ocupado)
-                    retratos[i].color = coresOriginaisRetratos[i];
-                else
-                    retratos[i].color = Color.black;
+                retratos[i].color =
+                    ocupado ? coresOriginaisRetratos[i] : Color.black;
             }
 
             if (textosNome != null &&
