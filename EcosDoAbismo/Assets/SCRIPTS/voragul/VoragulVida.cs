@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class VoragulVida : MonoBehaviour
@@ -14,6 +15,34 @@ public class VoragulVida : MonoBehaviour
     {
         vidaAtual = vidaMaxima;
         animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        VerificarSalvamento();
+    }
+
+    private void VerificarSalvamento()
+    {
+        int slot = MenuSelecaoSave.slotPartidaAtual;
+
+        if (slot < 1 || slot > 3)
+            return;
+
+        DadosSalvamento dados =
+            GerenciadorSalvamento.Carregar(slot);
+
+        if (dados == null || dados.chefesDerrotados == null)
+            return;
+
+        if (dados.chefesDerrotados.Contains("Voragul"))
+        {
+            Debug.Log(
+                "Voragul já foi derrotado no slot " + slot
+            );
+
+            gameObject.SetActive(false);
+        }
     }
 
     public void ReceberDano(int dano)
@@ -55,7 +84,8 @@ public class VoragulVida : MonoBehaviour
         {
             levandoDano = true;
 
-            VoragulMovimento movimento = GetComponent<VoragulMovimento>();
+            VoragulMovimento movimento =
+                GetComponent<VoragulMovimento>();
 
             if (movimento != null)
             {
@@ -72,7 +102,8 @@ public class VoragulVida : MonoBehaviour
 
         CancelInvoke(nameof(LiberarMovimento));
 
-        VoragulMovimento movimento = GetComponent<VoragulMovimento>();
+        VoragulMovimento movimento =
+            GetComponent<VoragulMovimento>();
 
         if (movimento != null)
         {
@@ -89,7 +120,64 @@ public class VoragulVida : MonoBehaviour
             );
         }
 
+        // Registra a derrota no salvamento
+        RegistrarDerrota();
+
+        // Mantém a animação de morte original
         animator.SetTrigger("Morte");
+    }
+
+    private void RegistrarDerrota()
+    {
+        int slot = MenuSelecaoSave.slotPartidaAtual;
+
+        if (slot < 1 || slot > 3)
+        {
+            Debug.LogWarning(
+                "Voragul derrotado sem slot selecionado. " +
+                "A derrota não será salva."
+            );
+            return;
+        }
+
+        DadosSalvamento dados =
+            GerenciadorSalvamento.Carregar(slot);
+
+        if (dados == null)
+        {
+            Debug.LogError(
+                "Não foi possível carregar o salvamento " +
+                "para registrar a derrota do Voragul."
+            );
+            return;
+        }
+
+        if (dados.chefesDerrotados == null)
+        {
+            Debug.LogError(
+                "Lista de chefes derrotados indisponível."
+            );
+            return;
+        }
+
+        if (!dados.chefesDerrotados.Contains("Voragul"))
+        {
+            dados.chefesDerrotados.Add("Voragul");
+
+            if (GerenciadorSalvamento.Salvar(slot, dados))
+            {
+                Debug.Log(
+                    "Voragul derrotado permanentemente!" +
+                    "\nSlot: " + slot
+                );
+            }
+            else
+            {
+                Debug.LogError(
+                    "Falha ao salvar a derrota do Voragul."
+                );
+            }
+        }
     }
 
     public void FinalizarDano()
@@ -104,7 +192,8 @@ public class VoragulVida : MonoBehaviour
         if (morto)
             return;
 
-        VoragulMovimento movimento = GetComponent<VoragulMovimento>();
+        VoragulMovimento movimento =
+            GetComponent<VoragulMovimento>();
 
         if (movimento != null)
         {
