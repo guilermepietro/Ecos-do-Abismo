@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -7,6 +8,7 @@ public class ElianAtaque : MonoBehaviour
     private ElianMovimento movimento;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private ElianColeta coleta;
 
     private bool atacando = false;
     private bool comboAtaque2 = false;
@@ -33,10 +35,17 @@ public class ElianAtaque : MonoBehaviour
         movimento = GetComponent<ElianMovimento>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        coleta = GetComponent<ElianColeta>();
     }
 
     void Update()
     {
+        // BLOQUEIA ATAQUES DURANTE A VIAGEM ENTRE ECOS
+        if (coleta != null && coleta.MenuViagemAberto)
+        {
+            return;
+        }
+
         // ATAQUE EM ÁREA
         if (Input.GetKeyDown(KeyCode.K) &&
             animator.GetBool("estaNoChao") &&

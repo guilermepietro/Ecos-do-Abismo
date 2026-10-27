@@ -10,6 +10,20 @@ public class ElianColeta : MonoBehaviour
     private CheckpointArvore arvorePerto;
     private bool interagindo = false;
 
+    [Header("Interface de Viagem")]
+    public GameObject telaViagem;
+
+    private bool aguardandoFechamentoViagem = false;
+
+    public bool MenuViagemAberto
+    {
+        get
+        {
+            return telaViagem != null &&
+                   telaViagem.activeInHierarchy;
+        }
+    }
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -18,10 +32,25 @@ public class ElianColeta : MonoBehaviour
 
     void Update()
     {
+        // Libera o movimento após fechar a viagem,
+        // desde que a animação de coleta já tenha terminado.
+        if (aguardandoFechamentoViagem && !MenuViagemAberto)
+        {
+            aguardandoFechamentoViagem = false;
+
+            ElianVida vida = GetComponent<ElianVida>();
+
+            if (vida == null || !vida.EstaMorto)
+            {
+                movimento.podeMover = true;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.E) &&
             animator.GetBool("estaNoChao") &&
             movimento.podeMover &&
             !interagindo &&
+            !MenuViagemAberto &&
             (itemPerto != null || arvorePerto != null))
         {
             interagindo = true;
@@ -57,7 +86,16 @@ public class ElianColeta : MonoBehaviour
 
     public void FinalizarColeta()
     {
-        movimento.podeMover = true;
         interagindo = false;
+
+        if (MenuViagemAberto)
+        {
+            aguardandoFechamentoViagem = true;
+            movimento.podeMover = false;
+        }
+        else
+        {
+            movimento.podeMover = true;
+        }
     }
 }

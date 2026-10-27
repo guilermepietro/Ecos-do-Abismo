@@ -15,11 +15,45 @@ public class MenuViagem : MonoBehaviour
     [Header("Informações do Destino")]
     public TMP_Text textoDestino;
 
-    private int indiceSelecionado = 0;
+    [Header("Ícones dos Checkpoints")]
+    public Image[] iconesCheckpoint;
+
+    private int indiceSelecionado = -1;
+
+    private readonly string[] idsArvores =
+    {
+        "Ecos_Floresta",
+        "Ecos_RuinasDoSelo",
+        "Ecos_CatedralDasSombras",
+        "Ecos_FortalezaArdente"
+    };
+
+    private readonly string[] nomesAreas =
+    {
+        "FLORESTA",
+        "RUÍNAS DO SELO",
+        "CATEDRAL DAS SOMBRAS",
+        "FORTALEZA ARDENTE"
+    };
+
+    private bool[] destinosDesbloqueados;
 
     void OnEnable()
     {
-        indiceSelecionado = 0;
+        CarregarDestinos();
+
+        // Seleciona a primeira árvore descoberta.
+        indiceSelecionado = -1;
+
+        for (int i = 0; i < destinosDesbloqueados.Length; i++)
+        {
+            if (destinosDesbloqueados[i])
+            {
+                indiceSelecionado = i;
+                break;
+            }
+        }
+
         AtualizarSelecao();
     }
 
@@ -36,22 +70,88 @@ public class MenuViagem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            indiceSelecionado++;
-
-            if (indiceSelecionado >= slots.Length)
-                indiceSelecionado = 0;
-
-            AtualizarSelecao();
+            Navegar(1);
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            indiceSelecionado--;
+            Navegar(-1);
+        }
+    }
 
-            if (indiceSelecionado < 0)
-                indiceSelecionado = slots.Length - 1;
+    void CarregarDestinos()
+    {
+        destinosDesbloqueados =
+            new bool[idsArvores.Length];
 
-            AtualizarSelecao();
+        int slot = MenuSelecaoSave.slotPartidaAtual;
+
+        if (slot >= 1 && slot <= 3)
+        {
+            DadosSalvamento dados =
+                GerenciadorSalvamento.Carregar(slot);
+
+            if (dados != null &&
+                dados.checkpointsAtivados != null)
+            {
+                for (int i = 0; i < idsArvores.Length; i++)
+                {
+                    destinosDesbloqueados[i] =
+                        dados.checkpointsAtivados.Contains(
+                            idsArvores[i]
+                        );
+                }
+            }
+        }
+
+        AtualizarIcones();
+    }
+
+    void AtualizarIcones()
+    {
+        if (iconesCheckpoint == null)
+            return;
+
+        for (int i = 0; i < iconesCheckpoint.Length; i++)
+        {
+            if (iconesCheckpoint[i] == null)
+                continue;
+
+            bool desbloqueado =
+                i < destinosDesbloqueados.Length &&
+                destinosDesbloqueados[i];
+
+            iconesCheckpoint[i].color =
+                desbloqueado ? Color.white : Color.black;
+        }
+    }
+
+    void Navegar(int direcao)
+    {
+        if (destinosDesbloqueados == null ||
+            indiceSelecionado < 0)
+            return;
+
+        int quantidade = Mathf.Min(
+            slots.Length,
+            destinosDesbloqueados.Length
+        );
+
+        // Procura o próximo destino desbloqueado.
+        // Os bloqueados são ignorados.
+        for (int passo = 1; passo <= quantidade; passo++)
+        {
+            int proximoIndice =
+                (indiceSelecionado +
+                 direcao * passo +
+                 quantidade * 2) % quantidade;
+
+            if (destinosDesbloqueados[proximoIndice])
+            {
+                indiceSelecionado = proximoIndice;
+                AtualizarSelecao();
+                return;
+            }
         }
     }
 
@@ -78,23 +178,15 @@ public class MenuViagem : MonoBehaviour
 
         if (textoDestino != null)
         {
-            switch (indiceSelecionado)
+            if (indiceSelecionado >= 0 &&
+                indiceSelecionado < nomesAreas.Length)
             {
-                case 0:
-                    textoDestino.text = "FLORESTA";
-                    break;
-
-                case 1:
-                    textoDestino.text = "RUÍNAS DO SELO";
-                    break;
-
-                case 2:
-                    textoDestino.text = "CATEDRAL DAS SOMBRAS";
-                    break;
-
-                case 3:
-                    textoDestino.text = "FORTALEZA ARDENTE";
-                    break;
+                textoDestino.text =
+                    nomesAreas[indiceSelecionado];
+            }
+            else
+            {
+                textoDestino.text = "";
             }
         }
     }

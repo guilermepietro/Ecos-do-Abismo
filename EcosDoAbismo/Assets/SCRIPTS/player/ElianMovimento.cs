@@ -31,6 +31,7 @@ public class ElianMovimento : MonoBehaviour
 
     private ElianAtaque ataque;
     private ElianVida vida;
+    private ElianColeta coleta;
 
     private bool estaNoChao;
 
@@ -52,6 +53,7 @@ public class ElianMovimento : MonoBehaviour
 
         ataque = GetComponent<ElianAtaque>();
         vida = GetComponent<ElianVida>();
+        coleta = GetComponent<ElianColeta>();
     }
 
     void Update()
@@ -70,6 +72,17 @@ public class ElianMovimento : MonoBehaviour
         }
 
         VerificarChao();
+
+        // Bloqueia movimento durante a interface de viagem
+        if (coleta != null && coleta.MenuViagemAberto)
+        {
+            rb.linearVelocity = new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
+
+            return;
+        }
 
         if (estaDashando || sendoPuxado)
         {
@@ -165,6 +178,11 @@ public class ElianMovimento : MonoBehaviour
 
     void Dash()
     {
+        if (coleta != null && coleta.MenuViagemAberto)
+        {
+            return;
+        }
+
         if (!Input.GetKeyDown(KeyCode.LeftControl))
         {
             return;

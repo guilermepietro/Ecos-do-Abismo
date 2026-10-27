@@ -110,6 +110,9 @@ public class CheckpointArvore : MonoBehaviour
             return;
         }
 
+        // Guarda o estado ANTES desta interação.
+        bool jaEstavaAtivada = ativada;
+
         if (dados.checkpointsAtivados == null)
         {
             dados.checkpointsAtivados =
@@ -128,7 +131,6 @@ public class CheckpointArvore : MonoBehaviour
 
         dados.nomeArea = GerenciadorArea.areaAtual;
 
-        // Atualiza o tempo antes de gravar o checkpoint
         if (ContadorTempoJogo.instancia != null)
         {
             ContadorTempoJogo.instancia
@@ -150,7 +152,8 @@ public class CheckpointArvore : MonoBehaviour
             "\nÁrea: " + dados.nomeArea +
             "\nCena: " + dados.cenaCheckpoint +
             "\nCheckpoint: " + dados.idCheckpoint +
-            "\nTempo: " + dados.tempoTotalJogado.ToString("F1") +
+            "\nTempo: " +
+            dados.tempoTotalJogado.ToString("F1") +
             " segundos"
         );
 
@@ -168,6 +171,19 @@ public class CheckpointArvore : MonoBehaviour
         else
         {
             Debug.Log("Progresso salvo na árvore já ativada.");
+        }
+
+        // Apenas árvores gigantes abrem o menu.
+        // A primeira ativação não abre a interface.
+        if (jaEstavaAtivada)
+        {
+            ArvoreDosEcos arvoreDosEcos =
+                GetComponent<ArvoreDosEcos>();
+
+            if (arvoreDosEcos != null)
+            {
+                arvoreDosEcos.AbrirMenu();
+            }
         }
     }
 }
