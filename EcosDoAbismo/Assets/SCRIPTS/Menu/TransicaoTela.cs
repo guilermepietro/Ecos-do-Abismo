@@ -9,7 +9,8 @@ public class TransicaoTela : MonoBehaviour
     public Image imagemFade;
 
     [Header("Duração")]
-    public float duracaoFade = 1f;
+    public float duracaoEscurecer = 0.5f;
+    public float duracaoClarear = 2f;
 
     public IEnumerator Escurecer()
     {
@@ -19,11 +20,13 @@ public class TransicaoTela : MonoBehaviour
         float tempo = 0f;
         Color cor = imagemFade.color;
 
-        while (tempo < duracaoFade)
+        while (tempo < duracaoEscurecer)
         {
             tempo += Time.unscaledDeltaTime;
 
-            float progresso = Mathf.Clamp01(tempo / Mathf.Max(0.01f, duracaoFade));
+            float progresso = Mathf.Clamp01(
+                tempo / Mathf.Max(0.01f, duracaoEscurecer)
+            );
 
             cor.a = progresso;
             imagemFade.color = cor;
@@ -42,14 +45,17 @@ public class TransicaoTela : MonoBehaviour
 
         float tempo = 0f;
         Color cor = imagemFade.color;
+
         cor.a = 1f;
         imagemFade.color = cor;
 
-        while (tempo < duracaoFade)
+        while (tempo < duracaoClarear)
         {
             tempo += Time.unscaledDeltaTime;
 
-            float progresso = Mathf.Clamp01(tempo / Mathf.Max(0.01f, duracaoFade));
+            float progresso = Mathf.Clamp01(
+                tempo / Mathf.Max(0.01f, duracaoClarear)
+            );
 
             cor.a = 1f - progresso;
             imagemFade.color = cor;

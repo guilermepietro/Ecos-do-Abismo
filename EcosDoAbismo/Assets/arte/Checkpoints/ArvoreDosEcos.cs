@@ -39,6 +39,19 @@ public class ArvoreDosEcos : MonoBehaviour
             return;
         }
 
+        MenuViagem menuViagem =
+            telaViagem.GetComponent<MenuViagem>();
+
+        if (menuViagem == null)
+        {
+            Debug.LogError(
+                "MenuViagem não encontrado em TelaViagem!"
+            );
+            return;
+        }
+
+        menuViagem.DefinirOrigem(checkpointArvore.idCheckpoint);
+
         Debug.Log(
             "Viagem iniciada a partir da árvore: " +
             checkpointArvore.idCheckpoint
