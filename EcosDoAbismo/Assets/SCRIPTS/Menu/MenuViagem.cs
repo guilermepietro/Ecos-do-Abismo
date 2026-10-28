@@ -27,6 +27,9 @@ public class MenuViagem : MonoBehaviour
     [Header("Tempo de Escuridão")]
     public float tempoTelaEscura = 3f;
 
+    [Header("Frase da Viagem")]
+    public FraseViagem fraseViagem;
+
     private int indiceSelecionado = -1;
     private string idArvoreOrigem = "";
     private bool viajando = false;
@@ -341,7 +344,7 @@ public class MenuViagem : MonoBehaviour
             transicaoTela.Escurecer()
         );
 
-        // 2. Atualiza o checkpoint de renascimento.
+        // 2. Atualiza o checkpoint.
         dados.idCheckpoint = idDestino;
         dados.cenaCheckpoint =
             SceneManager.GetActiveScene().name;
@@ -353,7 +356,7 @@ public class MenuViagem : MonoBehaviour
                 .AtualizarTempoNosDados(dados);
         }
 
-        // 3. Salva antes do teletransporte.
+        // 3. Salva o destino.
         if (!GerenciadorSalvamento.Salvar(slot, dados))
         {
             Debug.LogError(
@@ -368,7 +371,7 @@ public class MenuViagem : MonoBehaviour
             yield break;
         }
 
-        // 4. Transporta Elian enquanto está escuro.
+        // 4. Transporta Elian com a tela preta.
         Rigidbody2D rb =
             elian.GetComponent<Rigidbody2D>();
 
@@ -391,8 +394,7 @@ public class MenuViagem : MonoBehaviour
             "\nNovo checkpoint de renascimento salvo."
         );
 
-        // 5. Esconde visualmente o menu
-        // sem desativar o objeto da coroutine.
+        // 5. Oculta visualmente o menu.
         if (grupoInterface != null)
         {
             grupoInterface.alpha = 0f;
@@ -400,20 +402,31 @@ public class MenuViagem : MonoBehaviour
             grupoInterface.blocksRaycasts = false;
         }
 
-        // 6. Mantém a tela preta por 3 segundos.
+        // 6. Exibe uma frase durante a escuridão.
+        if (fraseViagem != null)
+        {
+            fraseViagem.MostrarFrase();
+        }
+
         yield return new WaitForSecondsRealtime(
             Mathf.Max(0f, tempoTelaEscura)
         );
 
-        // Atualiza a câmera e outros componentes.
+        // 7. Oculta a frase antes de clarear.
+        if (fraseViagem != null)
+        {
+            fraseViagem.OcultarFrase();
+        }
+
+        // Permite atualização da câmera.
         yield return null;
 
-        // 7. Clareia rapidamente.
+        // 8. Revela a nova região.
         yield return StartCoroutine(
             transicaoTela.Clarear()
         );
 
-        // 8. Fecha o menu.
+        // 9. Fecha o menu.
         viajando = false;
         FecharMenu();
     }

@@ -13,9 +13,53 @@ public class CheckpointArvore : MonoBehaviour
 
     private bool ativada = false;
 
+    private bool EhArvoreDosEcos()
+    {
+        return GetComponent<ArvoreDosEcos>() != null;
+    }
+
     void Start()
     {
         CarregarEstado();
+    }
+
+    void InicializarControleComuns(DadosSalvamento dados)
+    {
+        if (dados.checkpointsComunsAtivos == null)
+        {
+            dados.checkpointsComunsAtivos =
+                new List<string>();
+        }
+
+        if (dados.controleComunsInicializado)
+            return;
+
+        // Compatibilidade com salvamentos anteriores.
+        // Recupera até três árvores comuns já descobertas.
+        if (dados.checkpointsAtivados != null)
+        {
+            foreach (string id in dados.checkpointsAtivados)
+            {
+                if (string.IsNullOrEmpty(id))
+                    continue;
+
+                // IDs Ecos_ são reservados às árvores gigantes.
+                if (id.StartsWith("Ecos_"))
+                    continue;
+
+                if (!dados.checkpointsComunsAtivos.Contains(id))
+                {
+                    dados.checkpointsComunsAtivos.Add(id);
+                }
+            }
+        }
+
+        while (dados.checkpointsComunsAtivos.Count > 3)
+        {
+            dados.checkpointsComunsAtivos.RemoveAt(0);
+        }
+
+        dados.controleComunsInicializado = true;
     }
 
     void CarregarEstado()
@@ -41,11 +85,31 @@ public class CheckpointArvore : MonoBehaviour
         DadosSalvamento dados =
             GerenciadorSalvamento.Carregar(slot);
 
-        if (dados != null &&
-            dados.checkpointsAtivados != null &&
-            dados.checkpointsAtivados.Contains(idCheckpoint))
+        if (dados == null)
         {
-            ativada = true;
+            animator.Play("Checkpoint_Apagada", 0, 0f);
+            return;
+        }
+
+        if (EhArvoreDosEcos())
+        {
+            // As árvores gigantes nunca são apagadas.
+            ativada =
+                dados.checkpointsAtivados != null &&
+                dados.checkpointsAtivados.Contains(idCheckpoint);
+        }
+        else
+        {
+            InicializarControleComuns(dados);
+
+            ativada =
+                dados.checkpointsComunsAtivos.Contains(
+                    idCheckpoint
+                );
+        }
+
+        if (ativada)
+        {
             animator.Play("Checkpoint_Acesa", 0, 0f);
         }
         else
@@ -110,8 +174,8 @@ public class CheckpointArvore : MonoBehaviour
             return;
         }
 
-        // Guarda o estado ANTES desta interação.
         bool jaEstavaAtivada = ativada;
+        bool arvoreGigante = EhArvoreDosEcos();
 
         if (dados.checkpointsAtivados == null)
         {
@@ -122,6 +186,28 @@ public class CheckpointArvore : MonoBehaviour
         if (!dados.checkpointsAtivados.Contains(idCheckpoint))
         {
             dados.checkpointsAtivados.Add(idCheckpoint);
+        }
+
+        string idArvoreApagada = "";
+
+        if (!arvoreGigante)
+        {
+            InicializarControleComuns(dados);
+
+            // Reutilizar uma árvore ativa também a torna
+            // a mais recente.
+            dados.checkpointsComunsAtivos.Remove(idCheckpoint);
+
+            dados.checkpointsComunsAtivos.Add(idCheckpoint);
+
+            // Mantém no máximo três árvores comuns ativas.
+            if (dados.checkpointsComunsAtivos.Count > 3)
+            {
+                idArvoreApagada =
+                    dados.checkpointsComunsAtivos[0];
+
+                dados.checkpointsComunsAtivos.RemoveAt(0);
+            }
         }
 
         dados.idCheckpoint = idCheckpoint;
@@ -151,10 +237,7 @@ public class CheckpointArvore : MonoBehaviour
             "\nSlot: " + slot +
             "\nÁrea: " + dados.nomeArea +
             "\nCena: " + dados.cenaCheckpoint +
-            "\nCheckpoint: " + dados.idCheckpoint +
-            "\nTempo: " +
-            dados.tempoTotalJogado.ToString("F1") +
-            " segundos"
+            "\nCheckpoint: " + dados.idCheckpoint
         );
 
         if (!ativada)
@@ -170,12 +253,36 @@ public class CheckpointArvore : MonoBehaviour
         }
         else
         {
-            Debug.Log("Progresso salvo na árvore já ativada.");
+            Debug.Log(
+                "Progresso salvo na árvore já ativada."
+            );
         }
 
-        // Apenas árvores gigantes abrem o menu.
-        // A primeira ativação não abre a interface.
-        if (jaEstavaAtivada)
+        // Apaga visualmente a árvore comum mais antiga.
+        if (!string.IsNullOrEmpty(idArvoreApagada))
+        {
+            CheckpointArvore[] arvores =
+                FindObjectsByType<CheckpointArvore>(
+                    FindObjectsSortMode.None
+                );
+
+            foreach (CheckpointArvore arvore in arvores)
+            {
+                if (arvore.idCheckpoint == idArvoreApagada &&
+                    !arvore.EhArvoreDosEcos())
+                {
+                    arvore.ApagarArvore();
+                }
+            }
+
+            Debug.Log(
+                "Limite de três checkpoints comuns atingido." +
+                "\nÁrvore apagada: " + idArvoreApagada
+            );
+        }
+
+        // Somente árvores gigantes abrem a viagem.
+        if (arvoreGigante && jaEstavaAtivada)
         {
             ArvoreDosEcos arvoreDosEcos =
                 GetComponent<ArvoreDosEcos>();
@@ -184,6 +291,16 @@ public class CheckpointArvore : MonoBehaviour
             {
                 arvoreDosEcos.AbrirMenu();
             }
+        }
+    }
+
+    void ApagarArvore()
+    {
+        ativada = false;
+
+        if (animator != null)
+        {
+            animator.Play("Checkpoint_Apagada", 0, 0f);
         }
     }
 }
