@@ -24,6 +24,13 @@ public class ElianUltimate : MonoBehaviour
 
     private float valorVisualUltimate = 0f;
 
+    [Header("Brilho da Ultimate")]
+    public Color corBrilho = Color.white;
+    public float velocidadeBrilho = 2.5f;
+    public float intensidadeBrilho = 0.65f;
+
+    private Color corOriginalBarra;
+
     private float posicaoXOriginalPonto;
 
     void Start()
@@ -38,18 +45,24 @@ public class ElianUltimate : MonoBehaviour
         if (barraUltimate != null)
         {
             barraUltimate.fillAmount = 0f;
+
+            corOriginalBarra =
+                barraUltimate.color;
         }
 
         if (pontoUltimate != null)
         {
             posicaoXOriginalPonto =
-                Mathf.Abs(pontoUltimate.localPosition.x);
+                Mathf.Abs(
+                    pontoUltimate.localPosition.x
+                );
         }
     }
 
     void Update()
     {
         AtualizarBarraUltimate();
+        AtualizarBrilhoUltimate();
 
         if (Input.GetKeyDown(KeyCode.R) &&
             !usandoUltimate &&
@@ -65,12 +78,26 @@ public class ElianUltimate : MonoBehaviour
 
         cargaAtual = 0;
 
+        if (barraUltimate != null)
+        {
+            barraUltimate.color =
+                corOriginalBarra;
+        }
+
         movimento.podeMover = false;
 
-        animator.SetFloat("velocidade", 0);
-        animator.SetTrigger("Ultimate");
+        animator.SetFloat(
+            "velocidade",
+            0
+        );
 
-        Debug.Log("Ultimate utilizada! Carga voltou para 0.");
+        animator.SetTrigger(
+            "Ultimate"
+        );
+
+        Debug.Log(
+            "Ultimate utilizada! Carga voltou para 0."
+        );
     }
 
     public void AdicionarCarga(int quantidade)
@@ -96,7 +123,9 @@ public class ElianUltimate : MonoBehaviour
 
         if (cargaAtual >= cargaMaxima)
         {
-            Debug.Log("ULTIMATE PRONTA!");
+            Debug.Log(
+                "ULTIMATE PRONTA!"
+            );
         }
     }
 
@@ -108,16 +137,52 @@ public class ElianUltimate : MonoBehaviour
         }
 
         float alvo =
-            (float)cargaAtual / cargaMaxima;
+            (float)cargaAtual /
+            cargaMaxima;
 
-        valorVisualUltimate = Mathf.MoveTowards(
-            valorVisualUltimate,
-            alvo,
-            velocidadeBarraUltimate * Time.deltaTime
-        );
+        valorVisualUltimate =
+            Mathf.MoveTowards(
+                valorVisualUltimate,
+                alvo,
+                velocidadeBarraUltimate *
+                Time.deltaTime
+            );
 
         barraUltimate.fillAmount =
             valorVisualUltimate;
+    }
+
+    void AtualizarBrilhoUltimate()
+    {
+        if (barraUltimate == null)
+        {
+            return;
+        }
+
+        if (cargaAtual >= cargaMaxima &&
+            !usandoUltimate)
+        {
+            float pulsacao =
+                Mathf.PingPong(
+                    Time.time * velocidadeBrilho,
+                    1f
+                );
+
+            float intensidade =
+                pulsacao * intensidadeBrilho;
+
+            barraUltimate.color =
+                Color.Lerp(
+                    corOriginalBarra,
+                    corBrilho,
+                    intensidade
+                );
+        }
+        else
+        {
+            barraUltimate.color =
+                corOriginalBarra;
+        }
     }
 
     public void DispararUltimate()
@@ -145,21 +210,26 @@ public class ElianUltimate : MonoBehaviour
         pontoUltimate.localPosition =
             posicaoLocal;
 
-        GameObject fogo = Instantiate(
-            prefabFogoUltimate,
-            pontoUltimate.position,
-            Quaternion.identity
-        );
+        GameObject fogo =
+            Instantiate(
+                prefabFogoUltimate,
+                pontoUltimate.position,
+                Quaternion.identity
+            );
 
         float direcao =
-            spriteRenderer.flipX ? -1f : 1f;
+            spriteRenderer.flipX
+            ? -1f
+            : 1f;
 
         FogoUltimate fogoUltimate =
             fogo.GetComponent<FogoUltimate>();
 
         if (fogoUltimate != null)
         {
-            fogoUltimate.DefinirDirecao(direcao);
+            fogoUltimate.DefinirDirecao(
+                direcao
+            );
         }
     }
 
