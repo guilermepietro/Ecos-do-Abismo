@@ -1,0 +1,1469 @@
+fileFormatVersion: 2
+guid: 116c632cb687f7b4989e806ebd68a6cf
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2544269385972717651
+    second: HUD Retro Ornado com Retrato de Elian_0
+  - first:
+      213: 7758292166047857925
+    second: HUD Retro Ornado com Retrato de Elian_1
+  - first:
+      213: -5541443715237792805
+    second: HUD Retro Ornado com Retrato de Elian_2
+  - first:
+      213: -2913121958559068126
+    second: HUD Retro Ornado com Retrato de Elian_3
+  - first:
+      213: -1988168585454636573
+    second: HUD Retro Ornado com Retrato de Elian_4
+  - first:
+      213: 900018796576234231
+    second: HUD Retro Ornado com Retrato de Elian_5
+  - first:
+      213: 584856570245783599
+    second: HUD Retro Ornado com Retrato de Elian_6
+  - first:
+      213: -1308996549403405721
+    second: HUD Retro Ornado com Retrato de Elian_7
+  - first:
+      213: -5803824388514047411
+    second: HUD Retro Ornado com Retrato de Elian_8
+  - first:
+      213: 5736528202904589638
+    second: HUD Retro Ornado com Retrato de Elian_9
+  - first:
+      213: 7876688271628852334
+    second: HUD Retro Ornado com Retrato de Elian_10
+  - first:
+      213: 2560658098575350942
+    second: HUD Retro Ornado com Retrato de Elian_11
+  - first:
+      213: 206552089329032031
+    second: HUD Retro Ornado com Retrato de Elian_12
+  - first:
+      213: -8346884823511472964
+    second: HUD Retro Ornado com Retrato de Elian_13
+  - first:
+      213: 1408527878766239214
+    second: HUD Retro Ornado com Retrato de Elian_14
+  - first:
+      213: 6037053842080620527
+    second: HUD Retro Ornado com Retrato de Elian_15
+  - first:
+      213: -3002619632405712031
+    second: HUD Retro Ornado com Retrato de Elian_16
+  - first:
+      213: -2370985699806848144
+    second: HUD Retro Ornado com Retrato de Elian_17
+  - first:
+      213: -7302423355207325292
+    second: HUD Retro Ornado com Retrato de Elian_18
+  - first:
+      213: 4031183447448742299
+    second: HUD Retro Ornado com Retrato de Elian_19
+  - first:
+      213: -8254552375516417905
+    second: HUD Retro Ornado com Retrato de Elian_20
+  - first:
+      213: 5727557085060268236
+    second: HUD Retro Ornado com Retrato de Elian_21
+  - first:
+      213: 7076665563073764032
+    second: HUD Retro Ornado com Retrato de Elian_22
+  - first:
+      213: -4375575133296525485
+    second: HUD Retro Ornado com Retrato de Elian_23
+  - first:
+      213: -2861505059064243659
+    second: HUD Retro Ornado com Retrato de Elian_24
+  - first:
+      213: -9131776075572218555
+    second: HUD Retro Ornado com Retrato de Elian_25
+  - first:
+      213: -7385113595789568081
+    second: HUD Retro Ornado com Retrato de Elian_26
+  - first:
+      213: 8331489462576363258
+    second: HUD Retro Ornado com Retrato de Elian_27
+  - first:
+      213: 4387324774392002914
+    second: HUD Retro Ornado com Retrato de Elian_28
+  - first:
+      213: -3336742696141357717
+    second: HUD Retro Ornado com Retrato de Elian_29
+  - first:
+      213: 6800615436087014122
+    second: HUD Retro Ornado com Retrato de Elian_30
+  - first:
+      213: -6386772745002769844
+    second: HUD Retro Ornado com Retrato de Elian_31
+  - first:
+      213: -5577118402062865788
+    second: HUD Retro Ornado com Retrato de Elian_32
+  - first:
+      213: 7305277402381947426
+    second: HUD Retro Ornado com Retrato de Elian_33
+  - first:
+      213: 6061545938637133983
+    second: HUD Retro Ornado com Retrato de Elian_34
+  - first:
+      213: 6526640817103975749
+    second: HUD Retro Ornado com Retrato de Elian_35
+  - first:
+      213: 5314563613053914551
+    second: HUD Retro Ornado com Retrato de Elian_36
+  - first:
+      213: 3132734272080710196
+    second: HUD Retro Ornado com Retrato de Elian_37
+  - first:
+      213: -5056395802449080142
+    second: HUD Retro Ornado com Retrato de Elian_38
+  - first:
+      213: 6132028715545729269
+    second: HUD Retro Ornado com Retrato de Elian_39
+  - first:
+      213: 4896038081543546733
+    second: HUD Retro Ornado com Retrato de Elian_40
+  - first:
+      213: 2606511174785222812
+    second: HUD Retro Ornado com Retrato de Elian_41
+  - first:
+      213: -7592172878253841112
+    second: HUD Retro Ornado com Retrato de Elian_42
+  - first:
+      213: -6407501208406735416
+    second: HUD Retro Ornado com Retrato de Elian_43
+  - first:
+      213: 1394392479141553225
+    second: HUD Retro Ornado com Retrato de Elian_44
+  - first:
+      213: -37202381127657773
+    second: HUD Retro Ornado com Retrato de Elian_45
+  - first:
+      213: -3412074424149319079
+    second: HUD Retro Ornado com Retrato de Elian_46
+  - first:
+      213: -1432651477206583297
+    second: HUD Retro Ornado com Retrato de Elian_47
+  - first:
+      213: -8756632923305339515
+    second: HUD Retro Ornado com Retrato de Elian_48
+  - first:
+      213: 9068135073470461521
+    second: HUD Retro Ornado com Retrato de Elian_49
+  - first:
+      213: 3123699652809641943
+    second: HUD Retro Ornado com Retrato de Elian_50
+  - first:
+      213: -3801841193046318262
+    second: HUD Retro Ornado com Retrato de Elian_51
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 21
+        width: 1717
+        height: 831
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3581ec3c68f0f4320800000000000000
+      internalID: 2544269385972717651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 829
+        width: 81
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50d7afcae9dfaab60800000000000000
+      internalID: 7758292166047857925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_2
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 847
+        width: 194
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd33e620d46d813b0800000000000000
+      internalID: -5541443715237792805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_3
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 849
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22052b853038297d0800000000000000
+      internalID: -2913121958559068126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_4
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 849
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e1b26e843b9864e0800000000000000
+      internalID: -1988168585454636573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_5
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 845
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fad915b3528d7c00800000000000000
+      internalID: 900018796576234231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_6
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 849
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f20ad02b3f3dd1800800000000000000
+      internalID: 584856570245783599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_7
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 849
+        width: 13
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 762199cd29285dde0800000000000000
+      internalID: -1308996549403405721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_8
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 820
+        width: 83
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4a1fd7f77ca47fa0800000000000000
+      internalID: -5803824388514047411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_9
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 847
+        width: 101
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6455322d10e3c9f40800000000000000
+      internalID: 5736528202904589638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_10
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 837
+        width: 63
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6c5ce4204e9f4d60800000000000000
+      internalID: 7876688271628852334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_11
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 845
+        width: 33
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9c9fc449f8498320800000000000000
+      internalID: 2560658098575350942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_12
+      rect:
+        serializedVersion: 2
+        x: 1001
+        y: 798
+        width: 39
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5b5218e702ddd200800000000000000
+      internalID: 206552089329032031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_13
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 727
+        width: 216
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb4ef790a78e92c80800000000000000
+      internalID: -8346884823511472964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_14
+      rect:
+        serializedVersion: 2
+        x: 1303
+        y: 723
+        width: 238
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eed981e94a81c8310800000000000000
+      internalID: 1408527878766239214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_15
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 829
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fef5f13db7ce7c350800000000000000
+      internalID: 6037053842080620527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_16
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 837
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 163f7d65a5d8456d0800000000000000
+      internalID: -3002619632405712031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_17
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 813
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07b5b7b6111981fd0800000000000000
+      internalID: -2370985699806848144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_18
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 811
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 499e959f5a498aa90800000000000000
+      internalID: -7302423355207325292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_19
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 819
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b99ed91ccf3a1f730800000000000000
+      internalID: 4031183447448742299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_20
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 823
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f80bc755950f17d80800000000000000
+      internalID: -8254552375516417905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_21
+      rect:
+        serializedVersion: 2
+        x: 1231
+        y: 819
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc00acda2de5c7f40800000000000000
+      internalID: 5727557085060268236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_22
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 764
+        width: 55
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ca5049f5dd553260800000000000000
+      internalID: 7076665563073764032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_23
+      rect:
+        serializedVersion: 2
+        x: 1235
+        y: 814
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35ff3db5995d643c0800000000000000
+      internalID: -4375575133296525485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_24
+      rect:
+        serializedVersion: 2
+        x: 1513
+        y: 811
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53a1e774f44e948d0800000000000000
+      internalID: -2861505059064243659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_25
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 795
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5457b1f9a0a654180800000000000000
+      internalID: -9131776075572218555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_26
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 800
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa71e09005ec28990800000000000000
+      internalID: -7385113595789568081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_27
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 776
+        width: 37
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af636ca26856f9370800000000000000
+      internalID: 8331489462576363258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_28
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 794
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 269f7e323a8e2ec30800000000000000
+      internalID: 4387324774392002914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_29
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 794
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6d7d99523281b1d0800000000000000
+      internalID: -3336742696141357717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_30
+      rect:
+        serializedVersion: 2
+        x: 983
+        y: 793
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae2310a35b3a06e50800000000000000
+      internalID: 6800615436087014122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_31
+      rect:
+        serializedVersion: 2
+        x: 1516
+        y: 789
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c42a6f8e600ad57a0800000000000000
+      internalID: -6386772745002769844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_32
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 776
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48aafb6bc581a92b0800000000000000
+      internalID: -5577118402062865788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_33
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 776
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2221aaaa71f816560800000000000000
+      internalID: 7305277402381947426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_34
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 784
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f989d2e6aefee1450800000000000000
+      internalID: 6061545938637133983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_35
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 780
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5453c085e39439a50800000000000000
+      internalID: 6526640817103975749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_36
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 770
+        width: 44
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bd8b44c27f11c940800000000000000
+      internalID: 5314563613053914551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_37
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 776
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43a0017f835b97b20800000000000000
+      internalID: 3132734272080710196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_38
+      rect:
+        serializedVersion: 2
+        x: 1616
+        y: 648
+        width: 93
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b01f3fbec214d9b0800000000000000
+      internalID: -5056395802449080142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_39
+      rect:
+        serializedVersion: 2
+        x: 1692
+        y: 705
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f8199eb0a7591550800000000000000
+      internalID: 6132028715545729269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_40
+      rect:
+        serializedVersion: 2
+        x: 1642
+        y: 423
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d672031e1b832f340800000000000000
+      internalID: 4896038081543546733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_41
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 311
+        width: 65
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c98c8248a103c2420800000000000000
+      internalID: 2606511174785222812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_42
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 329
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82523560efe23a690800000000000000
+      internalID: -7592172878253841112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_43
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 208
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c5c70f699bf317a0800000000000000
+      internalID: -6407501208406735416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_44
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 216
+        width: 22
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94465bc6290e95310800000000000000
+      internalID: 1394392479141553225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_45
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 175
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d65618a1a4db7ff0800000000000000
+      internalID: -37202381127657773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_46
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 137
+        width: 25
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9526261a360e5a0d0800000000000000
+      internalID: -3412074424149319079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_47
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 151
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff7b92e62133e1ce0800000000000000
+      internalID: -1432651477206583297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_48
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 145
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58515e930c03a7680800000000000000
+      internalID: -8756632923305339515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_49
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 131
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 156b775edcc78dd70800000000000000
+      internalID: 9068135073470461521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_50
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 129
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dfcabeb84c995b20800000000000000
+      internalID: 3123699652809641943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD Retro Ornado com Retrato de Elian_51
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 31
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a43e604f3952d3bc0800000000000000
+      internalID: -3801841193046318262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      HUD Retro Ornado com Retrato de Elian_0: 2544269385972717651
+      HUD Retro Ornado com Retrato de Elian_1: 7758292166047857925
+      HUD Retro Ornado com Retrato de Elian_10: 7876688271628852334
+      HUD Retro Ornado com Retrato de Elian_11: 2560658098575350942
+      HUD Retro Ornado com Retrato de Elian_12: 206552089329032031
+      HUD Retro Ornado com Retrato de Elian_13: -8346884823511472964
+      HUD Retro Ornado com Retrato de Elian_14: 1408527878766239214
+      HUD Retro Ornado com Retrato de Elian_15: 6037053842080620527
+      HUD Retro Ornado com Retrato de Elian_16: -3002619632405712031
+      HUD Retro Ornado com Retrato de Elian_17: -2370985699806848144
+      HUD Retro Ornado com Retrato de Elian_18: -7302423355207325292
+      HUD Retro Ornado com Retrato de Elian_19: 4031183447448742299
+      HUD Retro Ornado com Retrato de Elian_2: -5541443715237792805
+      HUD Retro Ornado com Retrato de Elian_20: -8254552375516417905
+      HUD Retro Ornado com Retrato de Elian_21: 5727557085060268236
+      HUD Retro Ornado com Retrato de Elian_22: 7076665563073764032
+      HUD Retro Ornado com Retrato de Elian_23: -4375575133296525485
+      HUD Retro Ornado com Retrato de Elian_24: -2861505059064243659
+      HUD Retro Ornado com Retrato de Elian_25: -9131776075572218555
+      HUD Retro Ornado com Retrato de Elian_26: -7385113595789568081
+      HUD Retro Ornado com Retrato de Elian_27: 8331489462576363258
+      HUD Retro Ornado com Retrato de Elian_28: 4387324774392002914
+      HUD Retro Ornado com Retrato de Elian_29: -3336742696141357717
+      HUD Retro Ornado com Retrato de Elian_3: -2913121958559068126
+      HUD Retro Ornado com Retrato de Elian_30: 6800615436087014122
+      HUD Retro Ornado com Retrato de Elian_31: -6386772745002769844
+      HUD Retro Ornado com Retrato de Elian_32: -5577118402062865788
+      HUD Retro Ornado com Retrato de Elian_33: 7305277402381947426
+      HUD Retro Ornado com Retrato de Elian_34: 6061545938637133983
+      HUD Retro Ornado com Retrato de Elian_35: 6526640817103975749
+      HUD Retro Ornado com Retrato de Elian_36: 5314563613053914551
+      HUD Retro Ornado com Retrato de Elian_37: 3132734272080710196
+      HUD Retro Ornado com Retrato de Elian_38: -5056395802449080142
+      HUD Retro Ornado com Retrato de Elian_39: 6132028715545729269
+      HUD Retro Ornado com Retrato de Elian_4: -1988168585454636573
+      HUD Retro Ornado com Retrato de Elian_40: 4896038081543546733
+      HUD Retro Ornado com Retrato de Elian_41: 2606511174785222812
+      HUD Retro Ornado com Retrato de Elian_42: -7592172878253841112
+      HUD Retro Ornado com Retrato de Elian_43: -6407501208406735416
+      HUD Retro Ornado com Retrato de Elian_44: 1394392479141553225
+      HUD Retro Ornado com Retrato de Elian_45: -37202381127657773
+      HUD Retro Ornado com Retrato de Elian_46: -3412074424149319079
+      HUD Retro Ornado com Retrato de Elian_47: -1432651477206583297
+      HUD Retro Ornado com Retrato de Elian_48: -8756632923305339515
+      HUD Retro Ornado com Retrato de Elian_49: 9068135073470461521
+      HUD Retro Ornado com Retrato de Elian_5: 900018796576234231
+      HUD Retro Ornado com Retrato de Elian_50: 3123699652809641943
+      HUD Retro Ornado com Retrato de Elian_51: -3801841193046318262
+      HUD Retro Ornado com Retrato de Elian_6: 584856570245783599
+      HUD Retro Ornado com Retrato de Elian_7: -1308996549403405721
+      HUD Retro Ornado com Retrato de Elian_8: -5803824388514047411
+      HUD Retro Ornado com Retrato de Elian_9: 5736528202904589638
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

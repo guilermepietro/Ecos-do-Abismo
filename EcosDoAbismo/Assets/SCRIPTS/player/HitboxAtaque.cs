@@ -7,10 +7,16 @@ public class HitboxAtaque : MonoBehaviour
 
     private BoxCollider2D boxCollider;
     private List<GameObject> inimigosAtingidos = new List<GameObject>();
+
     public float forcaKnockback = 3f;
+
+    private ElianUltimate ultimate;
+
     void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+
+        ultimate = GetComponentInParent<ElianUltimate>();
     }
 
     public void LimparInimigosAtingidos()
@@ -39,138 +45,196 @@ public class HitboxAtaque : MonoBehaviour
                 {
                     inimigosAtingidos.Add(inimigo.gameObject);
 
+                    bool acertouInimigo = false;
+
                     VidaInimigo vida = inimigo.GetComponent<VidaInimigo>();
 
-if (vida != null)
-{
-    vida.ReceberDano(danoAtual);
-}
+                    if (vida != null)
+                    {
+                        vida.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-VoragulVida vidaVoragul = inimigo.GetComponent<VoragulVida>();
+                    VoragulVida vidaVoragul = inimigo.GetComponent<VoragulVida>();
 
-if (vidaVoragul != null)
-{
-    vidaVoragul.ReceberDano(danoAtual);
-}
+                    if (vidaVoragul != null)
+                    {
+                        vidaVoragul.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
+                    RakthasVida vidaRakthas = inimigo.GetComponent<RakthasVida>();
 
-RakthasVida vidaRakthas = inimigo.GetComponent<RakthasVida>();
+                    if (vidaRakthas != null)
+                    {
+                        vidaRakthas.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-if (vidaRakthas != null)
-{
-    vidaRakthas.ReceberDano(danoAtual);
-}
+                    SalenthraVida vidaSalenthra = inimigo.GetComponent<SalenthraVida>();
 
-SalenthraVida vidaSalenthra = inimigo.GetComponent<SalenthraVida>();
+                    if (vidaSalenthra != null)
+                    {
+                        vidaSalenthra.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-if (vidaSalenthra != null)
-{
-    vidaSalenthra.ReceberDano(danoAtual);
-}
-CabecaDeChamaVida vidaCabecaDeChama = inimigo.GetComponent<CabecaDeChamaVida>();
+                    CabecaDeChamaVida vidaCabecaDeChama =
+                        inimigo.GetComponent<CabecaDeChamaVida>();
 
-if (vidaCabecaDeChama != null)
-{
-    vidaCabecaDeChama.ReceberDano(danoAtual);
-}
-EsqueleticoVida vidaEsqueletico = inimigo.GetComponent<EsqueleticoVida>();
+                    if (vidaCabecaDeChama != null)
+                    {
+                        vidaCabecaDeChama.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-if (vidaEsqueletico != null)
-{
-    vidaEsqueletico.ReceberDano(danoAtual);
-}
-GosmaHumanoideVida vidaGosma = inimigo.GetComponent<GosmaHumanoideVida>();
+                    EsqueleticoVida vidaEsqueletico =
+                        inimigo.GetComponent<EsqueleticoVida>();
 
-if (vidaGosma != null)
-{
-    vidaGosma.ReceberDano(danoAtual);
-}
+                    if (vidaEsqueletico != null)
+                    {
+                        vidaEsqueletico.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-CerberoVida vidaCerbero = inimigo.GetComponent<CerberoVida>();
+                    GosmaHumanoideVida vidaGosma =
+                        inimigo.GetComponent<GosmaHumanoideVida>();
 
-if (vidaCerbero != null)
-{
-    vidaCerbero.ReceberDano(danoAtual);
-}
+                    if (vidaGosma != null)
+                    {
+                        vidaGosma.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-MorcegoVida vidaMorcego = inimigo.GetComponent<MorcegoVida>();
+                    CerberoVida vidaCerbero =
+                        inimigo.GetComponent<CerberoVida>();
 
-if (vidaMorcego != null)
-{
-    vidaMorcego.ReceberDano(danoAtual);
-}
+                    if (vidaCerbero != null)
+                    {
+                        vidaCerbero.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-GolemVida vidaGolem = inimigo.GetComponent<GolemVida>();
+                    MorcegoVida vidaMorcego =
+                        inimigo.GetComponent<MorcegoVida>();
 
-if (vidaGolem != null)
-{
-    vidaGolem.ReceberDano(danoAtual);
-}
+                    if (vidaMorcego != null)
+                    {
+                        vidaMorcego.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-EstatuaVida vidaEstatua = inimigo.GetComponent<EstatuaVida>();
+                    GolemVida vidaGolem =
+                        inimigo.GetComponent<GolemVida>();
 
-if (vidaEstatua != null)
-{
-    vidaEstatua.ReceberDano(danoAtual);
-}
+                    if (vidaGolem != null)
+                    {
+                        vidaGolem.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-RestosVida vidaRestos = inimigo.GetComponent<RestosVida>();
+                    EstatuaVida vidaEstatua =
+                        inimigo.GetComponent<EstatuaVida>();
 
-if (vidaRestos != null)
-{
-    vidaRestos.ReceberDano(danoAtual);
-}
+                    if (vidaEstatua != null)
+                    {
+                        vidaEstatua.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-CarcacaVida vidaCarcaca = inimigo.GetComponent<CarcacaVida>();
+                    RestosVida vidaRestos =
+                        inimigo.GetComponent<RestosVida>();
 
-if (vidaCarcaca != null)
-{
-    vidaCarcaca.ReceberDano(danoAtual);
-}
+                    if (vidaRestos != null)
+                    {
+                        vidaRestos.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-RastejadorVida vidaRastejador = inimigo.GetComponent<RastejadorVida>();
+                    CarcacaVida vidaCarcaca =
+                        inimigo.GetComponent<CarcacaVida>();
 
-if (vidaRastejador != null)
-{
-    vidaRastejador.ReceberDano(danoAtual);
-}
+                    if (vidaCarcaca != null)
+                    {
+                        vidaCarcaca.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-MongeVida vidaMonge = inimigo.GetComponent<MongeVida>();
+                    RastejadorVida vidaRastejador =
+                        inimigo.GetComponent<RastejadorVida>();
 
-if (vidaMonge != null)
-{
-    vidaMonge.ReceberDano(danoAtual);
-}
+                    if (vidaRastejador != null)
+                    {
+                        vidaRastejador.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-SombraVida vidaSombra = inimigo.GetComponent<SombraVida>();
+                    MongeVida vidaMonge =
+                        inimigo.GetComponent<MongeVida>();
 
-if (vidaSombra != null)
-{
-    vidaSombra.ReceberDano(danoAtual);
-}
+                    if (vidaMonge != null)
+                    {
+                        vidaMonge.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-CriaturaVida vidaCriatura = inimigo.GetComponent<CriaturaVida>();
+                    SombraVida vidaSombra =
+                        inimigo.GetComponent<SombraVida>();
 
-if (vidaCriatura != null)
-{
-    vidaCriatura.ReceberDano(danoAtual);
-}
+                    if (vidaSombra != null)
+                    {
+                        vidaSombra.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-KnockbackInimigo knockback = inimigo.GetComponent<KnockbackInimigo>();
+                    CriaturaVida vidaCriatura =
+                        inimigo.GetComponent<CriaturaVida>();
 
-if (knockback != null)
-{
-    float direcao = transform.position.x < inimigo.transform.position.x ? 1f : -1f;
+                    if (vidaCriatura != null)
+                    {
+                        vidaCriatura.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
 
-    knockback.AplicarEmpurrao(forcaKnockback, direcao);
-}
+                    // CARGA DA ULTIMATE
+                    if (acertouInimigo && ultimate != null)
+                    {
+                        if (danoAtual == 20)
+                        {
+                            ultimate.AdicionarCarga(4);
+                        }
+                        else if (danoAtual == 30)
+                        {
+                            ultimate.AdicionarCarga(6);
+                        }
+                        else if (danoAtual == 50)
+                        {
+                            ultimate.AdicionarCarga(10);
+                        }
+                    }
+
+                    KnockbackInimigo knockback =
+                        inimigo.GetComponent<KnockbackInimigo>();
+
+                    if (knockback != null)
+                    {
+                        float direcao =
+                            transform.position.x < inimigo.transform.position.x
+                            ? 1f
+                            : -1f;
+
+                        knockback.AplicarEmpurrao(
+                            forcaKnockback,
+                            direcao
+                        );
+                    }
                 }
             }
         }
     }
 
     public void DefinirKnockback(float forca)
-{
-    forcaKnockback = forca;
-}
+    {
+        forcaKnockback = forca;
+    }
 }

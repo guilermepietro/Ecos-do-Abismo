@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: 4145700f5dc26bc45b15f166c5579008
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6826205398817363991
+    second: HUD de Elian com Retrato Dourado_0
+  - first:
+      213: -3388995616319117624
+    second: HUD de Elian com Retrato Dourado_1
+  - first:
+      213: 6123035082102524579
+    second: HUD de Elian com Retrato Dourado_2
+  - first:
+      213: 2119466205995129283
+    second: HUD de Elian com Retrato Dourado_3
+  - first:
+      213: 6369324905974403694
+    second: HUD de Elian com Retrato Dourado_4
+  - first:
+      213: 2145365549369358832
+    second: HUD de Elian com Retrato Dourado_5
+  - first:
+      213: 3852431816436432371
+    second: HUD de Elian com Retrato Dourado_6
+  - first:
+      213: -6996046268422781848
+    second: HUD de Elian com Retrato Dourado_7
+  - first:
+      213: 7820254620745663278
+    second: HUD de Elian com Retrato Dourado_8
+  - first:
+      213: 2534480336836878933
+    second: HUD de Elian com Retrato Dourado_9
+  - first:
+      213: -3652244596544269812
+    second: HUD de Elian com Retrato Dourado_10
+  - first:
+      213: -5532042629660020269
+    second: HUD de Elian com Retrato Dourado_11
+  - first:
+      213: 5624789810438517451
+    second: HUD de Elian com Retrato Dourado_12
+  - first:
+      213: -3634930687530988263
+    second: HUD de Elian com Retrato Dourado_13
+  - first:
+      213: -501688851276428095
+    second: HUD de Elian com Retrato Dourado_14
+  - first:
+      213: 7064957007943050089
+    second: HUD de Elian com Retrato Dourado_15
+  - first:
+      213: 5632207426906287988
+    second: HUD de Elian com Retrato Dourado_16
+  - first:
+      213: 950422694532604493
+    second: HUD de Elian com Retrato Dourado_17
+  - first:
+      213: 4086925842796838331
+    second: HUD de Elian com Retrato Dourado_18
+  - first:
+      213: -1397117701898266855
+    second: HUD de Elian com Retrato Dourado_19
+  - first:
+      213: 2490573035960665619
+    second: HUD de Elian com Retrato Dourado_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 1712
+        height: 785
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 718dc58b4ad8bbe50800000000000000
+      internalID: 6826205398817363991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_1
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 848
+        width: 29
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c661ff417ed7f0d0800000000000000
+      internalID: -3388995616319117624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_2
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 838
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aac9f747f369f450800000000000000
+      internalID: 6123035082102524579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_3
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 771
+        width: 74
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c9d8c1f84bd96d10800000000000000
+      internalID: 2119466205995129283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_4
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 805
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6217af7143646850800000000000000
+      internalID: 6369324905974403694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_5
+      rect:
+        serializedVersion: 2
+        x: 1495
+        y: 795
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f9758bb99ed5cd10800000000000000
+      internalID: 2145365549369358832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_6
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 770
+        width: 56
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fd3b147356967530800000000000000
+      internalID: 3852431816436432371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_7
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 797
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 864867a4cfc09ee90800000000000000
+      internalID: -6996046268422781848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_8
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 792
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2307a2e420278c60800000000000000
+      internalID: 7820254620745663278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_9
+      rect:
+        serializedVersion: 2
+        x: 1415
+        y: 779
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 552ef5720784c2320800000000000000
+      internalID: 2534480336836878933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_10
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 778
+        width: 37
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c02932ec3ee905dc0800000000000000
+      internalID: -3652244596544269812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_11
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 763
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d1fbc0d98c3a33b0800000000000000
+      internalID: -5532042629660020269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_12
+      rect:
+        serializedVersion: 2
+        x: 1191
+        y: 763
+        width: 9
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc2bc6bf7844f0e40800000000000000
+      internalID: 5624789810438517451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_13
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 779
+        width: 23
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91d8c826cc12e8dc0800000000000000
+      internalID: -3634930687530988263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_14
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 779
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cc05e7d5a4a909f0800000000000000
+      internalID: -501688851276428095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_15
+      rect:
+        serializedVersion: 2
+        x: 1391
+        y: 777
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9632adb87f4cb0260800000000000000
+      internalID: 7064957007943050089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_16
+      rect:
+        serializedVersion: 2
+        x: 1403
+        y: 777
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47fe01660de992e40800000000000000
+      internalID: 5632207426906287988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_17
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 763
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d42e516b764903d00800000000000000
+      internalID: 950422694532604493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_18
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 127
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbdf44b866da7b830800000000000000
+      internalID: 4086925842796838331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_19
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 121
+        width: 11
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91791f43ad07c9ce0800000000000000
+      internalID: -1397117701898266855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD de Elian com Retrato Dourado_20
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 121
+        width: 52
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3160a970bfa409220800000000000000
+      internalID: 2490573035960665619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      HUD de Elian com Retrato Dourado_0: 6826205398817363991
+      HUD de Elian com Retrato Dourado_1: -3388995616319117624
+      HUD de Elian com Retrato Dourado_10: -3652244596544269812
+      HUD de Elian com Retrato Dourado_11: -5532042629660020269
+      HUD de Elian com Retrato Dourado_12: 5624789810438517451
+      HUD de Elian com Retrato Dourado_13: -3634930687530988263
+      HUD de Elian com Retrato Dourado_14: -501688851276428095
+      HUD de Elian com Retrato Dourado_15: 7064957007943050089
+      HUD de Elian com Retrato Dourado_16: 5632207426906287988
+      HUD de Elian com Retrato Dourado_17: 950422694532604493
+      HUD de Elian com Retrato Dourado_18: 4086925842796838331
+      HUD de Elian com Retrato Dourado_19: -1397117701898266855
+      HUD de Elian com Retrato Dourado_2: 6123035082102524579
+      HUD de Elian com Retrato Dourado_20: 2490573035960665619
+      HUD de Elian com Retrato Dourado_3: 2119466205995129283
+      HUD de Elian com Retrato Dourado_4: 6369324905974403694
+      HUD de Elian com Retrato Dourado_5: 2145365549369358832
+      HUD de Elian com Retrato Dourado_6: 3852431816436432371
+      HUD de Elian com Retrato Dourado_7: -6996046268422781848
+      HUD de Elian com Retrato Dourado_8: 7820254620745663278
+      HUD de Elian com Retrato Dourado_9: 2534480336836878933
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

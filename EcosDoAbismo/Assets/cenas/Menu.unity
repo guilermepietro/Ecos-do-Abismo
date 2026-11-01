@@ -427,7 +427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TransicaoTela
   imagemFade: {fileID: 540444145}
-  duracaoFade: 1.5
+  duracaoEscurecer: 0.5
+  duracaoClarear: 2
 --- !u!4 &56124384
 Transform:
   m_ObjectHideFlags: 0

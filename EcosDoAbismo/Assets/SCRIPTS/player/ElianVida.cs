@@ -1,6 +1,6 @@
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ElianVida : MonoBehaviour
@@ -9,6 +9,13 @@ public class ElianVida : MonoBehaviour
     public int vidaMaxima = 100;
 
     private int vidaAtual;
+
+    [Header("HUD")]
+    public Image barraVida;
+    public float velocidadeBarraVida = 1.5f;
+
+    private float valorVisualVida = 1f;
+
     private Animator animator;
     private ElianDefesa defesa;
     private SpriteRenderer spriteRenderer;
@@ -42,10 +49,15 @@ public class ElianVida : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         movimento = GetComponent<ElianMovimento>();
         defesa = GetComponent<ElianDefesa>();
+
+        valorVisualVida = 1f;
+        AtualizarBarraVidaImediatamente();
     }
 
     void Update()
     {
+        AtualizarBarraVidaSuave();
+
         if (Input.GetKeyDown(KeyCode.H))
         {
             ReceberDano(20);
@@ -84,6 +96,11 @@ public class ElianVida : MonoBehaviour
         }
 
         vidaAtual -= dano;
+
+        if (vidaAtual < 0)
+        {
+            vidaAtual = 0;
+        }
 
         Debug.Log("Vida do Elian: " + vidaAtual);
 
@@ -247,5 +264,38 @@ public class ElianVida : MonoBehaviour
         }
 
         Debug.Log("Elian foi curado! Vida atual: " + vidaAtual);
+    }
+
+    void AtualizarBarraVidaSuave()
+    {
+        if (barraVida == null)
+        {
+            return;
+        }
+
+        float alvo =
+            (float)vidaAtual / vidaMaxima;
+
+        valorVisualVida = Mathf.MoveTowards(
+            valorVisualVida,
+            alvo,
+            velocidadeBarraVida * Time.deltaTime
+        );
+
+        barraVida.fillAmount = valorVisualVida;
+    }
+
+    void AtualizarBarraVidaImediatamente()
+    {
+        if (barraVida == null)
+        {
+            return;
+        }
+
+        valorVisualVida =
+            (float)vidaAtual / vidaMaxima;
+
+        barraVida.fillAmount =
+            valorVisualVida;
     }
 }
