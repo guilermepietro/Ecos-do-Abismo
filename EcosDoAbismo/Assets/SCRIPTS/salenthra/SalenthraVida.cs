@@ -88,38 +88,15 @@ public class SalenthraVida : MonoBehaviour
     }
 
     private void Update()
+{
+    if (
+        transformando &&
+        animator.GetCurrentAnimatorStateInfo(0).IsName("Idle Fase 2")
+    )
     {
-        if (
-            transformando &&
-            animator.GetCurrentAnimatorStateInfo(0).IsName("Idle Fase 2")
-        )
-        {
-            IniciarFase2();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            if (!morta)
-            {
-                if (faseAtual == 1)
-                {
-                    vidaAtualFase1 = 0;
-                    IniciarTransformacao();
-                }
-                else if (faseAtual == 2)
-                {
-                    vidaAtualFase2 = 0;
-
-                    if (movimento != null)
-                    {
-                        movimento.CancelarAtaquesPorDano();
-                    }
-
-                    MorrerFase2();
-                }
-            }
-        }
+        IniciarFase2();
     }
+}
 
     public void ReceberDano(int dano)
     {

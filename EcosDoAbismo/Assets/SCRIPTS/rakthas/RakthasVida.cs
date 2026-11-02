@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class RakthasVida : MonoBehaviour
@@ -14,6 +13,12 @@ public class RakthasVida : MonoBehaviour
 
     [Header("Referências")]
     public Animator animator;
+
+    [Header("Relíquia")]
+    public GameObject prefabReliquia;
+    public Transform pontoDropReliquia;
+
+    private bool reliquiaDropada = false;
 
     public bool EstaTomandoDano => tomandoDano;
     public bool EstaMorto => morto;
@@ -36,16 +41,49 @@ public class RakthasVida : MonoBehaviour
         DadosSalvamento dados =
             GerenciadorSalvamento.Carregar(slot);
 
-        if (dados == null || dados.chefesDerrotados == null)
+        if (dados == null ||
+            dados.chefesDerrotados == null)
             return;
 
         if (dados.chefesDerrotados.Contains("Rakthas"))
         {
             Debug.Log(
-                "Rakthas já foi derrotado no slot " + slot
+                "Rakthas já foi derrotado no slot " +
+                slot
             );
 
+            bool possuiCaliceDeBrasas = false;
+
+            if (dados.reliquiasObtidas != null)
+            {
+                possuiCaliceDeBrasas =
+                    dados.reliquiasObtidas.Contains(
+                        "CaliceDeBrasas"
+                    );
+            }
+
+            // Rakthas morreu, mas o jogador
+            // ainda não coletou a relíquia.
+            if (!possuiCaliceDeBrasas)
+            {
+                DroparReliquia();
+
+                Debug.Log(
+                    "Cálice de Brasas ainda não foi coletado. " +
+                    "Relíquia restaurada na arena."
+                );
+            }
+
             gameObject.SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        // TECLA TEMPORÁRIA PARA TESTE
+        if (Input.GetKeyDown(KeyCode.Alpha2) && !morto)
+        {
+            ReceberDano(vidaAtual);
         }
     }
 
@@ -56,35 +94,42 @@ public class RakthasVida : MonoBehaviour
 
         vidaAtual -= dano;
 
-        // MORTE
         if (vidaAtual <= 0)
         {
+            vidaAtual = 0;
+
             Morrer();
             return;
         }
 
-        // SE ESTÁ ATACANDO:
-        // recebe dano, mas não interrompe o ataque
+        // Durante um ataque, Rakthas recebe dano,
+        // mas o ataque não é interrompido.
         if (ataques != null && ataques.EstaAtacando)
         {
             return;
         }
 
-        // DANO NORMAL
         tomandoDano = true;
 
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        Rigidbody2D rb =
+            GetComponent<Rigidbody2D>();
 
         if (rb != null)
         {
-            rb.linearVelocity = new Vector2(
-                0,
-                rb.linearVelocity.y
-            );
+            rb.linearVelocity =
+                new Vector2(
+                    0,
+                    rb.linearVelocity.y
+                );
         }
 
-        animator.SetBool("estaCorrendo", false);
+        animator.SetBool(
+            "estaCorrendo",
+            false
+        );
+
         animator.speed = 1f;
+
         animator.SetTrigger("Dano");
     }
 
@@ -93,33 +138,99 @@ public class RakthasVida : MonoBehaviour
         morto = true;
         tomandoDano = false;
 
-        // NA MORTE, CANCELA QUALQUER ATAQUE
         if (ataques != null)
         {
             ataques.CancelarAtaque();
         }
 
+        // DESATIVA TODOS OS COLLIDERS
+        // PARA O CORPO MORTO NÃO ATRAPALHAR
+        // O ELIAN NEM A RELÍQUIA.
+        Collider2D[] colliders =
+            GetComponentsInChildren<Collider2D>();
+
+        foreach (Collider2D collider in colliders)
+        {
+            collider.enabled = false;
+        }
+
         animator.speed = 1f;
-        animator.SetBool("estaCorrendo", false);
+
+        animator.SetBool(
+            "estaCorrendo",
+            false
+        );
+
         animator.SetTrigger("Morte");
 
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        Rigidbody2D rb =
+            GetComponent<Rigidbody2D>();
 
         if (rb != null)
         {
-            rb.linearVelocity = new Vector2(
-                0,
-                rb.linearVelocity.y
-            );
+            rb.linearVelocity =
+                Vector2.zero;
         }
 
-        // Registra a derrota no salvamento
+        // REGISTRA A DERROTA DEFINITIVA
         RegistrarDerrota();
     }
 
+    public void FinalizarDano()
+    {
+        tomandoDano = false;
+    }
+
+    // =========================
+    // DROP DA RELÍQUIA
+    // =========================
+
+    public void DroparReliquia()
+    {
+        if (reliquiaDropada)
+            return;
+
+        if (prefabReliquia == null)
+        {
+            Debug.LogWarning(
+                "Prefab do Cálice de Brasas " +
+                "não foi definido."
+            );
+
+            return;
+        }
+
+        if (pontoDropReliquia == null)
+        {
+            Debug.LogWarning(
+                "Ponto de drop do Cálice de Brasas " +
+                "não foi definido."
+            );
+
+            return;
+        }
+
+        Instantiate(
+            prefabReliquia,
+            pontoDropReliquia.position,
+            Quaternion.identity
+        );
+
+        reliquiaDropada = true;
+
+        Debug.Log(
+            "Rakthas dropou o Cálice de Brasas."
+        );
+    }
+
+    // =========================
+    // SALVAMENTO DA DERROTA
+    // =========================
+
     private void RegistrarDerrota()
     {
-        int slot = MenuSelecaoSave.slotPartidaAtual;
+        int slot =
+            MenuSelecaoSave.slotPartidaAtual;
 
         if (slot < 1 || slot > 3)
         {
@@ -127,6 +238,7 @@ public class RakthasVida : MonoBehaviour
                 "Rakthas derrotado sem slot selecionado. " +
                 "A derrota não será salva."
             );
+
             return;
         }
 
@@ -139,6 +251,7 @@ public class RakthasVida : MonoBehaviour
                 "Não foi possível carregar o salvamento " +
                 "para registrar a derrota do Rakthas."
             );
+
             return;
         }
 
@@ -147,6 +260,7 @@ public class RakthasVida : MonoBehaviour
             Debug.LogError(
                 "Lista de chefes derrotados indisponível."
             );
+
             return;
         }
 
@@ -154,7 +268,6 @@ public class RakthasVida : MonoBehaviour
         {
             dados.chefesDerrotados.Add("Rakthas");
 
-            // Atualiza o tempo antes de salvar a derrota
             if (ContadorTempoJogo.instancia != null)
             {
                 ContadorTempoJogo.instancia
@@ -180,8 +293,12 @@ public class RakthasVida : MonoBehaviour
         }
     }
 
-    public void FinalizarDano()
+    // =========================
+    // FINAL DA MORTE
+    // =========================
+
+    public void FinalizarMorte()
     {
-        tomandoDano = false;
+        gameObject.SetActive(false);
     }
 }

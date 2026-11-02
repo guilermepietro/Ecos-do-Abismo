@@ -663,6 +663,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66422582}
   m_CullTransparentMesh: 1
+--- !u!1 &138036200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 138036201}
+  m_Layer: 7
+  m_Name: PontoDropReliquia
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &138036201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138036200}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.21, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2059395987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &142652946
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +818,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 165.92, y: -0.8, z: 0}
+  m_LocalPosition: {x: 129.3, y: -0.8, z: 0}
   m_LocalScale: {x: 1.9408507, y: 1.9408507, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17766,7 +17797,7 @@ Transform:
   m_GameObject: {fileID: 2059395981}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.6, y: -1.9, z: -0.001670148}
+  m_LocalPosition: {x: 103.6, y: -2.59, z: -0.001670148}
   m_LocalScale: {x: 3.5641396, y: 3.5641396, z: 3.5641396}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17776,6 +17807,7 @@ Transform:
   - {fileID: 762875847}
   - {fileID: 510585059}
   - {fileID: 1590966926}
+  - {fileID: 138036201}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2059395988
@@ -17792,6 +17824,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RakthasVida
   vidaMaxima: 20
   animator: {fileID: 2059395985}
+  prefabReliquia: {fileID: 203640241205803011, guid: d943d0909b2035643b7396a5395deb06, type: 3}
+  pontoDropReliquia: {fileID: 138036201}
 --- !u!114 &2059395990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18725,7 +18759,7 @@ Transform:
   m_GameObject: {fileID: 2124022956}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 127.96, y: -60.15, z: 0}
+  m_LocalPosition: {x: 127.96, y: -2.7, z: 0}
   m_LocalScale: {x: 9.348304, y: 9.348304, z: 9.348304}
   m_ConstrainProportionsScale: 0
   m_Children:
