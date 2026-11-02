@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class ElianColeta : MonoBehaviour
@@ -6,6 +5,7 @@ public class ElianColeta : MonoBehaviour
     private Animator animator;
     private ElianMovimento movimento;
     private ItemColetavel itemPerto;
+    private ReliquiaColetavel reliquiaPerto;
 
     private CheckpointArvore arvorePerto;
     private bool interagindo = false;
@@ -46,12 +46,18 @@ public class ElianColeta : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E) &&
+        if (
+            Input.GetKeyDown(KeyCode.E) &&
             animator.GetBool("estaNoChao") &&
             movimento.podeMover &&
             !interagindo &&
             !MenuViagemAberto &&
-            (itemPerto != null || arvorePerto != null))
+            (
+                itemPerto != null ||
+                reliquiaPerto != null ||
+                arvorePerto != null
+            )
+        )
         {
             interagindo = true;
 
@@ -66,6 +72,13 @@ public class ElianColeta : MonoBehaviour
         itemPerto = item;
     }
 
+    public void DefinirReliquiaPerto(
+        ReliquiaColetavel reliquia
+    )
+    {
+        reliquiaPerto = reliquia;
+    }
+
     public void DefinirArvorePerto(CheckpointArvore arvore)
     {
         arvorePerto = arvore;
@@ -73,7 +86,12 @@ public class ElianColeta : MonoBehaviour
 
     public void ExecutarColeta()
     {
-        if (itemPerto != null)
+        if (reliquiaPerto != null)
+        {
+            reliquiaPerto.Coletar();
+            reliquiaPerto = null;
+        }
+        else if (itemPerto != null)
         {
             itemPerto.Coletar();
             itemPerto = null;

@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class SalenthraVida : MonoBehaviour
@@ -13,11 +12,17 @@ public class SalenthraVida : MonoBehaviour
     [Header("Referências")]
     public Animator animator;
 
+    [Header("Relíquia")]
+    public GameObject laminaCelesteDropPrefab;
+    public Transform pontoDropReliquia;
+
     private SalenthraMovimento movimento;
 
     private int faseAtual = 1;
     private bool transformando = false;
     private bool morta = false;
+
+    private bool reliquiaSolta = false;
 
     public bool EstaMorta
     {
@@ -56,6 +61,28 @@ public class SalenthraVida : MonoBehaviour
                 "Salenthra já foi derrotada no slot " + slot
             );
 
+            bool possuiLaminaCeleste = false;
+
+            if (dados.reliquiasObtidas != null)
+            {
+                possuiLaminaCeleste =
+                    dados.reliquiasObtidas.Contains(
+                        "LaminaCeleste"
+                    );
+            }
+
+            // A Salenthra morreu, mas o jogador
+            // ainda não coletou a relíquia.
+            if (!possuiLaminaCeleste)
+            {
+                SoltarReliquia();
+
+                Debug.Log(
+                    "Lâmina Celeste ainda não foi coletada. " +
+                    "Relíquia restaurada na arena."
+                );
+            }
+
             gameObject.SetActive(false);
         }
     }
@@ -68,6 +95,29 @@ public class SalenthraVida : MonoBehaviour
         )
         {
             IniciarFase2();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (!morta)
+            {
+                if (faseAtual == 1)
+                {
+                    vidaAtualFase1 = 0;
+                    IniciarTransformacao();
+                }
+                else if (faseAtual == 2)
+                {
+                    vidaAtualFase2 = 0;
+
+                    if (movimento != null)
+                    {
+                        movimento.CancelarAtaquesPorDano();
+                    }
+
+                    MorrerFase2();
+                }
+            }
         }
     }
 
@@ -207,6 +257,42 @@ public class SalenthraVida : MonoBehaviour
 
         // Registra apenas a morte definitiva
         RegistrarDerrota();
+    }
+
+    // =========================
+    // DROP DA RELÍQUIA
+    // =========================
+
+    public void SoltarReliquia()
+    {
+        if (reliquiaSolta)
+            return;
+
+        if (laminaCelesteDropPrefab == null)
+        {
+            Debug.LogWarning(
+                "Prefab da Lâmina Celeste não foi atribuído."
+            );
+
+            return;
+        }
+
+        if (pontoDropReliquia == null)
+        {
+            Debug.LogWarning(
+                "Ponto de drop da Lâmina Celeste não foi atribuído."
+            );
+
+            return;
+        }
+
+        reliquiaSolta = true;
+
+        Instantiate(
+            laminaCelesteDropPrefab,
+            pontoDropReliquia.position,
+            Quaternion.identity
+        );
     }
 
     private void RegistrarDerrota()
