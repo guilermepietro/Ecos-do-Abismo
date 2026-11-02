@@ -818,7 +818,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 129.3, y: -0.8, z: 0}
+  m_LocalPosition: {x: 57.3, y: -0.8, z: 0}
   m_LocalScale: {x: 1.9408507, y: 1.9408507, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1998,6 +1998,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &307728014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307728015}
+  m_Layer: 0
+  m_Name: CoroaDoAbismo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &307728015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307728014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.057, y: 0.277, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2121363427}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &312620312
 GameObject:
@@ -9715,7 +9746,7 @@ Transform:
   m_GameObject: {fileID: 1508433437}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 152.7, y: -2.4, z: 0}
+  m_LocalPosition: {x: 55.9, y: -2.77, z: 0}
   m_LocalScale: {x: 9.348304, y: 9.348304, z: 9.348304}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18443,7 +18474,7 @@ Transform:
   m_GameObject: {fileID: 2121363421}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.72, y: -1.4, z: 0}
+  m_LocalPosition: {x: 32.72, y: -2.71, z: 0}
   m_LocalScale: {x: 4.128506, y: 4.128506, z: 4.128506}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18451,6 +18482,7 @@ Transform:
   - {fileID: 1232901652}
   - {fileID: 1450330656}
   - {fileID: 605545644}
+  - {fileID: 307728015}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2121363428
@@ -18466,6 +18498,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoragulVida
   vidaMaxima: 20
+  prefabReliquia: {fileID: 177253702791687700, guid: c8cf44d84a0a4ba47b97540b5a4b6e1b, type: 3}
+  pontoDropReliquia: {fileID: 307728015}
 --- !u!114 &2121363430
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,13 +1,17 @@
-
 using UnityEngine;
 
 public class VoragulVida : MonoBehaviour
 {
     public int vidaMaxima = 500;
 
+    [Header("Relíquia")]
+    public GameObject prefabReliquia;
+    public Transform pontoDropReliquia;
+
     private int vidaAtual;
     private bool morto = false;
     private bool levandoDano = false;
+    private bool reliquiaDropada = false;
 
     private Animator animator;
 
@@ -41,6 +45,15 @@ public class VoragulVida : MonoBehaviour
                 "Voragul já foi derrotado no slot " + slot
             );
 
+            bool coroaJaColetada =
+                dados.reliquiasObtidas != null &&
+                dados.reliquiasObtidas.Contains("CoroaDoAbismo");
+
+            if (!coroaJaColetada)
+            {
+                DroparReliquia();
+            }
+
             gameObject.SetActive(false);
         }
     }
@@ -59,21 +72,24 @@ public class VoragulVida : MonoBehaviour
             return;
         }
 
-        VoragulAtaque1 ataque1 = GetComponent<VoragulAtaque1>();
+        VoragulAtaque1 ataque1 =
+            GetComponent<VoragulAtaque1>();
 
         if (ataque1 != null && ataque1.EstaAtacando())
         {
             return;
         }
 
-        VoragulAtaque2 ataque2 = GetComponent<VoragulAtaque2>();
+        VoragulAtaque2 ataque2 =
+            GetComponent<VoragulAtaque2>();
 
         if (ataque2 != null && ataque2.EstaAtacando())
         {
             return;
         }
 
-        VoragulAtaque3 ataque3 = GetComponent<VoragulAtaque3>();
+        VoragulAtaque3 ataque3 =
+            GetComponent<VoragulAtaque3>();
 
         if (ataque3 != null && ataque3.EstaAtacando())
         {
@@ -120,9 +136,59 @@ public class VoragulVida : MonoBehaviour
             );
         }
 
+        DesativarColliders();
+
         RegistrarDerrota();
 
         animator.SetTrigger("Morte");
+    }
+
+    private void DesativarColliders()
+    {
+        Collider2D[] colliders =
+            GetComponentsInChildren<Collider2D>();
+
+        foreach (Collider2D collider in colliders)
+        {
+            collider.enabled = false;
+        }
+    }
+
+    public void DroparReliquia()
+    {
+        if (reliquiaDropada)
+            return;
+
+        if (prefabReliquia == null)
+        {
+            Debug.LogWarning(
+                "Prefab da Coroa do Abismo não foi configurado."
+            );
+
+            return;
+        }
+
+        if (pontoDropReliquia == null)
+        {
+            Debug.LogWarning(
+                "Ponto de drop da Coroa do Abismo não foi configurado."
+            );
+
+            return;
+        }
+
+        Instantiate(
+            prefabReliquia,
+            pontoDropReliquia.position,
+            Quaternion.identity
+        );
+
+        reliquiaDropada = true;
+    }
+
+    public void FinalizarMorte()
+    {
+        gameObject.SetActive(false);
     }
 
     private void RegistrarDerrota()
@@ -135,6 +201,7 @@ public class VoragulVida : MonoBehaviour
                 "Voragul derrotado sem slot selecionado. " +
                 "A derrota não será salva."
             );
+
             return;
         }
 
@@ -147,6 +214,7 @@ public class VoragulVida : MonoBehaviour
                 "Não foi possível carregar o salvamento " +
                 "para registrar a derrota do Voragul."
             );
+
             return;
         }
 
@@ -155,6 +223,7 @@ public class VoragulVida : MonoBehaviour
             Debug.LogError(
                 "Lista de chefes derrotados indisponível."
             );
+
             return;
         }
 
@@ -162,7 +231,6 @@ public class VoragulVida : MonoBehaviour
         {
             dados.chefesDerrotados.Add("Voragul");
 
-            // Atualiza o tempo antes de gravar a derrota
             if (ContadorTempoJogo.instancia != null)
             {
                 ContadorTempoJogo.instancia
