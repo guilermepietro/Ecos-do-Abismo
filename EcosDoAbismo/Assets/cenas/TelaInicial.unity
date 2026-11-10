@@ -957,6 +957,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586101365}
   m_CullTransparentMesh: 1
+--- !u!1001 &1944657314
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1380683757374741673, guid: 1dcaa98e17bdb3748895fb2c710ad699, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.33638
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380683757374741673, guid: 1dcaa98e17bdb3748895fb2c710ad699, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -97.7187
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380683757374741673, guid: 1dcaa98e17bdb3748895fb2c710ad699, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380683757374741673, guid: 1dcaa98e17bdb3748895fb2c710ad699, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380683757374741673, guid: 1dcaa98e17bdb3748895fb2c710ad699, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380683757374741673, guid: 1dcaa98e17bdb3748895fb2c710ad699, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380683757374741673, guid: 1dcaa98e17bdb3748895fb2c710ad699, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380683757374741673, guid: 1dcaa98e17bdb3748895fb2c710ad699, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380683757374741673, guid: 1dcaa98e17bdb3748895fb2c710ad699, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380683757374741673, guid: 1dcaa98e17bdb3748895fb2c710ad699, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124955264223958272, guid: 1dcaa98e17bdb3748895fb2c710ad699, type: 3}
+      propertyPath: m_Name
+      value: MusicaMenu
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1dcaa98e17bdb3748895fb2c710ad699, type: 3}
 --- !u!1 &2022447268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +1074,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TransicaoTela
   imagemFade: {fileID: 1374479362}
-  duracaoFade: 1
+  duracaoEscurecer: 0.5
+  duracaoClarear: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1026,3 +1084,4 @@ SceneRoots:
   - {fileID: 1234679915}
   - {fileID: 1560423404}
   - {fileID: 2022447270}
+  - {fileID: 1944657314}

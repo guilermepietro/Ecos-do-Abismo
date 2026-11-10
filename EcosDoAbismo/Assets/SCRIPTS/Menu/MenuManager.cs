@@ -243,7 +243,7 @@ public class MenuManager : MonoBehaviour
             cursor.gameObject.SetActive(true);
     }
 
-    // NOVO: inicia o jogo após selecionar um save
+    // Inicia o jogo após selecionar um save
     public void IniciarJogoSelecionado()
     {
         if (emTransicao)
@@ -255,6 +255,12 @@ public class MenuManager : MonoBehaviour
     IEnumerator IniciarJogo()
     {
         emTransicao = true;
+
+        // NOVO: encerra suavemente a música do menu
+        if (MusicaMenuPersistente.Instancia != null)
+        {
+            MusicaMenuPersistente.Instancia.EncerrarComFade(1f);
+        }
 
         if (transicaoTela != null)
         {
