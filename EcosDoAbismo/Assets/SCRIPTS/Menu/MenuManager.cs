@@ -101,6 +101,8 @@ public class MenuManager : MonoBehaviour
 
                 if (!cancelouEdicao)
                     VoltarAoMenu();
+                else
+                    TocarSomVoltar();
             }
 
             return;
@@ -117,6 +119,7 @@ public class MenuManager : MonoBehaviour
                 selectedIndex = 0;
 
             UpdateMenuVisual();
+            TocarSomNavegacao();
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -127,6 +130,7 @@ public class MenuManager : MonoBehaviour
                 selectedIndex = menuOptions.Length - 1;
 
             UpdateMenuVisual();
+            TocarSomNavegacao();
         }
 
         if (Input.GetKeyDown(KeyCode.Return) ||
@@ -158,6 +162,7 @@ public class MenuManager : MonoBehaviour
         }
         else if (selectedIndex == 2)
         {
+            TocarSomConfirmacao();
             StartCoroutine(SairDoJogo());
         }
     }
@@ -166,6 +171,8 @@ public class MenuManager : MonoBehaviour
     {
         if (telaSelecaoSave != null)
         {
+            TocarSomConfirmacao();
+
             telaSelecaoSave.SetActive(true);
 
             if (cursor != null)
@@ -177,6 +184,8 @@ public class MenuManager : MonoBehaviour
     {
         if (telaCategoriasOpcoes != null)
         {
+            TocarSomConfirmacao();
+
             telaCategoriasOpcoes.SetActive(true);
 
             if (cursor != null)
@@ -199,6 +208,9 @@ public class MenuManager : MonoBehaviour
         if (subtela == null)
             return;
 
+        // NOVO: confirma a abertura da categoria
+        TocarSomConfirmacao();
+
         subtela.SetActive(true);
 
         if (telaCategoriasOpcoes != null)
@@ -207,6 +219,9 @@ public class MenuManager : MonoBehaviour
 
     public void VoltarAoMenu()
     {
+        // NOVO: som único de retorno
+        TocarSomVoltar();
+
         bool estavaEmSubtela =
             (telaOpcoes != null && telaOpcoes.activeSelf) ||
             (telaControles != null && telaControles.activeSelf);
@@ -256,7 +271,13 @@ public class MenuManager : MonoBehaviour
     {
         emTransicao = true;
 
-        // NOVO: fade musical antes da troca de cena
+        // NOVO: efeito de início da partida
+        if (SonsInterface.Instancia != null)
+        {
+            SonsInterface.Instancia.TocarIniciarJogo();
+        }
+
+        // Fade musical já existente
         float duracaoFadeMusica = 1.5f;
 
         if (MusicaMenuPersistente.Instancia != null)
@@ -278,7 +299,6 @@ public class MenuManager : MonoBehaviour
             );
         }
 
-        // Aguarda o tempo restante do fade musical
         float tempoRestante = Mathf.Max(
             0f,
             duracaoFadeMusica - duracaoFadeVisual
@@ -291,7 +311,6 @@ public class MenuManager : MonoBehaviour
             );
         }
 
-        // Garante que a música termine antes do carregamento
         yield return null;
 
         GerenciadorCarregamento.proximaCena = "Gameplay";
@@ -335,6 +354,31 @@ public class MenuManager : MonoBehaviour
             cursorAnchors[selectedIndex] != null)
         {
             destinoCursor = cursorAnchors[selectedIndex].position;
+        }
+    }
+
+    // NOVO: chamadas ao sistema central de sons
+    void TocarSomNavegacao()
+    {
+        if (SonsInterface.Instancia != null)
+        {
+            SonsInterface.Instancia.TocarNavegacao();
+        }
+    }
+
+    void TocarSomConfirmacao()
+    {
+        if (SonsInterface.Instancia != null)
+        {
+            SonsInterface.Instancia.TocarConfirmacao();
+        }
+    }
+
+    void TocarSomVoltar()
+    {
+        if (SonsInterface.Instancia != null)
+        {
+            SonsInterface.Instancia.TocarVoltar();
         }
     }
 }

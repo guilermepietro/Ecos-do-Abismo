@@ -79,6 +79,9 @@ public class MenuSelecaoSave : MonoBehaviour
                 indiceSelecionado = 0;
 
             AtualizarSelecao();
+
+            // NOVO: som ao navegar pelos slots
+            TocarSomNavegacao();
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -89,6 +92,9 @@ public class MenuSelecaoSave : MonoBehaviour
                 indiceSelecionado = slots.Length - 1;
 
             AtualizarSelecao();
+
+            // NOVO: som ao navegar pelos slots
+            TocarSomNavegacao();
         }
 
         // Excluir diretamente com K
@@ -119,6 +125,13 @@ public class MenuSelecaoSave : MonoBehaviour
                 "Partida do slot " + numeroSlot +
                 " excluída com sucesso."
             );
+
+            // NOVO: som somente após exclusão bem-sucedida
+            if (SonsInterface.Instancia != null)
+            {
+                SonsInterface.Instancia
+                    .TocarExcluirSalvamento();
+            }
 
             AtualizarInformacoes();
         }
@@ -275,6 +288,15 @@ public class MenuSelecaoSave : MonoBehaviour
             {
                 iconesExcluir[i].SetActive(ocupado);
             }
+        }
+    }
+
+    // NOVO: som de navegação
+    void TocarSomNavegacao()
+    {
+        if (SonsInterface.Instancia != null)
+        {
+            SonsInterface.Instancia.TocarNavegacao();
         }
     }
 }

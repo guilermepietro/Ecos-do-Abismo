@@ -183,7 +183,6 @@ public class MenuOpcoes : MonoBehaviour
     {
         for (int i = 0; i < volumesConfirmados.Length; i++)
         {
-            // NOVO: música começa em 50% para novos jogadores.
             float volumePadrao =
                 i == 1 ? 0.5f : volumesConfirmados[i];
 
@@ -220,6 +219,9 @@ public class MenuOpcoes : MonoBehaviour
         if (barra != null)
             volumeAnterior = barra.fillAmount;
 
+        // NOVO: som de confirmação
+        TocarSomConfirmacao();
+
         AtualizarIndicadores();
     }
 
@@ -230,14 +232,30 @@ public class MenuOpcoes : MonoBehaviour
         if (barra == null)
             return;
 
+        float volumeAnteriorAlteracao = barra.fillAmount;
+
         barra.fillAmount = Mathf.Clamp01(
             barra.fillAmount + quantidade
         );
+
+        // Evita som quando a barra já está no limite.
+        if (Mathf.Approximately(
+            volumeAnteriorAlteracao,
+            barra.fillAmount))
+        {
+            return;
+        }
 
         AtualizarVolumeMixer(
             indiceSelecionado,
             barra.fillAmount
         );
+
+        // NOVO: som de ajuste do slider
+        if (SonsInterface.Instancia != null)
+        {
+            SonsInterface.Instancia.TocarAjusteVolume();
+        }
     }
 
     void AplicarEdicao()
@@ -251,6 +269,9 @@ public class MenuOpcoes : MonoBehaviour
 
             SalvarVolume(indiceSelecionado);
         }
+
+        // NOVO: confirmação da alteração
+        TocarSomConfirmacao();
 
         editandoOpcao = false;
         AtualizarIndicadores();
@@ -268,6 +289,12 @@ public class MenuOpcoes : MonoBehaviour
                 indiceSelecionado,
                 volumeAnterior
             );
+        }
+
+        // NOVO: som de cancelamento
+        if (SonsInterface.Instancia != null)
+        {
+            SonsInterface.Instancia.TocarVoltar();
         }
 
         editandoOpcao = false;
@@ -357,5 +384,20 @@ public class MenuOpcoes : MonoBehaviour
     {
         if (pontosSelecao[indiceSelecionado] != null)
             destinoCursor = pontosSelecao[indiceSelecionado].position;
+
+        // NOVO: som de navegação entre Geral, Música e Efeitos
+        if (SonsInterface.Instancia != null)
+        {
+            SonsInterface.Instancia.TocarNavegacao();
+        }
+    }
+
+    // NOVO: confirmação
+    void TocarSomConfirmacao()
+    {
+        if (SonsInterface.Instancia != null)
+        {
+            SonsInterface.Instancia.TocarConfirmacao();
+        }
     }
 }

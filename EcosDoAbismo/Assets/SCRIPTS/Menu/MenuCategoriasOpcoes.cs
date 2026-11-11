@@ -40,6 +40,9 @@ public class MenuCategoriasOpcoes : MonoBehaviour
         {
             indiceSelecionado = (indiceSelecionado + 1) % 2;
             AtualizarVisual();
+
+            // NOVO: som de navegação
+            TocarSomNavegacao();
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -50,6 +53,9 @@ public class MenuCategoriasOpcoes : MonoBehaviour
                 indiceSelecionado = 1;
 
             AtualizarVisual();
+
+            // NOVO: som de navegação
+            TocarSomNavegacao();
         }
 
         if (Input.GetKeyDown(KeyCode.Return) ||
@@ -88,5 +94,14 @@ public class MenuCategoriasOpcoes : MonoBehaviour
 
         if (destaqueControles != null)
             destaqueControles.SetActive(indiceSelecionado == 1);
+    }
+
+    // NOVO
+    void TocarSomNavegacao()
+    {
+        if (SonsInterface.Instancia != null)
+        {
+            SonsInterface.Instancia.TocarNavegacao();
+        }
     }
 }

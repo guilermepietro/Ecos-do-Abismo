@@ -24,6 +24,11 @@ public class MenuViagem : MonoBehaviour
     public Transform elian;
     public TransicaoTela transicaoTela;
 
+    // NOVO: efeito sonoro do teletransporte
+    [Header("Audio - Viagem entre Ecos")]
+    public AudioSource audioViagem;
+    public AudioClip somViagem;
+
     [Header("Tempo de Escuridão")]
     public float tempoTelaEscura = 3f;
 
@@ -384,6 +389,12 @@ public class MenuViagem : MonoBehaviour
         elian.position = pontoDestino.position;
 
         Physics2D.SyncTransforms();
+
+        // NOVO: reproduz o som da viagem realizada
+        if (audioViagem != null && somViagem != null)
+        {
+            audioViagem.PlayOneShot(somViagem);
+        }
 
         GerenciadorArea.areaAtual = nomeArea;
 
