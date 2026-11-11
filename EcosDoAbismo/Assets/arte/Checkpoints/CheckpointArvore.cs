@@ -13,6 +13,9 @@ public class CheckpointArvore : MonoBehaviour
 
     private bool ativada = false;
 
+    // NOVO: referência para reproduzir o som no Elian
+    private ElianColeta elianPerto;
+
     private bool EhArvoreDosEcos()
     {
         return GetComponent<ArvoreDosEcos>() != null;
@@ -127,6 +130,9 @@ public class CheckpointArvore : MonoBehaviour
         {
             elian.DefinirArvorePerto(this);
 
+            // NOVO
+            elianPerto = elian;
+
             Debug.Log("Elian próximo da árvore.");
         }
     }
@@ -139,6 +145,10 @@ public class CheckpointArvore : MonoBehaviour
         if (elian != null)
         {
             elian.DefinirArvorePerto(null);
+
+            // NOVO
+            if (elianPerto == elian)
+                elianPerto = null;
         }
     }
 
@@ -247,6 +257,12 @@ public class CheckpointArvore : MonoBehaviour
             if (animator != null)
             {
                 animator.Play("acendendo_Clip", 0, 0f);
+            }
+
+            // NOVO: toca somente após ativação bem-sucedida
+            if (elianPerto != null)
+            {
+                elianPerto.TocarSomAtivacaoCheckpoint();
             }
 
             Debug.Log("Árvore ativada!");

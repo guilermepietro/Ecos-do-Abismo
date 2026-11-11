@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using System.Collections;
 
 public class ElianMovimento : MonoBehaviour
@@ -23,6 +24,26 @@ public class ElianMovimento : MonoBehaviour
     [Header("Movimento Externo")]
     public float tempoPuxao = 0.25f;
 
+    [Header("Audio - Fontes")]
+    public AudioSource audioPassos;
+    public AudioSource audioMovimentos;
+
+    [Header("Audio - Passos")]
+    public AudioClip somPassosChaoDuro;
+    public AudioClip somPassosVegetacao;
+
+    [Header("Audio - Pulo, Aterrissagem e Dash")]
+    public AudioClip somPulo;
+    public AudioClip somAterrissagem;
+    public AudioClip somDash;
+
+    [Header("Audio - Identificacao do Piso")]
+    public Tilemap[] tilemapsChao;
+    public TileBase[] tilesVegetacao;
+
+    [Min(0f)]
+    public float distanciaLeituraPiso = 0.1f;
+
     private Animator animator;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -34,6 +55,8 @@ public class ElianMovimento : MonoBehaviour
     private ElianColeta coleta;
 
     private bool estaNoChao;
+    private bool verificouChaoInicialmente = false;
+    private bool pulouNesteFrame = false;
 
     private bool estaDashando = false;
     private bool dashDisponivel = true;
@@ -54,14 +77,30 @@ public class ElianMovimento : MonoBehaviour
         ataque = GetComponent<ElianAtaque>();
         vida = GetComponent<ElianVida>();
         coleta = GetComponent<ElianColeta>();
+
+        if (audioPassos != null)
+        {
+            audioPassos.playOnAwake = false;
+            audioPassos.loop = true;
+        }
+
+        if (audioMovimentos != null)
+        {
+            audioMovimentos.playOnAwake = false;
+            audioMovimentos.loop = false;
+        }
     }
 
     void Update()
     {
+        pulouNesteFrame = false;
+
         // Bloqueia comandos de movimento após a morte
         if (vida != null && vida.EstaMorto)
         {
             podeMover = false;
+
+            PararPassos();
 
             rb.linearVelocity = new Vector2(
                 0f,
@@ -76,6 +115,8 @@ public class ElianMovimento : MonoBehaviour
         // Bloqueia movimento durante a interface de viagem
         if (coleta != null && coleta.MenuViagemAberto)
         {
+            PararPassos();
+
             rb.linearVelocity = new Vector2(
                 0f,
                 rb.linearVelocity.y
@@ -86,16 +127,21 @@ public class ElianMovimento : MonoBehaviour
 
         if (estaDashando || sendoPuxado)
         {
+            PararPassos();
             return;
         }
 
         Movimento();
         Pulo();
         Dash();
+
+        AtualizarSomPassos();
     }
 
     void VerificarChao()
     {
+        bool estavaNoChao = estaNoChao;
+
         estaNoChao = Physics2D.OverlapCircle(
             pontoDeChao.position,
             raioChao,
@@ -108,6 +154,15 @@ public class ElianMovimento : MonoBehaviour
         }
 
         animator.SetBool("estaNoChao", estaNoChao);
+
+        if (verificouChaoInicialmente &&
+            !estavaNoChao &&
+            estaNoChao)
+        {
+            TocarEfeito(somAterrissagem);
+        }
+
+        verificouChaoInicialmente = true;
     }
 
     void Movimento()
@@ -173,6 +228,10 @@ public class ElianMovimento : MonoBehaviour
                 rb.linearVelocity.x,
                 forcaPulo
             );
+
+            pulouNesteFrame = true;
+            PararPassos();
+            TocarEfeito(somPulo);
         }
     }
 
@@ -236,6 +295,8 @@ public class ElianMovimento : MonoBehaviour
     {
         sendoPuxado = true;
 
+        PararPassos();
+
         animator.SetFloat("velocidade", 0f);
 
         rb.linearVelocity = new Vector2(
@@ -276,6 +337,9 @@ public class ElianMovimento : MonoBehaviour
     {
         estaDashando = true;
         dashDisponivel = false;
+
+        PararPassos();
+        TocarEfeito(somDash);
 
         bool dashNoAr = !estaNoChao;
 
@@ -324,5 +388,106 @@ public class ElianMovimento : MonoBehaviour
         yield return new WaitForSeconds(cooldownDash);
 
         dashDisponivel = true;
+    }
+
+    void AtualizarSomPassos()
+    {
+        if (audioPassos == null)
+            return;
+
+        // ALTERADO: passos independentes da tecla Shift.
+        bool movendoNoChao =
+            podeMover &&
+            estaNoChao &&
+            !pulouNesteFrame &&
+            !estaDashando &&
+            !sendoPuxado &&
+            Input.GetAxisRaw("Horizontal") != 0f;
+
+        if (!movendoNoChao)
+        {
+            PararPassos();
+            return;
+        }
+
+        bool pisandoNaVegetacao = EstaPisandoNaVegetacao();
+
+        AudioClip somEscolhido =
+            pisandoNaVegetacao
+                ? somPassosVegetacao
+                : somPassosChaoDuro;
+
+        if (somEscolhido == null)
+        {
+            PararPassos();
+            return;
+        }
+
+        if (audioPassos.clip != somEscolhido)
+        {
+            audioPassos.Stop();
+            audioPassos.clip = somEscolhido;
+        }
+
+        if (!audioPassos.isPlaying)
+        {
+            audioPassos.Play();
+        }
+    }
+
+    bool EstaPisandoNaVegetacao()
+    {
+        if (pontoDeChao == null ||
+            tilemapsChao == null ||
+            tilesVegetacao == null)
+        {
+            return false;
+        }
+
+        Vector3 posicaoPiso =
+            pontoDeChao.position +
+            Vector3.down * distanciaLeituraPiso;
+
+        foreach (Tilemap tilemap in tilemapsChao)
+        {
+            if (tilemap == null)
+                continue;
+
+            Vector3Int celula =
+                tilemap.WorldToCell(posicaoPiso);
+
+            TileBase tileAtual =
+                tilemap.GetTile(celula);
+
+            if (tileAtual == null)
+                continue;
+
+            foreach (TileBase tileVegetacao in tilesVegetacao)
+            {
+                if (tileVegetacao != null &&
+                    tileAtual == tileVegetacao)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    void PararPassos()
+    {
+        if (audioPassos != null && audioPassos.isPlaying)
+        {
+            audioPassos.Stop();
+        }
+    }
+
+    void TocarEfeito(AudioClip som)
+    {
+        if (audioMovimentos != null && som != null)
+        {
+            audioMovimentos.PlayOneShot(som);
+        }
     }
 }

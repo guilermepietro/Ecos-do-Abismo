@@ -183,10 +183,14 @@ public class MenuOpcoes : MonoBehaviour
     {
         for (int i = 0; i < volumesConfirmados.Length; i++)
         {
+            // NOVO: música começa em 50% para novos jogadores.
+            float volumePadrao =
+                i == 1 ? 0.5f : volumesConfirmados[i];
+
             volumesConfirmados[i] = Mathf.Clamp01(
                 PlayerPrefs.GetFloat(
                     chavesSalvamento[i],
-                    volumesConfirmados[i]
+                    volumePadrao
                 )
             );
         }

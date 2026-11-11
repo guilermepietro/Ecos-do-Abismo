@@ -17,5 +17,13 @@ public class AreaMapa : MonoBehaviour
         GerenciadorArea.areaAtual = nomeArea;
 
         Debug.Log("Elian entrou na área: " + nomeArea);
+
+        // NOVO: atualiza a música da região.
+        if (GerenciadorMusicas.Instancia != null)
+        {
+            GerenciadorMusicas.Instancia.TocarMusicaDaArea(
+                nomeArea
+            );
+        }
     }
 }

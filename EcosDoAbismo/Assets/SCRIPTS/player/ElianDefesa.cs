@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -13,7 +14,6 @@ public class ElianDefesa : MonoBehaviour
 
     [Header("Impacto do Escudo")]
     public float forcaKnockbackEscudo = 3f;
-    
 
     [Header("Escudo")]
     public int vidaMaximaEscudo = 50;
@@ -25,6 +25,11 @@ public class ElianDefesa : MonoBehaviour
 
     [Header("Quebra do Escudo")]
     public int danoAoQuebrar = 5;
+
+    // NOVO: efeito sonoro do bloqueio
+    [Header("Audio - Escudo")]
+    public AudioSource audioEscudo;
+    public AudioClip somBloqueio;
 
     void Start()
     {
@@ -80,6 +85,12 @@ public class ElianDefesa : MonoBehaviour
             return dano;
         }
 
+        // NOVO: toca o som quando o escudo é atingido
+        if (audioEscudo != null && somBloqueio != null)
+        {
+            audioEscudo.PlayOneShot(somBloqueio);
+        }
+
         ReceberImpactoEscudo();
 
         vidaEscudo -= dano;
@@ -103,14 +114,14 @@ public class ElianDefesa : MonoBehaviour
     }
 
     public void ReceberImpactoEscudo()
-{
-    float direcao = spriteRenderer.flipX ? 1f : -1f;
+    {
+        float direcao = spriteRenderer.flipX ? 1f : -1f;
 
-    rb.linearVelocity = new Vector2(
-        direcao * forcaKnockbackEscudo,
-        rb.linearVelocity.y
-    );
-}
+        rb.linearVelocity = new Vector2(
+            direcao * forcaKnockbackEscudo,
+            rb.linearVelocity.y
+        );
+    }
 
     public void QuebrarDefesa()
     {

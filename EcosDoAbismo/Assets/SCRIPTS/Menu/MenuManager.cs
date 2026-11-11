@@ -256,18 +256,43 @@ public class MenuManager : MonoBehaviour
     {
         emTransicao = true;
 
-        // NOVO: encerra suavemente a música do menu
+        // NOVO: fade musical antes da troca de cena
+        float duracaoFadeMusica = 1.5f;
+
         if (MusicaMenuPersistente.Instancia != null)
         {
-            MusicaMenuPersistente.Instancia.EncerrarComFade(1f);
+            MusicaMenuPersistente.Instancia.EncerrarComFade(
+                duracaoFadeMusica
+            );
         }
+
+        float duracaoFadeVisual = 0f;
 
         if (transicaoTela != null)
         {
+            duracaoFadeVisual =
+                transicaoTela.duracaoEscurecer;
+
             yield return StartCoroutine(
                 transicaoTela.Escurecer()
             );
         }
+
+        // Aguarda o tempo restante do fade musical
+        float tempoRestante = Mathf.Max(
+            0f,
+            duracaoFadeMusica - duracaoFadeVisual
+        );
+
+        if (tempoRestante > 0f)
+        {
+            yield return new WaitForSecondsRealtime(
+                tempoRestante
+            );
+        }
+
+        // Garante que a música termine antes do carregamento
+        yield return null;
 
         GerenciadorCarregamento.proximaCena = "Gameplay";
 

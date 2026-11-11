@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class ElianColeta : MonoBehaviour
@@ -14,6 +15,12 @@ public class ElianColeta : MonoBehaviour
     public GameObject telaViagem;
 
     private bool aguardandoFechamentoViagem = false;
+
+    // NOVO: efeitos de interação
+    [Header("Audio - Interacoes")]
+    public AudioSource audioInteracoes;
+    public AudioClip somAtivarCheckpoint;
+    public AudioClip somColetarReliquia;
 
     public bool MenuViagemAberto
     {
@@ -114,6 +121,26 @@ public class ElianColeta : MonoBehaviour
         else
         {
             movimento.podeMover = true;
+        }
+    }
+
+    // NOVO: som de ativação da árvore
+    public void TocarSomAtivacaoCheckpoint()
+    {
+        TocarSomInteracao(somAtivarCheckpoint);
+    }
+
+    // NOVO: som de coleta de relíquia
+    public void TocarSomColetaReliquia()
+    {
+        TocarSomInteracao(somColetarReliquia);
+    }
+
+    private void TocarSomInteracao(AudioClip som)
+    {
+        if (audioInteracoes != null && som != null)
+        {
+            audioInteracoes.PlayOneShot(som);
         }
     }
 }

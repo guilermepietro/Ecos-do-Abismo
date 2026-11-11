@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -12,16 +13,26 @@ public class HitboxAtaque : MonoBehaviour
 
     private ElianUltimate ultimate;
 
+    // NOVO: referência ao áudio dos ataques do Elian
+    private ElianAtaque elianAtaque;
+    private bool somImpactoReproduzido = false;
+
     void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
 
         ultimate = GetComponentInParent<ElianUltimate>();
+
+        // NOVO
+        elianAtaque = GetComponentInParent<ElianAtaque>();
     }
 
     public void LimparInimigosAtingidos()
     {
         inimigosAtingidos.Clear();
+
+        // NOVO: permite um novo som no próximo golpe
+        somImpactoReproduzido = false;
     }
 
     public void DefinirDano(int dano)
@@ -194,6 +205,15 @@ public class HitboxAtaque : MonoBehaviour
                     {
                         vidaCriatura.ReceberDano(danoAtual);
                         acertouInimigo = true;
+                    }
+
+                    // NOVO: Som de impacto quando o golpe acerta
+                    if (acertouInimigo &&
+                        !somImpactoReproduzido &&
+                        elianAtaque != null)
+                    {
+                        elianAtaque.TocarSomImpactoEspada();
+                        somImpactoReproduzido = true;
                     }
 
                     // CARGA DA ULTIMATE

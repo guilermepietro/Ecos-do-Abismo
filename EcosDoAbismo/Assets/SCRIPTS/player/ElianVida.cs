@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -39,6 +40,15 @@ public class ElianVida : MonoBehaviour
     private bool renascimentoIniciado = false;
 
     private ElianMovimento movimento;
+
+    [Header("Audio - Vida")]
+    public AudioSource audioVida;
+    public AudioClip somDano1;
+    public AudioClip somDano2;
+    public AudioClip somMorte;
+
+    // NOVO: alterna os grunhidos para evitar repetição
+    private bool proximoSomDano1 = true;
 
     void Start()
     {
@@ -116,6 +126,11 @@ public class ElianVida : MonoBehaviour
         {
             Morrer();
         }
+        else
+        {
+            // NOVO: alterna entre os dois sons de dano
+            TocarSomDano();
+        }
     }
 
     void Morrer()
@@ -131,6 +146,8 @@ public class ElianVida : MonoBehaviour
 
         animator.SetFloat("velocidade", 0f);
         animator.SetTrigger("Morreu");
+
+        TocarSomVida(somMorte);
 
         Debug.Log("Elian morreu!");
     }
@@ -297,5 +314,31 @@ public class ElianVida : MonoBehaviour
 
         barraVida.fillAmount =
             valorVisualVida;
+    }
+
+    // NOVO: seleção alternada dos grunhidos
+    void TocarSomDano()
+    {
+        AudioClip somEscolhido =
+            proximoSomDano1 ? somDano1 : somDano2;
+
+        // Permite usar apenas um som enquanto o outro não é configurado.
+        if (somEscolhido == null)
+        {
+            somEscolhido =
+                proximoSomDano1 ? somDano2 : somDano1;
+        }
+
+        proximoSomDano1 = !proximoSomDano1;
+
+        TocarSomVida(somEscolhido);
+    }
+
+    void TocarSomVida(AudioClip som)
+    {
+        if (audioVida != null && som != null)
+        {
+            audioVida.PlayOneShot(som);
+        }
     }
 }

@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AtaqueArea
-  serializedVersion: 7
+  serializedVersion: 8
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -61,6 +61,7 @@ AnimationClip:
       isPPtrCurve: 1
       isIntCurve: 0
       isSerializeReferenceCurve: 0
+      metaData: 0
     pptrCurveMapping:
     - {fileID: -8712462325569416324, guid: 6a04bd56b955e504dbc032d5b2c7dbad, type: 3}
     - {fileID: 6144331063981627772, guid: 6a04bd56b955e504dbc032d5b2c7dbad, type: 3}
@@ -106,6 +107,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.3
     functionName: VerificarDanoArea
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.3
+    functionName: TocarSomAtaqueArea
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

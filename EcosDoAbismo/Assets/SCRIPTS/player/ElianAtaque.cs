@@ -29,6 +29,21 @@ public class ElianAtaque : MonoBehaviour
 
     public float tempoAvanco = 0.08f;
 
+    // NOVO: efeitos sonoros dos ataques
+    [Header("Audio - Fonte")]
+    public AudioSource audioAtaques;
+
+    [Header("Audio - Combo")]
+    public AudioClip somAtaque1;
+    public AudioClip somAtaque2;
+    public AudioClip somAtaque3;
+
+    [Header("Audio - Ataque em Area")]
+    public AudioClip somAtaqueArea;
+
+    [Header("Audio - Impacto nos Inimigos")]
+    public AudioClip somImpactoEspada;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -36,6 +51,13 @@ public class ElianAtaque : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         coleta = GetComponent<ElianColeta>();
+
+        // NOVO
+        if (audioAtaques != null)
+        {
+            audioAtaques.playOnAwake = false;
+            audioAtaques.loop = false;
+        }
     }
 
     void Update()
@@ -369,6 +391,44 @@ public class ElianAtaque : MonoBehaviour
                 nameof(ReativarAtaqueArea),
                 tempoCooldownArea
             );
+        }
+    }
+
+    // ======================================================
+    // NOVO: EFEITOS SONOROS DOS ATAQUES
+    // ======================================================
+
+    public void TocarSomAtaque1()
+    {
+        ReproduzirSom(somAtaque1);
+    }
+
+    public void TocarSomAtaque2()
+    {
+        ReproduzirSom(somAtaque2);
+    }
+
+    public void TocarSomAtaque3()
+    {
+        ReproduzirSom(somAtaque3);
+    }
+
+    public void TocarSomAtaqueArea()
+    {
+        ReproduzirSom(somAtaqueArea);
+    }
+
+    // Será chamado pela hitbox quando houver acerto real.
+    public void TocarSomImpactoEspada()
+    {
+        ReproduzirSom(somImpactoEspada);
+    }
+
+    private void ReproduzirSom(AudioClip som)
+    {
+        if (audioAtaques != null && som != null)
+        {
+            audioAtaques.PlayOneShot(som);
         }
     }
 }

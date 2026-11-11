@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class ReliquiaColetavel : MonoBehaviour
@@ -7,6 +8,9 @@ public class ReliquiaColetavel : MonoBehaviour
 
     private bool jogadorPerto = false;
     private bool coletando = false;
+
+    // NOVO: referência ao Elian
+    private ElianColeta elianPerto;
 
     private void Start()
     {
@@ -48,6 +52,9 @@ public class ReliquiaColetavel : MonoBehaviour
         if (coleta != null)
         {
             coleta.DefinirReliquiaPerto(this);
+
+            // NOVO
+            elianPerto = coleta;
         }
 
         Debug.Log(
@@ -69,6 +76,10 @@ public class ReliquiaColetavel : MonoBehaviour
         if (coleta != null)
         {
             coleta.DefinirReliquiaPerto(null);
+
+            // NOVO
+            if (elianPerto == coleta)
+                elianPerto = null;
         }
 
         Debug.Log(
@@ -136,6 +147,12 @@ public class ReliquiaColetavel : MonoBehaviour
                 "Relíquia obtida: " +
                 idReliquia
             );
+
+            // NOVO: som antes de desativar a relíquia
+            if (elianPerto != null)
+            {
+                elianPerto.TocarSomColetaReliquia();
+            }
 
             gameObject.SetActive(false);
         }
