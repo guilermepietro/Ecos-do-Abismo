@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class CriaturaVida : MonoBehaviour
@@ -12,9 +13,15 @@ public class CriaturaVida : MonoBehaviour
     private int vidaAtual;
     private bool morto = false;
 
+    // NOVO
+    private AudioMob audioMob;
+
     void Start()
     {
         vidaAtual = vidaMaxima;
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     public void ReceberDano(int dano)
@@ -31,6 +38,12 @@ public class CriaturaVida : MonoBehaviour
         }
 
         animator.SetTrigger("Damage");
+
+        // NOVO: som de dano
+        if (audioMob != null)
+        {
+            audioMob.TocarDano();
+        }
     }
 
     void Morrer()
@@ -41,6 +54,12 @@ public class CriaturaVida : MonoBehaviour
 
         animator.ResetTrigger("Attack");
         animator.SetTrigger("Death");
+
+        // NOVO: som de morte
+        if (audioMob != null)
+        {
+            audioMob.TocarMorte();
+        }
     }
 
     public void Desaparecer()

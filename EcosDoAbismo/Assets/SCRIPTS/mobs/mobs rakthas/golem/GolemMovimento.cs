@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class GolemMovimento : MonoBehaviour
@@ -29,72 +30,84 @@ public class GolemMovimento : MonoBehaviour
     private bool atacando;
     private ElianVida vidaElian;
 
+    // NOVO
+    private AudioMob audioMob;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
-    
+
     private void Start()
-{
-    if (elian != null)
-        vidaElian = elian.GetComponent<ElianVida>();
-}
+    {
+        if (elian != null)
+            vidaElian = elian.GetComponent<ElianVida>();
+    }
 
     private void Update()
-{
-    if (elian == null)
-        return;
+    {
+        if (elian == null)
+            return;
+
         if (vidaElian != null && vidaElian.EstaMorto)
-{
-    CancelarAtaque();
-    Parar();
-    return;
-}
+        {
+            CancelarAtaque();
+            Parar();
+            return;
+        }
 
-    if (atacando)
-    {
-        Parar();
-        return;
+        if (atacando)
+        {
+            Parar();
+            return;
+        }
+
+        float distancia = Vector2.Distance(
+            transform.position,
+            elian.position
+        );
+
+        if (distancia > distanciaDeteccao)
+        {
+            Parar();
+            return;
+        }
+
+        VirarParaElian();
+
+        if (distancia <= distanciaAtaque)
+        {
+            Parar();
+            TentarAtacar();
+        }
+        else
+        {
+            Perseguir();
+        }
     }
-
-    float distancia = Vector2.Distance(transform.position, elian.position);
-
-    if (distancia > distanciaDeteccao)
-    {
-        Parar();
-        return;
-    }
-
-    VirarParaElian();
-
-    if (distancia <= distanciaAtaque)
-    {
-        Parar();
-        TentarAtacar();
-    }
-    else
-    {
-        Perseguir();
-    }
-}
 
     public void AtivarHitbox()
-{
-    hitboxAtaque.AtivarHitbox();
-}
+    {
+        hitboxAtaque.AtivarHitbox();
+    }
 
-public void DesativarHitbox()
-{
-    hitboxAtaque.DesativarHitbox();
-}
+    public void DesativarHitbox()
+    {
+        hitboxAtaque.DesativarHitbox();
+    }
 
     private void Perseguir()
     {
         animator.SetBool("Correndo", true);
 
-        float direcao = Mathf.Sign(elian.position.x - transform.position.x);
+        float direcao = Mathf.Sign(
+            elian.position.x - transform.position.x
+        );
 
         rb.linearVelocity = new Vector2(
             direcao * velocidade,
@@ -113,51 +126,60 @@ public void DesativarHitbox()
     }
 
     public void CancelarAtaque()
-{
-    atacando = false;
+    {
+        atacando = false;
 
-    animator.ResetTrigger("Atacar");
+        animator.ResetTrigger("Atacar");
 
-    if (rb != null)
-        rb.linearVelocity = Vector2.zero;
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
 
-    if (hitboxAtaque != null)
-        hitboxAtaque.DesativarHitbox();
-}
+        if (hitboxAtaque != null)
+            hitboxAtaque.DesativarHitbox();
+    }
 
     private void TentarAtacar()
-{
-    if (Time.time < tempoProximoAtaque)
-        return;
+    {
+        if (Time.time < tempoProximoAtaque)
+            return;
 
-    atacando = true;
+        atacando = true;
 
-    Parar();
+        Parar();
 
-    animator.SetTrigger("Atacar");
+        animator.SetTrigger("Atacar");
 
-    tempoProximoAtaque = Time.time + tempoEntreAtaques;
-}
-public void FinalizarAtaque()
-{
-    atacando = false;
-}
+        // NOVO: som ao iniciar o ataque
+        if (audioMob != null)
+        {
+            audioMob.TocarAtaque();
+        }
+
+        tempoProximoAtaque =
+            Time.time + tempoEntreAtaques;
+    }
+
+    public void FinalizarAtaque()
+    {
+        atacando = false;
+    }
 
     private void VirarParaElian()
-{
-    Vector3 posicaoHitbox = hitboxTransform.localPosition;
-
-    if (elian.position.x < transform.position.x)
     {
-        spriteRenderer.flipX = true;
-        posicaoHitbox.x = hitboxEsquerdaX;
-    }
-    else
-    {
-        spriteRenderer.flipX = false;
-        posicaoHitbox.x = hitboxDireitaX;
-    }
+        Vector3 posicaoHitbox =
+            hitboxTransform.localPosition;
 
-    hitboxTransform.localPosition = posicaoHitbox;
-}
+        if (elian.position.x < transform.position.x)
+        {
+            spriteRenderer.flipX = true;
+            posicaoHitbox.x = hitboxEsquerdaX;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+            posicaoHitbox.x = hitboxDireitaX;
+        }
+
+        hitboxTransform.localPosition = posicaoHitbox;
+    }
 }

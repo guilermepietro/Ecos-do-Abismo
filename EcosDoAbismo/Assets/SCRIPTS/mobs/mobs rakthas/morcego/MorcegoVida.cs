@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 
@@ -17,6 +18,9 @@ public class MorcegoVida : MonoBehaviour
     private bool morreu;
     private bool tomandoDano;
 
+    // NOVO
+    private AudioMob audioMob;
+
     private void Awake()
     {
         vidaAtual = vidaMaxima;
@@ -24,6 +28,9 @@ public class MorcegoVida : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         movimento = GetComponent<MorcegoMovimento>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     public void ReceberDano(int dano)
@@ -39,50 +46,62 @@ public class MorcegoVida : MonoBehaviour
             return;
         }
 
+        // NOVO: som de dano não fatal
+        if (audioMob != null)
+        {
+            audioMob.TocarDano();
+        }
+
         StartCoroutine(Dano());
     }
 
     private IEnumerator Dano()
-{
-    tomandoDano = true;
-
-    if (movimento != null)
     {
-        movimento.CancelarAtaque();
-        movimento.enabled = false;
+        tomandoDano = true;
+
+        if (movimento != null)
+        {
+            movimento.CancelarAtaque();
+            movimento.enabled = false;
+        }
+
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+
+        animator.ResetTrigger("Atacar");
+        animator.SetTrigger("Dano");
+
+        yield return new WaitForSeconds(tempoDano);
+
+        if (!morreu && movimento != null)
+            movimento.enabled = true;
+
+        tomandoDano = false;
     }
-
-    if (rb != null)
-        rb.linearVelocity = Vector2.zero;
-
-    animator.ResetTrigger("Atacar");
-    animator.SetTrigger("Dano");
-
-    yield return new WaitForSeconds(tempoDano);
-
-    if (!morreu && movimento != null)
-        movimento.enabled = true;
-
-    tomandoDano = false;
-}
 
     private void Morrer()
-{
-    morreu = true;
-
-    StopAllCoroutines();
-
-    if (movimento != null)
     {
-        movimento.CancelarAtaque();
-        movimento.enabled = false;
+        morreu = true;
+
+        StopAllCoroutines();
+
+        if (movimento != null)
+        {
+            movimento.CancelarAtaque();
+            movimento.enabled = false;
+        }
+
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+
+        animator.ResetTrigger("Atacar");
+        animator.ResetTrigger("Dano");
+        animator.SetTrigger("Morrer");
+
+        // NOVO: som de morte
+        if (audioMob != null)
+        {
+            audioMob.TocarMorte();
+        }
     }
-
-    if (rb != null)
-        rb.linearVelocity = Vector2.zero;
-
-    animator.ResetTrigger("Atacar");
-    animator.ResetTrigger("Dano");
-    animator.SetTrigger("Morrer");
-}
 }

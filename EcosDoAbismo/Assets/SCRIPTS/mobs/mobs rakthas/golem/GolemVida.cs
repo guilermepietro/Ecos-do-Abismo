@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 
@@ -19,6 +20,9 @@ public class GolemVida : MonoBehaviour
     private bool morreu;
     private bool tomandoDano;
 
+    // NOVO
+    private AudioMob audioMob;
+
     private void Awake()
     {
         vidaAtual = vidaMaxima;
@@ -26,7 +30,11 @@ public class GolemVida : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         movimento = GetComponent<GolemMovimento>();
-        hitboxAtaque = GetComponentInChildren<GolemHitboxAtaque>();
+        hitboxAtaque =
+            GetComponentInChildren<GolemHitboxAtaque>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     public void ReceberDano(int dano)
@@ -40,6 +48,12 @@ public class GolemVida : MonoBehaviour
         {
             Morrer();
             return;
+        }
+
+        // NOVO: som de dano não fatal
+        if (audioMob != null)
+        {
+            audioMob.TocarDano();
         }
 
         StartCoroutine(Dano());
@@ -93,5 +107,11 @@ public class GolemVida : MonoBehaviour
         animator.ResetTrigger("Atacar");
         animator.ResetTrigger("Dano");
         animator.SetTrigger("Morrer");
+
+        // NOVO: som de morte
+        if (audioMob != null)
+        {
+            audioMob.TocarMorte();
+        }
     }
 }

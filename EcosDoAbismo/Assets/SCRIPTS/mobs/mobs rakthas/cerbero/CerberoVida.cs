@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ public class CerberoVida : MonoBehaviour
     private bool morreu;
     private bool tomandoDano;
 
+    // NOVO
+    private AudioMob audioMob;
+
     private void Awake()
     {
         vidaAtual = vidaMaxima;
@@ -25,7 +29,11 @@ public class CerberoVida : MonoBehaviour
         animator = GetComponent<Animator>();
         movimento = GetComponent<CerberoMovimento>();
         rb = GetComponent<Rigidbody2D>();
-        hitboxAtaque = GetComponentInChildren<CerberoHitboxAtaque>();
+        hitboxAtaque =
+            GetComponentInChildren<CerberoHitboxAtaque>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     public void ReceberDano(int dano)
@@ -39,6 +47,12 @@ public class CerberoVida : MonoBehaviour
         {
             Morrer();
             return;
+        }
+
+        // NOVO: som de dano não fatal
+        if (audioMob != null)
+        {
+            audioMob.TocarDano();
         }
 
         StartCoroutine(Dano());
@@ -71,28 +85,34 @@ public class CerberoVida : MonoBehaviour
     }
 
     private void Morrer()
-{
-    morreu = true;
-
-    StopAllCoroutines();
-
-    animator.SetBool("Correndo", false);
-    animator.ResetTrigger("Atacar");
-    animator.ResetTrigger("Dano");
-    animator.SetTrigger("Morrer");
-
-    if (movimento != null)
-        movimento.enabled = false;
-
-    if (rb != null)
     {
-        rb.linearVelocity = new Vector2(
-            0f,
-            rb.linearVelocity.y
-        );
-    }
+        morreu = true;
 
-    if (hitboxAtaque != null)
-    hitboxAtaque.DesativarHitbox();
-}
+        StopAllCoroutines();
+
+        animator.SetBool("Correndo", false);
+        animator.ResetTrigger("Atacar");
+        animator.ResetTrigger("Dano");
+        animator.SetTrigger("Morrer");
+
+        if (movimento != null)
+            movimento.enabled = false;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
+        }
+
+        if (hitboxAtaque != null)
+            hitboxAtaque.DesativarHitbox();
+
+        // NOVO: som de morte
+        if (audioMob != null)
+        {
+            audioMob.TocarMorte();
+        }
+    }
 }

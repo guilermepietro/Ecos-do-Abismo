@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class CabecaDeChamaMovimento : MonoBehaviour
@@ -18,12 +19,18 @@ public class CabecaDeChamaMovimento : MonoBehaviour
 
     private float proximoAtaque;
 
+    // NOVO: áudio universal do mob
+    private AudioMob audioMob;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         knockback = GetComponent<KnockbackInimigo>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
 
         GameObject jogador = GameObject.Find("elian");
 
@@ -41,7 +48,10 @@ public class CabecaDeChamaMovimento : MonoBehaviour
 
         if (vidaElian != null && vidaElian.EstaMorto)
         {
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
 
             animator.SetBool("Andando", false);
             animator.ResetTrigger("Atacar");
@@ -60,35 +70,59 @@ public class CabecaDeChamaMovimento : MonoBehaviour
             return;
         }
 
-        AnimatorStateInfo estado = animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo estado =
+            animator.GetCurrentAnimatorStateInfo(0);
 
         if (estado.IsName("Damage") ||
             estado.IsName("Death") ||
             estado.IsName("Attack"))
         {
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
+
             animator.SetBool("Andando", false);
             return;
         }
 
-        float distancia = Mathf.Abs(elian.position.x - transform.position.x);
-        float direcao = Mathf.Sign(elian.position.x - transform.position.x);
+        float distancia =
+            Mathf.Abs(elian.position.x - transform.position.x);
+
+        float direcao =
+            Mathf.Sign(elian.position.x - transform.position.x);
 
         spriteRenderer.flipX = direcao < 0;
 
         Vector3 posicaoHitbox = hitboxAtaque.localPosition;
-        posicaoHitbox.x = Mathf.Abs(posicaoHitbox.x) * (direcao < 0 ? -1 : 1);
+
+        posicaoHitbox.x =
+            Mathf.Abs(posicaoHitbox.x) *
+            (direcao < 0 ? -1 : 1);
+
         hitboxAtaque.localPosition = posicaoHitbox;
 
         if (distancia <= distanciaAtaque)
         {
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
+
             animator.SetBool("Andando", false);
 
             if (Time.time >= proximoAtaque)
             {
                 animator.SetTrigger("Atacar");
-                proximoAtaque = Time.time + tempoEntreAtaques;
+
+                // NOVO: som ao iniciar o ataque
+                if (audioMob != null)
+                {
+                    audioMob.TocarAtaque();
+                }
+
+                proximoAtaque =
+                    Time.time + tempoEntreAtaques;
             }
 
             return;

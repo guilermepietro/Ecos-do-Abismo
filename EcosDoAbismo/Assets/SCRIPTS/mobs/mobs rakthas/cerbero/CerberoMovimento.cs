@@ -1,10 +1,10 @@
+
 using UnityEngine;
 
 public class CerberoMovimento : MonoBehaviour
 {
     [Header("Referências")]
     public Transform elian;
-    
 
     [Header("Hitbox")]
     public Transform hitboxTransform;
@@ -27,46 +27,55 @@ public class CerberoMovimento : MonoBehaviour
 
     private float tempoProximoAtaque;
 
+    // NOVO: áudio universal do mob
+    private AudioMob audioMob;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         vidaElian = elian.GetComponent<ElianVida>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     private void Update()
-{
-    if (elian == null)
-        return;
-
-    if (vidaElian != null && vidaElian.EstaMorto)
     {
-        Parar();
-        animator.ResetTrigger("Atacar");
-        return;
-    }
+        if (elian == null)
+            return;
 
-    float distancia = Vector2.Distance(transform.position, elian.position);
+        if (vidaElian != null && vidaElian.EstaMorto)
+        {
+            Parar();
+            animator.ResetTrigger("Atacar");
+            return;
+        }
 
-    if (distancia > distanciaDeteccao)
-    {
-        Parar();
-        return;
-    }
+        float distancia = Vector2.Distance(
+            transform.position,
+            elian.position
+        );
 
-    VirarParaElian();
+        if (distancia > distanciaDeteccao)
+        {
+            Parar();
+            return;
+        }
 
-    if (distancia <= distanciaAtaque)
-    {
-        Parar();
-        TentarAtacar();
+        VirarParaElian();
+
+        if (distancia <= distanciaAtaque)
+        {
+            Parar();
+            TentarAtacar();
+        }
+        else
+        {
+            Perseguir();
+        }
     }
-    else
-    {
-        Perseguir();
-    }
-}
 
     public void AtivarHitbox()
     {
@@ -82,7 +91,9 @@ public class CerberoMovimento : MonoBehaviour
     {
         animator.SetBool("Correndo", true);
 
-        float direcao = Mathf.Sign(elian.position.x - transform.position.x);
+        float direcao = Mathf.Sign(
+            elian.position.x - transform.position.x
+        );
 
         rb.linearVelocity = new Vector2(
             direcao * velocidade,
@@ -107,12 +118,20 @@ public class CerberoMovimento : MonoBehaviour
 
         animator.SetTrigger("Atacar");
 
-        tempoProximoAtaque = Time.time + tempoEntreAtaques;
+        // NOVO: som ao iniciar o ataque
+        if (audioMob != null)
+        {
+            audioMob.TocarAtaque();
+        }
+
+        tempoProximoAtaque =
+            Time.time + tempoEntreAtaques;
     }
 
     private void VirarParaElian()
     {
-        Vector3 posicaoHitbox = hitboxTransform.localPosition;
+        Vector3 posicaoHitbox =
+            hitboxTransform.localPosition;
 
         if (elian.position.x < transform.position.x)
         {
@@ -129,8 +148,8 @@ public class CerberoMovimento : MonoBehaviour
     }
 
     private void Start()
-{
-    if (elian != null)
-        vidaElian = elian.GetComponent<ElianVida>();
-}
+    {
+        if (elian != null)
+            vidaElian = elian.GetComponent<ElianVida>();
+    }
 }

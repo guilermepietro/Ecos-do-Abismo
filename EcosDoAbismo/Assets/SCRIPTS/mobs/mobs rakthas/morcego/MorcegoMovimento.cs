@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class MorcegoMovimento : MonoBehaviour
@@ -18,38 +19,47 @@ public class MorcegoMovimento : MonoBehaviour
     private bool atacando;
     private ElianVida vidaElian;
 
+    // NOVO
+    private AudioMob audioMob;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     private void Start()
-{
-    if (elian != null)
-        vidaElian = elian.GetComponent<ElianVida>();
-}
+    {
+        if (elian != null)
+            vidaElian = elian.GetComponent<ElianVida>();
+    }
 
     private void Update()
     {
         if (elian == null)
             return;
 
-            if (vidaElian != null && vidaElian.EstaMorto)
-{
-    rb.linearVelocity = new Vector2(
-        0f,
-        rb.linearVelocity.y
-    );
+        if (vidaElian != null && vidaElian.EstaMorto)
+        {
+            rb.linearVelocity = new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
 
-    animator.ResetTrigger("Atacar");
-    atacando = false;
+            animator.ResetTrigger("Atacar");
+            atacando = false;
 
-    return;
-}
+            return;
+        }
 
-        float distancia = Vector2.Distance(transform.position, elian.position);
+        float distancia = Vector2.Distance(
+            transform.position,
+            elian.position
+        );
 
         if (!atacando && distancia <= distanciaDeteccao)
         {
@@ -68,27 +78,36 @@ public class MorcegoMovimento : MonoBehaviour
 
         animator.SetTrigger("Atacar");
 
-        float direcao = Mathf.Sign(elian.position.x - transform.position.x);
+        // NOVO: som ao iniciar o ataque
+        if (audioMob != null)
+        {
+            audioMob.TocarAtaque();
+        }
+
+        float direcao = Mathf.Sign(
+            elian.position.x - transform.position.x
+        );
 
         rb.linearVelocity = new Vector2(
             direcao * velocidadeAtaque,
             rb.linearVelocity.y
         );
 
-        tempoProximoAtaque = Time.time + tempoEntreAtaques;
+        tempoProximoAtaque =
+            Time.time + tempoEntreAtaques;
     }
 
     private void VirarParaElian()
-{
-    if (elian.position.x < transform.position.x)
     {
-        spriteRenderer.flipX = false;
+        if (elian.position.x < transform.position.x)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+        }
     }
-    else
-    {
-        spriteRenderer.flipX = true;
-    }
-}
 
     public void FinalizarAtaque()
     {
@@ -101,33 +120,34 @@ public class MorcegoMovimento : MonoBehaviour
     }
 
     public void CancelarAtaque()
-{
-    atacando = false;
+    {
+        atacando = false;
 
-    animator.ResetTrigger("Atacar");
+        animator.ResetTrigger("Atacar");
 
-    if (rb != null)
-        rb.linearVelocity = Vector2.zero;
-}
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
-{
-    if (!atacando)
-        return;
-
-    if (collision.gameObject.CompareTag("Player"))
     {
-        rb.linearVelocity = new Vector2(
-            0f,
-            rb.linearVelocity.y
-        );
+        if (!atacando)
+            return;
 
-        ElianVida vidaElian = collision.gameObject.GetComponent<ElianVida>();
-
-        if (vidaElian != null)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            vidaElian.ReceberDano(20);
+            rb.linearVelocity = new Vector2(
+                0f,
+                rb.linearVelocity.y
+            );
+
+            ElianVida vidaElian =
+                collision.gameObject.GetComponent<ElianVida>();
+
+            if (vidaElian != null)
+            {
+                vidaElian.ReceberDano(20);
+            }
         }
     }
-}
 }

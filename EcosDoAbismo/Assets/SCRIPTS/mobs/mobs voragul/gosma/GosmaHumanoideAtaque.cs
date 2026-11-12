@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class GosmaHumanoideAtaque : MonoBehaviour
@@ -19,12 +20,18 @@ public class GosmaHumanoideAtaque : MonoBehaviour
 
     public bool EstaAtacando { get; private set; }
 
+    // NOVO: áudio universal
+    private AudioMob audioMob;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         vida = GetComponent<GosmaHumanoideVida>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
 
         GameObject jogador = GameObject.Find("elian");
 
@@ -39,8 +46,12 @@ public class GosmaHumanoideAtaque : MonoBehaviour
     {
         if (elian == null)
             return;
-            if (vida != null && (vida.EstaMorto || vida.EstaTomandoDano))
-    return;
+
+        if (vida != null &&
+            (vida.EstaMorto || vida.EstaTomandoDano))
+        {
+            return;
+        }
 
         if (vidaElian != null && vidaElian.EstaMorto)
             return;
@@ -48,45 +59,57 @@ public class GosmaHumanoideAtaque : MonoBehaviour
         if (EstaAtacando)
             return;
 
-        float distancia = Mathf.Abs(elian.position.x - transform.position.x);
+        float distancia =
+            Mathf.Abs(elian.position.x - transform.position.x);
 
-        if (distancia <= distanciaAtaque && Time.time >= proximoAtaque)
+        if (distancia <= distanciaAtaque &&
+            Time.time >= proximoAtaque)
         {
-            direcaoAtaque = Mathf.Sign(elian.position.x - transform.position.x);
+            direcaoAtaque =
+                Mathf.Sign(elian.position.x - transform.position.x);
 
             spriteRenderer.flipX = direcaoAtaque < 0;
-            Vector3 posicaoHitbox = hitboxAtaque.localPosition;
 
-if (direcaoAtaque < 0)
-{
-    posicaoHitbox.x = -0.02f;
-}
-else
-{
-    posicaoHitbox.x = 0.68f;
-}
+            Vector3 posicaoHitbox =
+                hitboxAtaque.localPosition;
 
-hitboxAtaque.localPosition = posicaoHitbox;
+            if (direcaoAtaque < 0)
+            {
+                posicaoHitbox.x = -0.02f;
+            }
+            else
+            {
+                posicaoHitbox.x = 0.68f;
+            }
+
+            hitboxAtaque.localPosition = posicaoHitbox;
 
             EstaAtacando = true;
 
             animator.SetTrigger("Atacar");
 
-            proximoAtaque = Time.time + tempoEntreAtaques;
+            // NOVO: som ao iniciar a investida
+            if (audioMob != null)
+            {
+                audioMob.TocarAtaque();
+            }
+
+            proximoAtaque =
+                Time.time + tempoEntreAtaques;
         }
     }
 
     public void PararAoAcertar()
-{
-    EstaAtacando = false;
+    {
+        EstaAtacando = false;
 
-    rb.linearVelocity = new Vector2(
-        0f,
-        rb.linearVelocity.y
-    );
+        rb.linearVelocity = new Vector2(
+            0f,
+            rb.linearVelocity.y
+        );
 
-    animator.Play("Idle");
-}
+        animator.Play("Idle");
+    }
 
     void FixedUpdate()
     {
@@ -115,13 +138,14 @@ hitboxAtaque.localPosition = posicaoHitbox;
             rb.linearVelocity.y
         );
     }
-    public void CancelarAtaque()
-{
-    EstaAtacando = false;
 
-    rb.linearVelocity = new Vector2(
-        0f,
-        rb.linearVelocity.y
-    );
-}
+    public void CancelarAtaque()
+    {
+        EstaAtacando = false;
+
+        rb.linearVelocity = new Vector2(
+            0f,
+            rb.linearVelocity.y
+        );
+    }
 }

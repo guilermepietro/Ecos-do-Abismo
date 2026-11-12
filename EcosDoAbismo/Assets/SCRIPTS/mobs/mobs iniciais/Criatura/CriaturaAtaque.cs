@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class CriaturaAtaque : MonoBehaviour
@@ -6,7 +7,6 @@ public class CriaturaAtaque : MonoBehaviour
     public Transform elian;
     public Animator animator;
     public BoxCollider2D hitboxAtaque;
-    
 
     [Header("Ataque")]
     public float tempoEntreAtaques = 1.5f;
@@ -16,11 +16,11 @@ public class CriaturaAtaque : MonoBehaviour
     private bool morto = false;
     public int dano = 20;
 
-    
+    // NOVO
+    private AudioMob audioMob;
 
     void Update()
     {
-       
         if (morto || atacando)
             return;
 
@@ -45,38 +45,47 @@ public class CriaturaAtaque : MonoBehaviour
     }
 
     void Start()
-{
-    VirarParaElian();
-}
+    {
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
+
+        VirarParaElian();
+    }
 
     void VirarParaElian()
-{
-    if (elian == null || morto)
-        return;
+    {
+        if (elian == null || morto)
+            return;
 
-    if (elian.position.x > transform.position.x)
-    {
-        transform.localScale = new Vector3(
-            Mathf.Abs(transform.localScale.x),
-            transform.localScale.y,
-            transform.localScale.z
-        );
+        if (elian.position.x > transform.position.x)
+        {
+            transform.localScale = new Vector3(
+                Mathf.Abs(transform.localScale.x),
+                transform.localScale.y,
+                transform.localScale.z
+            );
+        }
+        else
+        {
+            transform.localScale = new Vector3(
+                -Mathf.Abs(transform.localScale.x),
+                transform.localScale.y,
+                transform.localScale.z
+            );
+        }
     }
-    else
-    {
-        transform.localScale = new Vector3(
-            -Mathf.Abs(transform.localScale.x),
-            transform.localScale.y,
-            transform.localScale.z
-        );
-    }
-}
 
     void Atacar()
     {
         atacando = true;
 
         animator.SetTrigger("Attack");
+
+        // NOVO: som ao iniciar o ataque
+        if (audioMob != null)
+        {
+            audioMob.TocarAtaque();
+        }
 
         proximoAtaque = Time.time + tempoEntreAtaques;
     }
@@ -87,27 +96,27 @@ public class CriaturaAtaque : MonoBehaviour
     }
 
     public void DarDano()
-{
-    Collider2D[] atingidos = Physics2D.OverlapBoxAll(
-        hitboxAtaque.bounds.center,
-        hitboxAtaque.bounds.size,
-        0f
-    );
-
-    foreach (Collider2D alvo in atingidos)
     {
-        if (alvo.CompareTag("Player"))
-        {
-            alvo.gameObject.SendMessage(
-                "ReceberDano",
-                dano,
-                SendMessageOptions.DontRequireReceiver
-            );
+        Collider2D[] atingidos = Physics2D.OverlapBoxAll(
+            hitboxAtaque.bounds.center,
+            hitboxAtaque.bounds.size,
+            0f
+        );
 
-            break;
+        foreach (Collider2D alvo in atingidos)
+        {
+            if (alvo.CompareTag("Player"))
+            {
+                alvo.gameObject.SendMessage(
+                    "ReceberDano",
+                    dano,
+                    SendMessageOptions.DontRequireReceiver
+                );
+
+                break;
+            }
         }
     }
-}
 
     public void Morrer()
     {

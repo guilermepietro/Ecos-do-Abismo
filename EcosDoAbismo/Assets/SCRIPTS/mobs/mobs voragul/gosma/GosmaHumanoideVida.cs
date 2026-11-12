@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -13,6 +14,9 @@ public class GosmaHumanoideVida : MonoBehaviour
     public bool EstaMorto { get; private set; }
     public bool EstaTomandoDano { get; private set; }
 
+    // NOVO: áudio universal
+    private AudioMob audioMob;
+
     void Start()
     {
         vidaAtual = vidaMaxima;
@@ -20,6 +24,9 @@ public class GosmaHumanoideVida : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         ataque = GetComponent<GosmaHumanoideAtaque>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     public void ReceberDano(int dano)
@@ -33,6 +40,12 @@ public class GosmaHumanoideVida : MonoBehaviour
         {
             Morrer();
             return;
+        }
+
+        // NOVO: som de dano não fatal
+        if (audioMob != null)
+        {
+            audioMob.TocarDano();
         }
 
         StartCoroutine(TomarDano());
@@ -63,5 +76,11 @@ public class GosmaHumanoideVida : MonoBehaviour
 
         animator.ResetTrigger("Atacar");
         animator.SetTrigger("Morrer");
+
+        // NOVO: som de morte
+        if (audioMob != null)
+        {
+            audioMob.TocarMorte();
+        }
     }
 }

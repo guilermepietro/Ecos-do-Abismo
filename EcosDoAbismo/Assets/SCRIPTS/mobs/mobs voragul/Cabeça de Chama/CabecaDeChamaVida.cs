@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 
@@ -12,12 +13,18 @@ public class CabecaDeChamaVida : MonoBehaviour
     public bool EstaTomandoDano { get; private set; }
     public bool EstaMorto { get; private set; }
 
+    // NOVO
+    private AudioMob audioMob;
+
     void Start()
     {
         vidaAtual = vidaMaxima;
 
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     public void ReceberDano(int dano)
@@ -25,7 +32,9 @@ public class CabecaDeChamaVida : MonoBehaviour
         if (EstaMorto)
             return;
 
-    Debug.Log("Cabeça de Chama recebeu dano: " + dano);
+        Debug.Log(
+            "Cabeça de Chama recebeu dano: " + dano
+        );
 
         vidaAtual -= dano;
 
@@ -35,20 +44,30 @@ public class CabecaDeChamaVida : MonoBehaviour
             return;
         }
 
+        // NOVO: som de dano não fatal
+        if (audioMob != null)
+        {
+            audioMob.TocarDano();
+        }
+
         StartCoroutine(TomarDano());
     }
 
     IEnumerator TomarDano()
-{
-    EstaTomandoDano = true;
+    {
+        EstaTomandoDano = true;
 
-    rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-    animator.SetTrigger("Dano");
+        rb.linearVelocity = new Vector2(
+            0f,
+            rb.linearVelocity.y
+        );
 
-    yield return new WaitForSeconds(0.35f);
+        animator.SetTrigger("Dano");
 
-    EstaTomandoDano = false;
-}
+        yield return new WaitForSeconds(0.35f);
+
+        EstaTomandoDano = false;
+    }
 
     void Morrer()
     {
@@ -58,5 +77,11 @@ public class CabecaDeChamaVida : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
 
         animator.SetTrigger("Morrer");
+
+        // NOVO: som de morte
+        if (audioMob != null)
+        {
+            audioMob.TocarMorte();
+        }
     }
 }

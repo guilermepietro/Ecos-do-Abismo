@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class SombraMovimento : MonoBehaviour
@@ -25,6 +26,15 @@ public class SombraMovimento : MonoBehaviour
     private bool paradoPorDano = false;
     private bool morto = false;
 
+    // NOVO
+    private AudioMob audioMob;
+
+    // NOVO
+    void Start()
+    {
+        audioMob = GetComponentInParent<AudioMob>();
+    }
+
     void Update()
     {
         if (morto || elian == null)
@@ -48,7 +58,10 @@ public class SombraMovimento : MonoBehaviour
             return;
         }
 
-        float distancia = Vector2.Distance(transform.position, elian.position);
+        float distancia = Vector2.Distance(
+            transform.position,
+            elian.position
+        );
 
         if (distancia <= distanciaAtaque)
         {
@@ -71,7 +84,9 @@ public class SombraMovimento : MonoBehaviour
 
     void SeguirElian()
     {
-        float direcao = Mathf.Sign(elian.position.x - transform.position.x);
+        float direcao = Mathf.Sign(
+            elian.position.x - transform.position.x
+        );
 
         rb.linearVelocity = new Vector2(
             direcao * velocidade,
@@ -112,6 +127,12 @@ public class SombraMovimento : MonoBehaviour
 
         animator.SetTrigger("Attack");
 
+        // NOVO: som ao iniciar o ataque
+        if (audioMob != null)
+        {
+            audioMob.TocarAtaque();
+        }
+
         proximoAtaque = Time.time + tempoEntreAtaques;
     }
 
@@ -139,14 +160,14 @@ public class SombraMovimento : MonoBehaviour
     }
 
     public void Morrer()
-{
-    morto = true;
-    atacando = false;
-    paradoPorDano = false;
+    {
+        morto = true;
+        atacando = false;
+        paradoPorDano = false;
 
-    rb.linearVelocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
-    animator.SetBool("Run", false);
-    animator.ResetTrigger("Attack");
-}
+        animator.SetBool("Run", false);
+        animator.ResetTrigger("Attack");
+    }
 }

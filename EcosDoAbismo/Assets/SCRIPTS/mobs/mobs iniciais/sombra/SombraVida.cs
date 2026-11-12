@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class SombraVida : MonoBehaviour
@@ -12,9 +13,15 @@ public class SombraVida : MonoBehaviour
     private int vidaAtual;
     private bool morto = false;
 
+    // NOVO
+    private AudioMob audioMob;
+
     void Start()
     {
         vidaAtual = vidaMaxima;
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     public void ReceberDano(int dano)
@@ -33,6 +40,12 @@ public class SombraVida : MonoBehaviour
         }
 
         animator.SetTrigger("Damage");
+
+        // NOVO: som de dano
+        if (audioMob != null)
+        {
+            audioMob.TocarDano();
+        }
     }
 
     void Morrer()
@@ -44,6 +57,12 @@ public class SombraVida : MonoBehaviour
         animator.SetBool("Run", false);
         animator.ResetTrigger("Attack");
         animator.SetTrigger("Death");
+
+        // NOVO: som de morte
+        if (audioMob != null)
+        {
+            audioMob.TocarMorte();
+        }
     }
 
     public void Desaparecer()
