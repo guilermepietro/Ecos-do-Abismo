@@ -932,7 +932,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 125.6, y: -0.1, z: 0}
+  m_LocalPosition: {x: 168.3, y: -0.1, z: 0}
   m_LocalScale: {x: 1.52, y: 1.52, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15011,10 +15011,12 @@ GameObject:
   - component: {fileID: 1573473952}
   - component: {fileID: 1573473951}
   - component: {fileID: 1573473950}
+  - component: {fileID: 1573473959}
   - component: {fileID: 1573473949}
   - component: {fileID: 1573473955}
   - component: {fileID: 1573473956}
   - component: {fileID: 1573473957}
+  - component: {fileID: 1573473958}
   m_Layer: 0
   m_Name: salenthra
   m_TagString: Inimigo
@@ -15287,6 +15289,124 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9754dd2b8611245a17ced2be032340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IgnorarColisaoElian
+--- !u!82 &1573473958
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573473948}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -2494160455264745778, guid: efce899dc2da8024f9f5d231a4eb9523, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.45
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 10
+  MaxDistance: 25
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1573473959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573473948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9c91f357595a649906a4eb589a468b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSalenthra
+  somDashFase1: {fileID: 8300000, guid: 2f5d72a976783114db22a0eb299a1a0a, type: 3}
+  somPuxao: {fileID: 8300000, guid: 5fb4ffbfb46418b4da305f961d1a1c01, type: 3}
+  somChuvaEspadas: {fileID: 8300000, guid: 525f8949e4663be45a8e8b986e5fc601, type: 3}
+  somQuedaEspada: {fileID: 8300000, guid: 525f8949e4663be45a8e8b986e5fc601, type: 3}
+  volumeQuedaEspada: 0.35
+  somEspadaFase2: {fileID: 8300000, guid: aa65ea1b5c6534b4687e9a42aa955b75, type: 3}
+  somDashFase2: {fileID: 8300000, guid: 473a1dfb81a66c94aabcc8490ec19fd1, type: 3}
+  somProjetilLua: {fileID: 8300000, guid: ec0d7c2561b1b704e80bd31e71081290, type: 3}
+  somRaioCelestial: {fileID: 8300000, guid: cf2c9d972f27607468a8915dc6a0d573, type: 3}
 --- !u!1 &1590966923
 GameObject:
   m_ObjectHideFlags: 0

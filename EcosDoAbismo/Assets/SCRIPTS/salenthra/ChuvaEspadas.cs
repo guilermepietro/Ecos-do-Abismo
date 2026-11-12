@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -22,6 +23,19 @@ public class ChuvaEspadas : MonoBehaviour
 
     private int espadasAtivas = 0;
     private bool terminouDeGerar = false;
+
+    // NOVO: áudio da Salenthra
+    private AudioSalenthra audioSalenthra;
+
+    // NOVO
+    private void Awake()
+    {
+        if (salenthra != null)
+        {
+            audioSalenthra =
+                salenthra.GetComponent<AudioSalenthra>();
+        }
+    }
 
     public void IniciarChuva()
     {
@@ -69,6 +83,12 @@ public class ChuvaEspadas : MonoBehaviour
                 posicaoSpawn,
                 Quaternion.identity
             );
+
+            // NOVO: som individual de cada espada
+            if (novaEspada != null && audioSalenthra != null)
+            {
+                audioSalenthra.TocarQuedaEspada();
+            }
 
             EspadaChuva espada =
                 novaEspada.GetComponent<EspadaChuva>();
