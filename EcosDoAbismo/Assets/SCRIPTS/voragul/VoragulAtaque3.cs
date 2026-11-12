@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class VoragulAtaque3 : MonoBehaviour
@@ -25,6 +26,9 @@ public class VoragulAtaque3 : MonoBehaviour
     private bool atacando = false;
     private float proximoAtaque = 0f;
 
+    // NOVO
+    private AudioVoragul audioVoragul;
+
     private void Awake()
     {
         movimento = GetComponent<VoragulMovimento>();
@@ -33,6 +37,9 @@ public class VoragulAtaque3 : MonoBehaviour
         ataque2 = GetComponent<VoragulAtaque2>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // NOVO
+        audioVoragul = GetComponent<AudioVoragul>();
     }
 
     private void LateUpdate()
@@ -98,7 +105,14 @@ public class VoragulAtaque3 : MonoBehaviour
             Quaternion.identity
         );
 
-        PedraVoragul pedra = novaPedra.GetComponent<PedraVoragul>();
+        // NOVO: som no instante do lançamento
+        if (audioVoragul != null)
+        {
+            audioVoragul.TocarAtaque3();
+        }
+
+        PedraVoragul pedra =
+            novaPedra.GetComponent<PedraVoragul>();
 
         if (pedra != null)
         {

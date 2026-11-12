@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class VoragulVida : MonoBehaviour
@@ -15,10 +16,16 @@ public class VoragulVida : MonoBehaviour
 
     private Animator animator;
 
+    // NOVO
+    private AudioVoragul audioVoragul;
+
     private void Awake()
     {
         vidaAtual = vidaMaxima;
         animator = GetComponent<Animator>();
+
+        // NOVO
+        audioVoragul = GetComponent<AudioVoragul>();
     }
 
     private void Start()
@@ -70,6 +77,12 @@ public class VoragulVida : MonoBehaviour
             vidaAtual = 0;
             Morrer();
             return;
+        }
+
+        // NOVO: som sempre que perde vida e sobrevive
+        if (audioVoragul != null)
+        {
+            audioVoragul.TocarDano();
         }
 
         VoragulAtaque1 ataque1 =
@@ -141,6 +154,12 @@ public class VoragulVida : MonoBehaviour
         RegistrarDerrota();
 
         animator.SetTrigger("Morte");
+
+        // NOVO: som exclusivo de morte
+        if (audioVoragul != null)
+        {
+            audioVoragul.TocarMorte();
+        }
     }
 
     private void DesativarColliders()

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class VoragulAtaque2 : MonoBehaviour
@@ -18,12 +19,18 @@ public class VoragulAtaque2 : MonoBehaviour
     private bool atacando = false;
     private float proximoAtaque = 0f;
 
+    // NOVO
+    private AudioVoragul audioVoragul;
+
     private void Awake()
     {
         movimento = GetComponent<VoragulMovimento>();
         vida = GetComponent<VoragulVida>();
         ataque1 = GetComponent<VoragulAtaque1>();
         animator = GetComponent<Animator>();
+
+        // NOVO
+        audioVoragul = GetComponent<AudioVoragul>();
     }
 
     private void IniciarAtaque2()
@@ -69,6 +76,12 @@ public class VoragulAtaque2 : MonoBehaviour
         if (hitboxAtaque2 != null)
         {
             hitboxAtaque2.AtivarDano();
+
+            // NOVO: som dos pilares
+            if (audioVoragul != null)
+            {
+                audioVoragul.TocarAtaque2();
+            }
         }
     }
 

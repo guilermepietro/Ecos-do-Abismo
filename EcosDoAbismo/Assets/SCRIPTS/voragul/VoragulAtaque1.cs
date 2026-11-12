@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class VoragulAtaque1 : MonoBehaviour
@@ -17,6 +18,9 @@ public class VoragulAtaque1 : MonoBehaviour
     private bool atacando = false;
     private float proximoAtaque = 0f;
 
+    // NOVO
+    private AudioVoragul audioVoragul;
+
     private void Awake()
     {
         movimento = GetComponent<VoragulMovimento>();
@@ -24,6 +28,9 @@ public class VoragulAtaque1 : MonoBehaviour
         animator = GetComponent<Animator>();
 
         cameraFollow = FindFirstObjectByType<CameraFollow>();
+
+        // NOVO
+        audioVoragul = GetComponent<AudioVoragul>();
     }
 
     private void IniciarAtaque()
@@ -69,6 +76,12 @@ public class VoragulAtaque1 : MonoBehaviour
         if (hitboxAtaque1 != null)
         {
             hitboxAtaque1.VerificarAcerto();
+        }
+
+        // NOVO: som sincronizado com o impacto
+        if (audioVoragul != null)
+        {
+            audioVoragul.TocarAtaque1();
         }
 
         if (cameraFollow != null)
