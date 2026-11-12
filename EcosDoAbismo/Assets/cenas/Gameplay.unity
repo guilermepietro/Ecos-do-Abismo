@@ -932,7 +932,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 168.3, y: -0.1, z: 0}
+  m_LocalPosition: {x: 141.4, y: 63.9, z: 0}
   m_LocalScale: {x: 1.52, y: 1.52, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1692,7 +1692,7 @@ Transform:
   m_GameObject: {fileID: 175657608}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 226.56, y: 30.2, z: 0}
+  m_LocalPosition: {x: 234.68, y: 30.2, z: 0}
   m_LocalScale: {x: 1.9889619, y: 1.9889619, z: 1.9889619}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4347,7 +4347,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9283,7 +9283,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1974997789269170165, guid: 0da99b0c5c7840c41bcbecf91d3566d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9606,7 +9606,6 @@ GameObject:
   - component: {fileID: 1055608250}
   - component: {fileID: 1055608240}
   - component: {fileID: 1055608246}
-  - component: {fileID: 1055608247}
   - component: {fileID: 1055608248}
   - component: {fileID: 1055608249}
   m_Layer: 0
@@ -9792,7 +9791,7 @@ Transform:
   m_GameObject: {fileID: 1055608239}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 122.16, y: 30.1765, z: 0}
+  m_LocalPosition: {x: 122.16, y: 52.6, z: 0}
   m_LocalScale: {x: 2.5098825, y: 2.5098825, z: 2.5098825}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9813,19 +9812,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GolemVida
   vidaMaxima: 150
   tempoDano: 0.8
---- !u!114 &1055608247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055608239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &1055608248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10815,7 +10801,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.328125}
+  m_Offset: {x: 0, y: 0.3589377}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: -0.30769232}
@@ -10825,7 +10811,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.875, y: 0.40625}
+  m_Size: {x: 0.875, y: 0.34462458}
   m_EdgeRadius: 0
 --- !u!50 &1133022430
 Rigidbody2D:
@@ -10945,7 +10931,7 @@ Transform:
   m_GameObject: {fileID: 1133022427}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 225.5, y: 30.01, z: 0}
+  m_LocalPosition: {x: 225.5, y: 29.987, z: 0}
   m_LocalScale: {x: 1.8997359, y: 1.8997359, z: 1.8997359}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13829,7 +13815,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.4921875}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: -0.07272727}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.9375, y: 0.859375}
     newSize: {x: 0.9375, y: 0.859375}
     adaptiveTilingThreshold: 0.5
@@ -17632,7 +17618,6 @@ GameObject:
   - component: {fileID: 1851553439}
   - component: {fileID: 1851553445}
   - component: {fileID: 1851553446}
-  - component: {fileID: 1851553447}
   - component: {fileID: 1851553448}
   m_Layer: 0
   m_Name: Morcego
@@ -17812,7 +17797,7 @@ Transform:
   m_GameObject: {fileID: 1851553438}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 115, y: 30.7, z: 0}
+  m_LocalPosition: {x: 115, y: 30.4, z: 0}
   m_LocalScale: {x: 2.4112089, y: 2.4112089, z: 2.4112089}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17845,18 +17830,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
   tempoParaDesaparecer: 3
---- !u!114 &1851553447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851553438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc9754dd2b8611245a17ced2be032340, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IgnorarColisaoElian
 --- !u!82 &1851553448
 AudioSource:
   m_ObjectHideFlags: 0
