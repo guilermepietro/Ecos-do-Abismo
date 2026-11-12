@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -15,12 +16,18 @@ public class RastejadorVida : MonoBehaviour
     public bool EstaMorto { get; private set; }
     public bool EstaTomandoDano { get; private set; }
 
+    // NOVO: áudio universal do mob
+    private AudioMob audioMob;
+
     void Start()
     {
         vidaAtual = vidaMaxima;
 
         animator = GetComponent<Animator>();
         movimento = GetComponent<RastejadorMovimento>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     public void ReceberDano(int dano)
@@ -34,6 +41,12 @@ public class RastejadorVida : MonoBehaviour
         {
             Morrer();
             return;
+        }
+
+        // NOVO: som de dano não fatal
+        if (audioMob != null)
+        {
+            audioMob.TocarDano();
         }
 
         if (coroutineDano != null)
@@ -54,7 +67,9 @@ public class RastejadorVida : MonoBehaviour
         animator.ResetTrigger("Dano");
         animator.SetTrigger("Dano");
 
-        yield return new WaitForSeconds(tempoParadoAposDano);
+        yield return new WaitForSeconds(
+            tempoParadoAposDano
+        );
 
         EstaTomandoDano = false;
 
@@ -81,5 +96,11 @@ public class RastejadorVida : MonoBehaviour
         animator.SetBool("Correndo", false);
         animator.ResetTrigger("Dano");
         animator.SetTrigger("Morrer");
+
+        // NOVO: som exclusivo de morte
+        if (audioMob != null)
+        {
+            audioMob.TocarMorte();
+        }
     }
 }

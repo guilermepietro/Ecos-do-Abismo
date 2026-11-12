@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class CarcacaAtaque : MonoBehaviour
@@ -20,12 +21,18 @@ public class CarcacaAtaque : MonoBehaviour
 
     public bool EstaAtacando { get; private set; }
 
+    // NOVO: áudio universal do mob
+    private AudioMob audioMob;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         vida = GetComponent<CarcacaVida>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
 
         GameObject jogador = GameObject.Find("elian");
 
@@ -41,8 +48,11 @@ public class CarcacaAtaque : MonoBehaviour
         if (elian == null)
             return;
 
-        if (vida != null && (vida.EstaMorto || vida.EstaTomandoDano))
+        if (vida != null &&
+            (vida.EstaMorto || vida.EstaTomandoDano))
+        {
             return;
+        }
 
         if (vidaElian != null && vidaElian.EstaMorto)
             return;
@@ -50,15 +60,21 @@ public class CarcacaAtaque : MonoBehaviour
         if (EstaAtacando)
             return;
 
-        float distancia = Mathf.Abs(elian.position.x - transform.position.x);
+        float distancia = Mathf.Abs(
+            elian.position.x - transform.position.x
+        );
 
-        if (distancia <= distanciaAtaque && Time.time >= proximoAtaque)
+        if (distancia <= distanciaAtaque &&
+            Time.time >= proximoAtaque)
         {
-            direcaoAtaque = Mathf.Sign(elian.position.x - transform.position.x);
+            direcaoAtaque = Mathf.Sign(
+                elian.position.x - transform.position.x
+            );
 
             spriteRenderer.flipX = direcaoAtaque < 0;
 
-            Vector3 posicaoHitbox = hitboxAtaque.localPosition;
+            Vector3 posicaoHitbox =
+                hitboxAtaque.localPosition;
 
             if (direcaoAtaque < 0)
             {
@@ -75,7 +91,14 @@ public class CarcacaAtaque : MonoBehaviour
 
             animator.SetTrigger("Atacar");
 
-            proximoAtaque = Time.time + tempoEntreAtaques;
+            // NOVO: som ao iniciar a investida
+            if (audioMob != null)
+            {
+                audioMob.TocarAtaque();
+            }
+
+            proximoAtaque =
+                Time.time + tempoEntreAtaques;
         }
     }
 
@@ -110,28 +133,27 @@ public class CarcacaAtaque : MonoBehaviour
     }
 
     public void FinalizarAtaque()
-{
-    EstaAtacando = false;
+    {
+        EstaAtacando = false;
 
-    rb.linearVelocity = new Vector2(
-        0f,
-        rb.linearVelocity.y
-    );
-
-
-}
+        rb.linearVelocity = new Vector2(
+            0f,
+            rb.linearVelocity.y
+        );
+    }
 
     public void CancelarAtaque()
-{
-    EstaAtacando = false;
+    {
+        EstaAtacando = false;
 
-    rb.linearVelocity = new Vector2(
-        0f,
-        rb.linearVelocity.y
-    );
+        rb.linearVelocity = new Vector2(
+            0f,
+            rb.linearVelocity.y
+        );
 
-    animator.ResetTrigger("Atacar");
+        animator.ResetTrigger("Atacar");
 
-    proximoAtaque = Time.time + tempoEntreAtaques;
-}
+        proximoAtaque =
+            Time.time + tempoEntreAtaques;
+    }
 }

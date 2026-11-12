@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -16,6 +17,9 @@ public class MongeVida : MonoBehaviour
     public bool EstaMorto { get; private set; }
     public bool EstaTomandoDano { get; private set; }
 
+    // NOVO: áudio universal do mob
+    private AudioMob audioMob;
+
     void Start()
     {
         vidaAtual = vidaMaxima;
@@ -23,6 +27,9 @@ public class MongeVida : MonoBehaviour
         animator = GetComponent<Animator>();
         movimento = GetComponent<MongeMovimento>();
         ataque = GetComponent<MongeAtaque>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     public void ReceberDano(int dano)
@@ -36,6 +43,12 @@ public class MongeVida : MonoBehaviour
         {
             Morrer();
             return;
+        }
+
+        // NOVO: som de dano não fatal
+        if (audioMob != null)
+        {
+            audioMob.TocarDano();
         }
 
         if (coroutineDano != null)
@@ -62,7 +75,9 @@ public class MongeVida : MonoBehaviour
         animator.ResetTrigger("Dano");
         animator.SetTrigger("Dano");
 
-        yield return new WaitForSeconds(tempoParadoAposDano);
+        yield return new WaitForSeconds(
+            tempoParadoAposDano
+        );
 
         EstaTomandoDano = false;
 
@@ -96,5 +111,11 @@ public class MongeVida : MonoBehaviour
         animator.ResetTrigger("Atacar");
         animator.ResetTrigger("Dano");
         animator.SetTrigger("Morrer");
+
+        // NOVO: som exclusivo de morte
+        if (audioMob != null)
+        {
+            audioMob.TocarMorte();
+        }
     }
 }

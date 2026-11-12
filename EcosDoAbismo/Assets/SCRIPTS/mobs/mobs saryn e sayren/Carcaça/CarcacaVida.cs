@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -13,6 +14,9 @@ public class CarcacaVida : MonoBehaviour
     public bool EstaMorto { get; private set; }
     public bool EstaTomandoDano { get; private set; }
 
+    // NOVO: áudio universal do mob
+    private AudioMob audioMob;
+
     void Start()
     {
         vidaAtual = vidaMaxima;
@@ -20,6 +24,9 @@ public class CarcacaVida : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         ataque = GetComponent<CarcacaAtaque>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     public void ReceberDano(int dano)
@@ -35,27 +42,33 @@ public class CarcacaVida : MonoBehaviour
             return;
         }
 
+        // NOVO: som de dano não fatal
+        if (audioMob != null)
+        {
+            audioMob.TocarDano();
+        }
+
         StartCoroutine(TomarDano());
     }
 
     IEnumerator TomarDano()
-{
-    EstaTomandoDano = true;
+    {
+        EstaTomandoDano = true;
 
-    ataque.CancelarAtaque();
+        ataque.CancelarAtaque();
 
-    rb.linearVelocity = new Vector2(
-        0f,
-        rb.linearVelocity.y
-    );
+        rb.linearVelocity = new Vector2(
+            0f,
+            rb.linearVelocity.y
+        );
 
-    animator.ResetTrigger("Atacar");
-    animator.SetTrigger("Dano");
+        animator.ResetTrigger("Atacar");
+        animator.SetTrigger("Dano");
 
-    yield return new WaitForSeconds(0.35f);
+        yield return new WaitForSeconds(0.35f);
 
-    EstaTomandoDano = false;
-}
+        EstaTomandoDano = false;
+    }
 
     void Morrer()
     {
@@ -68,5 +81,11 @@ public class CarcacaVida : MonoBehaviour
 
         animator.ResetTrigger("Atacar");
         animator.SetTrigger("Morrer");
+
+        // NOVO: som exclusivo de morte
+        if (audioMob != null)
+        {
+            audioMob.TocarMorte();
+        }
     }
 }

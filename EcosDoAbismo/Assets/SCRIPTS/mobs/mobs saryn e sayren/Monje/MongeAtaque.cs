@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class MongeAtaque : MonoBehaviour
@@ -16,11 +17,17 @@ public class MongeAtaque : MonoBehaviour
 
     public bool EstaAtacando { get; private set; }
 
+    // NOVO: áudio universal do mob
+    private AudioMob audioMob;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         movimento = GetComponent<MongeMovimento>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
 
         GameObject jogador = GameObject.Find("elian");
 
@@ -31,16 +38,16 @@ public class MongeAtaque : MonoBehaviour
     }
 
     public void AtivarDanoAtaque()
-{
-    if (hitbox != null)
-        hitbox.AtivarDano();
-}
+    {
+        if (hitbox != null)
+            hitbox.AtivarDano();
+    }
 
-public void DesativarDanoAtaque()
-{
-    if (hitbox != null)
-        hitbox.DesativarDano();
-}
+    public void DesativarDanoAtaque()
+    {
+        if (hitbox != null)
+            hitbox.DesativarDano();
+    }
 
     void Update()
     {
@@ -50,25 +57,32 @@ public void DesativarDanoAtaque()
         if (EstaAtacando)
             return;
 
-        float distancia = Mathf.Abs(elian.position.x - transform.position.x);
+        float distancia = Mathf.Abs(
+            elian.position.x - transform.position.x
+        );
 
-        if (distancia <= distanciaAtaque && Time.time >= proximoAtaque)
+        if (distancia <= distanciaAtaque &&
+            Time.time >= proximoAtaque)
         {
-            float direcao = Mathf.Sign(elian.position.x - transform.position.x);
+            float direcao = Mathf.Sign(
+                elian.position.x - transform.position.x
+            );
 
             spriteRenderer.flipX = direcao < 0;
-            Vector3 posicaoHitbox = hitboxAtaque.localPosition;
 
-if (direcao < 0)
-{
-    posicaoHitbox.x = -0.629f;
-}
-else
-{
-    posicaoHitbox.x = 0.496f;
-}
+            Vector3 posicaoHitbox =
+                hitboxAtaque.localPosition;
 
-hitboxAtaque.localPosition = posicaoHitbox;
+            if (direcao < 0)
+            {
+                posicaoHitbox.x = -0.629f;
+            }
+            else
+            {
+                posicaoHitbox.x = 0.496f;
+            }
+
+            hitboxAtaque.localPosition = posicaoHitbox;
 
             EstaAtacando = true;
 
@@ -78,7 +92,14 @@ hitboxAtaque.localPosition = posicaoHitbox;
             animator.SetBool("Correndo", false);
             animator.SetTrigger("Atacar");
 
-            proximoAtaque = Time.time + tempoEntreAtaques;
+            // NOVO: som ao iniciar o ataque
+            if (audioMob != null)
+            {
+                audioMob.TocarAtaque();
+            }
+
+            proximoAtaque =
+                Time.time + tempoEntreAtaques;
         }
     }
 
@@ -99,6 +120,7 @@ hitboxAtaque.localPosition = posicaoHitbox;
         if (movimento != null)
             movimento.PodeMover = false;
 
-        proximoAtaque = Time.time + tempoEntreAtaques;
+        proximoAtaque =
+            Time.time + tempoEntreAtaques;
     }
 }
