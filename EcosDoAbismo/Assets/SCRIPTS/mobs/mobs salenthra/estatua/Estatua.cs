@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class Estatua : MonoBehaviour
@@ -14,57 +15,75 @@ public class Estatua : MonoBehaviour
 
     private float tempoUltimoAtaque;
     private bool morto;
-    
+
+    // NOVO: áudio universal
+    private AudioMob audioMob;
+
+    // NOVO
+    void Start()
+    {
+        audioMob = GetComponentInParent<AudioMob>();
+    }
 
     void Update()
     {
         if (morto || recebendoDano || elian == null)
-    return;
+            return;
 
-        float distancia = Vector2.Distance(transform.position, elian.position);
+        float distancia = Vector2.Distance(
+            transform.position,
+            elian.position
+        );
 
         if (distancia <= distanciaAtaque)
         {
             if (Time.time >= tempoUltimoAtaque + tempoEntreAtaques)
             {
                 animator.SetTrigger("Atacar");
+
+                // NOVO: som ao iniciar o ataque
+                if (audioMob != null)
+                {
+                    audioMob.TocarAtaque();
+                }
+
                 tempoUltimoAtaque = Time.time;
             }
         }
     }
 
     public void AtivarHitbox()
-{
-    HitboxAtaque.SetActive(true);
-}
+    {
+        HitboxAtaque.SetActive(true);
+    }
 
-public void DesativarHitbox()
-{
-    HitboxAtaque.SetActive(false);
-}
-
-public void Morrer()
-{
-    morto = true;
-
-    if (HitboxAtaque != null)
+    public void DesativarHitbox()
     {
         HitboxAtaque.SetActive(false);
     }
-}
 
-public void IniciarDano()
-{
-    recebendoDano = true;
-
-    if (HitboxAtaque != null)
+    public void Morrer()
     {
-        HitboxAtaque.SetActive(false);
-    }
-}
+        morto = true;
 
-public void FinalizarDano()
-{
-    recebendoDano = false;
-}
+        if (HitboxAtaque != null)
+        {
+            HitboxAtaque.SetActive(false);
+        }
+    }
+
+    public void IniciarDano()
+    {
+        recebendoDano = true;
+
+        if (HitboxAtaque != null)
+        {
+            HitboxAtaque.SetActive(false);
+        }
+    }
+
+    public void FinalizarDano()
+    {
+        recebendoDano = false;
+    }
 }

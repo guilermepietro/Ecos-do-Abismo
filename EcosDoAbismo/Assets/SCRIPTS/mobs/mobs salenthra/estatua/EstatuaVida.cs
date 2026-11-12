@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class EstatuaVida : MonoBehaviour
@@ -7,10 +8,16 @@ public class EstatuaVida : MonoBehaviour
     private int vidaAtual;
     private Estatua estatua;
 
+    // NOVO: áudio universal
+    private AudioMob audioMob;
+
     void Start()
     {
         vidaAtual = vidaMaxima;
         estatua = GetComponent<Estatua>();
+
+        // NOVO
+        audioMob = GetComponentInParent<AudioMob>();
     }
 
     public void ReceberDano(int dano)
@@ -23,20 +30,33 @@ public class EstatuaVida : MonoBehaviour
         if (vidaAtual > 0)
         {
             estatua.animator.SetTrigger("Dano");
+
+            // NOVO: som de dano não fatal
+            if (audioMob != null)
+            {
+                audioMob.TocarDano();
+            }
         }
         else
-{
-    vidaAtual = 0;
+        {
+            vidaAtual = 0;
 
-    estatua.animator.SetTrigger("Morrer");
-    estatua.Morrer();
+            estatua.animator.SetTrigger("Morrer");
+            estatua.Morrer();
 
-    DesaparecerAoMorrer desaparecer = GetComponent<DesaparecerAoMorrer>();
+            // NOVO: som de morte
+            if (audioMob != null)
+            {
+                audioMob.TocarMorte();
+            }
 
-    if (desaparecer != null)
-    {
-        desaparecer.IniciarMorte();
-    }
-}
+            DesaparecerAoMorrer desaparecer =
+                GetComponent<DesaparecerAoMorrer>();
+
+            if (desaparecer != null)
+            {
+                desaparecer.IniciarMorte();
+            }
+        }
     }
 }

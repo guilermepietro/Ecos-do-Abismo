@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class RestosDanoContato : MonoBehaviour
@@ -7,6 +8,15 @@ public class RestosDanoContato : MonoBehaviour
 
     private float proximoDano;
     private bool morto;
+
+    // NOVO: áudio universal
+    private AudioMob audioMob;
+
+    // NOVO
+    void Start()
+    {
+        audioMob = GetComponentInParent<AudioMob>();
+    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -19,11 +29,18 @@ public class RestosDanoContato : MonoBehaviour
         if (Time.time < proximoDano)
             return;
 
-        ElianVida vidaElian = collision.gameObject.GetComponent<ElianVida>();
+        ElianVida vidaElian =
+            collision.gameObject.GetComponent<ElianVida>();
 
         if (vidaElian != null)
         {
             vidaElian.ReceberDano(dano);
+
+            // NOVO: som do ataque por contato
+            if (audioMob != null)
+            {
+                audioMob.TocarAtaque();
+            }
 
             proximoDano = Time.time + tempoEntreDanos;
         }
