@@ -4118,6 +4118,12 @@ GameObject:
   - component: {fileID: 426324709}
   - component: {fileID: 426324711}
   - component: {fileID: 426324712}
+  - component: {fileID: 426324713}
+  - component: {fileID: 426324714}
+  - component: {fileID: 426324717}
+  - component: {fileID: 426324716}
+  - component: {fileID: 426324715}
+  - component: {fileID: 426324718}
   m_Layer: 0
   m_Name: Ishkharoth
   m_TagString: Untagged
@@ -4264,6 +4270,8 @@ Transform:
   m_Children:
   - {fileID: 1205530420}
   - {fileID: 119366347}
+  - {fileID: 595245960}
+  - {fileID: 575285272}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &426324706
@@ -4362,8 +4370,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba9835e1189bba4ba9f71d508ef5ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IshkharothVida
-  vidaMaxima: 400
+  vidaMaxima: 100
   vidaAtual: 0
+  animator: {fileID: 426324708}
+  corpo: {fileID: 426324703}
+  visual: {fileID: 426324704}
+  movimento: {fileID: 426324706}
+  ia: {fileID: 426324707}
+  ataque1: {fileID: 426324709}
+  ataque2: {fileID: 426324711}
+  ataque3: {fileID: 426324712}
+  efeitoTela: {fileID: 426324713}
+  spriteFinalFase2: {fileID: 0}
+  estadoIdleFase2: Base Layer.Idle_F2
 --- !u!114 &426324711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4413,6 +4432,132 @@ MonoBehaviour:
   alturaNascimento: 6
   velocidadeQueda: 7
   dano: 20
+--- !u!114 &426324713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426324701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f5188c534605941bab6e3726fa7e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IshkharothPiscarTela
+  telaFlash: {fileID: 920795041}
+  intensidadePiscada: 0.55
+  duracaoAcender: 0.16
+  duracaoApagar: 0.25
+  intervaloPiscadas: 0.15
+  duracaoClarao: 0.2
+  tempoTelaClara: 0.7
+  duracaoRetorno: 0.55
+--- !u!114 &426324714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426324701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b2cad84f69e67042ae67d3400e383ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IshkharothMovimentoFase2
+  elian: {fileID: 142652950}
+  visual: {fileID: 426324704}
+  animator: {fileID: 426324708}
+  vida: {fileID: 426324710}
+  movimentoFase1: {fileID: 426324706}
+  velocidade: 3.2
+  distanciaParar: 2.5
+  esperaAposTransformacao: 1.3
+  spriteOriginalOlhaParaEsquerda: 1
+--- !u!114 &426324715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426324701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8563208fdbefad4b9869cfcc773079a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IshkharothIAFase2
+  elian: {fileID: 142652950}
+  animator: {fileID: 426324708}
+  vida: {fileID: 426324710}
+  movimento: {fileID: 426324714}
+  distanciaMaximaAtaque: 10
+  intervaloEntreAtaques: 1
+  esperaInicial: 1.4
+  recargaAtaque1: 2
+  recargaAtaque2: 3.5
+  recargaAtaque3: 5
+--- !u!114 &426324716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426324701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 896c679a05f50f642ac425891fff0f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IshkharothAtaque2Fase2
+  prefabMeiaLua: {fileID: 5884536180425429838, guid: b90624070a2187944973fae6db25e7a2, type: 3}
+  pontoNascimento: {fileID: 575285272}
+  visualIshkharoth: {fileID: 426324704}
+  spriteOriginalOlhaParaEsquerda: 1
+  dano: 30
+--- !u!114 &426324717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426324701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ec7da2e4f485e4c8d1423d930dc508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IshkharothAtaque1Fase2
+  prefabProjetil: {fileID: 7502927271652763744, guid: e3ea4b1e5fccdb64caec371c18e93e3a, type: 3}
+  pontoNascimento: {fileID: 595245960}
+  visualIshkharoth: {fileID: 426324704}
+  spriteOriginalOlhaParaEsquerda: 1
+  dano: 25
+--- !u!114 &426324718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426324701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e1ace20124bc848a6fcb3ec11089c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IshkharothAtaque3Fase2
+  elian: {fileID: 142652950}
+  prefabPilar: {fileID: 7095519649019245349, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+  animator: {fileID: 426324708}
+  ia: {fileID: 426324715}
+  limiteEsquerdo: {fileID: 981464391}
+  limiteDireito: {fileID: 1205123308}
+  camadasChao:
+    serializedVersion: 2
+    m_Bits: 8
+  quantidadePilares: 8
+  intervaloPilares: 0.45
+  margemBordas: 0.6
+  pilaresDirecionados: 3
+  espacamentoMinimo: 1.2
+  alturaBuscaChao: 0.8
+  profundidadeBuscaChao: 1.4
+  dano: 25
 --- !u!1 &452395203
 GameObject:
   m_ObjectHideFlags: 0
@@ -7109,6 +7254,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &575285271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 575285272}
+  m_Layer: 0
+  m_Name: PontoAtaque2F2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &575285272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575285271}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.788, y: 0.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 426324705}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &587122673
 GameObject:
   m_ObjectHideFlags: 0
@@ -7187,6 +7363,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.8288857, y: 0.5762863}
   m_EdgeRadius: 0
+--- !u!1 &595245959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 595245960}
+  m_Layer: 0
+  m_Name: PontoAtaque1F2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &595245960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595245959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.675, y: 0.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 426324705}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &605545641
 GameObject:
   m_ObjectHideFlags: 0
@@ -9931,6 +10138,94 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &920795039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 920795040}
+  - component: {fileID: 920795043}
+  - component: {fileID: 920795042}
+  - component: {fileID: 920795041}
+  m_Layer: 5
+  m_Name: FlashTela
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &920795040
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920795039}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1307501073}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &920795041
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920795039}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &920795042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920795039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &920795043
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920795039}
+  m_CullTransparentMesh: 1
 --- !u!1 &945326886
 GameObject:
   m_ObjectHideFlags: 0
@@ -14597,6 +14892,109 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1307501069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1307501073}
+  - component: {fileID: 1307501072}
+  - component: {fileID: 1307501071}
+  - component: {fileID: 1307501070}
+  m_Layer: 5
+  m_Name: TelaTransformacaoIshkharoth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1307501070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307501069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1307501071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307501069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1307501072
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307501069}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 100
+  m_TargetDisplay: 0
+--- !u!224 &1307501073
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307501069}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 920795040}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1318326263
 GameObject:
   m_ObjectHideFlags: 0
@@ -22567,7 +22965,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 6
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -150634,6 +151032,91 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 800540496}
   m_SourcePrefab: {fileID: 100100000, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+--- !u!1001 &4004341389438440163
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.6743
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -68.0874
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095519649019245349, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+      propertyPath: m_Name
+      value: PilarIshkharothF2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7095519649019245349, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4004341389438440166}
+  m_SourcePrefab: {fileID: 100100000, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+--- !u!1 &4004341389438440164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7095519649019245349, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+  m_PrefabInstance: {fileID: 4004341389438440163}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &4004341389438440165 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8757029291203198753, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
+  m_PrefabInstance: {fileID: 4004341389438440163}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4004341389438440166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4004341389438440164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a43c49cc240ccb4e81a43d6ad05ab10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PilarIshkharothF2
+  hitboxPilar: {fileID: 4004341389438440165}
+  dano: 25
+  tempoMaximo: 6
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -150746,3 +151229,5 @@ SceneRoots:
   - {fileID: 895104154}
   - {fileID: 264456330}
   - {fileID: 1508585524}
+  - {fileID: 1307501073}
+  - {fileID: 4004341389438440163}

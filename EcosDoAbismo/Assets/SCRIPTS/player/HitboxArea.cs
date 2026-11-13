@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -72,6 +73,17 @@ public class HitboxArea : MonoBehaviour
                 if (vidaSalenthra != null)
                 {
                     vidaSalenthra.ReceberDano(dano);
+                    acertouInimigo = true;
+                }
+
+                // NOVO: Ishkharoth
+                IshkharothVida vidaIshkharoth =
+                    inimigo.GetComponent<IshkharothVida>();
+
+                if (vidaIshkharoth != null &&
+                    vidaIshkharoth.EstaNaFase1)
+                {
+                    vidaIshkharoth.ReceberDano(dano);
                     acertouInimigo = true;
                 }
 

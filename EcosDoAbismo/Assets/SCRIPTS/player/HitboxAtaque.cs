@@ -13,7 +13,7 @@ public class HitboxAtaque : MonoBehaviour
 
     private ElianUltimate ultimate;
 
-    // NOVO: referência ao áudio dos ataques do Elian
+    // Referencia ao audio dos ataques do Elian
     private ElianAtaque elianAtaque;
     private bool somImpactoReproduzido = false;
 
@@ -23,7 +23,6 @@ public class HitboxAtaque : MonoBehaviour
 
         ultimate = GetComponentInParent<ElianUltimate>();
 
-        // NOVO
         elianAtaque = GetComponentInParent<ElianAtaque>();
     }
 
@@ -31,7 +30,6 @@ public class HitboxAtaque : MonoBehaviour
     {
         inimigosAtingidos.Clear();
 
-        // NOVO: permite um novo som no próximo golpe
         somImpactoReproduzido = false;
     }
 
@@ -87,6 +85,17 @@ public class HitboxAtaque : MonoBehaviour
                     if (vidaSalenthra != null)
                     {
                         vidaSalenthra.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
+
+                    // NOVO: Ishkharoth
+                    IshkharothVida vidaIshkharoth =
+                        inimigo.GetComponent<IshkharothVida>();
+
+                    if (vidaIshkharoth != null &&
+                        vidaIshkharoth.EstaNaFase1)
+                    {
+                        vidaIshkharoth.ReceberDano(danoAtual);
                         acertouInimigo = true;
                     }
 
@@ -207,7 +216,7 @@ public class HitboxAtaque : MonoBehaviour
                         acertouInimigo = true;
                     }
 
-                    // NOVO: Som de impacto quando o golpe acerta
+                    // Som de impacto quando o golpe acerta
                     if (acertouInimigo &&
                         !somImpactoReproduzido &&
                         elianAtaque != null)

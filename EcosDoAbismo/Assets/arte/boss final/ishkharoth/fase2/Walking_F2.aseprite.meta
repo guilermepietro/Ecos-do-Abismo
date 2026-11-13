@@ -36,7 +36,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 84
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -76,8 +76,8 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
-    customPivotPosition: {x: 0.5, y: 0.5}
+    defaultPivotAlignment: 9
+    customPivotPosition: {x: 0.5101821, y: 0.001963169}
     mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
@@ -91,8 +91,8 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
-    customPivotPosition: {x: 0.5, y: 0.5}
+    defaultPivotAlignment: 9
+    customPivotPosition: {x: 0.5101821, y: 0.001963169}
     mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
@@ -101,7 +101,7 @@ ScriptedImporter:
     addShadowCasters: 0
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 639301280830208510
   singleSpriteImportData:
   - name: 
     originalName: 
@@ -127,7 +127,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Frame_0
     originalName: 
-    pivot: {x: 0.50617284, y: -0.024390243}
+    pivot: {x: 0.51673204, y: -0.022379193}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -148,7 +148,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 184}
   - name: Frame_1
     originalName: 
-    pivot: {x: 0.5125, y: -0.024390243}
+    pivot: {x: 0.52319115, y: -0.022379193}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -169,7 +169,7 @@ ScriptedImporter:
     uvTransform: {x: 94, y: 2}
   - name: Frame_2
     originalName: 
-    pivot: {x: 0.50617284, y: -0.024390243}
+    pivot: {x: 0.51673204, y: -0.022379193}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -190,7 +190,7 @@ ScriptedImporter:
     uvTransform: {x: 3, y: 272}
   - name: Frame_3
     originalName: 
-    pivot: {x: 0.4939759, y: -0.024390243}
+    pivot: {x: 0.5042807, y: -0.022379193}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -211,7 +211,7 @@ ScriptedImporter:
     uvTransform: {x: 3, y: 2}
   - name: Frame_4
     originalName: 
-    pivot: {x: 0.49999997, y: -0.024390243}
+    pivot: {x: 0.5104304, y: -0.022379193}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -232,7 +232,7 @@ ScriptedImporter:
     uvTransform: {x: 3, y: 92}
   - name: Frame_5
     originalName: 
-    pivot: {x: 0.50617284, y: -0.024390243}
+    pivot: {x: 0.51673204, y: -0.022379193}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -253,7 +253,7 @@ ScriptedImporter:
     uvTransform: {x: 3, y: 362}
   - name: Frame_6
     originalName: 
-    pivot: {x: 0.5125, y: -0.024691358}
+    pivot: {x: 0.52319115, y: -0.02265548}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -274,7 +274,7 @@ ScriptedImporter:
     uvTransform: {x: 94, y: 92}
   - name: Frame_7
     originalName: 
-    pivot: {x: 0.5125, y: -0.024691358}
+    pivot: {x: 0.52319115, y: -0.02265548}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -295,7 +295,7 @@ ScriptedImporter:
     uvTransform: {x: 94, y: 181}
   - name: Frame_8
     originalName: 
-    pivot: {x: 0.51898736, y: -0.024390243}
+    pivot: {x: 0.5298139, y: -0.022379193}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -415,7 +415,31 @@ ScriptedImporter:
     tileSetIndex: 0
     parentIndex: -1
   tileSets: []
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   previousTextureSize: {x: 256, y: 512}
