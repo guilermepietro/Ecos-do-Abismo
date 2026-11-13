@@ -1,0 +1,1313 @@
+fileFormatVersion: 2
+guid: 990e5c9e20d4db3488c4ccddb125bd80
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7661976246495213152
+    second: barra_voragul_0
+  - first:
+      213: -2484898604126889146
+    second: barra_voragul_1
+  - first:
+      213: 7756020013713415018
+    second: barra_voragul_2
+  - first:
+      213: 929254783141955027
+    second: barra_voragul_3
+  - first:
+      213: -2506750021085241028
+    second: barra_voragul_4
+  - first:
+      213: 3776150978968959475
+    second: barra_voragul_5
+  - first:
+      213: 7315595272283846829
+    second: barra_voragul_6
+  - first:
+      213: -2097465214358373179
+    second: barra_voragul_7
+  - first:
+      213: 34131736069558623
+    second: barra_voragul_8
+  - first:
+      213: -7258990607000569099
+    second: barra_voragul_9
+  - first:
+      213: -8605794314538592651
+    second: barra_voragul_10
+  - first:
+      213: -8135873087708840208
+    second: barra_voragul_11
+  - first:
+      213: -2067557909715328684
+    second: barra_voragul_12
+  - first:
+      213: -7557893245874055840
+    second: barra_voragul_13
+  - first:
+      213: 8520041547869305082
+    second: barra_voragul_14
+  - first:
+      213: -8987650845758252775
+    second: barra_voragul_15
+  - first:
+      213: -5323014947696392187
+    second: barra_voragul_16
+  - first:
+      213: 592176227757915900
+    second: barra_voragul_17
+  - first:
+      213: -71636733436660081
+    second: barra_voragul_18
+  - first:
+      213: -8533969321389041247
+    second: barra_voragul_19
+  - first:
+      213: 8463656489217670287
+    second: barra_voragul_20
+  - first:
+      213: 1970094837146139243
+    second: barra_voragul_21
+  - first:
+      213: -3976487388842587974
+    second: barra_voragul_22
+  - first:
+      213: 3514229666571384453
+    second: barra_voragul_23
+  - first:
+      213: 833048405067014330
+    second: barra_voragul_24
+  - first:
+      213: 8585795147831888426
+    second: barra_voragul_25
+  - first:
+      213: -6996220078821788557
+    second: barra_voragul_26
+  - first:
+      213: 5512759866495627723
+    second: barra_voragul_27
+  - first:
+      213: -4957955400968313110
+    second: barra_voragul_28
+  - first:
+      213: -5570692565348560294
+    second: barra_voragul_29
+  - first:
+      213: 8971662986879252083
+    second: barra_voragul_30
+  - first:
+      213: -7804889244207995977
+    second: barra_voragul_31
+  - first:
+      213: -325193538165067710
+    second: barra_voragul_32
+  - first:
+      213: -1086633898479021800
+    second: barra_voragul_33
+  - first:
+      213: -2940805818834336449
+    second: barra_voragul_34
+  - first:
+      213: 4156711627909652436
+    second: barra_voragul_35
+  - first:
+      213: 7819183375848765750
+    second: barra_voragul_36
+  - first:
+      213: -5500560662767918396
+    second: barra_voragul_37
+  - first:
+      213: 6194655505562620121
+    second: barra_voragul_38
+  - first:
+      213: 2140341674508319294
+    second: barra_voragul_39
+  - first:
+      213: -5261171470036307233
+    second: barra_voragul_40
+  - first:
+      213: 8524707134374793287
+    second: barra_voragul_41
+  - first:
+      213: -2722072326405436386
+    second: barra_voragul_42
+  - first:
+      213: 5714459436665655828
+    second: barra_voragul_43
+  - first:
+      213: 2808941989188478065
+    second: barra_voragul_44
+  - first:
+      213: 2404029476217177696
+    second: barra_voragul_45
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: barra_voragul_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 504
+        width: 5
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 066f3d12dcec45a60800000000000000
+      internalID: 7661976246495213152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_1
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 441
+        width: 317
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64b172692edd38dd0800000000000000
+      internalID: -2484898604126889146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_2
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 440
+        width: 293
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6b553cfb1be2ab60800000000000000
+      internalID: 7756020013713415018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_3
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 440
+        width: 456
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d542074d4065ec00800000000000000
+      internalID: 929254783141955027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_4
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 550
+        width: 67
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c31e28c132c363dd0800000000000000
+      internalID: -2506750021085241028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_5
+      rect:
+        serializedVersion: 2
+        x: 1504
+        y: 500
+        width: 92
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f930b7fe45976430800000000000000
+      internalID: 3776150978968959475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_6
+      rect:
+        serializedVersion: 2
+        x: 1625
+        y: 439
+        width: 154
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da87105f327368560800000000000000
+      internalID: 7315595272283846829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_7
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 439
+        width: 196
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cc3e69108e44e2e0800000000000000
+      internalID: -2097465214358373179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_8
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 491
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f515ef312a2497000800000000000000
+      internalID: 34131736069558623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_9
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 562
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fa75d1b082e24b90800000000000000
+      internalID: -7258990607000569099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_10
+      rect:
+        serializedVersion: 2
+        x: 2001
+        y: 536
+        width: 70
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 576d9d79aa3129880800000000000000
+      internalID: -8605794314538592651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_11
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 469
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fe347d4882971f80800000000000000
+      internalID: -8135873087708840208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_12
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 447
+        width: 54
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4516ed6190f8e43e0800000000000000
+      internalID: -2067557909715328684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_13
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 439
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0655a55e228fc1790800000000000000
+      internalID: -7557893245874055840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_14
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 71
+        width: 2109
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af8b15c85a44d3670800000000000000
+      internalID: 8520041547869305082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_15
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 439
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9191755ac23754380800000000000000
+      internalID: -8987650845758252775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_16
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 308
+        width: 133
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 508467c8b1ad026b0800000000000000
+      internalID: -5323014947696392187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_17
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 307
+        width: 137
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfef0f34425d73800800000000000000
+      internalID: 592176227757915900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_18
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 272
+        width: 171
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8673ae35ce710ff0800000000000000
+      internalID: -71636733436660081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_19
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 274
+        width: 486
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a9568afd10419980800000000000000
+      internalID: -8533969321389041247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_20
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 272
+        width: 271
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8cbfbc0cb2f47570800000000000000
+      internalID: 8463656489217670287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_21
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 276
+        width: 299
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6a3dedf0de275b10800000000000000
+      internalID: 1970094837146139243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_22
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 307
+        width: 130
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab88736c9cda0d8c0800000000000000
+      internalID: -3976487388842587974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_23
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 270
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5867027334d05c030800000000000000
+      internalID: 3514229666571384453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_24
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 240
+        width: 30
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab0a9b85c159f8b00800000000000000
+      internalID: 833048405067014330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_25
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 253
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2acacc823fd62770800000000000000
+      internalID: 8585795147831888426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_26
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 247
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3743f57e7ee68ee90800000000000000
+      internalID: -6996220078821788557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_27
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 256
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc1708604e1418c40800000000000000
+      internalID: 5512759866495627723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_28
+      rect:
+        serializedVersion: 2
+        x: 997
+        y: 256
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae6ed09c4ddc13bb0800000000000000
+      internalID: -4957955400968313110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_29
+      rect:
+        serializedVersion: 2
+        x: 1094
+        y: 250
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a525d7960ace0b2b0800000000000000
+      internalID: -5570692565348560294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_30
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 258
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3763571e3ffb18c70800000000000000
+      internalID: 8971662986879252083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_31
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 227
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b327bf95967fa390800000000000000
+      internalID: -7804889244207995977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_32
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 230
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2403b62333eac7bf0800000000000000
+      internalID: -325193538165067710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_33
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 222
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81192400a308be0f0800000000000000
+      internalID: -1086633898479021800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_34
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 238
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f354af650b82037d0800000000000000
+      internalID: -2940805818834336449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_35
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 224
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4df5a4fc33b9fa930800000000000000
+      internalID: 4156711627909652436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_36
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 226
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 639fa1f3ad1538c60800000000000000
+      internalID: 7819183375848765750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_37
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 211
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c22b3e68351aa3b0800000000000000
+      internalID: -5500560662767918396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_38
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 176
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d05af29c56d7f550800000000000000
+      internalID: 6194655505562620121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_39
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 176
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3a7807b96504bd10800000000000000
+      internalID: 2140341674508319294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_40
+      rect:
+        serializedVersion: 2
+        x: 1534
+        y: 166
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd2f0124c609cf6b0800000000000000
+      internalID: -5261171470036307233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_41
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 160
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 740d5ae09f7dd4670800000000000000
+      internalID: 8524707134374793287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_42
+      rect:
+        serializedVersion: 2
+        x: 1448
+        y: 161
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1cceab24a1493ad0800000000000000
+      internalID: -2722072326405436386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_43
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 162
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 412d5d5c496dd4f40800000000000000
+      internalID: 5714459436665655828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_44
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 162
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17422445bdd5bf620800000000000000
+      internalID: 2808941989188478065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barra_voragul_45
+      rect:
+        serializedVersion: 2
+        x: 1524
+        y: 166
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0664e7f4214dc5120800000000000000
+      internalID: 2404029476217177696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      barra_voragul_0: 7661976246495213152
+      barra_voragul_1: -2484898604126889146
+      barra_voragul_10: -8605794314538592651
+      barra_voragul_11: -8135873087708840208
+      barra_voragul_12: -2067557909715328684
+      barra_voragul_13: -7557893245874055840
+      barra_voragul_14: 8520041547869305082
+      barra_voragul_15: -8987650845758252775
+      barra_voragul_16: -5323014947696392187
+      barra_voragul_17: 592176227757915900
+      barra_voragul_18: -71636733436660081
+      barra_voragul_19: -8533969321389041247
+      barra_voragul_2: 7756020013713415018
+      barra_voragul_20: 8463656489217670287
+      barra_voragul_21: 1970094837146139243
+      barra_voragul_22: -3976487388842587974
+      barra_voragul_23: 3514229666571384453
+      barra_voragul_24: 833048405067014330
+      barra_voragul_25: 8585795147831888426
+      barra_voragul_26: -6996220078821788557
+      barra_voragul_27: 5512759866495627723
+      barra_voragul_28: -4957955400968313110
+      barra_voragul_29: -5570692565348560294
+      barra_voragul_3: 929254783141955027
+      barra_voragul_30: 8971662986879252083
+      barra_voragul_31: -7804889244207995977
+      barra_voragul_32: -325193538165067710
+      barra_voragul_33: -1086633898479021800
+      barra_voragul_34: -2940805818834336449
+      barra_voragul_35: 4156711627909652436
+      barra_voragul_36: 7819183375848765750
+      barra_voragul_37: -5500560662767918396
+      barra_voragul_38: 6194655505562620121
+      barra_voragul_39: 2140341674508319294
+      barra_voragul_4: -2506750021085241028
+      barra_voragul_40: -5261171470036307233
+      barra_voragul_41: 8524707134374793287
+      barra_voragul_42: -2722072326405436386
+      barra_voragul_43: 5714459436665655828
+      barra_voragul_44: 2808941989188478065
+      barra_voragul_45: 2404029476217177696
+      barra_voragul_5: 3776150978968959475
+      barra_voragul_6: 7315595272283846829
+      barra_voragul_7: -2097465214358373179
+      barra_voragul_8: 34131736069558623
+      barra_voragul_9: -7258990607000569099
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

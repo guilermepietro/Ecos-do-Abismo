@@ -1,8 +1,10 @@
+
 using UnityEngine;
 
 public class SalenthraAreaAtivacao : MonoBehaviour
 {
     public SalenthraMovimento movimento;
+    public BarraVidaSalenthra barraVidaSalenthra;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -13,6 +15,9 @@ public class SalenthraAreaAtivacao : MonoBehaviour
             other.transform.IsChildOf(movimento.elian))
         {
             movimento.Ativar();
+
+            if (barraVidaSalenthra != null)
+                barraVidaSalenthra.Exibir();
         }
     }
 }

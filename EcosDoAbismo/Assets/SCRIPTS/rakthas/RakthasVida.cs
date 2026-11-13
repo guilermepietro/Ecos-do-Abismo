@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class RakthasVida : MonoBehaviour
@@ -300,5 +301,19 @@ public class RakthasVida : MonoBehaviour
     public void FinalizarMorte()
     {
         gameObject.SetActive(false);
+    }
+
+    // =========================
+    // HUD DE VIDA
+    // =========================
+
+    public float ObterPorcentagemVida()
+    {
+        if (vidaMaxima <= 0)
+            return 0f;
+
+        return Mathf.Clamp01(
+            (float)vidaAtual / vidaMaxima
+        );
     }
 }
