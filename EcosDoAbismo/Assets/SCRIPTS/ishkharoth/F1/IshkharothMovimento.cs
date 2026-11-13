@@ -11,7 +11,6 @@ public class IshkharothMovimento : MonoBehaviour
 
     [Header("Movimentacao")]
     [SerializeField] private float velocidade = 2f;
-    [SerializeField] private float distanciaAtivacao = 11f;
     [SerializeField] private float distanciaParar = 3f;
 
     [Header("Direcao")]
@@ -33,22 +32,10 @@ public class IshkharothMovimento : MonoBehaviour
 
     private void Update()
     {
-        if (elian == null)
+        if (!combateAtivo || elian == null || movimentoBloqueado)
             return;
 
-        if (!combateAtivo)
-        {
-            float distancia = Vector2.Distance(
-                transform.position,
-                elian.position
-            );
-
-            if (distancia <= distanciaAtivacao)
-                combateAtivo = true;
-        }
-
-        if (combateAtivo && !movimentoBloqueado)
-            AtualizarDirecao();
+        AtualizarDirecao();
     }
 
     private void FixedUpdate()
@@ -77,6 +64,15 @@ public class IshkharothMovimento : MonoBehaviour
 
         if (animator != null)
             animator.SetBool("Andando", Mathf.Abs(movimentoX) > 0.01f);
+    }
+
+    // Chamado pela area de ativacao.
+    public void AtivarCombate()
+    {
+        if (combateAtivo)
+            return;
+
+        combateAtivo = true;
     }
 
     private void AtualizarDirecao()
