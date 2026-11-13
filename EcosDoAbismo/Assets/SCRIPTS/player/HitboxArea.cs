@@ -76,12 +76,12 @@ public class HitboxArea : MonoBehaviour
                     acertouInimigo = true;
                 }
 
-                // NOVO: Ishkharoth
+                // Ishkharoth - Fases 1 e 2
                 IshkharothVida vidaIshkharoth =
                     inimigo.GetComponent<IshkharothVida>();
 
                 if (vidaIshkharoth != null &&
-                    vidaIshkharoth.EstaNaFase1)
+                    vidaIshkharoth.PodeReceberDano)
                 {
                     vidaIshkharoth.ReceberDano(dano);
                     acertouInimigo = true;

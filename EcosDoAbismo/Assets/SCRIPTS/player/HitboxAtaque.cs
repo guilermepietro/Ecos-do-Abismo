@@ -13,7 +13,6 @@ public class HitboxAtaque : MonoBehaviour
 
     private ElianUltimate ultimate;
 
-    // Referencia ao audio dos ataques do Elian
     private ElianAtaque elianAtaque;
     private bool somImpactoReproduzido = false;
 
@@ -88,12 +87,12 @@ public class HitboxAtaque : MonoBehaviour
                         acertouInimigo = true;
                     }
 
-                    // NOVO: Ishkharoth
+                    // Ishkharoth - Fases 1 e 2
                     IshkharothVida vidaIshkharoth =
                         inimigo.GetComponent<IshkharothVida>();
 
                     if (vidaIshkharoth != null &&
-                        vidaIshkharoth.EstaNaFase1)
+                        vidaIshkharoth.PodeReceberDano)
                     {
                         vidaIshkharoth.ReceberDano(danoAtual);
                         acertouInimigo = true;

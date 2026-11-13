@@ -4126,7 +4126,7 @@ GameObject:
   - component: {fileID: 426324718}
   m_Layer: 0
   m_Name: Ishkharoth
-  m_TagString: Untagged
+  m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4372,6 +4372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IshkharothVida
   vidaMaxima: 100
   vidaAtual: 0
+  vidaMaximaFase2: 100
+  vidaAtualFase2: 0
   animator: {fileID: 426324708}
   corpo: {fileID: 426324703}
   visual: {fileID: 426324704}
@@ -4383,6 +4385,11 @@ MonoBehaviour:
   efeitoTela: {fileID: 426324713}
   spriteFinalFase2: {fileID: 0}
   estadoIdleFase2: Base Layer.Idle_F2
+  movimentoFase2: {fileID: 426324714}
+  iaFase2: {fileID: 426324715}
+  ataque1Fase2: {fileID: 426324717}
+  ataque2Fase2: {fileID: 426324716}
+  ataque3Fase2: {fileID: 426324718}
 --- !u!114 &426324711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151032,91 +151039,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 800540496}
   m_SourcePrefab: {fileID: 100100000, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
---- !u!1001 &4004341389438440163
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 17.6743
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -68.0874
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130940669150847493, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7095519649019245349, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-      propertyPath: m_Name
-      value: PilarIshkharothF2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7095519649019245349, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4004341389438440166}
-  m_SourcePrefab: {fileID: 100100000, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
---- !u!1 &4004341389438440164 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7095519649019245349, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-  m_PrefabInstance: {fileID: 4004341389438440163}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &4004341389438440165 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 8757029291203198753, guid: 2b13747faa97dc342a884b3ee07ea765, type: 3}
-  m_PrefabInstance: {fileID: 4004341389438440163}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4004341389438440166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4004341389438440164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a43c49cc240ccb4e81a43d6ad05ab10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PilarIshkharothF2
-  hitboxPilar: {fileID: 4004341389438440165}
-  dano: 25
-  tempoMaximo: 6
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -151230,4 +151152,3 @@ SceneRoots:
   - {fileID: 264456330}
   - {fileID: 1508585524}
   - {fileID: 1307501073}
-  - {fileID: 4004341389438440163}
