@@ -5,44 +5,56 @@ public class CameraFollow : MonoBehaviour
 {
     public Transform alvo;
 
-    public float velocidade = 5f;
-
     [Header("Posição da Câmera")]
     public float alturaCamera = 1.5f;
+
+    [Header("Movimento Vertical")]
+    public bool travarY = true;
 
     [Header("Tremor da Câmera")]
     public float duracaoTremor = 0.2f;
     public float intensidadeTremor = 0.15f;
 
     private Vector3 deslocamentoTremor;
-    private Vector3 deslocamentoAnterior;
 
     private Coroutine tremorAtual;
+
+    private float alturaTravada;
+
+    void Start()
+    {
+        if (alvo != null)
+        {
+            alturaTravada =
+                alvo.position.y + alturaCamera;
+        }
+    }
 
     void LateUpdate()
     {
         if (alvo == null)
             return;
 
+        float posicaoY;
+
+        if (travarY)
+        {
+            posicaoY = alturaTravada;
+        }
+        else
+        {
+            posicaoY =
+                alvo.position.y + alturaCamera;
+        }
+
         Vector3 novaPosicao = new Vector3(
             alvo.position.x,
-            alvo.position.y + alturaCamera,
+            posicaoY,
             transform.position.z
         );
 
-        Vector3 posicaoBase =
-            transform.position - deslocamentoAnterior;
-
-        Vector3 posicaoSuave = Vector3.Lerp(
-            posicaoBase,
-            novaPosicao,
-            velocidade * Time.deltaTime
-        );
-
         transform.position =
-            posicaoSuave + deslocamentoTremor;
-
-        deslocamentoAnterior = deslocamentoTremor;
+            novaPosicao + deslocamentoTremor;
     }
 
     public void TremerCamera()
@@ -90,7 +102,7 @@ public class CameraFollow : MonoBehaviour
         }
 
         deslocamentoTremor = Vector3.zero;
-        deslocamentoAnterior = Vector3.zero;
+
         tremorAtual = null;
     }
 }

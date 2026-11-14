@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -16,6 +15,13 @@ public class HitboxAtaque : MonoBehaviour
     private ElianAtaque elianAtaque;
     private bool somImpactoReproduzido = false;
 
+    [Header("Tremor do Ataque")]
+    public float duracaoTremorAtaque = 0.08f;
+    public float intensidadeTremorAtaque = 0.06f;
+
+    private CameraFollow cameraFollow;
+    private bool tremorReproduzido = false;
+
     void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -23,6 +29,12 @@ public class HitboxAtaque : MonoBehaviour
         ultimate = GetComponentInParent<ElianUltimate>();
 
         elianAtaque = GetComponentInParent<ElianAtaque>();
+
+        if (Camera.main != null)
+        {
+            cameraFollow =
+                Camera.main.GetComponent<CameraFollow>();
+        }
     }
 
     public void LimparInimigosAtingidos()
@@ -30,6 +42,7 @@ public class HitboxAtaque : MonoBehaviour
         inimigosAtingidos.Clear();
 
         somImpactoReproduzido = false;
+        tremorReproduzido = false;
     }
 
     public void DefinirDano(int dano)
@@ -63,7 +76,8 @@ public class HitboxAtaque : MonoBehaviour
                         acertouInimigo = true;
                     }
 
-                    VoragulVida vidaVoragul = inimigo.GetComponent<VoragulVida>();
+                    VoragulVida vidaVoragul =
+                        inimigo.GetComponent<VoragulVida>();
 
                     if (vidaVoragul != null)
                     {
@@ -71,7 +85,8 @@ public class HitboxAtaque : MonoBehaviour
                         acertouInimigo = true;
                     }
 
-                    RakthasVida vidaRakthas = inimigo.GetComponent<RakthasVida>();
+                    RakthasVida vidaRakthas =
+                        inimigo.GetComponent<RakthasVida>();
 
                     if (vidaRakthas != null)
                     {
@@ -79,7 +94,8 @@ public class HitboxAtaque : MonoBehaviour
                         acertouInimigo = true;
                     }
 
-                    SalenthraVida vidaSalenthra = inimigo.GetComponent<SalenthraVida>();
+                    SalenthraVida vidaSalenthra =
+                        inimigo.GetComponent<SalenthraVida>();
 
                     if (vidaSalenthra != null)
                     {
@@ -221,7 +237,21 @@ public class HitboxAtaque : MonoBehaviour
                         elianAtaque != null)
                     {
                         elianAtaque.TocarSomImpactoEspada();
+
                         somImpactoReproduzido = true;
+                    }
+
+                    // TREMOR DA CÂMERA AO ACERTAR
+                    if (acertouInimigo &&
+                        !tremorReproduzido &&
+                        cameraFollow != null)
+                    {
+                        cameraFollow.TremerCamera(
+                            duracaoTremorAtaque,
+                            intensidadeTremorAtaque
+                        );
+
+                        tremorReproduzido = true;
                     }
 
                     // CARGA DA ULTIMATE
@@ -247,7 +277,8 @@ public class HitboxAtaque : MonoBehaviour
                     if (knockback != null)
                     {
                         float direcao =
-                            transform.position.x < inimigo.transform.position.x
+                            transform.position.x <
+                            inimigo.transform.position.x
                             ? 1f
                             : -1f;
 

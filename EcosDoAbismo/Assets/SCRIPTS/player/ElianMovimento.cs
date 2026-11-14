@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections;
@@ -55,6 +54,12 @@ public class ElianMovimento : MonoBehaviour
     private ElianColeta coleta;
 
     private bool estaNoChao;
+
+    public bool EstaNoChao
+    {
+        get { return estaNoChao; }
+    }
+
     private bool verificouChaoInicialmente = false;
     private bool pulouNesteFrame = false;
 
