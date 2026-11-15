@@ -6,6 +6,7 @@ public class FusaoAreaAtivacao : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] private FusaoMovimento movimento;
+    [SerializeField] private BarraVidaFusao barraVidaFusao;
 
     private bool ativada;
 
@@ -40,6 +41,10 @@ public class FusaoAreaAtivacao : MonoBehaviour
             {
                 ativada = true;
                 movimento.AtivarCombate();
+
+                if (barraVidaFusao != null)
+                    barraVidaFusao.Exibir();
+
                 return;
             }
 

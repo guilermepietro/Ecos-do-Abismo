@@ -87,6 +87,17 @@ public class HitboxArea : MonoBehaviour
                     acertouInimigo = true;
                 }
 
+                // Fusao de Saryn e Sayren
+                FusaoVida vidaFusao =
+                    inimigo.GetComponent<FusaoVida>();
+
+                if (vidaFusao != null &&
+                    vidaFusao.PodeReceberDano)
+                {
+                    vidaFusao.ReceberDano(dano);
+                    acertouInimigo = true;
+                }
+
                 CabecaDeChamaVida vidaCabecaDeChama =
                     inimigo.GetComponent<CabecaDeChamaVida>();
 

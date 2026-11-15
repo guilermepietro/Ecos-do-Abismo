@@ -7,12 +7,21 @@ public class FusaoIA : MonoBehaviour
     [SerializeField] private FusaoMovimento movimento;
     [SerializeField] private FusaoAtaque1 ataque1;
     [SerializeField] private FusaoAtaque2 ataque2;
+    [SerializeField] private FusaoAtaque3 ataque3;
     [SerializeField] private Transform elian;
 
     [Header("Configuracoes")]
     [SerializeField] private float distanciaMaximaAtaque = 7f;
     [SerializeField] private float intervaloEntreAtaques = 3.5f;
     [SerializeField] private float atrasoInicial = 1.5f;
+
+    [Header("Distancias")]
+    [SerializeField] private float distanciaCurta = 3f;
+    [SerializeField] private float distanciaLonga = 5f;
+
+    [Header("Anti-Repeticao")]
+    [Range(0f, 1f)]
+    [SerializeField] private float penalidadeRetorno = 0.4f;
 
     private ElianVida vidaElian;
 
@@ -21,6 +30,7 @@ public class FusaoIA : MonoBehaviour
     private bool aguardandoFimAtaque;
 
     private int ultimoAtaque;
+    private int penultimoAtaque;
 
     private void Awake()
     {
@@ -32,6 +42,9 @@ public class FusaoIA : MonoBehaviour
 
         if (ataque2 == null)
             ataque2 = GetComponent<FusaoAtaque2>();
+
+        if (ataque3 == null)
+            ataque3 = GetComponent<FusaoAtaque3>();
 
         if (elian == null)
         {
@@ -47,8 +60,11 @@ public class FusaoIA : MonoBehaviour
 
     private void Update()
     {
-        if (movimento == null || ataque1 == null ||
-            ataque2 == null || elian == null)
+        if (movimento == null ||
+            ataque1 == null ||
+            ataque2 == null ||
+            ataque3 == null ||
+            elian == null)
             return;
 
         if (!movimento.CombateAtivo)
@@ -56,6 +72,7 @@ public class FusaoIA : MonoBehaviour
             iniciouCombate = false;
             aguardandoFimAtaque = false;
             ultimoAtaque = 0;
+            penultimoAtaque = 0;
             return;
         }
 
@@ -70,7 +87,9 @@ public class FusaoIA : MonoBehaviour
 
         if (aguardandoFimAtaque)
         {
-            if (ataque1.EmAtaque || ataque2.EmAtaque)
+            if (ataque1.EmAtaque ||
+                ataque2.EmAtaque ||
+                ataque3.EmAtaque)
                 return;
 
             aguardandoFimAtaque = false;
@@ -78,6 +97,11 @@ public class FusaoIA : MonoBehaviour
             proximoAtaque =
                 Time.time + intervaloEntreAtaques;
         }
+
+        if (ataque1.EmAtaque ||
+            ataque2.EmAtaque ||
+            ataque3.EmAtaque)
+            return;
 
         if (Time.time < proximoAtaque)
             return;
@@ -89,48 +113,105 @@ public class FusaoIA : MonoBehaviour
         if (distancia > distanciaMaximaAtaque)
             return;
 
-        EscolherAtaque();
+        EscolherAtaque(distancia);
     }
 
-    private void EscolherAtaque()
+    private void EscolherAtaque(float distancia)
     {
+        float peso1;
+        float peso2;
+        float peso3;
+
+        if (distancia < distanciaCurta)
+        {
+            peso1 = 5f;
+            peso2 = 5f;
+            peso3 = 2f;
+        }
+        else if (distancia < distanciaLonga)
+        {
+            peso1 = 6f;
+            peso2 = 4f;
+            peso3 = 4f;
+        }
+        else
+        {
+            peso1 = 4f;
+            peso2 = 4f;
+            peso3 = 6f;
+        }
+
+        // Proibe repetir o ultimo ataque.
+        if (ultimoAtaque == 1)
+            peso1 = 0f;
+
+        if (ultimoAtaque == 2)
+            peso2 = 0f;
+
+        if (ultimoAtaque == 3)
+            peso3 = 0f;
+
+        // Reduz a chance do padrao A-B-A.
+        if (penultimoAtaque == 1)
+            peso1 *= penalidadeRetorno;
+
+        if (penultimoAtaque == 2)
+            peso2 *= penalidadeRetorno;
+
+        if (penultimoAtaque == 3)
+            peso3 *= penalidadeRetorno;
+
+        float pesoTotal = peso1 + peso2 + peso3;
+
+        if (pesoTotal <= 0f)
+            return;
+
+        float sorteio = Random.Range(0f, pesoTotal);
+
         int escolhido;
 
-        if (ultimoAtaque == 1)
-        {
-            escolhido = 2;
-        }
-        else if (ultimoAtaque == 2)
+        if (sorteio < peso1)
         {
             escolhido = 1;
         }
-        else
+        else if (sorteio < peso1 + peso2)
         {
-            escolhido = Random.Range(1, 3);
-        }
-
-        if (escolhido == 1)
-        {
-            ataque1.IniciarAtaque();
-
-            if (!ataque1.EmAtaque)
-            {
-                proximoAtaque = Time.time + 1f;
-                return;
-            }
+            escolhido = 2;
         }
         else
         {
-            ataque2.IniciarAtaque();
-
-            if (!ataque2.EmAtaque)
-            {
-                proximoAtaque = Time.time + 1f;
-                return;
-            }
+            escolhido = 3;
         }
 
+        switch (escolhido)
+        {
+            case 1:
+                ataque1.IniciarAtaque();
+                break;
+
+            case 2:
+                ataque2.IniciarAtaque();
+                break;
+
+            case 3:
+                ataque3.IniciarAtaque();
+                break;
+        }
+
+        bool iniciou =
+            escolhido == 1 && ataque1.EmAtaque ||
+            escolhido == 2 && ataque2.EmAtaque ||
+            escolhido == 3 && ataque3.EmAtaque;
+
+        if (!iniciou)
+        {
+            proximoAtaque = Time.time + 1f;
+            return;
+        }
+
+        penultimoAtaque = ultimoAtaque;
         ultimoAtaque = escolhido;
+
         aguardandoFimAtaque = true;
     }
 }

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -111,6 +112,17 @@ public class HitboxAtaque : MonoBehaviour
                         vidaIshkharoth.PodeReceberDano)
                     {
                         vidaIshkharoth.ReceberDano(danoAtual);
+                        acertouInimigo = true;
+                    }
+
+                    // Fusao de Saryn e Sayren
+                    FusaoVida vidaFusao =
+                        inimigo.GetComponent<FusaoVida>();
+
+                    if (vidaFusao != null &&
+                        vidaFusao.PodeReceberDano)
+                    {
+                        vidaFusao.ReceberDano(danoAtual);
                         acertouInimigo = true;
                     }
 
