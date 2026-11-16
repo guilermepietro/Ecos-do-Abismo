@@ -7,8 +7,9 @@ public class ElianColeta : MonoBehaviour
     private ElianMovimento movimento;
     private ItemColetavel itemPerto;
     private ReliquiaColetavel reliquiaPerto;
-
     private CheckpointArvore arvorePerto;
+    private AnciaoInteracao anciaoPerto;
+
     private bool interagindo = false;
 
     [Header("Interface de Viagem")]
@@ -16,7 +17,6 @@ public class ElianColeta : MonoBehaviour
 
     private bool aguardandoFechamentoViagem = false;
 
-    // NOVO: efeitos de interação
     [Header("Audio - Interacoes")]
     public AudioSource audioInteracoes;
     public AudioClip somAtivarCheckpoint;
@@ -39,8 +39,6 @@ public class ElianColeta : MonoBehaviour
 
     void Update()
     {
-        // Libera o movimento após fechar a viagem,
-        // desde que a animação de coleta já tenha terminado.
         if (aguardandoFechamentoViagem && !MenuViagemAberto)
         {
             aguardandoFechamentoViagem = false;
@@ -58,20 +56,34 @@ public class ElianColeta : MonoBehaviour
             animator.GetBool("estaNoChao") &&
             movimento.podeMover &&
             !interagindo &&
-            !MenuViagemAberto &&
-            (
+            !MenuViagemAberto
+        )
+        {
+            // Conversar com o Anciao sem animacao de coleta
+            if (anciaoPerto != null)
+            {
+                anciaoPerto.AbrirConversa();
+                return;
+            }
+
+            if (
                 itemPerto != null ||
                 reliquiaPerto != null ||
                 arvorePerto != null
             )
-        )
-        {
-            interagindo = true;
+            {
+                interagindo = true;
 
-            movimento.podeMover = false;
-            animator.SetFloat("velocidade", 0);
-            animator.SetTrigger("Coletar");
+                movimento.podeMover = false;
+                animator.SetFloat("velocidade", 0);
+                animator.SetTrigger("Coletar");
+            }
         }
+    }
+
+    public void DefinirAnciaoPerto(AnciaoInteracao anciao)
+    {
+        anciaoPerto = anciao;
     }
 
     public void DefinirItemPerto(ItemColetavel item)
@@ -79,9 +91,7 @@ public class ElianColeta : MonoBehaviour
         itemPerto = item;
     }
 
-    public void DefinirReliquiaPerto(
-        ReliquiaColetavel reliquia
-    )
+    public void DefinirReliquiaPerto(ReliquiaColetavel reliquia)
     {
         reliquiaPerto = reliquia;
     }
@@ -124,13 +134,11 @@ public class ElianColeta : MonoBehaviour
         }
     }
 
-    // NOVO: som de ativação da árvore
     public void TocarSomAtivacaoCheckpoint()
     {
         TocarSomInteracao(somAtivarCheckpoint);
     }
 
-    // NOVO: som de coleta de relíquia
     public void TocarSomColetaReliquia()
     {
         TocarSomInteracao(somColetarReliquia);

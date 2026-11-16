@@ -1,0 +1,1833 @@
+fileFormatVersion: 2
+guid: c095f07c9cd1c7c418c3a6dc6c71ae14
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 247156252260802918
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_0"
+  - first:
+      213: -8854691183260096120
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_1"
+  - first:
+      213: 44902263841277039
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_2"
+  - first:
+      213: -2988391858712434743
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_3"
+  - first:
+      213: 2001772356828813760
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_4"
+  - first:
+      213: -504732086847802254
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_5"
+  - first:
+      213: -8791422860800396208
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_6"
+  - first:
+      213: 1271707857845678594
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_7"
+  - first:
+      213: 936094604322875378
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_8"
+  - first:
+      213: 1715242148115792941
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_9"
+  - first:
+      213: 8122927299838269727
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_10"
+  - first:
+      213: -7466108696008701417
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_11"
+  - first:
+      213: 1669516089729773819
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_12"
+  - first:
+      213: 316352033790865884
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_13"
+  - first:
+      213: 6402565155543632839
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_14"
+  - first:
+      213: -2267293244501990588
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_15"
+  - first:
+      213: -2412442862771566772
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_16"
+  - first:
+      213: 2497140540344140674
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_17"
+  - first:
+      213: -3904879215488095539
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_18"
+  - first:
+      213: 4830320939993377026
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_19"
+  - first:
+      213: 7604305167369098525
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_20"
+  - first:
+      213: 8089864538341340861
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_21"
+  - first:
+      213: -2814649128422559445
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_22"
+  - first:
+      213: 1853393214352656545
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_23"
+  - first:
+      213: -5709603821893234848
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_24"
+  - first:
+      213: 6690726327538547645
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_25"
+  - first:
+      213: -5249963041852371477
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_26"
+  - first:
+      213: -6886258495883402144
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_27"
+  - first:
+      213: 7963215431325986433
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_28"
+  - first:
+      213: -736987178743162460
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_29"
+  - first:
+      213: -8247580824746987483
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_30"
+  - first:
+      213: 1905653501545991288
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_31"
+  - first:
+      213: -3136214206322169022
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_32"
+  - first:
+      213: 3062071230100975650
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_33"
+  - first:
+      213: -5769163528722515528
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_34"
+  - first:
+      213: -234042953993505878
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_35"
+  - first:
+      213: -1668187265078525209
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_36"
+  - first:
+      213: 4064441470387087264
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_37"
+  - first:
+      213: -3965806790761993189
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_38"
+  - first:
+      213: 4941857610883824414
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_39"
+  - first:
+      213: 6796647770970411106
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_40"
+  - first:
+      213: -9030600878402794866
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_41"
+  - first:
+      213: -5316278870733819241
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_42"
+  - first:
+      213: 3372714093884543727
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_43"
+  - first:
+      213: -7355840320698056360
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_44"
+  - first:
+      213: -6484482286451114711
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_45"
+  - first:
+      213: 5052967375384113248
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_46"
+  - first:
+      213: 4784480943077592470
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_47"
+  - first:
+      213: 1336101298961248978
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_48"
+  - first:
+      213: -7731392432631500047
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_49"
+  - first:
+      213: 3051549242355812531
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_50"
+  - first:
+      213: 4526548159066272787
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_51"
+  - first:
+      213: -4439680539041735778
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_52"
+  - first:
+      213: -2220250446680961833
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_53"
+  - first:
+      213: 493880802415333232
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_54"
+  - first:
+      213: -2364399567345540475
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_55"
+  - first:
+      213: -5835132277862437767
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_56"
+  - first:
+      213: 3176698969061661218
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_57"
+  - first:
+      213: -8199396125457136826
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_58"
+  - first:
+      213: 1393391699884301215
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_59"
+  - first:
+      213: -1134423802879663120
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_60"
+  - first:
+      213: -2631495749009012678
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_61"
+  - first:
+      213: -4145988746974829919
+    second: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_62"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: VisionOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_0"
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 188
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 661a50c4d431e6300800000000000000
+      internalID: 247156252260802918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_1"
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 190
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 889aff17841dd1580800000000000000
+      internalID: -8854691183260096120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_2"
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 190
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f64ceddfe568f9000800000000000000
+      internalID: 44902263841277039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_3"
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 130
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c7a6cb00791786d0800000000000000
+      internalID: -2988391858712434743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_4"
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 130
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c95af94a59b7cb10800000000000000
+      internalID: 2001772356828813760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_5"
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 70
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 274f1b857d4def8f0800000000000000
+      internalID: -504732086847802254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_6"
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 70
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0547ebfac779ef580800000000000000
+      internalID: -8791422860800396208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_7"
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 70
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 202f6f41f8306a110800000000000000
+      internalID: 1271707857845678594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_8"
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 70
+        width: 14
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f723de351dadfc00800000000000000
+      internalID: 936094604322875378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_9"
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 70
+        width: 48
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d24483e55a3cdc710800000000000000
+      internalID: 1715242148115792941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_10"
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 69
+        width: 36
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f19de23975f6ab070800000000000000
+      internalID: 8122927299838269727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_11"
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 70
+        width: 41
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71a42f7b2bd036890800000000000000
+      internalID: -7466108696008701417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_12"
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 70
+        width: 13
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf07423c9005b2710800000000000000
+      internalID: 1669516089729773819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_13"
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 70
+        width: 41
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd1b316af78e36400800000000000000
+      internalID: 316352033790865884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_14"
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 69
+        width: 44
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cbc873361b7ad850800000000000000
+      internalID: 6402565155543632839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_15"
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 70
+        width: 41
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 443e0d78ec4f880e0800000000000000
+      internalID: -2267293244501990588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_16"
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 69
+        width: 50
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c47039b7ff7458ed0800000000000000
+      internalID: -2412442862771566772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_17"
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 70
+        width: 31
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 283807d4710a7a220800000000000000
+      internalID: 2497140540344140674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_18"
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 70
+        width: 32
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcaa60eda051fc9c0800000000000000
+      internalID: -3904879215488095539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_19"
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 70
+        width: 45
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 209af638d4fb80340800000000000000
+      internalID: 4830320939993377026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_20"
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 70
+        width: 32
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d15d3b8a24be78960800000000000000
+      internalID: 7604305167369098525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_21"
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 70
+        width: 91
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db67dd88fe8f44070800000000000000
+      internalID: 8089864538341340861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_22"
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 70
+        width: 34
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b21b205c78b50f8d0800000000000000
+      internalID: -2814649128422559445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_23"
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 10
+        width: 6
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a80c9a0f4398b910800000000000000
+      internalID: 1853393214352656545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_24"
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 69
+        width: 31
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06f47d3239963c0b0800000000000000
+      internalID: -5709603821893234848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_25"
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 69
+        width: 26
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbbf94a552c3adc50800000000000000
+      internalID: 6690726327538547645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_26"
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 70
+        width: 44
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bedc57ecd626427b0800000000000000
+      internalID: -5249963041852371477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_27"
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 57
+        width: 28
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 064aa5902681f60a0800000000000000
+      internalID: -6886258495883402144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_28"
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 69
+        width: 27
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18e281e6e36038e60800000000000000
+      internalID: 7963215431325986433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_29"
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 69
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a91ffec012b5c5f0800000000000000
+      internalID: -736987178743162460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_30"
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 10
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 520f1acffe4ba8d80800000000000000
+      internalID: -8247580824746987483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_31"
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 10
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87cc0a853cd327a10800000000000000
+      internalID: 1905653501545991288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_32"
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 10
+        width: 30
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24b22a4bbcde974d0800000000000000
+      internalID: -3136214206322169022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_33"
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 43
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 220bc1b6f89ae7a20800000000000000
+      internalID: 3062071230100975650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_34"
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 10
+        width: 35
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b9fa534650dfefa0800000000000000
+      internalID: -5769163528722515528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_35"
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 10
+        width: 28
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa3b8016c2380ccf0800000000000000
+      internalID: -234042953993505878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_36"
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 10
+        width: 27
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e20a26558869d8e0800000000000000
+      internalID: -1668187265078525209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_37"
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 10
+        width: 33
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a7e9c4abfbc76830800000000000000
+      internalID: 4064441470387087264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_38"
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 10
+        width: 19
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1caccc4cbf96f8c0800000000000000
+      internalID: -3965806790761993189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_39"
+      rect:
+        serializedVersion: 2
+        x: 997
+        y: 9
+        width: 32
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1b7a436051059440800000000000000
+      internalID: 4941857610883824414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_40"
+      rect:
+        serializedVersion: 2
+        x: 1118
+        y: 42
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2605424332b825e50800000000000000
+      internalID: 6796647770970411106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_41"
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 10
+        width: 41
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8a8876e85cdca280800000000000000
+      internalID: -9030600878402794866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_42"
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 43
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 792fefea888c836b0800000000000000
+      internalID: -5316278870733819241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_43"
+      rect:
+        serializedVersion: 2
+        x: 1240
+        y: 43
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe211f659994ece20800000000000000
+      internalID: 3372714093884543727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_44"
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 10
+        width: 7
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8510c44833ecae990800000000000000
+      internalID: -7355840320698056360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_45"
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 10
+        width: 29
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92db4cb77bd7206a0800000000000000
+      internalID: -6484482286451114711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_46"
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 10
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 060786f5e0fbf1640800000000000000
+      internalID: 5052967375384113248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_47"
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 10
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69d04c68114e56240800000000000000
+      internalID: 4784480943077592470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_48"
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 10
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d2f58c6d09ca8210800000000000000
+      internalID: 1336101298961248978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_49"
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 10
+        width: 27
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f23bd19b8394b490800000000000000
+      internalID: -7731392432631500047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_50"
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 10
+        width: 29
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b80b3d3ed7495a20800000000000000
+      internalID: 3051549242355812531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_51"
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 10
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 314f7d7619781de30800000000000000
+      internalID: 4526548159066272787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_52"
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 10
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9bd33a72161362c0800000000000000
+      internalID: -4439680539041735778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_53"
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 10
+        width: 27
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dccd2d6bf51031e0800000000000000
+      internalID: -2220250446680961833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_54"
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 9
+        width: 27
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07fc95d19fd9ad600800000000000000
+      internalID: 493880802415333232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_55"
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 9
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5822841ee17ff2fd0800000000000000
+      internalID: -2364399567345540475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_56"
+      rect:
+        serializedVersion: 2
+        x: 1090
+        y: 10
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97ce790fb12750fa0800000000000000
+      internalID: -5835132277862437767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_57"
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 9
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22a1549a1e6e51c20800000000000000
+      internalID: 3176698969061661218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_58"
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 22
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 643c9698aa4e53e80800000000000000
+      internalID: -8199396125457136826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_59"
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 10
+        width: 7
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9bd4985e52565310800000000000000
+      internalID: 1393391699884301215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_60"
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 10
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f32c9ccf87b140f0800000000000000
+      internalID: -1134423802879663120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_61"
+      rect:
+        serializedVersion: 2
+        x: 1240
+        y: 10
+        width: 7
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a380e5cfe8c0b7bd0800000000000000
+      internalID: -2631495749009012678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_62"
+      rect:
+        serializedVersion: 2
+        x: 1253
+        y: 10
+        width: 43
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a26cc5733d7676c0800000000000000
+      internalID: -4145988746974829919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_0": 247156252260802918
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_1": -8854691183260096120
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_10": 8122927299838269727
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_11": -7466108696008701417
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_12": 1669516089729773819
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_13": 316352033790865884
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_14": 6402565155543632839
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_15": -2267293244501990588
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_16": -2412442862771566772
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_17": 2497140540344140674
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_18": -3904879215488095539
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_19": 4830320939993377026
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_2": 44902263841277039
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_20": 7604305167369098525
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_21": 8089864538341340861
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_22": -2814649128422559445
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_23": 1853393214352656545
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_24": -5709603821893234848
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_25": 6690726327538547645
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_26": -5249963041852371477
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_27": -6886258495883402144
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_28": 7963215431325986433
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_29": -736987178743162460
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_3": -2988391858712434743
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_30": -8247580824746987483
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_31": 1905653501545991288
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_32": -3136214206322169022
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_33": 3062071230100975650
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_34": -5769163528722515528
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_35": -234042953993505878
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_36": -1668187265078525209
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_37": 4064441470387087264
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_38": -3965806790761993189
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_39": 4941857610883824414
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_4": 2001772356828813760
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_40": 6796647770970411106
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_41": -9030600878402794866
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_42": -5316278870733819241
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_43": 3372714093884543727
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_44": -7355840320698056360
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_45": -6484482286451114711
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_46": 5052967375384113248
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_47": 4784480943077592470
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_48": 1336101298961248978
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_49": -7731392432631500047
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_5": -504732086847802254
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_50": 3051549242355812531
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_51": 4526548159066272787
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_52": -4439680539041735778
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_53": -2220250446680961833
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_54": 493880802415333232
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_55": -2364399567345540475
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_56": -5835132277862437767
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_57": 3176698969061661218
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_58": -8199396125457136826
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_59": 1393391699884301215
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_6": -8791422860800396208
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_60": -1134423802879663120
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_61": -2631495749009012678
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_62": -4145988746974829919
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_7": 1271707857845678594
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_8": 936094604322875378
+      "Campus Cear\xE1-Mirim - Logo_Negat Hor Compl_9": 1715242148115792941
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

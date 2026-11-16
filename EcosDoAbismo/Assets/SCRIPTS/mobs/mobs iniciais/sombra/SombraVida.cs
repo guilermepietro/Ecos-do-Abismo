@@ -13,14 +13,15 @@ public class SombraVida : MonoBehaviour
     private int vidaAtual;
     private bool morto = false;
 
-    // NOVO
+    // Permite identificar quando a Sombra morreu
+    public bool EstaMorto => morto;
+
     private AudioMob audioMob;
 
     void Start()
     {
         vidaAtual = vidaMaxima;
 
-        // NOVO
         audioMob = GetComponentInParent<AudioMob>();
     }
 
@@ -41,7 +42,6 @@ public class SombraVida : MonoBehaviour
 
         animator.SetTrigger("Damage");
 
-        // NOVO: som de dano
         if (audioMob != null)
         {
             audioMob.TocarDano();
@@ -58,7 +58,6 @@ public class SombraVida : MonoBehaviour
         animator.ResetTrigger("Attack");
         animator.SetTrigger("Death");
 
-        // NOVO: som de morte
         if (audioMob != null)
         {
             audioMob.TocarMorte();

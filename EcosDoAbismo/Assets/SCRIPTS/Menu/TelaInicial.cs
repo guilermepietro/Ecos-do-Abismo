@@ -13,10 +13,24 @@ public class TelaInicial : MonoBehaviour
     public TransicaoTela transicaoTela;
 
     private bool transicaoIniciada = false;
+    private bool fadeInicialConcluido = false;
+
+    void Start()
+    {
+        StartCoroutine(IniciarFadeInicial());
+    }
+
+    IEnumerator IniciarFadeInicial()
+    {
+        if (transicaoTela != null)
+            yield return StartCoroutine(transicaoTela.Clarear());
+
+        fadeInicialConcluido = true;
+    }
 
     void Update()
     {
-        if (transicaoIniciada)
+        if (transicaoIniciada || !fadeInicialConcluido)
             return;
 
         bool tecladoPressionado =

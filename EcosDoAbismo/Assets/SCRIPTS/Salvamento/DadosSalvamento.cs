@@ -22,11 +22,13 @@ public class DadosSalvamento
     public List<string> reliquiasObtidas =
         new List<string>();
 
-    // Novos dados: controle das árvores comuns.
     public List<string> checkpointsComunsAtivos =
         new List<string>();
 
     public bool controleComunsInicializado = false;
+
+    // Evento permanente do anciao
+    public bool resgateAnciaoConcluido = false;
 
     public DadosSalvamento(int slot)
     {
