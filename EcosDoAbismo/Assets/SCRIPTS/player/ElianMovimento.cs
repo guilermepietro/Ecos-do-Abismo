@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections;
@@ -46,7 +47,6 @@ public class ElianMovimento : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-
     private Collider2D colisorElian;
 
     private ElianAtaque ataque;
@@ -64,6 +64,10 @@ public class ElianMovimento : MonoBehaviour
     private bool pulouNesteFrame = false;
 
     private bool estaDashando = false;
+
+    // Permite que a bencao detecte o dash
+    public bool EstaDashando => estaDashando;
+
     private bool dashDisponivel = true;
     private bool dashAereoDisponivel = true;
 
@@ -76,7 +80,6 @@ public class ElianMovimento : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-
         colisorElian = GetComponent<Collider2D>();
 
         ataque = GetComponent<ElianAtaque>();
@@ -100,7 +103,6 @@ public class ElianMovimento : MonoBehaviour
     {
         pulouNesteFrame = false;
 
-        // Bloqueia comandos de movimento após a morte
         if (vida != null && vida.EstaMorto)
         {
             podeMover = false;
@@ -117,7 +119,6 @@ public class ElianMovimento : MonoBehaviour
 
         VerificarChao();
 
-        // Bloqueia movimento durante a interface de viagem
         if (coleta != null && coleta.MenuViagemAberto)
         {
             PararPassos();
@@ -173,9 +174,7 @@ public class ElianMovimento : MonoBehaviour
     void Movimento()
     {
         if (!podeMover)
-        {
             return;
-        }
 
         float movimentoHorizontal =
             Input.GetAxisRaw("Horizontal");
@@ -222,9 +221,7 @@ public class ElianMovimento : MonoBehaviour
     void Pulo()
     {
         if (!podeMover)
-        {
             return;
-        }
 
         if (Input.GetKeyDown(KeyCode.Space) &&
             estaNoChao)
@@ -235,6 +232,7 @@ public class ElianMovimento : MonoBehaviour
             );
 
             pulouNesteFrame = true;
+
             PararPassos();
             TocarEfeito(somPulo);
         }
@@ -243,33 +241,23 @@ public class ElianMovimento : MonoBehaviour
     void Dash()
     {
         if (coleta != null && coleta.MenuViagemAberto)
-        {
             return;
-        }
 
         if (!Input.GetKeyDown(KeyCode.LeftControl))
-        {
             return;
-        }
 
         if (!dashDisponivel)
-        {
             return;
-        }
 
         bool cancelandoCombo =
             ataque != null &&
             ataque.EstaNoCombo();
 
         if (!podeMover && !cancelandoCombo)
-        {
             return;
-        }
 
         if (!estaNoChao && !dashAereoDisponivel)
-        {
             return;
-        }
 
         if (cancelandoCombo)
         {
@@ -400,7 +388,6 @@ public class ElianMovimento : MonoBehaviour
         if (audioPassos == null)
             return;
 
-        // ALTERADO: passos independentes da tecla Shift.
         bool movendoNoChao =
             podeMover &&
             estaNoChao &&
@@ -415,7 +402,8 @@ public class ElianMovimento : MonoBehaviour
             return;
         }
 
-        bool pisandoNaVegetacao = EstaPisandoNaVegetacao();
+        bool pisandoNaVegetacao =
+            EstaPisandoNaVegetacao();
 
         AudioClip somEscolhido =
             pisandoNaVegetacao

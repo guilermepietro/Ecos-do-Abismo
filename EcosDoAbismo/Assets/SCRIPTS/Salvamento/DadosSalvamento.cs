@@ -27,8 +27,14 @@ public class DadosSalvamento
 
     public bool controleComunsInicializado = false;
 
-    // Evento permanente do anciao
+    // Anciao
     public bool resgateAnciaoConcluido = false;
+    public bool apresentacaoAnciaoConcluida = false;
+    public bool historiaRakthasContada = false;
+
+    // Bencaos
+    public List<string> bencaosRecebidas =
+        new List<string>();
 
     public DadosSalvamento(int slot)
     {

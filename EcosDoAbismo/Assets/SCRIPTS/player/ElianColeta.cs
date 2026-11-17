@@ -12,6 +12,9 @@ public class ElianColeta : MonoBehaviour
 
     private bool interagindo = false;
 
+    private bool coletandoBencao = false;
+    private AnciaoInteracao anciaoDaBencao;
+
     [Header("Interface de Viagem")]
     public GameObject telaViagem;
 
@@ -59,7 +62,6 @@ public class ElianColeta : MonoBehaviour
             !MenuViagemAberto
         )
         {
-            // Conversar com o Anciao sem animacao de coleta
             if (anciaoPerto != null)
             {
                 anciaoPerto.AbrirConversa();
@@ -91,7 +93,8 @@ public class ElianColeta : MonoBehaviour
         itemPerto = item;
     }
 
-    public void DefinirReliquiaPerto(ReliquiaColetavel reliquia)
+    public void DefinirReliquiaPerto(
+        ReliquiaColetavel reliquia)
     {
         reliquiaPerto = reliquia;
     }
@@ -101,8 +104,32 @@ public class ElianColeta : MonoBehaviour
         arvorePerto = arvore;
     }
 
+    public void IniciarBencao(AnciaoInteracao anciao)
+    {
+        if (interagindo || anciao == null)
+            return;
+
+        interagindo = true;
+        coletandoBencao = true;
+        anciaoDaBencao = anciao;
+
+        movimento.podeMover = false;
+        animator.SetFloat("velocidade", 0f);
+        animator.SetTrigger("Coletar");
+    }
+
     public void ExecutarColeta()
     {
+        if (coletandoBencao)
+        {
+            if (anciaoDaBencao != null)
+            {
+                anciaoDaBencao.ConcederBencao();
+            }
+
+            return;
+        }
+
         if (reliquiaPerto != null)
         {
             reliquiaPerto.Coletar();
@@ -121,6 +148,32 @@ public class ElianColeta : MonoBehaviour
 
     public void FinalizarColeta()
     {
+        if (coletandoBencao)
+        {
+            AnciaoInteracao anciao =
+                anciaoDaBencao;
+
+            coletandoBencao = false;
+            anciaoDaBencao = null;
+            interagindo = false;
+
+            ElianVida vida = GetComponent<ElianVida>();
+
+            if (vida == null || !vida.EstaMorto)
+            {
+                movimento.podeMover = true;
+            }
+
+            // Exibe o tutorial somente depois
+            // da animacao de coleta.
+            if (anciao != null)
+            {
+                anciao.FinalizarRecebimentoBencao();
+            }
+
+            return;
+        }
+
         interagindo = false;
 
         if (MenuViagemAberto)
