@@ -11,18 +11,25 @@ public class ElianBencaos : MonoBehaviour
     [SerializeField]
     private KeyCode teclaAscensao = KeyCode.Alpha1;
 
-    [Header("Bencao da Investida Flamejante")]
+    [Header("Investida Flamejante")]
     [SerializeField, Min(1)]
     private int danoInvestidaFlamejante = 20;
+
+    [Header("Investida Celeste")]
+    [SerializeField, Min(1f)]
+    private float multiplicadorDistanciaDash = 1.5f;
 
     private ElianMovimento movimento;
     private ElianVida vida;
 
     private float forcaPuloOriginal;
+    private float tempoDashOriginal;
 
     private bool possuiAscensao;
     private bool ascensaoAtiva;
+
     private bool possuiInvestidaFlamejante;
+    private bool possuiInvestidaCeleste;
 
     public bool PossuiAscensao => possuiAscensao;
     public bool AscensaoAtiva => ascensaoAtiva;
@@ -33,6 +40,9 @@ public class ElianBencaos : MonoBehaviour
     public int DanoInvestidaFlamejante =>
         danoInvestidaFlamejante;
 
+    public bool PossuiInvestidaCeleste =>
+        possuiInvestidaCeleste;
+
     void Awake()
     {
         movimento = GetComponent<ElianMovimento>();
@@ -41,6 +51,7 @@ public class ElianBencaos : MonoBehaviour
         if (movimento != null)
         {
             forcaPuloOriginal = movimento.forcaPulo;
+            tempoDashOriginal = movimento.tempoDash;
         }
     }
 
@@ -95,11 +106,16 @@ public class ElianBencaos : MonoBehaviour
                 "InvestidaFlamejante"
             );
 
-        // Ascensao inicia desligada.
-        // Investida Flamejante e passiva.
+        possuiInvestidaCeleste =
+            dados.bencaosRecebidas != null &&
+            dados.bencaosRecebidas.Contains(
+                "InvestidaCeleste"
+            );
+
         ascensaoAtiva = false;
 
         AplicarAscensao();
+        AplicarInvestidaCeleste();
     }
 
     private void AplicarAscensao()
@@ -113,6 +129,8 @@ public class ElianBencaos : MonoBehaviour
                 : forcaPuloOriginal;
     }
 
+    
+
     public bool ConcederAscensao()
     {
         if (!RegistrarBencao("Ascensao"))
@@ -124,8 +142,7 @@ public class ElianBencaos : MonoBehaviour
         AplicarAscensao();
 
         Debug.Log(
-            "Bencao da Ascensao adquirida! " +
-            "Pressione 1 para ativar."
+            "Bencao da Ascensao adquirida!"
         );
 
         return true;
@@ -139,8 +156,24 @@ public class ElianBencaos : MonoBehaviour
         possuiInvestidaFlamejante = true;
 
         Debug.Log(
-            "Investida Flamejante adquirida! " +
-            "Dash ofensivo permanente."
+            "Investida Flamejante adquirida!"
+        );
+
+        return true;
+    }
+
+    public bool ConcederInvestidaCeleste()
+    {
+        if (!RegistrarBencao("InvestidaCeleste"))
+            return false;
+
+        possuiInvestidaCeleste = true;
+
+        AplicarInvestidaCeleste();
+
+        Debug.Log(
+            "Investida Celeste adquirida! " +
+            "Nova duracao do dash: " + movimento.tempoDash
         );
 
         return true;
@@ -187,4 +220,18 @@ public class ElianBencaos : MonoBehaviour
 
         return true;
     }
+
+    private void AplicarInvestidaCeleste()
+{
+    if (movimento == null)
+        return;
+
+    movimento.tempoDash =
+        possuiInvestidaCeleste
+            ? Mathf.Min(
+                tempoDashOriginal * multiplicadorDistanciaDash,
+                0.6f
+              )
+            : tempoDashOriginal;
+}
 }

@@ -1,4 +1,4 @@
-
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 
@@ -27,12 +27,12 @@ public class DadosSalvamento
 
     public bool controleComunsInicializado = false;
 
-    // Anciao
+    [Header("Anciao")]
     public bool resgateAnciaoConcluido = false;
     public bool apresentacaoAnciaoConcluida = false;
     public bool historiaRakthasContada = false;
+    public bool historiaSalenthraContada = false;
 
-    // Bencaos
     public List<string> bencaosRecebidas =
         new List<string>();
 

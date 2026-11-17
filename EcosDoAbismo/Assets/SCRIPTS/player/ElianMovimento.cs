@@ -65,7 +65,6 @@ public class ElianMovimento : MonoBehaviour
 
     private bool estaDashando = false;
 
-    // Permite que a bencao detecte o dash
     public bool EstaDashando => estaDashando;
 
     private bool dashDisponivel = true;
@@ -106,7 +105,6 @@ public class ElianMovimento : MonoBehaviour
         if (vida != null && vida.EstaMorto)
         {
             podeMover = false;
-
             PararPassos();
 
             rb.linearVelocity = new Vector2(
@@ -354,12 +352,21 @@ public class ElianMovimento : MonoBehaviour
             rb.gravityScale = 0f;
         }
 
-        rb.linearVelocity = new Vector2(
-            direcao * velocidadeDash,
-            0f
-        );
+        // NOVO: aplica a velocidade durante todo o dash.
+        float tempoDecorrido = 0f;
 
-        yield return new WaitForSeconds(tempoDash);
+        while (tempoDecorrido < tempoDash &&
+               (vida == null || !vida.EstaMorto))
+        {
+            rb.linearVelocity = new Vector2(
+                direcao * velocidadeDash,
+                0f
+            );
+
+            yield return new WaitForFixedUpdate();
+
+            tempoDecorrido += Time.fixedDeltaTime;
+        }
 
         if (dashNoAr)
         {

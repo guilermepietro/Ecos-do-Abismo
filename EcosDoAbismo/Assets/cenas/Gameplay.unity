@@ -1320,7 +1320,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 105.35, y: -99.77, z: 0}
+  m_LocalPosition: {x: 108.7, y: -117.11, z: 0}
   m_LocalScale: {x: 1.52, y: 1.52, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1409,7 +1409,7 @@ MonoBehaviour:
   velocidadeAnimacaoCorrida: 1.8
   forcaPulo: 13
   velocidadeDash: 8
-  tempoDash: 0.5
+  tempoDash: 0.6
   cooldownDash: 1
   pontoDeChao: {fileID: 458144955}
   raioChao: 0.2
@@ -1670,6 +1670,7 @@ MonoBehaviour:
   multiplicadorPulo: 1.35
   teclaAscensao: 49
   danoInvestidaFlamejante: 20
+  multiplicadorDistanciaDash: 1.5
 --- !u!114 &142652962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4183,6 +4184,104 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &277461571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 277461574}
+  - component: {fileID: 277461573}
+  - component: {fileID: 277461572}
+  m_Layer: 0
+  m_Name: TutorialBencao_InvestidaCeleste
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &277461572
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277461571}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.14116144, y: -2.8433876}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 6.202794, y: 6.686775}
+  m_EdgeRadius: 0
+--- !u!114 &277461573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277461571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76b0bbf8a36bcf48a03862eba91bd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaTutorial
+  gerenciador: {fileID: 684198913}
+  titulo: "B\xCAN\xC7\xC3O DAS BRASAS"
+  descricao: "O poder da L\xE2mina Celeste agora percorre seu corpo. Seus dashes
+    alcan\xE7am dist\xE2ncias maiores, permitindo atravessar abismos e alcan\xE7ar
+    locais antes inacess\xEDveis.\nPressione Ctrl esquerdo para executar o dash aprimorado."
+  imagem1: {fileID: 21300000, guid: 62448d0448da62f4ab43fed921a4e948, type: 3}
+  imagem2: {fileID: 21300000, guid: fb95fee45f348074eb97f723143735f0, type: 3}
+--- !u!4 &277461574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277461571}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.27, y: -94, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &280921635
 GameObject:
   m_ObjectHideFlags: 0
@@ -4662,7 +4761,7 @@ Transform:
   m_GameObject: {fileID: 312620312}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 109.58, y: -96.22, z: -10}
+  m_LocalPosition: {x: 114, y: -113.7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5831,7 +5930,7 @@ Transform:
   m_GameObject: {fileID: 426324701}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 118.78, y: -116.1, z: 0}
+  m_LocalPosition: {x: 118.78, y: -117.2, z: 0}
   m_LocalScale: {x: 2.09617, y: 2.09617, z: 2.09617}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17121,7 +17220,7 @@ Transform:
   m_GameObject: {fileID: 981464390}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.41, y: -11.84, z: 0}
+  m_LocalPosition: {x: -9.67, y: -2.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21118,7 +21217,7 @@ Transform:
   m_GameObject: {fileID: 1205123307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35, y: -11.98, z: 0}
+  m_LocalPosition: {x: 9.6, y: -2.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21843,8 +21942,10 @@ MonoBehaviour:
   gerenciadorTutoriais: {fileID: 684198913}
   tutorialAscensao: {fileID: 941532263}
   tutorialInvestidaFlamejante: {fileID: 1812969121}
+  tutorialInvestidaCeleste: {fileID: 277461573}
   idReliquiaCoroa: CoroaDoAbismo
   idReliquiaCalice: CaliceDeBrasas
+  idReliquiaLamina: LaminaCeleste
   dialogosPrimeiroEncontro:
   - Ahh... Malditos bichos! Quase me mandaram para debaixo da terra antes da hora.
   - Devo-lhe minha vida, peregrino. Embora, a julgar pelos meus ossos, ela ja nao
@@ -21941,6 +22042,57 @@ MonoBehaviour:
   - "Muito bem. Vamos fazer nossa parte do acordo. Afinal, n\xE3o seria justo deix\xE1-lo
     enfrentar aquelas criaturas sem alguma recompensa."
   - "Aproxime-se, meu jovem. Vamos ver o que este fogo pode fazer por voc\xEA."
+  dialogosIntroducaoSalenthra:
+  - "Hah! Veja s\xF3 como se move, rapaz. Antes mal conseguia acreditar que voltaria
+    vivo de Voragul."
+  - E agora aparece diante de mim carregando o fogo de Rakthas... Quem diria, hein?
+  - "N\xE3o me olhe desse jeito. Estou contente por voc\xEA. S\xF3 me custa admitir
+    que um rapaz t\xE3o jovem consegue fazer o que n\xE3o fiz em uma vida inteira."
+  - Sabe... A velocidade sempre me fascinou. Talvez porque estas pernas nunca tenham
+    sido grande coisa. Hah!
+  - "Mas h\xE1 uma diferen\xE7a entre correr depressa e ser r\xE1pido o bastante
+    para que ningu\xE9m veja seu movimento."
+  - "J\xE1 ouviu falar de Salenthra?"
+  - "Hm... Imaginei. N\xE3o \xE9 um nome que se escute por a\xED com muita frequ\xEAncia."
+  - "Dizem que ela empunha uma l\xE2mina t\xE3o veloz que seus inimigos s\xF3 compreendem
+    o golpe quando j\xE1 est\xE3o caindo."
+  - "Uma espada dessas nas minhas m\xE3os? Hah! Eu provavelmente cortaria a pr\xF3pria
+    barba antes de dar o primeiro passo."
+  - "Mas n\xE3o se engane, meu jovem. Salenthra n\xE3o \xE9 apenas uma criatura veloz.
+    Ela sabe aproveitar cada abertura que encontra."
+  - "Voragul podia ser vencido com paci\xEAncia. Rakthas, deixando sua f\xFAria trabalhar
+    contra ele. Salenthra... bem, eu n\xE3o contaria com a mesma sorte."
+  - "O qu\xEA? Parece preocupado? N\xE3o h\xE1 vergonha nenhuma nisso, rapaz. At\xE9
+    os mais corajosos precisam saber quando ter medo."
+  - "O curioso \xE9 que sua l\xE2mina guarda um poder que vai muito al\xE9m de ferir.
+    Pelo menos, \xE9 o que dizem os velhos escritos."
+  - "Heh... J\xE1 est\xE1 pensando no que poderia fazer com esse poder, n\xE3o \xE9?
+    N\xE3o adianta esconder essa express\xE3o de mim."
+  - "Se um dia encontrar Salenthra, observe bem seus movimentos. \xC0s vezes, o segredo
+    para vencer algu\xE9m est\xE1 justamente naquilo que mais a torna perigosa."
+  - "E se conseguir trazer aquela l\xE2mina at\xE9 aqui... quem sabe? Talvez estas
+    m\xE3os ainda consigam lhe ensinar a alcan\xE7ar lugares que seus p\xE9s jamais
+    alcan\xE7ariam."
+  - "Agora v\xE1, rapaz. E n\xE3o se esque\xE7a de voltar. J\xE1 me acostumei com
+    sua companhia, sabe?"
+  dialogosLamina:
+  - "Ora, ora... A\xED est\xE1 voc\xEA novamente. E eu aqui, pensando que finalmente
+    teria uma tarde de sossego."
+  - "Espere um instante... Essa espada... N\xE3o pode ser."
+  - "Voc\xEA enfrentou Salenthra? E est\xE1 aqui, diante de mim, como se tivesse
+    acabado de voltar de um passeio?"
+  - "Hah! N\xE3o fa\xE7a essa cara. Deixe um velho demonstrar surpresa de vez em
+    quando."
+  - "Venha, aproxime-se. Quero ver aquela l\xE2mina com meus pr\xF3prios olhos."
+  - "Ah... Que coisa extraordin\xE1ria..."
+  - "Hm? O qu\xEA? Oh, perdoe-me, rapaz. \xC0s vezes minha mem\xF3ria me leva a lugares
+    onde j\xE1 n\xE3o deveria entrar."
+  - "Sabe, h\xE1 coisas que o tempo leva de um homem. A for\xE7a, a juventude...
+    at\xE9 os rostos daqueles que amamos."
+  - "Mas h\xE1 outras que permanecem. E o poder desta espada \xE9 uma delas."
+  - "Bem, meu jovem, n\xE3o vamos ficar aqui alimentando a nostalgia de um velho."
+  - "Voc\xEA cumpriu sua parte. Agora \xE9 minha vez de cumprir a minha."
+  - "Aproxime-se. Vamos descobrir at\xE9 onde essas pernas podem lev\xE1-lo."
   dialogosRetorno:
   - Ah, meu salvador... Vejo que a morte ainda nao conseguiu alcanca-lo.
   - As reliquias continuam a espera de alguem capaz de enfrentar seus guardioes.
@@ -24901,7 +25053,7 @@ Transform:
   m_GameObject: {fileID: 1508585523}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.54513, y: -56.07226, z: 0}
+  m_LocalPosition: {x: 115, y: -114.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24935,7 +25087,7 @@ Transform:
   m_GameObject: {fileID: 1514097464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.073, y: 2.346, z: 0}
+  m_LocalPosition: {x: 1.79, y: 1.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25950,7 +26102,7 @@ Transform:
   m_GameObject: {fileID: 1573473948}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 179.7, y: -2.66, z: 0}
+  m_LocalPosition: {x: 15.55, y: -65.8, z: 0}
   m_LocalScale: {x: 2.9022865, y: 2.9022865, z: 2.9022865}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -189695,7 +189847,7 @@ Transform:
   m_GameObject: {fileID: 2059395981}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 140.4, y: -97.3, z: -0.001670148}
+  m_LocalPosition: {x: 322.2, y: -68.3, z: -0.001670148}
   m_LocalScale: {x: 3.5641396, y: 3.5641396, z: 3.5641396}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -190835,7 +190987,7 @@ Transform:
   m_GameObject: {fileID: 2121363421}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 150.1, y: -96.1, z: 0}
+  m_LocalPosition: {x: 360.9, y: -96.1, z: 0}
   m_LocalScale: {x: 4.128506, y: 4.128506, z: 4.128506}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -191645,6 +191797,7 @@ SceneRoots:
   - {fileID: 1259866912}
   - {fileID: 941532264}
   - {fileID: 1812969122}
+  - {fileID: 277461574}
   - {fileID: 455965803}
   - {fileID: 1254421677}
   - {fileID: 301127980}
