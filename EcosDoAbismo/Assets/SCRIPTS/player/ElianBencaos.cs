@@ -17,13 +17,20 @@ public class ElianBencaos : MonoBehaviour
 
     [Header("Investida Celeste")]
     [SerializeField, Min(1f)]
-    private float multiplicadorDistanciaDash = 1.5f;
+    private float multiplicadorDistanciaDash = 1.4f;
+
+    [SerializeField, Min(0f)]
+    private float velocidadeDashCeleste = 10f;
+
+    [SerializeField, Min(0f)]
+    private float tempoMaximoDashCeleste = 0.7f;
 
     private ElianMovimento movimento;
     private ElianVida vida;
 
     private float forcaPuloOriginal;
     private float tempoDashOriginal;
+    private float velocidadeDashOriginal;
 
     private bool possuiAscensao;
     private bool ascensaoAtiva;
@@ -52,6 +59,7 @@ public class ElianBencaos : MonoBehaviour
         {
             forcaPuloOriginal = movimento.forcaPulo;
             tempoDashOriginal = movimento.tempoDash;
+            velocidadeDashOriginal = movimento.velocidadeDash;
         }
     }
 
@@ -73,6 +81,7 @@ public class ElianBencaos : MonoBehaviour
         if (Input.GetKeyDown(teclaAscensao))
         {
             ascensaoAtiva = !ascensaoAtiva;
+
             AplicarAscensao();
 
             Debug.Log(
@@ -88,7 +97,13 @@ public class ElianBencaos : MonoBehaviour
         int slot = MenuSelecaoSave.slotPartidaAtual;
 
         if (slot < 1 || slot > 3)
+        {
+            Debug.LogWarning(
+                "ElianBencaos: nenhum slot valido selecionado."
+            );
+
             return;
+        }
 
         DadosSalvamento dados =
             GerenciadorSalvamento.Carregar(slot);
@@ -112,8 +127,10 @@ public class ElianBencaos : MonoBehaviour
                 "InvestidaCeleste"
             );
 
+        // Ascensao comeca desativada.
         ascensaoAtiva = false;
 
+        // As outras duas bencaos sao passivas.
         AplicarAscensao();
         AplicarInvestidaCeleste();
     }
@@ -129,7 +146,30 @@ public class ElianBencaos : MonoBehaviour
                 : forcaPuloOriginal;
     }
 
-    
+    private void AplicarInvestidaCeleste()
+    {
+        if (movimento == null)
+            return;
+
+        if (possuiInvestidaCeleste)
+        {
+            // Aumenta a duracao do dash,
+            // respeitando o limite configurado.
+            movimento.tempoDash = Mathf.Min(
+                tempoDashOriginal * multiplicadorDistanciaDash,
+                tempoMaximoDashCeleste
+            );
+
+            // Aumenta a velocidade para 10.
+            movimento.velocidadeDash = velocidadeDashCeleste;
+        }
+        else
+        {
+            // Dash normal, sem a bencao.
+            movimento.tempoDash = tempoDashOriginal;
+            movimento.velocidadeDash = velocidadeDashOriginal;
+        }
+    }
 
     public bool ConcederAscensao()
     {
@@ -142,7 +182,8 @@ public class ElianBencaos : MonoBehaviour
         AplicarAscensao();
 
         Debug.Log(
-            "Bencao da Ascensao adquirida!"
+            "Bencao da Ascensao adquirida! " +
+            "Pressione 1 para ativar ou desativar."
         );
 
         return true;
@@ -156,7 +197,8 @@ public class ElianBencaos : MonoBehaviour
         possuiInvestidaFlamejante = true;
 
         Debug.Log(
-            "Investida Flamejante adquirida!"
+            "Investida Flamejante adquirida! " +
+            "O dash agora causa dano permanentemente."
         );
 
         return true;
@@ -173,7 +215,8 @@ public class ElianBencaos : MonoBehaviour
 
         Debug.Log(
             "Investida Celeste adquirida! " +
-            "Nova duracao do dash: " + movimento.tempoDash
+            "Velocidade: " + movimento.velocidadeDash +
+            " | Duracao: " + movimento.tempoDash
         );
 
         return true;
@@ -220,18 +263,4 @@ public class ElianBencaos : MonoBehaviour
 
         return true;
     }
-
-    private void AplicarInvestidaCeleste()
-{
-    if (movimento == null)
-        return;
-
-    movimento.tempoDash =
-        possuiInvestidaCeleste
-            ? Mathf.Min(
-                tempoDashOriginal * multiplicadorDistanciaDash,
-                0.6f
-              )
-            : tempoDashOriginal;
-}
 }
