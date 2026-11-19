@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -61,6 +60,9 @@ public class ElianVida : MonoBehaviour
 
     [Header("Renascimento")]
     public TransicaoTela transicaoTela;
+
+    [Min(0.1f)]
+    public float tempoAntesRenascimento = 2f;
 
     private bool renascimentoIniciado = false;
 
@@ -135,7 +137,8 @@ public class ElianVida : MonoBehaviour
         if (vidaAtual < 0)
             vidaAtual = 0;
 
-        // NOVO: impede a primeira morte fatal.
+        // Impede a primeira morte fatal caso
+        // a Segunda Existencia esteja disponivel.
         if (vidaAtual <= 0 &&
             TentarAtivarSegundaExistencia())
         {
@@ -254,6 +257,31 @@ public class ElianVida : MonoBehaviour
         TocarSomVida(somMorte);
 
         Debug.Log("Elian morreu!");
+
+        // SEGURANCA:
+        // se o Animation Event FinalizarMorte nao for chamado,
+        // o renascimento ainda acontece.
+        StartCoroutine(
+            AguardarRenascimentoAutomatico()
+        );
+    }
+
+    IEnumerator AguardarRenascimentoAutomatico()
+    {
+        yield return new WaitForSecondsRealtime(
+            tempoAntesRenascimento
+        );
+
+        if (EstaMorto &&
+            !renascimentoIniciado)
+        {
+            Debug.Log(
+                "Animation Event de morte nao iniciou o renascimento. " +
+                "Usando renascimento automatico."
+            );
+
+            TentarIniciarRenascimento();
+        }
     }
 
     // Animation Event no final da animacao de morte
@@ -266,6 +294,14 @@ public class ElianVida : MonoBehaviour
             "Animacao de morte do Elian finalizada!"
         );
 
+        TentarIniciarRenascimento();
+    }
+
+    void TentarIniciarRenascimento()
+    {
+        if (renascimentoIniciado)
+            return;
+
         int slot = MenuSelecaoSave.slotPartidaAtual;
 
         if (slot < 1 || slot > 3)
@@ -274,6 +310,7 @@ public class ElianVida : MonoBehaviour
                 "Nenhum slot selecionado. " +
                 "Renascimento nao iniciado."
             );
+
             return;
         }
 
@@ -283,6 +320,7 @@ public class ElianVida : MonoBehaviour
                 "Nao foi possivel carregar o salvamento. " +
                 "Renascimento cancelado."
             );
+
             return;
         }
 
@@ -291,23 +329,30 @@ public class ElianVida : MonoBehaviour
             Debug.LogError(
                 "TransicaoTela nao configurada no ElianVida!"
             );
+
             return;
         }
 
         renascimentoIniciado = true;
 
-        StartCoroutine(ExecutarRenascimento());
+        StartCoroutine(
+            ExecutarRenascimento()
+        );
     }
 
     IEnumerator ExecutarRenascimento()
     {
-        Debug.Log("Iniciando renascimento do Elian...");
+        Debug.Log(
+            "Iniciando renascimento do Elian..."
+        );
 
         yield return StartCoroutine(
             transicaoTela.Escurecer()
         );
 
-        Debug.Log("Recarregando Gameplay...");
+        Debug.Log(
+            "Recarregando Gameplay..."
+        );
 
         SceneManager.LoadScene(
             SceneManager.GetActiveScene().name
@@ -338,11 +383,15 @@ public class ElianVida : MonoBehaviour
 
             spriteRenderer.enabled = false;
 
-            yield return new WaitForSeconds(tempoPiscada);
+            yield return new WaitForSeconds(
+                tempoPiscada
+            );
 
             spriteRenderer.enabled = true;
 
-            yield return new WaitForSeconds(tempoPiscada);
+            yield return new WaitForSeconds(
+                tempoPiscada
+            );
 
             tempoPassado += tempoPiscada * 2;
         }

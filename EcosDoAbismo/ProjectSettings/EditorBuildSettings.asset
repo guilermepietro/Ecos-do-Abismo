@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/cenas/Gameplay.unity
     guid: a0ebea421a5e8dd49966423c740112f3
+  - enabled: 1
+    path: Assets/cenas/Finalizacao.unity
+    guid: 1eb535b0fd39d3d4b994232d511863a7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

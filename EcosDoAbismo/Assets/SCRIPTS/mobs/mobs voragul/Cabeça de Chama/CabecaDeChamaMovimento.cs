@@ -1,25 +1,26 @@
-
 using UnityEngine;
 
 public class CabecaDeChamaMovimento : MonoBehaviour
 {
+    [Header("Movimento")]
     public float velocidade = 2.5f;
+    public float distanciaPerseguir = 6f;
+
+    [Header("Ataque")]
     public float distanciaAtaque = 1.5f;
     public float tempoEntreAtaques = 1.2f;
+    public Transform hitboxAtaque;
 
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Transform elian;
 
-    public Transform hitboxAtaque;
-
     private ElianVida vidaElian;
     private KnockbackInimigo knockback;
 
     private float proximoAtaque;
 
-    // NOVO: áudio universal do mob
     private AudioMob audioMob;
 
     void Start()
@@ -29,7 +30,6 @@ public class CabecaDeChamaMovimento : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         knockback = GetComponent<KnockbackInimigo>();
 
-        // NOVO
         audioMob = GetComponentInParent<AudioMob>();
 
         GameObject jogador = GameObject.Find("elian");
@@ -46,14 +46,11 @@ public class CabecaDeChamaMovimento : MonoBehaviour
         if (elian == null)
             return;
 
+        // Elian morreu
         if (vidaElian != null && vidaElian.EstaMorto)
         {
-            rb.linearVelocity = new Vector2(
-                0f,
-                rb.linearVelocity.y
-            );
+            Parar();
 
-            animator.SetBool("Andando", false);
             animator.ResetTrigger("Atacar");
 
             if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
@@ -64,6 +61,7 @@ public class CabecaDeChamaMovimento : MonoBehaviour
             return;
         }
 
+        // Está sofrendo knockback
         if (knockback != null && knockback.EstaEmKnockback)
         {
             animator.SetBool("Andando", false);
@@ -73,49 +71,31 @@ public class CabecaDeChamaMovimento : MonoBehaviour
         AnimatorStateInfo estado =
             animator.GetCurrentAnimatorStateInfo(0);
 
+        // Não se move durante essas animações
         if (estado.IsName("Damage") ||
             estado.IsName("Death") ||
             estado.IsName("Attack"))
         {
-            rb.linearVelocity = new Vector2(
-                0f,
-                rb.linearVelocity.y
-            );
-
-            animator.SetBool("Andando", false);
+            Parar();
             return;
         }
 
-        float distancia =
-            Mathf.Abs(elian.position.x - transform.position.x);
+        float distancia = Vector2.Distance(
+            transform.position,
+            elian.position
+        );
 
-        float direcao =
-            Mathf.Sign(elian.position.x - transform.position.x);
-
-        spriteRenderer.flipX = direcao < 0;
-
-        Vector3 posicaoHitbox = hitboxAtaque.localPosition;
-
-        posicaoHitbox.x =
-            Mathf.Abs(posicaoHitbox.x) *
-            (direcao < 0 ? -1 : 1);
-
-        hitboxAtaque.localPosition = posicaoHitbox;
-
+        // ELian está perto o suficiente para atacar
         if (distancia <= distanciaAtaque)
         {
-            rb.linearVelocity = new Vector2(
-                0f,
-                rb.linearVelocity.y
-            );
+            VirarParaElian();
 
-            animator.SetBool("Andando", false);
+            Parar();
 
             if (Time.time >= proximoAtaque)
             {
                 animator.SetTrigger("Atacar");
 
-                // NOVO: som ao iniciar o ataque
                 if (audioMob != null)
                 {
                     audioMob.TocarAtaque();
@@ -128,6 +108,24 @@ public class CabecaDeChamaMovimento : MonoBehaviour
             return;
         }
 
+        // Elian entrou na área de perseguição
+        if (distancia <= distanciaPerseguir)
+        {
+            SeguirElian();
+            return;
+        }
+
+        // Elian está longe
+        Parar();
+    }
+
+    void SeguirElian()
+    {
+        float direcao =
+            Mathf.Sign(elian.position.x - transform.position.x);
+
+        Virar(direcao);
+
         rb.linearVelocity = new Vector2(
             direcao * velocidade,
             rb.linearVelocity.y
@@ -136,12 +134,50 @@ public class CabecaDeChamaMovimento : MonoBehaviour
         animator.SetBool("Andando", true);
     }
 
+    void VirarParaElian()
+    {
+        float direcao =
+            Mathf.Sign(elian.position.x - transform.position.x);
+
+        Virar(direcao);
+    }
+
+    void Virar(float direcao)
+    {
+        spriteRenderer.flipX = direcao < 0;
+
+        if (hitboxAtaque != null)
+        {
+            Vector3 posicaoHitbox =
+                hitboxAtaque.localPosition;
+
+            posicaoHitbox.x =
+                Mathf.Abs(posicaoHitbox.x) *
+                (direcao < 0 ? -1 : 1);
+
+            hitboxAtaque.localPosition =
+                posicaoHitbox;
+        }
+    }
+
+    void Parar()
+    {
+        rb.linearVelocity = new Vector2(
+            0f,
+            rb.linearVelocity.y
+        );
+
+        animator.SetBool("Andando", false);
+    }
+
     public void AcertarAtaque()
     {
         CabecaDeChamaAtaque ataque =
             GetComponentInChildren<CabecaDeChamaAtaque>();
 
         if (ataque != null)
+        {
             ataque.VerificarAcerto();
+        }
     }
 }

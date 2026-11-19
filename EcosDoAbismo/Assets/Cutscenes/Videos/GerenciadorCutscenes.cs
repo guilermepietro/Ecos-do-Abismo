@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class GerenciadorCutscenes : MonoBehaviour
 {
@@ -37,6 +38,11 @@ public class GerenciadorCutscenes : MonoBehaviour
     public float tempoEscurecer = 0.2f;
     public float tempoRevelarVideo = 0.25f;
     public float tempoClarearJogo = 0.5f;
+
+    [Header("Fades Exclusivos do Final")]
+    public float tempoEscurecerAntesDoFinal = 0.4f;
+    public float tempoRevelarVideoFinal = 0.6f;
+    public float tempoFadeSaidaFinal = 0.7f;
 
     [Header("Controles do Elian")]
     public MonoBehaviour[] scriptsDoJogador;
@@ -80,39 +86,34 @@ public class GerenciadorCutscenes : MonoBehaviour
         reprodutor.errorReceived += ErroVideo;
     }
 
-    
-
-private void Start()
-{
-    if (MenuSelecaoSave.introducaoPendente)
+    private void Start()
     {
-        // Garante que um novo jogo comece
-        // com a escala de tempo normal.
-        Time.timeScale = 1f;
-
-        if (Reproduzir("Intro"))
+        if (MenuSelecaoSave.introducaoPendente)
         {
-            MenuSelecaoSave.introducaoPendente = false;
+            Time.timeScale = 1f;
 
-            Debug.Log(
-                "Introdução iniciada para o slot novo."
-            );
+            if (Reproduzir("Intro"))
+            {
+                MenuSelecaoSave.introducaoPendente = false;
+
+                Debug.Log(
+                    "Introducao iniciada para o slot novo."
+                );
+            }
+            else
+            {
+                Debug.LogError(
+                    "Nao foi possivel iniciar a introducao!"
+                );
+            }
         }
-        else
+        else if (testarIntroducaoAoIniciar)
         {
-            Debug.LogError(
-                "Não foi possível iniciar a introdução!"
-            );
+            Reproduzir("Intro");
         }
     }
-    else if (testarIntroducaoAoIniciar)
-    {
-        Reproduzir("Intro");
-    }
-}
 
-
-
+    // Reproducao normal das cutscenes.
     public bool Reproduzir(
         string id, Action acaoFinal = null)
     {
@@ -125,21 +126,63 @@ private void Start()
         if (escolhida == null || escolhida.video == null)
         {
             Debug.LogWarning(
-                "Cutscene nao encontrada: " + id);
+                "Cutscene nao encontrada: " + id
+            );
 
             return false;
         }
 
         StartCoroutine(
-            Executar(escolhida, acaoFinal));
+            Executar(escolhida, acaoFinal, null)
+        );
+
+        return true;
+    }
+
+    // NOVO: reproduz o encerramento e troca de cena.
+    public bool ReproduzirFinal(
+        string id, string cenaDestino)
+    {
+        if (EmReproducao)
+            return false;
+
+        if (string.IsNullOrEmpty(cenaDestino))
+        {
+            Debug.LogError(
+                "Cena de finalizacao nao configurada!"
+            );
+
+            return false;
+        }
+
+        Cutscene escolhida = Array.Find(
+            cutscenes, c => c.id == id);
+
+        if (escolhida == null || escolhida.video == null)
+        {
+            Debug.LogWarning(
+                "Cutscene final nao encontrada: " + id
+            );
+
+            return false;
+        }
+
+        StartCoroutine(
+            Executar(escolhida, null, cenaDestino)
+        );
 
         return true;
     }
 
     private IEnumerator Executar(
-        Cutscene cutscene, Action acaoFinal)
+        Cutscene cutscene,
+        Action acaoFinal,
+        string cenaDestino)
     {
         EmReproducao = true;
+
+        bool ehFinal =
+            !string.IsNullOrEmpty(cenaDestino);
 
         escalaAnterior = Time.timeScale;
         audioPausadoAnterior = AudioListener.pause;
@@ -150,8 +193,12 @@ private void Start()
         fundoPreto.raycastTarget = true;
 
         // Escurece o gameplay.
+        float tempoEntradaPreto = ehFinal
+            ? tempoEscurecerAntesDoFinal
+            : tempoEscurecer;
+
         yield return Fade(
-            0f, 1f, tempoEscurecer);
+            0f, 1f, tempoEntradaPreto);
 
         videoTerminou = false;
         videoFalhou = false;
@@ -159,7 +206,6 @@ private void Start()
         reprodutor.Stop();
         reprodutor.clip = cutscene.video;
 
-        // Configura o audio individualmente.
         if (cutscene.usarAudioDoVideo)
         {
             reprodutor.audioOutputMode =
@@ -191,10 +237,17 @@ private void Start()
         if (!reprodutor.isPrepared || videoFalhou)
         {
             Debug.LogError(
-                "Falha ao preparar: " + cutscene.id);
+                "Falha ao preparar: " + cutscene.id
+            );
 
             reprodutor.Stop();
-            
+
+            if (ehFinal)
+            {
+                CarregarCenaFinal(cenaDestino);
+                yield break;
+            }
+
             acaoFinal?.Invoke();
 
             yield return Fade(
@@ -211,14 +264,66 @@ private void Start()
 
         reprodutor.Play();
 
-        // Revela o video.
-        yield return Fade(
-            1f, 0f, tempoRevelarVideo);
+        // Fade de entrada do video.
+        float tempoEntradaVideo = ehFinal
+            ? tempoRevelarVideoFinal
+            : tempoRevelarVideo;
 
+        yield return Fade(
+            1f, 0f, tempoEntradaVideo);
+
+        // NOVO: tratamento exclusivo do video final.
+        if (ehFinal)
+        {
+            bool fadeSaidaIniciado = false;
+
+            while (!videoTerminou && !videoFalhou)
+            {
+                double duracao = reprodutor.length;
+                double tempoAtual = reprodutor.time;
+
+                // Comeca o fade nos ultimos instantes
+                // para nao cortar o fim do video.
+                if (!fadeSaidaIniciado &&
+                    duracao > 0 &&
+                    tempoAtual >=
+                    duracao - tempoFadeSaidaFinal)
+                {
+                    fadeSaidaIniciado = true;
+
+                    yield return Fade(
+                        0f, 1f, tempoFadeSaidaFinal);
+                }
+
+                yield return null;
+            }
+
+            // Garantia caso o tempo do video
+            // nao tenha permitido antecipar o fade.
+            if (!fadeSaidaIniciado)
+            {
+                yield return Fade(
+                    0f, 1f, tempoFadeSaidaFinal);
+            }
+
+            fundoPreto.color = Color.black;
+
+            imagemVideo.enabled = false;
+            reprodutor.Stop();
+
+            if (!videoFalhou)
+                cutscene.aoTerminar?.Invoke();
+
+            // Nao volta ao gameplay.
+            // Vai diretamente para a tela final.
+            CarregarCenaFinal(cenaDestino);
+            yield break;
+        }
+
+        // Funcionamento original das outras cutscenes.
         while (!videoTerminou && !videoFalhou)
             yield return null;
 
-        // Todos os videos terminam em preto.
         fundoPreto.color = Color.black;
 
         imagemVideo.enabled = false;
@@ -226,9 +331,6 @@ private void Start()
 
         AudioListener.pause = audioPausadoAnterior;
 
-        // Retorna ao gameplay.
-        
-        // Executa a ação enquanto a tela está preta.
         if (!videoFalhou)
         {
             cutscene.aoTerminar?.Invoke();
@@ -236,12 +338,21 @@ private void Start()
 
         acaoFinal?.Invoke();
 
-        // Agora revela o gameplay já atualizado.
         yield return Fade(
             1f, 0f, tempoClarearJogo);
 
         RestaurarGameplay();
+    }
 
+    // NOVO: troca de cena mantendo a tela preta.
+    private void CarregarCenaFinal(string cenaDestino)
+    {
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+
+        EmReproducao = false;
+
+        SceneManager.LoadScene(cenaDestino);
     }
 
     private IEnumerator Fade(
@@ -294,43 +405,37 @@ private void Start()
         }
     }
 
-    
-private void RestaurarGameplay()
-{
-    // Restaura a escala de tempo.
-    Time.timeScale = escalaAnterior;
-
-    // Restaura o áudio.
-    AudioListener.pause = audioPausadoAnterior;
-
-    // Reativa os scripts que estavam ativos.
-    for (int i = 0; i < scriptsDoJogador.Length; i++)
+    private void RestaurarGameplay()
     {
-        if (scriptsDoJogador[i] != null)
+        Time.timeScale = escalaAnterior;
+        AudioListener.pause = audioPausadoAnterior;
+
+        for (int i = 0; i < scriptsDoJogador.Length; i++)
         {
-            scriptsDoJogador[i].enabled =
-                estadosAnteriores[i];
+            if (scriptsDoJogador[i] != null)
+            {
+                scriptsDoJogador[i].enabled =
+                    estadosAnteriores[i];
 
-            Debug.Log(
-                "[Cutscene] Script: " +
-                scriptsDoJogador[i].GetType().Name +
-                " | Ativado: " +
-                scriptsDoJogador[i].enabled
-            );
+                Debug.Log(
+                    "[Cutscene] Script: " +
+                    scriptsDoJogador[i].GetType().Name +
+                    " | Ativado: " +
+                    scriptsDoJogador[i].enabled
+                );
+            }
         }
+
+        fundoPreto.color = Color.clear;
+        fundoPreto.raycastTarget = false;
+
+        EmReproducao = false;
+
+        Debug.Log(
+            "[Cutscene] Gameplay restaurado! TimeScale: " +
+            Time.timeScale
+        );
     }
-
-    fundoPreto.color = Color.clear;
-    fundoPreto.raycastTarget = false;
-
-    EmReproducao = false;
-
-    Debug.Log(
-        "[Cutscene] Gameplay restaurado! TimeScale: " +
-        Time.timeScale
-    );
-}
-
 
     private void FinalizarVideo(VideoPlayer player)
     {
@@ -341,7 +446,8 @@ private void RestaurarGameplay()
         VideoPlayer player, string mensagem)
     {
         Debug.LogError(
-            "Erro no video: " + mensagem);
+            "Erro no video: " + mensagem
+        );
 
         videoFalhou = true;
     }

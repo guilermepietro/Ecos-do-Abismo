@@ -13,7 +13,7 @@ public class CheckpointArvore : MonoBehaviour
 
     private bool ativada = false;
 
-    // NOVO: referência para reproduzir o som no Elian
+    // Referência para o som e a cura do Elian
     private ElianColeta elianPerto;
 
     private bool EhArvoreDosEcos()
@@ -130,7 +130,6 @@ public class CheckpointArvore : MonoBehaviour
         {
             elian.DefinirArvorePerto(this);
 
-            // NOVO
             elianPerto = elian;
 
             Debug.Log("Elian próximo da árvore.");
@@ -146,7 +145,6 @@ public class CheckpointArvore : MonoBehaviour
         {
             elian.DefinirArvorePerto(null);
 
-            // NOVO
             if (elianPerto == elian)
                 elianPerto = null;
         }
@@ -250,6 +248,23 @@ public class CheckpointArvore : MonoBehaviour
             "\nCheckpoint: " + dados.idCheckpoint
         );
 
+        // NOVO: Recupera toda a vida do Elian
+        // após salvar com sucesso.
+        if (elianPerto != null)
+        {
+            ElianVida vidaElian =
+                elianPerto.GetComponent<ElianVida>();
+
+            if (vidaElian != null && !vidaElian.EstaMorto)
+            {
+                vidaElian.Curar(vidaElian.vidaMaxima);
+
+                Debug.Log(
+                    "Vida do Elian restaurada pela árvore!"
+                );
+            }
+        }
+
         if (!ativada)
         {
             ativada = true;
@@ -259,7 +274,7 @@ public class CheckpointArvore : MonoBehaviour
                 animator.Play("acendendo_Clip", 0, 0f);
             }
 
-            // NOVO: toca somente após ativação bem-sucedida
+            // Som somente após ativação bem-sucedida.
             if (elianPerto != null)
             {
                 elianPerto.TocarSomAtivacaoCheckpoint();

@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System;
 using System.Collections.Generic;
@@ -35,8 +34,6 @@ public class DadosSalvamento
     public bool historiaSalenthraContada = false;
     public bool historiaGemeosContada = false;
 
-    
-
     public List<string> bencaosRecebidas =
         new List<string>();
 
@@ -44,6 +41,10 @@ public class DadosSalvamento
     public int quantidadePocoes = 0;
 
     public List<string> pocoesColetadas =
+        new List<string>();
+
+    [Header("Tutoriais")]
+    public List<string> tutoriaisExibidos =
         new List<string>();
 
     public DadosSalvamento(int slot)

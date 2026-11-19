@@ -8,16 +8,28 @@ public class VoragulVida : MonoBehaviour
     public GameObject prefabReliquia;
     public Transform pontoDropReliquia;
 
+    [Header("Cutscene de Morte")]
+    public string idCutsceneMorte = "Voragul_Morte";
+
+    [Header("Interface")]
+    public GameObject barraVidaVisual;
+
     private int vidaAtual;
+
     private bool morto = false;
     private bool reliquiaDropada = false;
+    private bool morteFinalizada = false;
+    private bool cutsceneMorteIniciada = false;
 
     private Animator animator;
+    private AudioVoragul audioVoragul;
 
     private void Awake()
     {
         vidaAtual = vidaMaxima;
+
         animator = GetComponent<Animator>();
+        audioVoragul = GetComponent<AudioVoragul>();
     }
 
     private void Start()
@@ -35,22 +47,33 @@ public class VoragulVida : MonoBehaviour
         DadosSalvamento dados =
             GerenciadorSalvamento.Carregar(slot);
 
-        if (dados == null || dados.chefesDerrotados == null)
+        if (dados == null ||
+            dados.chefesDerrotados == null)
+        {
             return;
+        }
 
         if (dados.chefesDerrotados.Contains("Voragul"))
         {
             Debug.Log(
-                "Voragul já foi derrotado no slot " + slot
+                "Voragul já foi derrotado no slot " +
+                slot
             );
 
             bool coroaJaColetada =
                 dados.reliquiasObtidas != null &&
-                dados.reliquiasObtidas.Contains("CoroaDoAbismo");
+                dados.reliquiasObtidas.Contains(
+                    "CoroaDoAbismo"
+                );
 
             if (!coroaJaColetada)
             {
                 DroparReliquia();
+            }
+
+            if (barraVidaVisual != null)
+            {
+                barraVidaVisual.SetActive(false);
             }
 
             gameObject.SetActive(false);
@@ -67,7 +90,18 @@ public class VoragulVida : MonoBehaviour
         if (vidaAtual <= 0)
         {
             vidaAtual = 0;
+
             Morrer();
+
+            return;
+        }
+
+        // O Voragul recebe o dano normalmente,
+        // mas não toca animação de dano
+        // e não interrompe movimento ou ataques.
+        if (audioVoragul != null)
+        {
+            audioVoragul.TocarDano();
         }
     }
 
@@ -84,24 +118,107 @@ public class VoragulVida : MonoBehaviour
         if (movimento != null)
         {
             movimento.podeMover = false;
+            movimento.lutaIniciada = false;
         }
 
+        // Congela completamente o Voragul
+        // no ponto onde morreu.
         Rigidbody2D rb =
             GetComponent<Rigidbody2D>();
 
         if (rb != null)
         {
-            rb.linearVelocity = new Vector2(
-                0f,
-                rb.linearVelocity.y
-            );
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+
+            rb.simulated = false;
         }
 
+        // Evita que o corpo ou as hitboxes
+        // atrapalhem o Elian durante a morte.
         DesativarColliders();
 
+        // Para passos e outros sons
+        // que poderiam continuar tocando.
+        if (audioVoragul != null)
+        {
+            if (audioVoragul.audioPassos != null)
+            {
+                audioVoragul.audioPassos.Stop();
+            }
+
+            AudioSource efeitos =
+                audioVoragul.GetComponent<AudioSource>();
+
+            if (efeitos != null)
+            {
+                efeitos.Stop();
+            }
+        }
+
+        // A derrota continua sendo salva
+        // imediatamente.
         RegistrarDerrota();
 
-        animator.SetTrigger("Morte");
+        // Inicia a animação de morte.
+        if (animator != null)
+        {
+            animator.SetTrigger("Morte");
+        }
+
+        // Som da morte.
+        if (audioVoragul != null)
+        {
+            audioVoragul.TocarMorte();
+        }
+
+        Debug.Log(
+            "Voragul iniciou sua animação de morte."
+        );
+
+        // A cutscene será chamada pelo
+        // Animation Event no final do clip.
+    }
+
+    public void IniciarCutsceneMorte()
+    {
+        if (!morto ||
+            cutsceneMorteIniciada)
+        {
+            return;
+        }
+
+        cutsceneMorteIniciada = true;
+
+        if (
+            GerenciadorCutscenes.Instancia != null
+        )
+        {
+            bool iniciou =
+                GerenciadorCutscenes
+                .Instancia
+                .Reproduzir(
+                    idCutsceneMorte,
+                    FinalizarMorte
+                );
+
+            if (iniciou)
+            {
+                Debug.Log(
+                    "Animação do Voragul concluída! " +
+                    "Iniciando cutscene de morte."
+                );
+
+                return;
+            }
+        }
+
+        Debug.LogWarning(
+            "Cutscene de morte do Voragul " +
+            "indisponível. Finalizando normalmente."
+        );
+
+        FinalizarMorte();
     }
 
     private void DesativarColliders()
@@ -123,7 +240,8 @@ public class VoragulVida : MonoBehaviour
         if (prefabReliquia == null)
         {
             Debug.LogWarning(
-                "Prefab da Coroa do Abismo não foi configurado."
+                "Prefab da Coroa do Abismo " +
+                "não configurado."
             );
 
             return;
@@ -132,7 +250,8 @@ public class VoragulVida : MonoBehaviour
         if (pontoDropReliquia == null)
         {
             Debug.LogWarning(
-                "Ponto de drop da Coroa do Abismo não foi configurado."
+                "Ponto de drop da Coroa " +
+                "não configurado."
             );
 
             return;
@@ -145,11 +264,36 @@ public class VoragulVida : MonoBehaviour
         );
 
         reliquiaDropada = true;
+
+        Debug.Log(
+            "Coroa do Abismo deixada na arena."
+        );
     }
 
     public void FinalizarMorte()
     {
+        if (!morto ||
+            morteFinalizada)
+        {
+            return;
+        }
+
+        morteFinalizada = true;
+
+        // A relíquia aparece somente
+        // depois da cutscene.
+        DroparReliquia();
+
+        if (barraVidaVisual != null)
+        {
+            barraVidaVisual.SetActive(false);
+        }
+
         gameObject.SetActive(false);
+
+        Debug.Log(
+            "Voragul desapareceu após a cutscene."
+        );
     }
 
     private void RegistrarDerrota()
@@ -189,17 +333,31 @@ public class VoragulVida : MonoBehaviour
             return;
         }
 
-        if (!dados.chefesDerrotados.Contains("Voragul"))
+        if (
+            !dados.chefesDerrotados.Contains(
+                "Voragul"
+            )
+        )
         {
-            dados.chefesDerrotados.Add("Voragul");
+            dados.chefesDerrotados.Add(
+                "Voragul"
+            );
 
-            if (ContadorTempoJogo.instancia != null)
+            if (
+                ContadorTempoJogo.instancia != null
+            )
             {
-                ContadorTempoJogo.instancia
+                ContadorTempoJogo
+                    .instancia
                     .AtualizarTempoNosDados(dados);
             }
 
-            if (GerenciadorSalvamento.Salvar(slot, dados))
+            if (
+                GerenciadorSalvamento.Salvar(
+                    slot,
+                    dados
+                )
+            )
             {
                 Debug.Log(
                     "Voragul derrotado permanentemente!" +
@@ -228,6 +386,7 @@ public class VoragulVida : MonoBehaviour
         if (vidaMaxima <= 0)
             return 0f;
 
-        return (float)vidaAtual / vidaMaxima;
+        return (float)vidaAtual /
+               vidaMaxima;
     }
 }

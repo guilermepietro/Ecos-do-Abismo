@@ -31,6 +31,11 @@ public class ElianUltimate : MonoBehaviour
 
     private Color corOriginalBarra;
 
+    [Header("Tutorial da Ultimate")]
+    public AreaTutorial tutorialUltimate;
+
+    private bool tutorialUltimateAtivado = false;
+
     private float posicaoXOriginalPonto;
 
     void Start()
@@ -60,17 +65,17 @@ public class ElianUltimate : MonoBehaviour
     }
 
     void Update()
-{
-    AtualizarBarraUltimate();
-    AtualizarBrilhoUltimate();
-
-    if (ControlesElian.Pressionou(ComandoElian.Ultimate) &&
-        !usandoUltimate &&
-        cargaAtual >= cargaMaxima)
     {
-        IniciarUltimate();
+        AtualizarBarraUltimate();
+        AtualizarBrilhoUltimate();
+
+        if (ControlesElian.Pressionou(ComandoElian.Ultimate) &&
+            !usandoUltimate &&
+            cargaAtual >= cargaMaxima)
+        {
+            IniciarUltimate();
+        }
     }
-}
 
     void IniciarUltimate()
     {
@@ -107,6 +112,8 @@ public class ElianUltimate : MonoBehaviour
             return;
         }
 
+        int cargaAnterior = cargaAtual;
+
         cargaAtual += quantidade;
 
         if (cargaAtual > cargaMaxima)
@@ -121,10 +128,39 @@ public class ElianUltimate : MonoBehaviour
             cargaMaxima
         );
 
-        if (cargaAtual >= cargaMaxima)
+        if (cargaAnterior < cargaMaxima &&
+            cargaAtual >= cargaMaxima)
         {
             Debug.Log(
                 "ULTIMATE PRONTA!"
+            );
+
+            TentarAbrirTutorialUltimate();
+        }
+    }
+
+    void TentarAbrirTutorialUltimate()
+    {
+        if (tutorialUltimateAtivado)
+        {
+            return;
+        }
+
+        if (tutorialUltimate == null)
+        {
+            Debug.LogWarning(
+                "Tutorial da Ultimate não configurado no ElianUltimate!"
+            );
+
+            return;
+        }
+
+        if (tutorialUltimate.AbrirManualmente())
+        {
+            tutorialUltimateAtivado = true;
+
+            Debug.Log(
+                "Tutorial da Ultimate exibido!"
             );
         }
     }
