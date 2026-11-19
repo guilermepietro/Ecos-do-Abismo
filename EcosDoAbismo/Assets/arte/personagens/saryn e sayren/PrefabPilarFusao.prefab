@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3633584790104213720}
   - component: {fileID: 2254658434369862135}
   - component: {fileID: 2662495831622317012}
+  - component: {fileID: -8771127893529436907}
   m_Layer: 0
   m_Name: PrefabPilarFusao
   m_TagString: Untagged
@@ -176,3 +177,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PilarFusao
   dano: 25
+--- !u!114 &-8771127893529436907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641018382238117566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cbe29abe2a0a744f8fcbda5ece86203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioEfeitoFusao
+  tipoEfeito: 0
+  camadaChao:
+    serializedVersion: 2
+    m_Bits: 8
+  tocarPedraAoNascer: 0

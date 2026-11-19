@@ -10,6 +10,9 @@ public class ElianColeta : MonoBehaviour
     private CheckpointArvore arvorePerto;
     private AnciaoInteracao anciaoPerto;
 
+    // Poções de cura
+    private PocaoColetavel pocaoPerto;
+
     private bool interagindo = false;
 
     private bool coletandoBencao = false;
@@ -71,7 +74,8 @@ public class ElianColeta : MonoBehaviour
             if (
                 itemPerto != null ||
                 reliquiaPerto != null ||
-                arvorePerto != null
+                arvorePerto != null ||
+                (pocaoPerto != null && pocaoPerto.PodeColetar())
             )
             {
                 interagindo = true;
@@ -102,6 +106,24 @@ public class ElianColeta : MonoBehaviour
     public void DefinirArvorePerto(CheckpointArvore arvore)
     {
         arvorePerto = arvore;
+    }
+
+    // Registra uma poção próxima
+    public void DefinirPocaoPerto(PocaoColetavel pocao)
+    {
+        if (pocaoPerto == null)
+        {
+            pocaoPerto = pocao;
+        }
+    }
+
+    // Remove somente a poção correspondente
+    public void RemoverPocaoPerto(PocaoColetavel pocao)
+    {
+        if (pocaoPerto == pocao)
+        {
+            pocaoPerto = null;
+        }
     }
 
     public void IniciarBencao(AnciaoInteracao anciao)
@@ -139,6 +161,14 @@ public class ElianColeta : MonoBehaviour
         {
             itemPerto.Coletar();
             itemPerto = null;
+        }
+        else if (
+            pocaoPerto != null &&
+            pocaoPerto.PodeColetar()
+        )
+        {
+            pocaoPerto.Coletar();
+            pocaoPerto = null;
         }
         else if (arvorePerto != null)
         {

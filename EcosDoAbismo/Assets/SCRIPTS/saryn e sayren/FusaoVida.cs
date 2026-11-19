@@ -288,24 +288,26 @@ public class FusaoVida : MonoBehaviour
     }
 
     // Animation Event no ultimo frame da morte.
+    
+    // Animation Event no ultimo frame da morte.
     public void FinalizarMorte()
     {
         if (!morto || morteFinalizada)
             return;
 
-        // Garante o drop mesmo se o evento
-        // de soltar a reliquia nao for executado.
+        // Garante que os Fragmentos Gemeos aparecam.
         DroparReliquia();
 
         morteFinalizada = true;
 
-        if (animator != null)
-            animator.enabled = false;
-
         Debug.Log(
-            "Fusao Saryn & Sayren: morte definitiva!"
+            "Fusao Saryn & Sayren: morte finalizada!"
         );
+
+        // Faz o corpo desaparecer apos a animacao.
+        gameObject.SetActive(false);
     }
+
 
     [ContextMenu("TESTE - Perder 100 de vida")]
     private void TestarDano()

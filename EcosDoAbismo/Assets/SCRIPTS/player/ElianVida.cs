@@ -11,6 +11,10 @@ public class ElianVida : MonoBehaviour
 
     private int vidaAtual;
 
+    // Permite verificar se Elian precisa de cura
+    public bool PrecisaDeCura =>
+        !EstaMorto && vidaAtual < vidaMaxima;
+
     [Header("HUD")]
     public Image barraVida;
     public float velocidadeBarraVida = 1.5f;
@@ -47,7 +51,6 @@ public class ElianVida : MonoBehaviour
     public AudioClip somDano2;
     public AudioClip somMorte;
 
-    // NOVO: alterna os grunhidos para evitar repetição
     private bool proximoSomDano1 = true;
 
     void Start()
@@ -128,7 +131,6 @@ public class ElianVida : MonoBehaviour
         }
         else
         {
-            // NOVO: alterna entre os dois sons de dano
             TocarSomDano();
         }
     }
@@ -152,13 +154,15 @@ public class ElianVida : MonoBehaviour
         Debug.Log("Elian morreu!");
     }
 
-    // Animation Event no final da animação de morte
+    // Animation Event no final da animacao de morte
     public void FinalizarMorte()
     {
         if (!EstaMorto || renascimentoIniciado)
             return;
 
-        Debug.Log("Animação de morte do Elian finalizada!");
+        Debug.Log(
+            "Animação de morte do Elian finalizada!"
+        );
 
         int slot = MenuSelecaoSave.slotPartidaAtual;
 
@@ -280,7 +284,9 @@ public class ElianVida : MonoBehaviour
             vidaAtual = vidaMaxima;
         }
 
-        Debug.Log("Elian foi curado! Vida atual: " + vidaAtual);
+        Debug.Log(
+            "Elian foi curado! Vida atual: " + vidaAtual
+        );
     }
 
     void AtualizarBarraVidaSuave()
@@ -316,13 +322,11 @@ public class ElianVida : MonoBehaviour
             valorVisualVida;
     }
 
-    // NOVO: seleção alternada dos grunhidos
     void TocarSomDano()
     {
         AudioClip somEscolhido =
             proximoSomDano1 ? somDano1 : somDano2;
 
-        // Permite usar apenas um som enquanto o outro não é configurado.
         if (somEscolhido == null)
         {
             somEscolhido =
