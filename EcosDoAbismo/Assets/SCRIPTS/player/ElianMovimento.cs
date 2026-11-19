@@ -7,8 +7,6 @@ public class ElianMovimento : MonoBehaviour
 {
     [Header("Movimento")]
     public float velocidade = 5f;
-    public float velocidadeCorrida = 8f;
-    public float velocidadeAnimacaoCorrida = 1.5f;
     public float forcaPulo = 10f;
 
     [Header("Dash")]
@@ -175,28 +173,17 @@ public class ElianMovimento : MonoBehaviour
             return;
 
         float movimentoHorizontal =
-            Input.GetAxisRaw("Horizontal");
+            ControlesElian.EixoHorizontal;
 
         animator.SetFloat(
             "velocidade",
             Mathf.Abs(movimentoHorizontal)
         );
 
-        bool correndo =
-            Input.GetKey(KeyCode.LeftShift) &&
-            movimentoHorizontal != 0 &&
-            estaNoChao;
-
-        float velocidadeAtual =
-            correndo ? velocidadeCorrida : velocidade;
-
-        animator.SetFloat(
-            "velocidadeAnimacao",
-            correndo ? velocidadeAnimacaoCorrida : 1f
-        );
+        animator.SetFloat("velocidadeAnimacao", 1f);
 
         rb.linearVelocity = new Vector2(
-            movimentoHorizontal * velocidadeAtual,
+            movimentoHorizontal * velocidade,
             rb.linearVelocity.y
         );
 
@@ -221,7 +208,7 @@ public class ElianMovimento : MonoBehaviour
         if (!podeMover)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Space) &&
+        if (ControlesElian.Pressionou(ComandoElian.Pular) &&
             estaNoChao)
         {
             rb.linearVelocity = new Vector2(
@@ -241,7 +228,7 @@ public class ElianMovimento : MonoBehaviour
         if (coleta != null && coleta.MenuViagemAberto)
             return;
 
-        if (!Input.GetKeyDown(KeyCode.LeftControl))
+        if (!ControlesElian.Pressionou(ComandoElian.Dash))
             return;
 
         if (!dashDisponivel)
@@ -352,7 +339,7 @@ public class ElianMovimento : MonoBehaviour
             rb.gravityScale = 0f;
         }
 
-        // NOVO: aplica a velocidade durante todo o dash.
+        // Aplica a velocidade durante todo o dash.
         float tempoDecorrido = 0f;
 
         while (tempoDecorrido < tempoDash &&
@@ -401,7 +388,7 @@ public class ElianMovimento : MonoBehaviour
             !pulouNesteFrame &&
             !estaDashando &&
             !sendoPuxado &&
-            Input.GetAxisRaw("Horizontal") != 0f;
+            ControlesElian.EixoHorizontal != 0f;
 
         if (!movendoNoChao)
         {
@@ -477,7 +464,8 @@ public class ElianMovimento : MonoBehaviour
 
     void PararPassos()
     {
-        if (audioPassos != null && audioPassos.isPlaying)
+        if (audioPassos != null &&
+            audioPassos.isPlaying)
         {
             audioPassos.Stop();
         }

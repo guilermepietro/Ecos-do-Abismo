@@ -37,7 +37,8 @@ public class RakthasMovimento : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb =
+            GetComponent<Rigidbody2D>();
 
         spriteRenderer =
             GetComponent<SpriteRenderer>();
@@ -51,29 +52,37 @@ public class RakthasMovimento : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (vida != null &&
-            vida.EstaMorto)
+        if (
+            vida != null &&
+            vida.EstaMorto
+        )
         {
             PararMovimento();
             return;
         }
 
-        if (vida != null &&
-            vida.EstaTomandoDano)
+        if (
+            ataques != null &&
+            ataques.EstaAtacando
+        )
         {
             PararMovimento();
             return;
         }
 
-        if (ataques != null &&
-            ataques.EstaAtacando)
+        if (
+            ataques != null &&
+            ataques.EstaEmRecuperacao
+        )
         {
             PararMovimento();
             return;
         }
 
-        if (ataques != null &&
-            ataques.EstaEmPausaDecisao)
+        if (
+            ataques != null &&
+            ataques.EstaEmPausaDecisao
+        )
         {
             PararMovimento();
             return;
@@ -101,25 +110,29 @@ public class RakthasMovimento : MonoBehaviour
             );
 
         // =========================
-        // DIREÇÃO ORIGINAL
+        // DIREÇÃO
         // =========================
 
         if (direcao > 0)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX =
+                false;
         }
         else if (direcao < 0)
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX =
+                true;
         }
 
         // =========================
         // DISTÂNCIA DO SOCO
         // =========================
 
-        if (ataques != null &&
+        if (
+            ataques != null &&
             distancia <=
-            ataques.DistanciaSoco)
+            ataques.DistanciaSoco
+        )
         {
             PararMovimento();
             return;
@@ -129,26 +142,23 @@ public class RakthasMovimento : MonoBehaviour
 
         if (ataques != null)
         {
-            // Pressão criada pela sequência
-            // normal dos ataques.
-            if (ataques
-                .PerseguicaoAgressivaObrigatoria)
+            if (
+                ataques
+                .PerseguicaoAgressivaObrigatoria
+            )
             {
                 precisaPressionar = true;
             }
-
-            // NOVO:
-            // Rakthas percebeu que Elian
-            // está abusando da fuga.
-            else if (ataques.ElianFugindoMuito)
+            else if (
+                ataques.ElianFugindoMuito
+            )
             {
                 precisaPressionar = true;
             }
-
-            // Continua existindo o
-            // comportamento antigo.
-            else if (distancia >
-                     ataques.DistanciaMaximaRaio)
+            else if (
+                distancia >
+                ataques.DistanciaMaximaRaio
+            )
             {
                 precisaPressionar = true;
             }
@@ -173,13 +183,16 @@ public class RakthasMovimento : MonoBehaviour
 
             animator.speed = 1f;
 
-            if (Time.time >=
-                fimPreparacaoArrancada)
+            if (
+                Time.time >=
+                fimPreparacaoArrancada
+            )
             {
                 preparandoArrancada =
                     false;
 
-                emArrancada = true;
+                emArrancada =
+                    true;
 
                 fimArrancada =
                     Time.time +
@@ -211,10 +224,13 @@ public class RakthasMovimento : MonoBehaviour
             animator.speed =
                 velocidadeAnimacaoArrancada;
 
-            if (Time.time >=
-                fimArrancada)
+            if (
+                Time.time >=
+                fimArrancada
+            )
             {
-                emArrancada = false;
+                emArrancada =
+                    false;
 
                 proximaArrancada =
                     Time.time +
@@ -227,12 +243,13 @@ public class RakthasMovimento : MonoBehaviour
         }
 
         // =========================
-        // COMEÇA NOVA ARRANCADA
+        // NOVA ARRANCADA
         // =========================
 
-        if (precisaPressionar &&
-            Time.time >=
-            proximaArrancada)
+        if (
+            precisaPressionar &&
+            Time.time >= proximaArrancada
+        )
         {
             preparandoArrancada = true;
 
@@ -246,7 +263,7 @@ public class RakthasMovimento : MonoBehaviour
         }
 
         // =========================
-        // CORRIDA NORMAL
+        // MOVIMENTO NORMAL
         // =========================
 
         rb.linearVelocity =

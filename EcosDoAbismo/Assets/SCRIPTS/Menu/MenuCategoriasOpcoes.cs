@@ -1,6 +1,6 @@
 
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class MenuCategoriasOpcoes : MonoBehaviour
 {
@@ -15,6 +15,9 @@ public class MenuCategoriasOpcoes : MonoBehaviour
     [Header("Menu Principal")]
     public MenuManager menuManager;
 
+    [Header("Menu de Pausa")]
+    public MenuPausa menuPausa;
+
     [Header("Cores")]
     public Color corNormal = Color.white;
     public Color corSelecionada = Color.yellow;
@@ -26,22 +29,23 @@ public class MenuCategoriasOpcoes : MonoBehaviour
     {
         indiceSelecionado = 0;
         quadroAtivacao = Time.frameCount;
+
         AtualizarVisual();
     }
 
     void Update()
     {
-        // Impede que a tecla usada para abrir esta tela
-        // também acione uma opção no mesmo frame.
+        // Impede que a tecla de abertura
+        // selecione uma opcao no mesmo frame.
         if (Time.frameCount == quadroAtivacao)
             return;
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            indiceSelecionado = (indiceSelecionado + 1) % 2;
-            AtualizarVisual();
+            indiceSelecionado =
+                (indiceSelecionado + 1) % 2;
 
-            // NOVO: som de navegação
+            AtualizarVisual();
             TocarSomNavegacao();
         }
 
@@ -53,20 +57,19 @@ public class MenuCategoriasOpcoes : MonoBehaviour
                 indiceSelecionado = 1;
 
             AtualizarVisual();
-
-            // NOVO: som de navegação
             TocarSomNavegacao();
         }
 
         if (Input.GetKeyDown(KeyCode.Return) ||
             Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            if (menuManager != null)
+            if (indiceSelecionado == 0)
             {
-                if (indiceSelecionado == 0)
-                    menuManager.AbrirSom();
-                else
-                    menuManager.AbrirControles();
+                AbrirSom();
+            }
+            else
+            {
+                AbrirControles();
             }
 
             return;
@@ -74,29 +77,79 @@ public class MenuCategoriasOpcoes : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (menuManager != null)
-                menuManager.VoltarAoMenu();
+            Voltar();
+        }
+    }
+
+    void AbrirSom()
+    {
+        if (menuPausa != null)
+        {
+            menuPausa.AbrirSom();
+        }
+        else if (menuManager != null)
+        {
+            menuManager.AbrirSom();
+        }
+    }
+
+    void AbrirControles()
+    {
+        if (menuPausa != null)
+        {
+            menuPausa.AbrirControles();
+        }
+        else if (menuManager != null)
+        {
+            menuManager.AbrirControles();
+        }
+    }
+
+    void Voltar()
+    {
+        if (menuPausa != null)
+        {
+            menuPausa.VoltarAoMenu();
+        }
+        else if (menuManager != null)
+        {
+            menuManager.VoltarAoMenu();
         }
     }
 
     void AtualizarVisual()
     {
         if (textoSom != null)
-            textoSom.color = indiceSelecionado == 0
-                ? corSelecionada : corNormal;
+        {
+            textoSom.color =
+                indiceSelecionado == 0
+                    ? corSelecionada
+                    : corNormal;
+        }
 
         if (textoControles != null)
-            textoControles.color = indiceSelecionado == 1
-                ? corSelecionada : corNormal;
+        {
+            textoControles.color =
+                indiceSelecionado == 1
+                    ? corSelecionada
+                    : corNormal;
+        }
 
         if (destaqueSom != null)
-            destaqueSom.SetActive(indiceSelecionado == 0);
+        {
+            destaqueSom.SetActive(
+                indiceSelecionado == 0
+            );
+        }
 
         if (destaqueControles != null)
-            destaqueControles.SetActive(indiceSelecionado == 1);
+        {
+            destaqueControles.SetActive(
+                indiceSelecionado == 1
+            );
+        }
     }
 
-    // NOVO
     void TocarSomNavegacao()
     {
         if (SonsInterface.Instancia != null)

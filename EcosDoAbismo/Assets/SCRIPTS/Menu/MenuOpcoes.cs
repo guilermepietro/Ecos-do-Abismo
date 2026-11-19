@@ -17,6 +17,9 @@ public class MenuOpcoes : MonoBehaviour
     [Header("Menu Principal")]
     public MenuManager menuManager;
 
+    [Header("Menu de Pausa")]
+    public MenuPausa menuPausa;
+
     [Header("Indicadores de Controle")]
     public GameObject teclaContinuar;
     public GameObject teclaAplicar;
@@ -60,14 +63,20 @@ public class MenuOpcoes : MonoBehaviour
 
     void Awake()
     {
-        volumesConfirmados[0] = barraVolumeGeral != null
-            ? barraVolumeGeral.fillAmount : 1f;
+        volumesConfirmados[0] =
+            barraVolumeGeral != null
+                ? barraVolumeGeral.fillAmount
+                : 1f;
 
-        volumesConfirmados[1] = barraMusica != null
-            ? barraMusica.fillAmount : 1f;
+        volumesConfirmados[1] =
+            barraMusica != null
+                ? barraMusica.fillAmount
+                : 1f;
 
-        volumesConfirmados[2] = barraEfeitosSonoros != null
-            ? barraEfeitosSonoros.fillAmount : 1f;
+        volumesConfirmados[2] =
+            barraEfeitosSonoros != null
+                ? barraEfeitosSonoros.fillAmount
+                : 1f;
     }
 
     void OnEnable()
@@ -97,8 +106,11 @@ public class MenuOpcoes : MonoBehaviour
 
     void Update()
     {
-        if (pontosSelecao == null || pontosSelecao.Length == 0)
+        if (pontosSelecao == null ||
+            pontosSelecao.Length == 0)
+        {
             return;
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -108,8 +120,7 @@ public class MenuOpcoes : MonoBehaviour
             }
             else
             {
-                if (menuManager != null)
-                    menuManager.VoltarAoMenu();
+                Voltar();
             }
 
             return;
@@ -129,10 +140,14 @@ public class MenuOpcoes : MonoBehaviour
         if (editandoOpcao)
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
                 AlterarVolume(passoVolume);
+            }
 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
                 AlterarVolume(-passoVolume);
+            }
         }
         else
         {
@@ -151,7 +166,8 @@ public class MenuOpcoes : MonoBehaviour
                 indiceSelecionado--;
 
                 if (indiceSelecionado < 0)
-                    indiceSelecionado = pontosSelecao.Length - 1;
+                    indiceSelecionado =
+                        pontosSelecao.Length - 1;
 
                 AtualizarDestino();
             }
@@ -163,8 +179,22 @@ public class MenuOpcoes : MonoBehaviour
                 cursorOpcoes.position,
                 destinoCursor,
                 ref velocidadeCursor,
-                tempoDeslizamento
+                tempoDeslizamento,
+                Mathf.Infinity,
+                Time.unscaledDeltaTime
             );
+        }
+    }
+
+    void Voltar()
+    {
+        if (menuPausa != null)
+        {
+            menuPausa.VoltarAoMenu();
+        }
+        else if (menuManager != null)
+        {
+            menuManager.VoltarAoMenu();
         }
     }
 
@@ -181,10 +211,14 @@ public class MenuOpcoes : MonoBehaviour
 
     void CarregarVolumes()
     {
-        for (int i = 0; i < volumesConfirmados.Length; i++)
+        for (int i = 0;
+             i < volumesConfirmados.Length;
+             i++)
         {
             float volumePadrao =
-                i == 1 ? 0.5f : volumesConfirmados[i];
+                i == 1
+                    ? 0.5f
+                    : volumesConfirmados[i];
 
             volumesConfirmados[i] = Mathf.Clamp01(
                 PlayerPrefs.GetFloat(
@@ -199,8 +233,11 @@ public class MenuOpcoes : MonoBehaviour
 
     void SalvarVolume(int indice)
     {
-        if (indice < 0 || indice >= volumesConfirmados.Length)
+        if (indice < 0 ||
+            indice >= volumesConfirmados.Length)
+        {
             return;
+        }
 
         PlayerPrefs.SetFloat(
             chavesSalvamento[indice],
@@ -219,7 +256,6 @@ public class MenuOpcoes : MonoBehaviour
         if (barra != null)
             volumeAnterior = barra.fillAmount;
 
-        // NOVO: som de confirmação
         TocarSomConfirmacao();
 
         AtualizarIndicadores();
@@ -232,13 +268,13 @@ public class MenuOpcoes : MonoBehaviour
         if (barra == null)
             return;
 
-        float volumeAnteriorAlteracao = barra.fillAmount;
+        float volumeAnteriorAlteracao =
+            barra.fillAmount;
 
         barra.fillAmount = Mathf.Clamp01(
             barra.fillAmount + quantidade
         );
 
-        // Evita som quando a barra já está no limite.
         if (Mathf.Approximately(
             volumeAnteriorAlteracao,
             barra.fillAmount))
@@ -251,7 +287,6 @@ public class MenuOpcoes : MonoBehaviour
             barra.fillAmount
         );
 
-        // NOVO: som de ajuste do slider
         if (SonsInterface.Instancia != null)
         {
             SonsInterface.Instancia.TocarAjusteVolume();
@@ -263,17 +298,19 @@ public class MenuOpcoes : MonoBehaviour
         Image barra = ObterBarraSelecionada();
 
         if (barra != null &&
-            indiceSelecionado < volumesConfirmados.Length)
+            indiceSelecionado <
+            volumesConfirmados.Length)
         {
-            volumesConfirmados[indiceSelecionado] = barra.fillAmount;
+            volumesConfirmados[indiceSelecionado] =
+                barra.fillAmount;
 
             SalvarVolume(indiceSelecionado);
         }
 
-        // NOVO: confirmação da alteração
         TocarSomConfirmacao();
 
         editandoOpcao = false;
+
         AtualizarIndicadores();
     }
 
@@ -291,7 +328,6 @@ public class MenuOpcoes : MonoBehaviour
             );
         }
 
-        // NOVO: som de cancelamento
         if (SonsInterface.Instancia != null)
         {
             SonsInterface.Instancia.TocarVoltar();
@@ -301,13 +337,18 @@ public class MenuOpcoes : MonoBehaviour
         AtualizarIndicadores();
     }
 
-    void AtualizarVolumeMixer(int indice, float volume)
+    void AtualizarVolumeMixer(
+        int indice,
+        float volume)
     {
         if (mixerEcosDoAbismo == null)
             return;
 
-        if (indice < 0 || indice >= parametrosVolume.Length)
+        if (indice < 0 ||
+            indice >= parametrosVolume.Length)
+        {
             return;
+        }
 
         float decibeis;
 
@@ -332,7 +373,9 @@ public class MenuOpcoes : MonoBehaviour
 
     void AtualizarTodosVolumes()
     {
-        for (int i = 0; i < volumesConfirmados.Length; i++)
+        for (int i = 0;
+             i < volumesConfirmados.Length;
+             i++)
         {
             AtualizarVolumeMixer(
                 i,
@@ -362,37 +405,55 @@ public class MenuOpcoes : MonoBehaviour
     void AtualizarBarras()
     {
         if (barraVolumeGeral != null)
-            barraVolumeGeral.fillAmount = volumesConfirmados[0];
+        {
+            barraVolumeGeral.fillAmount =
+                volumesConfirmados[0];
+        }
 
         if (barraMusica != null)
-            barraMusica.fillAmount = volumesConfirmados[1];
+        {
+            barraMusica.fillAmount =
+                volumesConfirmados[1];
+        }
 
         if (barraEfeitosSonoros != null)
-            barraEfeitosSonoros.fillAmount = volumesConfirmados[2];
+        {
+            barraEfeitosSonoros.fillAmount =
+                volumesConfirmados[2];
+        }
     }
 
     void AtualizarIndicadores()
     {
         if (teclaContinuar != null)
-            teclaContinuar.SetActive(!editandoOpcao);
+        {
+            teclaContinuar.SetActive(
+                !editandoOpcao
+            );
+        }
 
         if (teclaAplicar != null)
-            teclaAplicar.SetActive(editandoOpcao);
+        {
+            teclaAplicar.SetActive(
+                editandoOpcao
+            );
+        }
     }
 
     void AtualizarDestino()
     {
         if (pontosSelecao[indiceSelecionado] != null)
-            destinoCursor = pontosSelecao[indiceSelecionado].position;
+        {
+            destinoCursor =
+                pontosSelecao[indiceSelecionado].position;
+        }
 
-        // NOVO: som de navegação entre Geral, Música e Efeitos
         if (SonsInterface.Instancia != null)
         {
             SonsInterface.Instancia.TocarNavegacao();
         }
     }
 
-    // NOVO: confirmação
     void TocarSomConfirmacao()
     {
         if (SonsInterface.Instancia != null)

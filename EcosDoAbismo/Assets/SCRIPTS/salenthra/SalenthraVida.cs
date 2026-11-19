@@ -100,68 +100,54 @@ public class SalenthraVida : MonoBehaviour
     }
 
     public void ReceberDano(int dano)
+{
+    if (transformando || morta)
+        return;
+
+    // =========================
+    // FASE 1
+    // =========================
+
+    if (faseAtual == 1)
     {
-        if (transformando || morta)
-            return;
+        vidaAtualFase1 -= dano;
 
-        // =========================
-        // FASE 1
-        // =========================
-
-        if (faseAtual == 1)
+        if (vidaAtualFase1 <= 0)
         {
-            vidaAtualFase1 -= dano;
+            vidaAtualFase1 = 0;
 
             if (movimento != null)
+            {
                 movimento.CancelarAtaquesPorDano();
-
-            if (vidaAtualFase1 <= 0)
-            {
-                vidaAtualFase1 = 0;
-                IniciarTransformacao();
-                return;
             }
 
-            if (movimento != null)
-                movimento.podeMover = false;
-
-            animator.SetTrigger("Dano");
-        }
-
-        // =========================
-        // FASE 2
-        // =========================
-
-        else if (faseAtual == 2)
-        {
-            vidaAtualFase2 -= dano;
-
-            // A morte tem prioridade.
-            if (vidaAtualFase2 <= 0)
-            {
-                vidaAtualFase2 = 0;
-
-                if (movimento != null)
-                    movimento.CancelarAtaquesPorDano();
-
-                MorrerFase2();
-                return;
-            }
-
-            // Recebe dano sem interromper
-            // os ataques da fase 2.
-            if (movimento != null &&
-                movimento.EstaAtacandoFase2)
-            {
-                return;
-            }
-
-            if (movimento != null)
-                movimento.podeMover = false;
-
-            animator.SetTrigger("DanoFase2");
+            IniciarTransformacao();
+            return;
         }
     }
+
+    // =========================
+    // FASE 2
+    // =========================
+
+    else if (faseAtual == 2)
+    {
+        vidaAtualFase2 -= dano;
+
+        if (vidaAtualFase2 <= 0)
+        {
+            vidaAtualFase2 = 0;
+
+            if (movimento != null)
+            {
+                movimento.CancelarAtaquesPorDano();
+            }
+
+            MorrerFase2();
+            return;
+        }
+    }
+}
 
     // =========================
     // TRANSFORMACAO

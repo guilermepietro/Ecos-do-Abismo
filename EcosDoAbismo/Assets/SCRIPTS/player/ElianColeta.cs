@@ -58,7 +58,7 @@ public class ElianColeta : MonoBehaviour
         }
 
         if (
-            Input.GetKeyDown(KeyCode.E) &&
+            ControlesElian.Pressionou(ComandoElian.Interagir) &&
             animator.GetBool("estaNoChao") &&
             movimento.podeMover &&
             !interagindo &&

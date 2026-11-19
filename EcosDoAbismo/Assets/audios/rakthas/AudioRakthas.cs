@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -97,33 +96,47 @@ public class AudioRakthas : MonoBehaviour
         {
             audioPassos.Stop();
 
-            audioPassos.volume = volumeNormalPassos;
+            audioPassos.volume =
+                volumeNormalPassos;
         }
     }
 
     private bool PodeTocarPasso()
     {
-        if (movimento == null ||
-            !movimento.EstaAtivado)
+        if (
+            movimento == null ||
+            !movimento.EstaAtivado
+        )
         {
             return false;
         }
 
-        if (vida != null &&
-            (vida.EstaMorto || vida.EstaTomandoDano))
+        // Rakthas não possui mais estado de dano.
+        // Só bloqueamos os passos se ele estiver morto.
+        if (
+            vida != null &&
+            vida.EstaMorto
+        )
         {
             return false;
         }
 
-        if (ataques != null &&
-            (ataques.EstaAtacando ||
-             ataques.EstaEmPausaDecisao))
+        if (
+            ataques != null &&
+            (
+                ataques.EstaAtacando ||
+                ataques.EstaEmRecuperacao ||
+                ataques.EstaEmPausaDecisao
+            )
+        )
         {
             return false;
         }
 
-        if (animator != null &&
-            !animator.GetBool("estaCorrendo"))
+        if (
+            animator != null &&
+            !animator.GetBool("estaCorrendo")
+        )
         {
             return false;
         }
@@ -136,36 +149,57 @@ public class AudioRakthas : MonoBehaviour
         if (!PodeTocarPasso())
             return;
 
-        if (audioPassos == null || somPasso == null)
+        if (
+            audioPassos == null ||
+            somPasso == null
+        )
+        {
             return;
+        }
 
         audioPassos.Stop();
 
-        audioPassos.volume = volumeNormalPassos;
+        audioPassos.volume =
+            volumeNormalPassos;
 
-        audioPassos.PlayOneShot(somPasso);
+        audioPassos.PlayOneShot(
+            somPasso
+        );
     }
 
     public void TocarRaio()
     {
-        ReproduzirSom(somRaio);
+        ReproduzirSom(
+            somRaio
+        );
     }
 
     public void TocarOnda()
     {
-        ReproduzirSom(somOnda);
+        ReproduzirSom(
+            somOnda
+        );
     }
 
     public void TocarSoco()
     {
-        ReproduzirSom(somSoco);
+        ReproduzirSom(
+            somSoco
+        );
     }
 
-    private void ReproduzirSom(AudioClip som)
+    private void ReproduzirSom(
+        AudioClip som
+    )
     {
-        if (audioSource != null && som != null)
+        if (
+            audioSource != null &&
+            som != null
+        )
         {
-            audioSource.PlayOneShot(som);
+            audioSource.PlayOneShot(
+                som
+            );
         }
     }
 }

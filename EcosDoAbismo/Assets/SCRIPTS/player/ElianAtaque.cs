@@ -29,7 +29,6 @@ public class ElianAtaque : MonoBehaviour
 
     public float tempoAvanco = 0.08f;
 
-    // NOVO: efeitos sonoros dos ataques
     [Header("Audio - Fonte")]
     public AudioSource audioAtaques;
 
@@ -52,7 +51,6 @@ public class ElianAtaque : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         coleta = GetComponent<ElianColeta>();
 
-        // NOVO
         if (audioAtaques != null)
         {
             audioAtaques.playOnAwake = false;
@@ -69,7 +67,7 @@ public class ElianAtaque : MonoBehaviour
         }
 
         // ATAQUE EM ÁREA
-        if (Input.GetKeyDown(KeyCode.K) &&
+        if (ControlesElian.Pressionou(ComandoElian.AtaqueArea) &&
             animator.GetBool("estaNoChao") &&
             !atacando &&
             ataqueAreaDisponivel)
@@ -90,7 +88,7 @@ public class ElianAtaque : MonoBehaviour
         }
 
         // COMBO NORMAL
-        if (Input.GetKeyDown(KeyCode.J) &&
+        if (ControlesElian.Pressionou(ComandoElian.Ataque) &&
             animator.GetBool("estaNoChao"))
         {
             if (!atacando)
@@ -126,19 +124,13 @@ public class ElianAtaque : MonoBehaviour
         }
     }
 
-    // ======================================================
     // INFORMA SE O ELIAN ESTÁ NO COMBO
-    // ======================================================
-
     public bool EstaNoCombo()
     {
         return atacando;
     }
 
-    // ======================================================
     // CANCELA COMBO PARA DAR DASH
-    // ======================================================
-
     public void CancelarComboPorDash()
     {
         if (!atacando)
@@ -154,7 +146,6 @@ public class ElianAtaque : MonoBehaviour
         animator.ResetTrigger("Ataque2");
         animator.ResetTrigger("Ataque3");
 
-        // CANCELA AVANÇO DO GOLPE
         if (avancoAtual != null)
         {
             StopCoroutine(avancoAtual);
@@ -166,7 +157,6 @@ public class ElianAtaque : MonoBehaviour
             rb.linearVelocity.y
         );
 
-        // DESLIGA HITBOX
         HitboxControle hitboxControle =
             GetComponent<HitboxControle>();
 
@@ -178,10 +168,7 @@ public class ElianAtaque : MonoBehaviour
         movimento.podeMover = true;
     }
 
-    // ======================================================
     // AVANÇO DOS ATAQUES
-    // ======================================================
-
     public void AvancoAtaque1()
     {
         IniciarAvanco(velocidadeAvancoAtaque1);
@@ -228,10 +215,7 @@ public class ElianAtaque : MonoBehaviour
         avancoAtual = null;
     }
 
-    // ======================================================
     // ATAQUE EM ÁREA
-    // ======================================================
-
     public void AtivarHitboxArea()
     {
         Transform hitbox = transform.Find("HitboxArea");
@@ -282,10 +266,7 @@ public class ElianAtaque : MonoBehaviour
         }
     }
 
-    // ======================================================
     // FINALIZAÇÃO DO COMBO
-    // ======================================================
-
     public void FinalizarAtaque1()
     {
         if (!comboAtaque2)
@@ -319,10 +300,7 @@ public class ElianAtaque : MonoBehaviour
         movimento.podeMover = true;
     }
 
-    // ======================================================
     // COOLDOWN DO ATAQUE EM ÁREA
-    // ======================================================
-
     private void ReativarAtaqueArea()
     {
         ataqueAreaDisponivel = true;
@@ -342,10 +320,7 @@ public class ElianAtaque : MonoBehaviour
         );
     }
 
-    // ======================================================
     // CANCELAMENTO POR DANO
-    // ======================================================
-
     public void CancelarAtaquePorDano()
     {
         atacando = false;
@@ -394,10 +369,7 @@ public class ElianAtaque : MonoBehaviour
         }
     }
 
-    // ======================================================
-    // NOVO: EFEITOS SONOROS DOS ATAQUES
-    // ======================================================
-
+    // EFEITOS SONOROS DOS ATAQUES
     public void TocarSomAtaque1()
     {
         ReproduzirSom(somAtaque1);
@@ -418,7 +390,7 @@ public class ElianAtaque : MonoBehaviour
         ReproduzirSom(somAtaqueArea);
     }
 
-    // Será chamado pela hitbox quando houver acerto real.
+    // Chamado pela hitbox quando houver acerto real.
     public void TocarSomImpactoEspada()
     {
         ReproduzirSom(somImpactoEspada);

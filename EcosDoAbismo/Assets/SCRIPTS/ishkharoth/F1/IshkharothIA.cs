@@ -9,28 +9,62 @@ public class IshkharothIA : MonoBehaviour
     [SerializeField] private Transform elian;
     [SerializeField] private Animator animator;
     [SerializeField] private IshkharothMovimento movimento;
+    [SerializeField] private IshkharothVida vida;
 
     [Header("Combate")]
     [SerializeField] private float distanciaMaximaAtaque = 8f;
     [SerializeField] private float alcanceEspinhosChao = 6f;
-    [SerializeField] private float intervaloEntreAtaques = 1.3f;
 
-    [Header("Recarga dos ataques")]
+    [Header("Ritmo do Combate")]
+    [SerializeField] private float intervaloEntreAtaques = 1.3f;
+    [SerializeField] private float intervaloMinimo = 1f;
+    [SerializeField] private float esperaInicial = 0.8f;
+
+    [Header("Recarga dos Ataques")]
     [SerializeField] private float recargaEsfera = 2.5f;
     [SerializeField] private float recargaEspinhosChao = 4f;
     [SerializeField] private float recargaEspinhosCeu = 5f;
 
+    [Header("Recuperacao Apos Ataques")]
+    [SerializeField] private float recuperacaoEsfera = 0.25f;
+    [SerializeField] private float recuperacaoEspinhosChao = 0.4f;
+    [SerializeField] private float recuperacaoEspinhosCeu = 1.1f;
+
+    [Header("Distancias de Decisao")]
+    [SerializeField] private float distanciaCurta = 3f;
+    [SerializeField] private float distanciaMedia = 6f;
+
+    [Header("Adaptacao ao Elian")]
+    [SerializeField] private float tempoEstabilidadeZona = 0.45f;
+    [SerializeField] private float tempoParaAdaptacao = 3f;
+
+    [Header("Anti-Repeticao")]
+    [Range(0f, 1f)]
+    [SerializeField] private float penalidadeABA = 0.35f;
+
+    private bool combateIniciado;
     private bool atacando;
+
     private float proximaDecisao;
 
     private readonly float[] proximasRecargas = new float[3];
 
     private int ultimoAtaque = -1;
     private int penultimoAtaque = -1;
+    private int ataqueAtual = -1;
 
     // Controle especial da esfera.
     private bool aguardandoEsfera;
     private bool animacaoAtaqueTerminou;
+
+    // Controle da distancia do Elian.
+    // 0 = curta, 1 = media, 2 = longa.
+    private bool zonaInicializada;
+    private int zonaAtual;
+    private int zonaCandidata;
+
+    private float inicioZona;
+    private float inicioZonaCandidata;
 
     private void Awake()
     {
@@ -39,22 +73,50 @@ public class IshkharothIA : MonoBehaviour
 
         if (movimento == null)
             movimento = GetComponent<IshkharothMovimento>();
+
+        if (vida == null)
+            vida = GetComponent<IshkharothVida>();
     }
 
     private void Update()
     {
-        if (elian == null || movimento == null || animator == null)
+        if (elian == null ||
+            movimento == null ||
+            animator == null ||
+            vida == null)
+        {
+            return;
+        }
+
+        // Impede ataques durante a transformacao,
+        // a segunda fase e a morte.
+        if (!vida.EstaNaFase1)
             return;
 
-        if (!movimento.CombateAtivo || atacando)
+        // O combate so comeca quando Elian
+        // entra na area de ativacao.
+        if (!movimento.CombateAtivo)
             return;
 
-        if (Time.time < proximaDecisao)
-            return;
+        if (!combateIniciado)
+        {
+            combateIniciado = true;
+
+            proximaDecisao =
+                Time.time + esperaInicial;
+        }
 
         float distancia = Mathf.Abs(
             elian.position.x - transform.position.x
         );
+
+        AtualizarZona(distancia);
+
+        if (atacando)
+            return;
+
+        if (Time.time < proximaDecisao)
+            return;
 
         if (distancia > distanciaMaximaAtaque)
             return;
@@ -65,42 +127,124 @@ public class IshkharothIA : MonoBehaviour
             ExecutarAtaque(ataqueEscolhido);
     }
 
+    // =====================================
+    // ANALISE DA DISTANCIA
+    // =====================================
+
+    private void AtualizarZona(float distancia)
+    {
+        int novaZona;
+
+        if (distancia <= distanciaCurta)
+        {
+            novaZona = 0;
+        }
+        else if (distancia <= distanciaMedia)
+        {
+            novaZona = 1;
+        }
+        else
+        {
+            novaZona = 2;
+        }
+
+        if (!zonaInicializada)
+        {
+            zonaInicializada = true;
+
+            zonaAtual = novaZona;
+            zonaCandidata = novaZona;
+
+            inicioZona = Time.time;
+            inicioZonaCandidata = Time.time;
+
+            return;
+        }
+
+        if (novaZona != zonaCandidata)
+        {
+            zonaCandidata = novaZona;
+            inicioZonaCandidata = Time.time;
+        }
+
+        // Evita trocar de estrategia por
+        // pequenas movimentacoes do jogador.
+        if (zonaCandidata != zonaAtual &&
+            Time.time - inicioZonaCandidata >=
+            tempoEstabilidadeZona)
+        {
+            zonaAtual = zonaCandidata;
+            inicioZona = Time.time;
+        }
+    }
+
+    // =====================================
+    // ESCOLHA INTELIGENTE DOS ATAQUES
+    // =====================================
+
     private int EscolherAtaque(float distancia)
     {
         float[] pesos;
 
-        if (distancia <= 3f)
+        switch (zonaAtual)
         {
-            pesos = new float[] { 1f, 5f, 3f };
+            case 0:
+                // Elian perto:
+                // espinhos no chao sao favorecidos.
+                pesos = new float[] { 1f, 5f, 3f };
+                break;
+
+            case 1:
+                // Distancia media:
+                // variedade equilibrada.
+                pesos = new float[] { 3f, 4f, 3f };
+                break;
+
+            default:
+                // Elian longe:
+                // esfera e chuva favorecidas.
+                pesos = new float[] { 5f, 0f, 4f };
+                break;
         }
-        else if (distancia <= 6f)
-        {
-            pesos = new float[] { 3f, 4f, 3f };
-        }
-        else
-        {
-            pesos = new float[] { 5f, 0f, 4f };
-        }
+
+        AjustarPesosPorVida(pesos);
+        AjustarPesosPorComportamento(pesos);
 
         float somaPesos = 0f;
 
         for (int i = 0; i < pesos.Length; i++)
         {
+            // Respeita a recarga individual.
             if (Time.time < proximasRecargas[i])
+            {
                 pesos[i] = 0f;
+            }
 
+            // Nunca repete o ultimo ataque.
             if (i == ultimoAtaque)
+            {
                 pesos[i] = 0f;
+            }
 
+            // Reduz padroes A-B-A.
             if (i == penultimoAtaque)
-                pesos[i] *= 0.35f;
+            {
+                pesos[i] *= penalidadeABA;
+            }
 
-            if (i == 1 && distancia > alcanceEspinhosChao)
+            // Espinhos do chao so podem ser
+            // escolhidos dentro de seu alcance.
+            if (i == 1 &&
+                distancia > alcanceEspinhosChao)
+            {
                 pesos[i] = 0f;
+            }
 
             somaPesos += pesos[i];
         }
 
+        // Quando nenhum ataque esta disponivel,
+        // Ishkharoth aguarda uma nova decisao.
         if (somaPesos <= 0f)
             return -1;
 
@@ -108,18 +252,91 @@ public class IshkharothIA : MonoBehaviour
 
         for (int i = 0; i < pesos.Length; i++)
         {
+            if (pesos[i] <= 0f)
+                continue;
+
             sorteio -= pesos[i];
 
-            if (sorteio <= 0f && pesos[i] > 0f)
+            if (sorteio <= 0f)
+                return i;
+        }
+
+        // Protecao contra arredondamentos.
+        for (int i = pesos.Length - 1; i >= 0; i--)
+        {
+            if (pesos[i] > 0f)
                 return i;
         }
 
         return -1;
     }
 
+    // =====================================
+    // PROGRESSAO POR VIDA
+    // =====================================
+
+    private void AjustarPesosPorVida(float[] pesos)
+    {
+        float porcentagem = vida.PorcentagemVida;
+
+        if (porcentagem <= 0.35f)
+        {
+            // Fase critica: ataques diretos
+            // um pouco mais provaveis.
+            pesos[0] *= 1.2f;
+            pesos[1] *= 1.1f;
+        }
+        else if (porcentagem <= 0.70f)
+        {
+            pesos[0] *= 1.05f;
+            pesos[1] *= 1.05f;
+        }
+    }
+
+    // =====================================
+    // ADAPTACAO AO JOGADOR
+    // =====================================
+
+    private void AjustarPesosPorComportamento(
+        float[] pesos)
+    {
+        float tempoNaZona =
+            Time.time - inicioZona;
+
+        if (tempoNaZona < tempoParaAdaptacao)
+            return;
+
+        switch (zonaAtual)
+        {
+            case 0:
+                // Elian permanece proximo:
+                // aumenta a pressao dos espinhos.
+                pesos[1] *= 1.45f;
+                break;
+
+            case 1:
+                // Elian permanece na distancia media:
+                // favorece uma variacao maior.
+                pesos[0] *= 1.2f;
+                pesos[2] *= 1.2f;
+                break;
+
+            case 2:
+                // Elian permanece longe:
+                // aumenta a chance da esfera.
+                pesos[0] *= 1.45f;
+                break;
+        }
+    }
+
+    // =====================================
+    // EXECUCAO DOS ATAQUES
+    // =====================================
+
     private void ExecutarAtaque(int indice)
     {
         atacando = true;
+        ataqueAtual = indice;
 
         aguardandoEsfera = false;
         animacaoAtaqueTerminou = false;
@@ -134,27 +351,39 @@ public class IshkharothIA : MonoBehaviour
         switch (indice)
         {
             case 0:
-                proximasRecargas[0] = Time.time + recargaEsfera;
+                proximasRecargas[0] =
+                    Time.time + recargaEsfera;
+
                 animator.SetTrigger("Ataque1");
                 break;
 
             case 1:
-                proximasRecargas[1] = Time.time + recargaEspinhosChao;
+                proximasRecargas[1] =
+                    Time.time + recargaEspinhosChao;
+
                 animator.SetTrigger("Ataque2");
                 break;
 
             case 2:
-                proximasRecargas[2] = Time.time + recargaEspinhosCeu;
+                proximasRecargas[2] =
+                    Time.time + recargaEspinhosCeu;
+
                 animator.SetTrigger("Ataque3");
                 break;
         }
     }
 
+    // =====================================
+    // CONTROLE ESPECIAL DA ESFERA
+    // =====================================
+
     // Chamado pelo script de disparo.
     public void AguardarAfastamentoEsfera()
     {
         if (atacando)
+        {
             aguardandoEsfera = true;
+        }
     }
 
     // Chamado quando a esfera se afasta do corpo.
@@ -169,7 +398,11 @@ public class IshkharothIA : MonoBehaviour
             ConcluirAtaque();
     }
 
-    // Animation Event no final de cada ataque.
+    // =====================================
+    // FINALIZACAO DOS ATAQUES
+    // =====================================
+
+    // Animation Event no fim de cada ataque.
     public void FinalizarAtaque()
     {
         if (!atacando)
@@ -177,6 +410,8 @@ public class IshkharothIA : MonoBehaviour
 
         animacaoAtaqueTerminou = true;
 
+        // A esfera precisa se afastar antes
+        // que Ishkharoth volte a andar.
         if (aguardandoEsfera)
             return;
 
@@ -189,21 +424,88 @@ public class IshkharothIA : MonoBehaviour
             return;
 
         atacando = false;
+
         aguardandoEsfera = false;
         animacaoAtaqueTerminou = false;
 
-        movimento.LiberarMovimento();
+        float recuperacaoExtra = 0f;
 
-        proximaDecisao = Time.time + intervaloEntreAtaques;
+        switch (ataqueAtual)
+        {
+            case 0:
+                recuperacaoExtra = recuperacaoEsfera;
+                break;
+
+            case 1:
+                recuperacaoExtra = recuperacaoEspinhosChao;
+                break;
+
+            case 2:
+                recuperacaoExtra = recuperacaoEspinhosCeu;
+                break;
+        }
+
+        ataqueAtual = -1;
+
+        proximaDecisao =
+            Time.time +
+            ObterIntervaloAtual() +
+            recuperacaoExtra;
+
+        // O boss pode voltar a andar durante
+        // a recuperacao, mas nao pode atacar.
+        if (movimento != null &&
+            vida != null &&
+            vida.EstaNaFase1)
+        {
+            movimento.LiberarMovimento();
+        }
     }
+
+    // =====================================
+    // AGRESSIVIDADE PROGRESSIVA
+    // =====================================
+
+    private float ObterIntervaloAtual()
+    {
+        float intervalo = intervaloEntreAtaques;
+
+        float porcentagem = vida.PorcentagemVida;
+
+        if (porcentagem <= 0.35f)
+        {
+            intervalo *= 0.84f;
+        }
+        else if (porcentagem <= 0.70f)
+        {
+            intervalo *= 0.92f;
+        }
+
+        return Mathf.Max(
+            intervaloMinimo,
+            intervalo
+        );
+    }
+
+    // =====================================
+    // SEGURANCA NA TRANSFORMACAO
+    // =====================================
 
     private void OnDisable()
     {
+        // Preserva o comportamento anterior:
+        // libera a movimentacao se a IA
+        // for interrompida durante um ataque.
         if (atacando && movimento != null)
+        {
             movimento.LiberarMovimento();
+        }
 
         atacando = false;
+
         aguardandoEsfera = false;
         animacaoAtaqueTerminou = false;
+
+        ataqueAtual = -1;
     }
 }

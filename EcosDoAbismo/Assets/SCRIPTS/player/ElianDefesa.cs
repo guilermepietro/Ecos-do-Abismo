@@ -18,15 +18,13 @@ public class ElianDefesa : MonoBehaviour
     [Header("Escudo")]
     public int vidaMaximaEscudo = 50;
     private int vidaEscudo;
+    [Header("Quebra do Escudo")]
+public int danoAoQuebrar = 5;
 
     [Header("Recarga do Escudo")]
     public float tempoRecargaEscudo = 3f;
     private bool escudoDisponivel = true;
 
-    [Header("Quebra do Escudo")]
-    public int danoAoQuebrar = 5;
-
-    // NOVO: efeito sonoro do bloqueio
     [Header("Audio - Escudo")]
     public AudioSource audioEscudo;
     public AudioClip somBloqueio;
@@ -43,12 +41,14 @@ public class ElianDefesa : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (ControlesElian.Pressionou(ComandoElian.Defender))
         {
             IniciarDefesa();
         }
 
-        if (Input.GetKeyUp(KeyCode.Q))
+        // Finaliza quando a tecla configurada é solta.
+        if (defendendo &&
+            !ControlesElian.Segurando(ComandoElian.Defender))
         {
             FinalizarDefesa();
         }
@@ -85,7 +85,6 @@ public class ElianDefesa : MonoBehaviour
             return dano;
         }
 
-        // NOVO: toca o som quando o escudo é atingido
         if (audioEscudo != null && somBloqueio != null)
         {
             audioEscudo.PlayOneShot(somBloqueio);

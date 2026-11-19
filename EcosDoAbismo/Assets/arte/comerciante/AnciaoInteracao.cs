@@ -319,6 +319,29 @@ void Update()
         elianPerto.DefinirAnciaoPerto(this);
     }
 
+
+private void OnTriggerStay2D(Collider2D outro)
+{
+    if (!conversaLiberada)
+        return;
+
+    ElianColeta coleta =
+        outro.GetComponentInParent<ElianColeta>();
+
+    if (coleta == null)
+        return;
+
+    if (elianPerto != coleta)
+    {
+        elianPerto = coleta;
+    }
+
+    // Mantem a referencia de interacao atualizada
+    // mesmo que Elian ja estivesse dentro da area.
+    elianPerto.DefinirAnciaoPerto(this);
+}
+
+
     void OnTriggerExit2D(Collider2D outro)
     {
         ElianColeta coleta =

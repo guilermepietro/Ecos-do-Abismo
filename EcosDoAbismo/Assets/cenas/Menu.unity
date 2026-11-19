@@ -5389,6 +5389,7 @@ MonoBehaviour:
   destaqueSom: {fileID: 433111499}
   destaqueControles: {fileID: 2032838790}
   menuManager: {fileID: 703664917}
+  menuPausa: {fileID: 0}
   corNormal: {r: 1, g: 1, b: 1, a: 1}
   corSelecionada: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &901763424
@@ -7278,8 +7279,8 @@ MonoBehaviour:
   imagemTeclaCura: {fileID: 749248831}
   textoTeclaInteragir: {fileID: 1993565658}
   imagemTeclaInteragir: {fileID: 1478184478}
-  textoTeclaCorrer: {fileID: 0}
-  imagemTeclaCorrer: {fileID: 0}
+  textoTeclaUltimate: {fileID: 1769641599}
+  imagemTeclaUltimate: {fileID: 1485147040}
   textoTeclaPular: {fileID: 566210442}
   imagemTeclaPular: {fileID: 403014729}
   textoTeclaDash: {fileID: 1318723015}
@@ -7309,9 +7310,9 @@ MonoBehaviour:
   posicaoXInteragirQuadrado: -240
   posicaoXInteragirMedio: -295
   posicaoXInteragirLongo: -295
-  posicaoXCorrerQuadrado: -396
-  posicaoXCorrerMedio: -385.9
-  posicaoXCorrerLongo: -396
+  posicaoXUltimateQuadrado: -396
+  posicaoXUltimateMedio: -385.9
+  posicaoXUltimateLongo: -396
   posicaoXPularQuadrado: -396
   posicaoXPularMedio: -385.9
   posicaoXPularLongo: -396
@@ -7765,6 +7766,7 @@ MonoBehaviour:
   - {fileID: 1762400215}
   tempoDeslizamento: 0.15
   menuManager: {fileID: 703664917}
+  menuPausa: {fileID: 0}
   teclaContinuar: {fileID: 2120954219}
   teclaAplicar: {fileID: 1824066937}
   barraVolumeGeral: {fileID: 2094080361}

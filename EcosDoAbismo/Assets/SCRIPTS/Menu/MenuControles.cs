@@ -42,9 +42,12 @@ public class MenuControles : MonoBehaviour
     public TextMeshProUGUI textoTeclaInteragir;
     public Image imagemTeclaInteragir;
 
-    [Header("Remapeamento - Correr")]
-    public TextMeshProUGUI textoTeclaCorrer;
-    public Image imagemTeclaCorrer;
+    [Header("Remapeamento - Ultimate")]
+    [FormerlySerializedAs("textoTeclaCorrer")]
+    public TextMeshProUGUI textoTeclaUltimate;
+
+    [FormerlySerializedAs("imagemTeclaCorrer")]
+    public Image imagemTeclaUltimate;
 
     [Header("Remapeamento - Pular")]
     public TextMeshProUGUI textoTeclaPular;
@@ -68,9 +71,14 @@ public class MenuControles : MonoBehaviour
     public Sprite spriteLongo;
 
     [Header("Tamanhos das Teclas")]
-    public Vector2 tamanhoQuadrado = new Vector2(120f, 120f);
-    public Vector2 tamanhoMedio = new Vector2(220f, 300f);
-    public Vector2 tamanhoLongo = new Vector2(290f, 190f);
+    public Vector2 tamanhoQuadrado =
+        new Vector2(120f, 120f);
+
+    public Vector2 tamanhoMedio =
+        new Vector2(220f, 300f);
+
+    public Vector2 tamanhoLongo =
+        new Vector2(290f, 190f);
 
     [Header("Posicoes X - Ataque")]
     public float posicaoXQuadrado = -396f;
@@ -117,15 +125,18 @@ public class MenuControles : MonoBehaviour
     [FormerlySerializedAs("deslocamentoXInteragirLongo")]
     public float posicaoXInteragirLongo;
 
-    [Header("Posicoes X - Correr")]
+    [Header("Posicoes X - Ultimate")]
     [FormerlySerializedAs("deslocamentoXCorrerQuadrado")]
-    public float posicaoXCorrerQuadrado;
+    [FormerlySerializedAs("posicaoXCorrerQuadrado")]
+    public float posicaoXUltimateQuadrado;
 
     [FormerlySerializedAs("deslocamentoXCorrerMedio")]
-    public float posicaoXCorrerMedio;
+    [FormerlySerializedAs("posicaoXCorrerMedio")]
+    public float posicaoXUltimateMedio;
 
     [FormerlySerializedAs("deslocamentoXCorrerLongo")]
-    public float posicaoXCorrerLongo;
+    [FormerlySerializedAs("posicaoXCorrerLongo")]
+    public float posicaoXUltimateLongo;
 
     [Header("Posicoes X - Pular")]
     [FormerlySerializedAs("deslocamentoXPularQuadrado")]
@@ -161,44 +172,60 @@ public class MenuControles : MonoBehaviour
     public Color corNormal = Color.white;
     public Color corSelecionada = Color.yellow;
 
-    private int colunaSelecionada = 0;
-    private int linhaSelecionada = 0;
+    private int colunaSelecionada;
+    private int linhaSelecionada;
+    private int comandoEmEdicao = -1;
+    private int etapaEdicaoAndar;
+    private int quadroInicioEdicao;
+    private int quadroAtivacao;
 
-    private bool editandoTecla = false;
-    private bool aguardandoNovaTecla = false;
-
-    private KeyCode teclaAtaque = KeyCode.J;
-    private KeyCode teclaAtaqueArea = KeyCode.K;
-    private KeyCode teclaDefender = KeyCode.Q;
-    private KeyCode teclaCura = KeyCode.L;
-    private KeyCode teclaInteragir = KeyCode.E;
-    private KeyCode teclaCorrer = KeyCode.LeftShift;
-    private KeyCode teclaPular = KeyCode.Space;
-    private KeyCode teclaDash = KeyCode.LeftControl;
-
-    private KeyCode teclaAndarEsquerda = KeyCode.A;
-    private KeyCode teclaAndarDireita = KeyCode.D;
+    private bool editandoTecla;
+    private bool aguardandoNovaTecla;
 
     private KeyCode teclaAnterior;
     private KeyCode teclaAnteriorAndarEsquerda;
     private KeyCode teclaAnteriorAndarDireita;
 
-    private int comandoEmEdicao = -1;
-    private int quadroInicioEdicao;
+    private KeyCode teclaEmEdicao;
+    private KeyCode teclaAndarEsquerda;
+    private KeyCode teclaAndarDireita;
 
-    // 0 = Esquerda, 1 = Direita, 2 = Aplicar
-    private int etapaEdicaoAndar = 0;
+    // Identificadores da interface:
+    // 0 Ataque
+    // 1 Ataque em Area
+    // 2 Defesa
+    // 3 Cura
+    // 4 Interagir
+    // 5 Ultimate
+    // 6 Pulo
+    // 7 Dash
+    // 8 Andar
+
+    private static readonly ComandoElian[] comandos =
+    {
+        ComandoElian.Ataque,
+        ComandoElian.AtaqueArea,
+        ComandoElian.Defender,
+        ComandoElian.Curar,
+        ComandoElian.Interagir,
+        ComandoElian.Ultimate,
+        ComandoElian.Pular,
+        ComandoElian.Dash
+    };
 
     void OnEnable()
     {
         colunaSelecionada = 0;
         linhaSelecionada = 0;
-
-        editandoTecla = false;
-        aguardandoNovaTecla = false;
         comandoEmEdicao = -1;
         etapaEdicaoAndar = 0;
 
+        editandoTecla = false;
+        aguardandoNovaTecla = false;
+
+        quadroAtivacao = Time.frameCount;
+
+        CarregarAndar();
         AtualizarSelecao();
         AtualizarIndicadores();
         AtualizarTeclas();
@@ -206,6 +233,9 @@ public class MenuControles : MonoBehaviour
 
     void Update()
     {
+        if (Time.frameCount == quadroAtivacao)
+            return;
+
         if (editandoTecla)
         {
             AtualizarEdicao();
@@ -213,21 +243,16 @@ public class MenuControles : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
             MoverVertical(1);
-        }
+
         else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
             MoverVertical(-1);
-        }
+
         else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
             MoverHorizontal(1);
-        }
+
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
             MoverHorizontal(-1);
-        }
 
         if (Input.GetKeyDown(KeyCode.Return) ||
             Input.GetKeyDown(KeyCode.KeypadEnter))
@@ -236,12 +261,16 @@ public class MenuControles : MonoBehaviour
             {
                 if (linhaSelecionada == 0)
                     IniciarEdicao(0);
+
                 else if (linhaSelecionada == 1)
                     IniciarEdicao(8);
+
                 else if (linhaSelecionada == 2)
                     IniciarEdicao(5);
+
                 else if (linhaSelecionada == 3)
                     IniciarEdicao(6);
+
                 else if (linhaSelecionada == 4)
                     IniciarEdicao(7);
             }
@@ -249,86 +278,61 @@ public class MenuControles : MonoBehaviour
             {
                 if (linhaSelecionada == 0)
                     IniciarEdicao(1);
+
                 else if (linhaSelecionada == 1)
                     IniciarEdicao(2);
+
                 else if (linhaSelecionada == 2)
                     IniciarEdicao(3);
+
                 else if (linhaSelecionada == 3)
                     IniciarEdicao(4);
             }
         }
     }
 
+    void CarregarAndar()
+    {
+        teclaAndarEsquerda =
+            ControlesElian.Obter(
+                ComandoElian.AndarEsquerda
+            );
+
+        teclaAndarDireita =
+            ControlesElian.Obter(
+                ComandoElian.AndarDireita
+            );
+    }
+
     void IniciarEdicao(int comando)
     {
+        comandoEmEdicao = comando;
         editandoTecla = true;
         aguardandoNovaTecla = true;
 
-        comandoEmEdicao = comando;
         quadroInicioEdicao = Time.frameCount;
+        etapaEdicaoAndar = 0;
 
-        switch (comandoEmEdicao)
+        if (comando == 8)
         {
-            case 0:
-                teclaAnterior = teclaAtaque;
-                if (textoTeclaAtaque != null)
-                    textoTeclaAtaque.text = "";
-                break;
+            teclaAnteriorAndarEsquerda =
+                teclaAndarEsquerda;
 
-            case 1:
-                teclaAnterior = teclaAtaqueArea;
-                if (textoTeclaAtaqueArea != null)
-                    textoTeclaAtaqueArea.text = "";
-                break;
+            teclaAnteriorAndarDireita =
+                teclaAndarDireita;
+        }
+        else
+        {
+            teclaAnterior =
+                ControlesElian.Obter(comandos[comando]);
 
-            case 2:
-                teclaAnterior = teclaDefender;
-                if (textoTeclaDefender != null)
-                    textoTeclaDefender.text = "";
-                break;
-
-            case 3:
-                teclaAnterior = teclaCura;
-                if (textoTeclaCura != null)
-                    textoTeclaCura.text = "";
-                break;
-
-            case 4:
-                teclaAnterior = teclaInteragir;
-                if (textoTeclaInteragir != null)
-                    textoTeclaInteragir.text = "";
-                break;
-
-            case 5:
-                teclaAnterior = teclaCorrer;
-                if (textoTeclaCorrer != null)
-                    textoTeclaCorrer.text = "";
-                break;
-
-            case 6:
-                teclaAnterior = teclaPular;
-                if (textoTeclaPular != null)
-                    textoTeclaPular.text = "";
-                break;
-
-            case 7:
-                teclaAnterior = teclaDash;
-                if (textoTeclaDash != null)
-                    textoTeclaDash.text = "";
-                break;
-
-            case 8:
-                teclaAnteriorAndarEsquerda = teclaAndarEsquerda;
-                teclaAnteriorAndarDireita = teclaAndarDireita;
-
-                etapaEdicaoAndar = 0;
-
-                if (textoTeclaAndarEsquerda != null)
-                    textoTeclaAndarEsquerda.text = "";
-                break;
+            teclaEmEdicao = teclaAnterior;
         }
 
+        AtualizarTeclas();
+        ApagarTeclaEmEdicao();
         AtualizarIndicadores();
+        TocarConfirmacao();
     }
 
     void AtualizarEdicao()
@@ -336,105 +340,86 @@ public class MenuControles : MonoBehaviour
         if (Time.frameCount == quadroInicioEdicao)
             return;
 
+        // O MenuManager trata o cancelamento com Esc.
+        if (Input.GetKeyDown(KeyCode.Escape))
+            return;
+
         if (aguardandoNovaTecla)
         {
-            foreach (KeyCode tecla in System.Enum.GetValues(
-                typeof(KeyCode)))
+            foreach (KeyCode tecla in
+                System.Enum.GetValues(typeof(KeyCode)))
             {
-                if (tecla == KeyCode.None ||
-                    tecla == KeyCode.Escape ||
-                    tecla == KeyCode.Return ||
-                    tecla == KeyCode.KeypadEnter)
+                if (TeclaReservada(tecla))
                     continue;
 
-                if (Input.GetKeyDown(tecla))
+                if (!Input.GetKeyDown(tecla))
+                    continue;
+
+                if (comandoEmEdicao == 8)
                 {
-                    if (comandoEmEdicao == 8)
+                    // Andar aceita apenas teclas curtas.
+                    if (ObterNomeTecla(tecla).Length > 2)
+                        return;
+
+                    if (etapaEdicaoAndar == 0)
                     {
-                        // Andar aceita apenas teclas
-                        // que utilizam o sprite quadrado.
-                        string nomeTecla = ObterNomeTecla(tecla);
+                        teclaAndarEsquerda = tecla;
+                        etapaEdicaoAndar = 1;
 
-                        if (nomeTecla.Length > 2)
-                            return;
+                        AtualizarTeclas();
 
-                        if (etapaEdicaoAndar == 0)
-                        {
-                            teclaAndarEsquerda = tecla;
-                            etapaEdicaoAndar = 1;
-
-                            AtualizarTeclas();
-
-                            if (textoTeclaAndarDireita != null)
-                                textoTeclaAndarDireita.text = "";
-                        }
-                        else if (etapaEdicaoAndar == 1)
-                        {
-                            teclaAndarDireita = tecla;
-                            etapaEdicaoAndar = 2;
-                            aguardandoNovaTecla = false;
-
-                            AtualizarTeclas();
-                        }
+                        if (textoTeclaAndarDireita != null)
+                            textoTeclaAndarDireita.text = "";
                     }
                     else
                     {
-                        DefinirTeclaEmEdicao(tecla);
-
+                        teclaAndarDireita = tecla;
+                        etapaEdicaoAndar = 2;
                         aguardandoNovaTecla = false;
+
                         AtualizarTeclas();
                     }
-
-                    return;
                 }
+                else
+                {
+                    teclaEmEdicao = tecla;
+                    aguardandoNovaTecla = false;
+
+                    AtualizarTeclas();
+                }
+
+                TocarConfirmacao();
+                return;
             }
         }
-        else
+        else if (
+            Input.GetKeyDown(KeyCode.Return) ||
+            Input.GetKeyDown(KeyCode.KeypadEnter)
+        )
         {
-            if (Input.GetKeyDown(KeyCode.Return) ||
-                Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-                AplicarEdicao();
-            }
+            AplicarEdicao();
         }
     }
 
-    void DefinirTeclaEmEdicao(KeyCode tecla)
+    static bool TeclaReservada(KeyCode tecla)
     {
-        switch (comandoEmEdicao)
-        {
-            case 0:
-                teclaAtaque = tecla;
-                break;
+        return tecla == KeyCode.None ||
+               tecla == KeyCode.Escape ||
+               tecla == KeyCode.Return ||
+               tecla == KeyCode.KeypadEnter ||
+               tecla == KeyCode.UpArrow ||
+               tecla == KeyCode.DownArrow ||
+               tecla == KeyCode.LeftArrow ||
+               tecla == KeyCode.RightArrow;
+    }
 
-            case 1:
-                teclaAtaqueArea = tecla;
-                break;
+    void ApagarTeclaEmEdicao()
+    {
+        TextMeshProUGUI texto =
+            ObterTexto(comandoEmEdicao);
 
-            case 2:
-                teclaDefender = tecla;
-                break;
-
-            case 3:
-                teclaCura = tecla;
-                break;
-
-            case 4:
-                teclaInteragir = tecla;
-                break;
-
-            case 5:
-                teclaCorrer = tecla;
-                break;
-
-            case 6:
-                teclaPular = tecla;
-                break;
-
-            case 7:
-                teclaDash = tecla;
-                break;
-        }
+        if (texto != null)
+            texto.text = "";
     }
 
     public bool CancelarEdicaoSeAtiva()
@@ -448,160 +433,226 @@ public class MenuControles : MonoBehaviour
 
     void AplicarEdicao()
     {
+        bool sucesso;
+
+        if (comandoEmEdicao == 8)
+        {
+            sucesso = ControlesElian.TentarDefinirAndar(
+                teclaAndarEsquerda,
+                teclaAndarDireita
+            );
+        }
+        else
+        {
+            sucesso = ControlesElian.TentarDefinir(
+                comandos[comandoEmEdicao],
+                teclaEmEdicao
+            );
+        }
+
+        if (!sucesso)
+        {
+            Debug.LogWarning(
+                "Tecla reservada ou utilizada por " +
+                "outro comando. Escolha outra."
+            );
+
+            TocarVoltar();
+
+            aguardandoNovaTecla = true;
+            etapaEdicaoAndar = 0;
+
+            CarregarAndar();
+            AtualizarTeclas();
+            ApagarTeclaEmEdicao();
+
+            return;
+        }
+
         editandoTecla = false;
         aguardandoNovaTecla = false;
+
         comandoEmEdicao = -1;
         etapaEdicaoAndar = 0;
 
+        CarregarAndar();
+        AtualizarTeclas();
         AtualizarIndicadores();
+
+        TocarConfirmacao();
     }
 
     void CancelarEdicao()
     {
-        if (comandoEmEdicao == 8)
-        {
-            teclaAndarEsquerda = teclaAnteriorAndarEsquerda;
-            teclaAndarDireita = teclaAnteriorAndarDireita;
-        }
-        else
-        {
-            DefinirTeclaEmEdicao(teclaAnterior);
-        }
-
         editandoTecla = false;
         aguardandoNovaTecla = false;
+
         comandoEmEdicao = -1;
         etapaEdicaoAndar = 0;
 
+        CarregarAndar();
         AtualizarTeclas();
         AtualizarIndicadores();
+
+        TocarVoltar();
+    }
+
+    TextMeshProUGUI ObterTexto(int comando)
+    {
+        switch (comando)
+        {
+            case 0:
+                return textoTeclaAtaque;
+
+            case 1:
+                return textoTeclaAtaqueArea;
+
+            case 2:
+                return textoTeclaDefender;
+
+            case 3:
+                return textoTeclaCura;
+
+            case 4:
+                return textoTeclaInteragir;
+
+            case 5:
+                return textoTeclaUltimate;
+
+            case 6:
+                return textoTeclaPular;
+
+            case 7:
+                return textoTeclaDash;
+
+            case 8:
+                return textoTeclaAndarEsquerda;
+
+            default:
+                return null;
+        }
     }
 
     void AtualizarTeclas()
     {
-        string nomeAtaque = ObterNomeTecla(teclaAtaque);
-        string nomeAtaqueArea = ObterNomeTecla(teclaAtaqueArea);
-        string nomeDefender = ObterNomeTecla(teclaDefender);
-        string nomeCura = ObterNomeTecla(teclaCura);
-        string nomeInteragir = ObterNomeTecla(teclaInteragir);
-        string nomeCorrer = ObterNomeTecla(teclaCorrer);
-        string nomePular = ObterNomeTecla(teclaPular);
-        string nomeDash = ObterNomeTecla(teclaDash);
-
-        string nomeAndarEsquerda =
-            ObterNomeTecla(teclaAndarEsquerda);
-
-        string nomeAndarDireita =
-            ObterNomeTecla(teclaAndarDireita);
-
-        if (textoTeclaAtaque != null)
-            textoTeclaAtaque.text = nomeAtaque;
-
-        if (textoTeclaAtaqueArea != null)
-            textoTeclaAtaqueArea.text = nomeAtaqueArea;
-
-        if (textoTeclaDefender != null)
-            textoTeclaDefender.text = nomeDefender;
-
-        if (textoTeclaCura != null)
-            textoTeclaCura.text = nomeCura;
-
-        if (textoTeclaInteragir != null)
-            textoTeclaInteragir.text = nomeInteragir;
-
-        if (textoTeclaCorrer != null)
-            textoTeclaCorrer.text = nomeCorrer;
-
-        if (textoTeclaPular != null)
-            textoTeclaPular.text = nomePular;
-
-        if (textoTeclaDash != null)
-            textoTeclaDash.text = nomeDash;
-
-        if (textoTeclaAndarEsquerda != null)
-            textoTeclaAndarEsquerda.text = nomeAndarEsquerda;
-
-        if (textoTeclaAndarDireita != null)
-            textoTeclaAndarDireita.text = nomeAndarDireita;
-
-        AtualizarImagemTecla(
+        AtualizarTecla(
+            textoTeclaAtaque,
             imagemTeclaAtaque,
-            nomeAtaque,
+            ObterTecla(0),
             posicaoXQuadrado,
             posicaoXMedio,
             posicaoXLongo
         );
 
-        AtualizarImagemTecla(
+        AtualizarTecla(
+            textoTeclaAtaqueArea,
             imagemTeclaAtaqueArea,
-            nomeAtaqueArea,
+            ObterTecla(1),
             posicaoXAreaQuadrado,
             posicaoXAreaMedio,
             posicaoXAreaLongo
         );
 
-        AtualizarImagemTecla(
+        AtualizarTecla(
+            textoTeclaDefender,
             imagemTeclaDefender,
-            nomeDefender,
+            ObterTecla(2),
             posicaoXDefenderQuadrado,
             posicaoXDefenderMedio,
             posicaoXDefenderLongo
         );
 
-        AtualizarImagemTecla(
+        AtualizarTecla(
+            textoTeclaCura,
             imagemTeclaCura,
-            nomeCura,
+            ObterTecla(3),
             posicaoXCuraQuadrado,
             posicaoXCuraMedio,
             posicaoXCuraLongo
         );
 
-        AtualizarImagemTecla(
+        AtualizarTecla(
+            textoTeclaInteragir,
             imagemTeclaInteragir,
-            nomeInteragir,
+            ObterTecla(4),
             posicaoXInteragirQuadrado,
             posicaoXInteragirMedio,
             posicaoXInteragirLongo
         );
 
-        AtualizarImagemTecla(
-            imagemTeclaCorrer,
-            nomeCorrer,
-            posicaoXCorrerQuadrado,
-            posicaoXCorrerMedio,
-            posicaoXCorrerLongo
+        AtualizarTecla(
+            textoTeclaUltimate,
+            imagemTeclaUltimate,
+            ObterTecla(5),
+            posicaoXUltimateQuadrado,
+            posicaoXUltimateMedio,
+            posicaoXUltimateLongo
         );
 
-        AtualizarImagemTecla(
+        AtualizarTecla(
+            textoTeclaPular,
             imagemTeclaPular,
-            nomePular,
+            ObterTecla(6),
             posicaoXPularQuadrado,
             posicaoXPularMedio,
             posicaoXPularLongo
         );
 
-        AtualizarImagemTecla(
+        AtualizarTecla(
+            textoTeclaDash,
             imagemTeclaDash,
-            nomeDash,
+            ObterTecla(7),
             posicaoXDashQuadrado,
             posicaoXDashMedio,
             posicaoXDashLongo
         );
 
-        AtualizarImagemTecla(
+        AtualizarTecla(
+            textoTeclaAndarEsquerda,
             imagemTeclaAndarEsquerda,
-            nomeAndarEsquerda,
+            teclaAndarEsquerda,
             posicaoXAndarEsquerdaQuadrado,
             posicaoXAndarEsquerdaMedio,
             posicaoXAndarEsquerdaLongo
         );
 
-        AtualizarImagemTecla(
+        AtualizarTecla(
+            textoTeclaAndarDireita,
             imagemTeclaAndarDireita,
-            nomeAndarDireita,
+            teclaAndarDireita,
             posicaoXAndarDireitaQuadrado,
             posicaoXAndarDireitaMedio,
             posicaoXAndarDireitaLongo
+        );
+    }
+
+    KeyCode ObterTecla(int indice)
+    {
+        if (editandoTecla && comandoEmEdicao == indice)
+            return teclaEmEdicao;
+
+        return ControlesElian.Obter(comandos[indice]);
+    }
+
+    void AtualizarTecla(
+        TextMeshProUGUI texto,
+        Image imagem,
+        KeyCode tecla,
+        float xQuadrado,
+        float xMedio,
+        float xLongo)
+    {
+        string nome = ObterNomeTecla(tecla);
+
+        if (texto != null)
+            texto.text = nome;
+
+        AtualizarImagemTecla(
+            imagem,
+            nome,
+            xQuadrado,
+            xMedio,
+            xLongo
         );
     }
 
@@ -675,10 +726,12 @@ public class MenuControles : MonoBehaviour
             imagem.sprite = novoSprite;
 
         RectTransform rect = imagem.rectTransform;
+
         rect.sizeDelta = novoTamanho;
 
         Vector2 posicao = rect.anchoredPosition;
         posicao.x = novaPosicaoX;
+
         rect.anchoredPosition = posicao;
     }
 
@@ -698,33 +751,32 @@ public class MenuControles : MonoBehaviour
         if (quantidade == 0)
             return;
 
-        linhaSelecionada += direcao;
-
-        if (linhaSelecionada >= quantidade)
-            linhaSelecionada = 0;
-
-        if (linhaSelecionada < 0)
-            linhaSelecionada = quantidade - 1;
+        linhaSelecionada =
+            (linhaSelecionada + direcao + quantidade)
+            % quantidade;
 
         AtualizarSelecao();
+        TocarNavegacao();
     }
 
     void MoverHorizontal(int direcao)
     {
-        if (direcao > 0 && colunaSelecionada == 0)
+        if (
+            direcao > 0 &&
+            colunaSelecionada == 0 &&
+            textosDireita != null &&
+            textosDireita.Length > 0
+        )
         {
-            if (textosDireita == null ||
-                textosDireita.Length == 0)
-                return;
-
             colunaSelecionada = 1;
         }
-        else if (direcao < 0 && colunaSelecionada == 1)
+        else if (
+            direcao < 0 &&
+            colunaSelecionada == 1 &&
+            textosEsquerda != null &&
+            textosEsquerda.Length > 0
+        )
         {
-            if (textosEsquerda == null ||
-                textosEsquerda.Length == 0)
-                return;
-
             colunaSelecionada = 0;
         }
         else
@@ -738,16 +790,16 @@ public class MenuControles : MonoBehaviour
             linhaSelecionada = quantidade - 1;
 
         AtualizarSelecao();
+        TocarNavegacao();
     }
 
     int QuantidadeItensColuna()
     {
-        if (colunaSelecionada == 0)
-            return textosEsquerda != null
-                ? textosEsquerda.Length : 0;
-
-        return textosDireita != null
-            ? textosDireita.Length : 0;
+        return colunaSelecionada == 0
+            ? (textosEsquerda != null
+                ? textosEsquerda.Length : 0)
+            : (textosDireita != null
+                ? textosDireita.Length : 0);
     }
 
     void AtualizarSelecao()
@@ -780,9 +832,10 @@ public class MenuControles : MonoBehaviour
 
                 if (textos[i] != null)
                 {
-                    textos[i].color = selecionado
-                        ? corSelecionada
-                        : corNormal;
+                    textos[i].color =
+                        selecionado
+                            ? corSelecionada
+                            : corNormal;
                 }
             }
         }
@@ -791,13 +844,32 @@ public class MenuControles : MonoBehaviour
         {
             for (int i = 0; i < destaques.Length; i++)
             {
-                bool selecionado =
-                    colunaSelecionada == coluna &&
-                    linhaSelecionada == i;
-
                 if (destaques[i] != null)
-                    destaques[i].SetActive(selecionado);
+                {
+                    destaques[i].SetActive(
+                        colunaSelecionada == coluna &&
+                        linhaSelecionada == i
+                    );
+                }
             }
         }
+    }
+
+    void TocarNavegacao()
+    {
+        if (SonsInterface.Instancia != null)
+            SonsInterface.Instancia.TocarNavegacao();
+    }
+
+    void TocarConfirmacao()
+    {
+        if (SonsInterface.Instancia != null)
+            SonsInterface.Instancia.TocarConfirmacao();
+    }
+
+    void TocarVoltar()
+    {
+        if (SonsInterface.Instancia != null)
+            SonsInterface.Instancia.TocarVoltar();
     }
 }

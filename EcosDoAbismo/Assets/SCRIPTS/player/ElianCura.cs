@@ -26,7 +26,7 @@ public class ElianCura : MonoBehaviour
 
     void Update()
     {
-        if (!Input.GetKeyDown(KeyCode.L))
+        if (!ControlesElian.Pressionou(ComandoElian.Curar))
             return;
 
         if (curando)
@@ -38,7 +38,6 @@ public class ElianCura : MonoBehaviour
         if (!movimento.podeMover)
             return;
 
-        // Impede cura com a vida cheia ou após morte
         if (vida == null || !vida.PrecisaDeCura)
             return;
 
@@ -62,7 +61,6 @@ public class ElianCura : MonoBehaviour
         if (!curando || curaExecutada)
             return;
 
-        // Verifica novamente antes de consumir
         if (vida == null || !vida.PrecisaDeCura)
             return;
 

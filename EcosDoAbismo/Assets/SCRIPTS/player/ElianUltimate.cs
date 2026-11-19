@@ -60,17 +60,17 @@ public class ElianUltimate : MonoBehaviour
     }
 
     void Update()
-    {
-        AtualizarBarraUltimate();
-        AtualizarBrilhoUltimate();
+{
+    AtualizarBarraUltimate();
+    AtualizarBrilhoUltimate();
 
-        if (Input.GetKeyDown(KeyCode.R) &&
-            !usandoUltimate &&
-            cargaAtual >= cargaMaxima)
-        {
-            IniciarUltimate();
-        }
+    if (ControlesElian.Pressionou(ComandoElian.Ultimate) &&
+        !usandoUltimate &&
+        cargaAtual >= cargaMaxima)
+    {
+        IniciarUltimate();
     }
+}
 
     void IniciarUltimate()
     {

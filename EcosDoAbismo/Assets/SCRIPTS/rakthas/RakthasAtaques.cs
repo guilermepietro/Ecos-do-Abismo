@@ -101,7 +101,8 @@ public class RakthasAtaques : MonoBehaviour
     private bool elianFugindoMuito = false;
     private bool elianAproximandoMuito = false;
 
-    public bool ElianFugindoMuito => elianFugindoMuito;
+    public bool ElianFugindoMuito =>
+        elianFugindoMuito;
 
     [Header("Preparação da Corrente")]
     public float preparacaoCorrente = 0.35f;
@@ -116,9 +117,15 @@ public class RakthasAtaques : MonoBehaviour
     private float momentoAtaqueRaio;
 
     [Header("Recuperação dos Ataques")]
-    public float recuperacaoRaio = 0.8f;
-    public float recuperacaoCorrente = 1.2f;
-    public float recuperacaoSoco = 1.5f;
+    public float recuperacaoRaio = 1.1f;
+    public float recuperacaoCorrente = 1.3f;
+    public float recuperacaoSoco = 1.6f;
+
+    private bool emRecuperacao = false;
+    private float fimRecuperacao;
+
+    public bool EstaEmRecuperacao =>
+        emRecuperacao;
 
     [Header("Variação após o Raio")]
     [Range(0f, 1f)]
@@ -136,7 +143,8 @@ public class RakthasAtaques : MonoBehaviour
     private bool emPausaDecisao = false;
     private float fimPausaDecisao;
 
-    public bool EstaEmPausaDecisao => emPausaDecisao;
+    public bool EstaEmPausaDecisao =>
+        emPausaDecisao;
 
     public float esperaInicial = 1f;
 
@@ -146,31 +154,37 @@ public class RakthasAtaques : MonoBehaviour
     private RakthasMovimento movimento;
     private RakthasVida vida;
 
-    private bool perseguicaoAgressivaObrigatoria = false;
-
-    // =========================
-    // MEMÓRIA DE ATAQUES
-    // =========================
+    private bool perseguicaoAgressivaObrigatoria =
+        false;
 
     private List<string> historicoAtaques =
         new List<string>();
 
-    public bool EstaAtacando => atacando;
+    public bool EstaAtacando =>
+        atacando;
 
-    public bool PerseguicaoAgressivaObrigatoria
-        => perseguicaoAgressivaObrigatoria;
+    public bool PerseguicaoAgressivaObrigatoria =>
+        perseguicaoAgressivaObrigatoria;
 
-    public float DistanciaSoco => distanciaSoco;
+    public float DistanciaSoco =>
+        distanciaSoco;
 
-    public float DistanciaMaximaRaio
-        => distanciaMaximaRaio;
+    public float DistanciaMaximaRaio =>
+        distanciaMaximaRaio;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        movimento = GetComponent<RakthasMovimento>();
-        vida = GetComponent<RakthasVida>();
+        spriteRenderer =
+            GetComponent<SpriteRenderer>();
+
+        animator =
+            GetComponent<Animator>();
+
+        movimento =
+            GetComponent<RakthasMovimento>();
+
+        vida =
+            GetComponent<RakthasVida>();
     }
 
     private void Update()
@@ -181,14 +195,17 @@ public class RakthasAtaques : MonoBehaviour
         // PREPARAÇÃO DA CORRENTE
         // =========================
 
-        if (preparandoCorrente &&
-            Time.time >= momentoAtaqueCorrente)
+        if (
+            preparandoCorrente &&
+            Time.time >= momentoAtaqueCorrente
+        )
         {
             preparandoCorrente = false;
 
-            if (vida != null &&
-                (vida.EstaMorto ||
-                 vida.EstaTomandoDano))
+            if (
+                vida != null &&
+                vida.EstaMorto
+            )
             {
                 atacando = false;
                 return;
@@ -201,14 +218,17 @@ public class RakthasAtaques : MonoBehaviour
         // PREPARAÇÃO DO RAIO
         // =========================
 
-        if (preparandoRaio &&
-            Time.time >= momentoAtaqueRaio)
+        if (
+            preparandoRaio &&
+            Time.time >= momentoAtaqueRaio
+        )
         {
             preparandoRaio = false;
 
-            if (vida != null &&
-                (vida.EstaMorto ||
-                 vida.EstaTomandoDano))
+            if (
+                vida != null &&
+                vida.EstaMorto
+            )
             {
                 atacando = false;
                 return;
@@ -220,7 +240,7 @@ public class RakthasAtaques : MonoBehaviour
         AtualizarPosicaoHitboxRaio();
 
         // =========================
-        // VELOCIDADE VARIÁVEL DO SOCO
+        // VELOCIDADE DO SOCO
         // =========================
 
         if (atacando)
@@ -230,9 +250,10 @@ public class RakthasAtaques : MonoBehaviour
 
             if (estado.IsName("Attack3"))
             {
-                float progresso = Mathf.Clamp01(
-                    estado.normalizedTime
-                );
+                float progresso =
+                    Mathf.Clamp01(
+                        estado.normalizedTime
+                    );
 
                 animator.speed =
                     curvaVelocidadeSoco.Evaluate(
@@ -262,12 +283,38 @@ public class RakthasAtaques : MonoBehaviour
         }
 
         // =========================
+        // RECUPERAÇÃO
+        // =========================
+
+        if (emRecuperacao)
+        {
+            if (Time.time >= fimRecuperacao)
+            {
+                emRecuperacao = false;
+            }
+            else
+            {
+                animator.SetBool(
+                    "estaCorrendo",
+                    false
+                );
+
+                animator.speed = 1f;
+
+                return;
+            }
+        }
+
+        // =========================
         // PAUSA DE DECISÃO
         // =========================
 
         if (emPausaDecisao)
         {
-            if (Time.time >= fimPausaDecisao)
+            if (
+                Time.time >=
+                fimPausaDecisao
+            )
             {
                 emPausaDecisao = false;
             }
@@ -286,15 +333,21 @@ public class RakthasAtaques : MonoBehaviour
 
     private void AtualizarLeituraElian()
     {
-        if (movimento == null ||
-            movimento.elian == null)
+        if (
+            movimento == null ||
+            movimento.elian == null
+        )
             return;
 
-        if (Time.time < proximaLeituraElian)
+        if (
+            Time.time <
+            proximaLeituraElian
+        )
             return;
 
         proximaLeituraElian =
-            Time.time + intervaloLeituraElian;
+            Time.time +
+            intervaloLeituraElian;
 
         float distanciaAtual =
             Mathf.Abs(
@@ -319,14 +372,18 @@ public class RakthasAtaques : MonoBehaviour
             distanciaAtual -
             distanciaAnteriorElian;
 
-        if (diferenca <
-            -diferencaMinimaMovimento)
+        if (
+            diferenca <
+            -diferencaMinimaMovimento
+        )
         {
             movimentoAtualElian =
                 MovimentoElian.Aproximando;
         }
-        else if (diferenca >
-                 diferencaMinimaMovimento)
+        else if (
+            diferenca >
+            diferencaMinimaMovimento
+        )
         {
             movimentoAtualElian =
                 MovimentoElian.Afastando;
@@ -345,8 +402,10 @@ public class RakthasAtaques : MonoBehaviour
 
     private void AtualizarComportamentoProlongado()
     {
-        if (movimentoAtualElian ==
-            MovimentoElian.Afastando)
+        if (
+            movimentoAtualElian ==
+            MovimentoElian.Afastando
+        )
         {
             tempoAfastando +=
                 intervaloLeituraElian;
@@ -354,18 +413,25 @@ public class RakthasAtaques : MonoBehaviour
             tempoAproximando = 0f;
             tempoNeutro = 0f;
 
-            if (tempoAfastando >=
-                tempoParaConsiderarFuga)
+            if (
+                tempoAfastando >=
+                tempoParaConsiderarFuga
+            )
             {
-                elianFugindoMuito = true;
-                elianAproximandoMuito = false;
+                elianFugindoMuito =
+                    true;
+
+                elianAproximandoMuito =
+                    false;
             }
 
             return;
         }
 
-        if (movimentoAtualElian ==
-            MovimentoElian.Aproximando)
+        if (
+            movimentoAtualElian ==
+            MovimentoElian.Aproximando
+        )
         {
             tempoAproximando +=
                 intervaloLeituraElian;
@@ -373,11 +439,16 @@ public class RakthasAtaques : MonoBehaviour
             tempoAfastando = 0f;
             tempoNeutro = 0f;
 
-            if (tempoAproximando >=
-                tempoParaConsiderarAproximacao)
+            if (
+                tempoAproximando >=
+                tempoParaConsiderarAproximacao
+            )
             {
-                elianAproximandoMuito = true;
-                elianFugindoMuito = false;
+                elianAproximandoMuito =
+                    true;
+
+                elianFugindoMuito =
+                    false;
             }
 
             return;
@@ -389,12 +460,35 @@ public class RakthasAtaques : MonoBehaviour
         tempoNeutro +=
             intervaloLeituraElian;
 
-        if (tempoNeutro >=
-            tempoParaEsquecerComportamento)
+        if (
+            tempoNeutro >=
+            tempoParaEsquecerComportamento
+        )
         {
             elianFugindoMuito = false;
             elianAproximandoMuito = false;
         }
+    }
+
+    // =========================
+    // RECUPERAÇÃO
+    // =========================
+
+    private void IniciarRecuperacao(
+        float duracao
+    )
+    {
+        emRecuperacao = true;
+
+        fimRecuperacao =
+            Time.time + duracao;
+
+        animator.SetBool(
+            "estaCorrendo",
+            false
+        );
+
+        animator.speed = 1f;
     }
 
     // =========================
@@ -403,8 +497,10 @@ public class RakthasAtaques : MonoBehaviour
 
     private void TentarPausaDecisao()
     {
-        if (Random.value >
-            chancePausaDecisao)
+        if (
+            Random.value >
+            chancePausaDecisao
+        )
             return;
 
         emPausaDecisao = true;
@@ -422,22 +518,28 @@ public class RakthasAtaques : MonoBehaviour
     // =========================
 
     private void RegistrarAtaque(
-        string nomeAtaque)
+        string nomeAtaque
+    )
     {
         historicoAtaques.Add(
             nomeAtaque
         );
 
-        if (historicoAtaques.Count > 3)
+        if (
+            historicoAtaques.Count > 3
+        )
         {
             historicoAtaques.RemoveAt(0);
         }
     }
 
     private bool RepetiriaAtaque(
-        string nomeAtaque)
+        string nomeAtaque
+    )
     {
-        if (historicoAtaques.Count == 0)
+        if (
+            historicoAtaques.Count == 0
+        )
             return false;
 
         string ultimo =
@@ -449,9 +551,12 @@ public class RakthasAtaques : MonoBehaviour
     }
 
     private bool CriariaPadraoABA(
-        string nomeAtaque)
+        string nomeAtaque
+    )
     {
-        if (historicoAtaques.Count < 2)
+        if (
+            historicoAtaques.Count < 2
+        )
             return false;
 
         string penultimo =
@@ -464,8 +569,10 @@ public class RakthasAtaques : MonoBehaviour
                 historicoAtaques.Count - 1
             ];
 
-        if (penultimo == nomeAtaque &&
-            ultimo != nomeAtaque)
+        if (
+            penultimo == nomeAtaque &&
+            ultimo != nomeAtaque
+        )
         {
             return true;
         }
@@ -474,12 +581,17 @@ public class RakthasAtaques : MonoBehaviour
     }
 
     private bool AtaqueDeveSerEvitado(
-        string nomeAtaque)
+        string nomeAtaque
+    )
     {
-        if (RepetiriaAtaque(nomeAtaque))
+        if (
+            RepetiriaAtaque(nomeAtaque)
+        )
             return true;
 
-        if (CriariaPadraoABA(nomeAtaque))
+        if (
+            CriariaPadraoABA(nomeAtaque)
+        )
             return true;
 
         return false;
@@ -492,14 +604,13 @@ public class RakthasAtaques : MonoBehaviour
     private string EscolherPorPeso(
         float pesoSoco,
         float pesoCorrente,
-        float pesoRaio)
+        float pesoRaio
+    )
     {
-        // =========================
-        // MOVIMENTO INSTANTÂNEO
-        // =========================
-
-        if (movimentoAtualElian ==
-            MovimentoElian.Aproximando)
+        if (
+            movimentoAtualElian ==
+            MovimentoElian.Aproximando
+        )
         {
             pesoSoco +=
                 bonusSocoAproximando;
@@ -510,8 +621,10 @@ public class RakthasAtaques : MonoBehaviour
             pesoRaio -=
                 penalidadeRaioAproximando;
         }
-        else if (movimentoAtualElian ==
-                 MovimentoElian.Afastando)
+        else if (
+            movimentoAtualElian ==
+            MovimentoElian.Afastando
+        )
         {
             pesoRaio +=
                 bonusRaioAfastando;
@@ -522,10 +635,6 @@ public class RakthasAtaques : MonoBehaviour
             pesoSoco -=
                 penalidadeSocoAfastando;
         }
-
-        // =========================
-        // COMPORTAMENTO PROLONGADO
-        // =========================
 
         if (elianFugindoMuito)
         {
@@ -560,24 +669,29 @@ public class RakthasAtaques : MonoBehaviour
         pesoRaio =
             Mathf.Max(0f, pesoRaio);
 
-        // =========================
-        // MEMÓRIA
-        // =========================
-
-        if (AtaqueDeveSerEvitado(
-                "Ataque3"))
+        if (
+            AtaqueDeveSerEvitado(
+                "Ataque3"
+            )
+        )
         {
             pesoSoco = 0f;
         }
 
-        if (AtaqueDeveSerEvitado(
-                "Ataque1"))
+        if (
+            AtaqueDeveSerEvitado(
+                "Ataque1"
+            )
+        )
         {
             pesoCorrente = 0f;
         }
 
-        if (AtaqueDeveSerEvitado(
-                "Raio"))
+        if (
+            AtaqueDeveSerEvitado(
+                "Raio"
+            )
+        )
         {
             pesoRaio = 0f;
         }
@@ -620,9 +734,13 @@ public class RakthasAtaques : MonoBehaviour
         if (atacando)
             return false;
 
-        if (vida != null &&
-            (vida.EstaMorto ||
-             vida.EstaTomandoDano))
+        if (emRecuperacao)
+            return false;
+
+        if (
+            vida != null &&
+            vida.EstaMorto
+        )
         {
             return false;
         }
@@ -631,13 +749,15 @@ public class RakthasAtaques : MonoBehaviour
     }
 
     // =========================
-    // ESCOLHA DE ATAQUE
+    // ESCOLHER ATAQUE
     // =========================
 
     private void EscolherAtaque()
     {
-        if (movimento == null ||
-            !movimento.EstaAtivado)
+        if (
+            movimento == null ||
+            !movimento.EstaAtivado
+        )
         {
             iniciouCombate = false;
 
@@ -679,18 +799,23 @@ public class RakthasAtaques : MonoBehaviour
                 transform.position.x
             );
 
-        // =========================
-        // PERSEGUIÇÃO AGRESSIVA
-        // =========================
-
-        if (perseguicaoAgressivaObrigatoria)
+        if (
+            perseguicaoAgressivaObrigatoria
+        )
         {
-            if (Time.time < proximoAtaque)
+            if (
+                Time.time <
+                proximoAtaque
+            )
                 return;
 
-            if (distancia <= distanciaSoco)
+            if (
+                distancia <=
+                distanciaSoco
+            )
             {
-                perseguirAteCorrente = false;
+                perseguirAteCorrente =
+                    false;
 
                 string ataque =
                     EscolherPorPeso(
@@ -701,7 +826,9 @@ public class RakthasAtaques : MonoBehaviour
 
                 if (ataque != "")
                 {
-                    IniciarAtaque(ataque);
+                    IniciarAtaque(
+                        ataque
+                    );
                 }
                 else
                 {
@@ -713,12 +840,17 @@ public class RakthasAtaques : MonoBehaviour
                 return;
             }
 
-            if (perseguirAteCorrente &&
+            if (
+                perseguirAteCorrente &&
                 distancia <=
-                distanciaCorrente)
+                distanciaCorrente
+            )
             {
-                if (!AtaqueDeveSerEvitado(
-                        "Ataque1"))
+                if (
+                    !AtaqueDeveSerEvitado(
+                        "Ataque1"
+                    )
+                )
                 {
                     perseguirAteCorrente =
                         false;
@@ -737,26 +869,26 @@ public class RakthasAtaques : MonoBehaviour
             return;
         }
 
-        // =========================
-        // FORA DO ALCANCE
-        // =========================
-
-        if (distancia >
-            distanciaMaximaRaio)
+        if (
+            distancia >
+            distanciaMaximaRaio
+        )
         {
             return;
         }
 
-        if (Time.time < proximoAtaque)
+        if (
+            Time.time <
+            proximoAtaque
+        )
             return;
 
         string ataqueEscolhido = "";
 
-        // =========================
-        // CURTA DISTÂNCIA
-        // =========================
-
-        if (distancia <= distanciaSoco)
+        if (
+            distancia <=
+            distanciaSoco
+        )
         {
             ataqueEscolhido =
                 EscolherPorPeso(
@@ -765,13 +897,10 @@ public class RakthasAtaques : MonoBehaviour
                     0f
                 );
         }
-
-        // =========================
-        // MÉDIA DISTÂNCIA
-        // =========================
-
-        else if (distancia <=
-                 distanciaCorrente)
+        else if (
+            distancia <=
+            distanciaCorrente
+        )
         {
             ataqueEscolhido =
                 EscolherPorPeso(
@@ -780,11 +909,6 @@ public class RakthasAtaques : MonoBehaviour
                     pesoRaioMedio
                 );
         }
-
-        // =========================
-        // LONGA DISTÂNCIA
-        // =========================
-
         else
         {
             ataqueEscolhido =
@@ -795,7 +919,9 @@ public class RakthasAtaques : MonoBehaviour
                 );
         }
 
-        if (ataqueEscolhido != "")
+        if (
+            ataqueEscolhido != ""
+        )
         {
             IniciarAtaque(
                 ataqueEscolhido
@@ -808,24 +934,31 @@ public class RakthasAtaques : MonoBehaviour
     // =========================
 
     private void IniciarAtaque(
-        string nomeAtaque)
+        string nomeAtaque
+    )
     {
         if (!PodeAtacar())
             return;
 
-        if (movimento != null &&
-            movimento.elian != null)
+        if (
+            movimento != null &&
+            movimento.elian != null
+        )
         {
             float diferencaX =
                 movimento.elian.position.x -
                 transform.position.x;
 
-            if (diferencaX > 0.1f)
+            if (
+                diferencaX > 0.1f
+            )
             {
                 spriteRenderer.flipX =
                     false;
             }
-            else if (diferencaX < -0.1f)
+            else if (
+                diferencaX < -0.1f
+            )
             {
                 spriteRenderer.flipX =
                     true;
@@ -848,17 +981,23 @@ public class RakthasAtaques : MonoBehaviour
             false
         );
 
-        if (nomeAtaque == "Ataque1")
+        if (
+            nomeAtaque == "Ataque1"
+        )
         {
-            preparandoCorrente = true;
+            preparandoCorrente =
+                true;
 
             momentoAtaqueCorrente =
                 Time.time +
                 preparacaoCorrente;
         }
-        else if (nomeAtaque == "Raio")
+        else if (
+            nomeAtaque == "Raio"
+        )
         {
-            preparandoRaio = true;
+            preparandoRaio =
+                true;
 
             momentoAtaqueRaio =
                 Time.time +
@@ -878,14 +1017,20 @@ public class RakthasAtaques : MonoBehaviour
 
     private void AtualizarPosicaoHitboxRaio()
     {
-        if (hitboxRaio == null ||
-            spriteRenderer == null)
+        if (
+            hitboxRaio == null ||
+            spriteRenderer == null
+        )
             return;
 
         Vector3 posicao =
-            hitboxRaio.transform.localPosition;
+            hitboxRaio
+                .transform
+                .localPosition;
 
-        if (spriteRenderer.flipX)
+        if (
+            spriteRenderer.flipX
+        )
         {
             posicao.x =
                 posicaoXEsquerda;
@@ -896,15 +1041,21 @@ public class RakthasAtaques : MonoBehaviour
                 posicaoXDireita;
         }
 
-        hitboxRaio.transform.localPosition =
+        hitboxRaio
+            .transform
+            .localPosition =
             posicao;
     }
 
     public void AtivarHitboxRaio()
     {
-        if (hitboxRaio != null)
+        if (
+            hitboxRaio != null
+        )
         {
-            hitboxRaio.SetActive(true);
+            hitboxRaio.SetActive(
+                true
+            );
 
             RakthasRaioHitbox raio =
                 hitboxRaio.GetComponent<
@@ -920,9 +1071,13 @@ public class RakthasAtaques : MonoBehaviour
 
     public void DesativarHitboxRaio()
     {
-        if (hitboxRaio != null)
+        if (
+            hitboxRaio != null
+        )
         {
-            hitboxRaio.SetActive(false);
+            hitboxRaio.SetActive(
+                false
+            );
         }
     }
 
@@ -930,9 +1085,9 @@ public class RakthasAtaques : MonoBehaviour
     {
         atacando = false;
 
-        proximoAtaque =
-            Time.time +
-            recuperacaoRaio;
+        IniciarRecuperacao(
+            recuperacaoRaio
+        );
 
         perseguicaoAgressivaObrigatoria =
             true;
@@ -948,12 +1103,17 @@ public class RakthasAtaques : MonoBehaviour
 
     public void AtivarHitboxOnda()
     {
-        if (hitboxOndaDireita == null ||
-            hitboxOndaEsquerda == null)
+        if (
+            hitboxOndaDireita == null ||
+            hitboxOndaEsquerda == null
+        )
             return;
 
-        hitboxOndaDireita.enabled = false;
-        hitboxOndaEsquerda.enabled = false;
+        hitboxOndaDireita.enabled =
+            false;
+
+        hitboxOndaEsquerda.enabled =
+            false;
 
         BoxCollider2D hitboxAtual =
             spriteRenderer.flipX
@@ -980,13 +1140,17 @@ public class RakthasAtaques : MonoBehaviour
 
     public void DesativarHitboxOnda()
     {
-        if (hitboxOndaDireita != null)
+        if (
+            hitboxOndaDireita != null
+        )
         {
             hitboxOndaDireita.enabled =
                 false;
         }
 
-        if (hitboxOndaEsquerda != null)
+        if (
+            hitboxOndaEsquerda != null
+        )
         {
             hitboxOndaEsquerda.enabled =
                 false;
@@ -997,11 +1161,12 @@ public class RakthasAtaques : MonoBehaviour
     {
         atacando = false;
 
-        proximoAtaque =
-            Time.time +
-            recuperacaoCorrente;
+        IniciarRecuperacao(
+            recuperacaoCorrente
+        );
 
-        perseguirAteCorrente = false;
+        perseguirAteCorrente =
+            false;
 
         perseguicaoAgressivaObrigatoria =
             true;
@@ -1013,12 +1178,17 @@ public class RakthasAtaques : MonoBehaviour
 
     public void AtivarHitboxSoco()
     {
-        if (hitboxSocoDireita == null ||
-            hitboxSocoEsquerda == null)
+        if (
+            hitboxSocoDireita == null ||
+            hitboxSocoEsquerda == null
+        )
             return;
 
-        hitboxSocoDireita.enabled = false;
-        hitboxSocoEsquerda.enabled = false;
+        hitboxSocoDireita.enabled =
+            false;
+
+        hitboxSocoEsquerda.enabled =
+            false;
 
         BoxCollider2D hitboxAtual =
             spriteRenderer.flipX
@@ -1035,7 +1205,8 @@ public class RakthasAtaques : MonoBehaviour
             soco.ReiniciarAcertos();
         }
 
-        hitboxAtual.enabled = true;
+        hitboxAtual.enabled =
+            true;
 
         if (soco != null)
         {
@@ -1045,13 +1216,17 @@ public class RakthasAtaques : MonoBehaviour
 
     public void DesativarHitboxSoco()
     {
-        if (hitboxSocoDireita != null)
+        if (
+            hitboxSocoDireita != null
+        )
         {
             hitboxSocoDireita.enabled =
                 false;
         }
 
-        if (hitboxSocoEsquerda != null)
+        if (
+            hitboxSocoEsquerda != null
+        )
         {
             hitboxSocoEsquerda.enabled =
                 false;
@@ -1064,9 +1239,9 @@ public class RakthasAtaques : MonoBehaviour
 
         animator.speed = 1f;
 
-        proximoAtaque =
-            Time.time +
-            recuperacaoSoco;
+        IniciarRecuperacao(
+            recuperacaoSoco
+        );
 
         perseguicaoAgressivaObrigatoria =
             false;
@@ -1085,30 +1260,51 @@ public class RakthasAtaques : MonoBehaviour
         preparandoCorrente = false;
         preparandoRaio = false;
 
-        if (hitboxRaio != null)
+        emRecuperacao = false;
+        emPausaDecisao = false;
+
+        perseguicaoAgressivaObrigatoria =
+            false;
+
+        perseguirAteCorrente =
+            false;
+
+        if (
+            hitboxRaio != null
+        )
         {
-            hitboxRaio.SetActive(false);
+            hitboxRaio.SetActive(
+                false
+            );
         }
 
-        if (hitboxOndaDireita != null)
+        if (
+            hitboxOndaDireita != null
+        )
         {
             hitboxOndaDireita.enabled =
                 false;
         }
 
-        if (hitboxOndaEsquerda != null)
+        if (
+            hitboxOndaEsquerda != null
+        )
         {
             hitboxOndaEsquerda.enabled =
                 false;
         }
 
-        if (hitboxSocoDireita != null)
+        if (
+            hitboxSocoDireita != null
+        )
         {
             hitboxSocoDireita.enabled =
                 false;
         }
 
-        if (hitboxSocoEsquerda != null)
+        if (
+            hitboxSocoEsquerda != null
+        )
         {
             hitboxSocoEsquerda.enabled =
                 false;
