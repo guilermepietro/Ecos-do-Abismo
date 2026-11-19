@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class MorcegoMovimento : MonoBehaviour
@@ -17,9 +16,16 @@ public class MorcegoMovimento : MonoBehaviour
 
     private float tempoProximoAtaque;
     private bool atacando;
+
+    // Guarda a direção escolhida no início do dash
+    private float direcaoAtaque;
+
+    // Impede que o morcego continue avançando
+    // depois de atingir o Elian
+    private bool parouAtaque;
+
     private ElianVida vidaElian;
 
-    // NOVO
     private AudioMob audioMob;
 
     private void Awake()
@@ -28,7 +34,6 @@ public class MorcegoMovimento : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // NOVO
         audioMob = GetComponentInParent<AudioMob>();
     }
 
@@ -45,14 +50,7 @@ public class MorcegoMovimento : MonoBehaviour
 
         if (vidaElian != null && vidaElian.EstaMorto)
         {
-            rb.linearVelocity = new Vector2(
-                0f,
-                rb.linearVelocity.y
-            );
-
-            animator.ResetTrigger("Atacar");
-            atacando = false;
-
+            CancelarAtaque();
             return;
         }
 
@@ -67,29 +65,47 @@ public class MorcegoMovimento : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (!atacando)
+            return;
+
+        if (parouAtaque)
+            return;
+
+        // Mantém o dash enquanto a animação de ataque estiver acontecendo
+        rb.linearVelocity = new Vector2(
+            direcaoAtaque * velocidadeAtaque,
+            rb.linearVelocity.y
+        );
+    }
+
     private void TentarAtacar()
     {
         if (Time.time < tempoProximoAtaque)
             return;
 
         atacando = true;
+        parouAtaque = false;
 
         VirarParaElian();
 
+        // Guarda a direção uma única vez.
+        // O morcego não muda de direção no meio do dash.
+        direcaoAtaque = Mathf.Sign(
+            elian.position.x - transform.position.x
+        );
+
         animator.SetTrigger("Atacar");
 
-        // NOVO: som ao iniciar o ataque
         if (audioMob != null)
         {
             audioMob.TocarAtaque();
         }
 
-        float direcao = Mathf.Sign(
-            elian.position.x - transform.position.x
-        );
-
+        // Já inicia o avanço imediatamente
         rb.linearVelocity = new Vector2(
-            direcao * velocidadeAtaque,
+            direcaoAtaque * velocidadeAtaque,
             rb.linearVelocity.y
         );
 
@@ -99,6 +115,7 @@ public class MorcegoMovimento : MonoBehaviour
 
     private void VirarParaElian()
     {
+        // O sprite original do morcego olha para a esquerda
         if (elian.position.x < transform.position.x)
         {
             spriteRenderer.flipX = false;
@@ -112,6 +129,7 @@ public class MorcegoMovimento : MonoBehaviour
     public void FinalizarAtaque()
     {
         atacando = false;
+        parouAtaque = false;
 
         rb.linearVelocity = new Vector2(
             0f,
@@ -122,11 +140,14 @@ public class MorcegoMovimento : MonoBehaviour
     public void CancelarAtaque()
     {
         atacando = false;
+        parouAtaque = false;
 
         animator.ResetTrigger("Atacar");
 
         if (rb != null)
+        {
             rb.linearVelocity = Vector2.zero;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -136,17 +157,20 @@ public class MorcegoMovimento : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
+            // Para o avanço, mas deixa a animação terminar
+            parouAtaque = true;
+
             rb.linearVelocity = new Vector2(
                 0f,
                 rb.linearVelocity.y
             );
 
-            ElianVida vidaElian =
+            ElianVida vidaDoElian =
                 collision.gameObject.GetComponent<ElianVida>();
 
-            if (vidaElian != null)
+            if (vidaDoElian != null)
             {
-                vidaElian.ReceberDano(20);
+                vidaDoElian.ReceberDano(20);
             }
         }
     }
