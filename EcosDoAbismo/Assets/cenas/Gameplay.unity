@@ -447,9 +447,9 @@ GameObject:
   - component: {fileID: 32764258}
   - component: {fileID: 32764257}
   - component: {fileID: 32764256}
-  - component: {fileID: 32764255}
   - component: {fileID: 32764254}
   - component: {fileID: 32764253}
+  - component: {fileID: 32764264}
   m_Layer: 0
   m_Name: GosmaHumanoide (1)
   m_TagString: Inimigo
@@ -566,19 +566,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9754dd2b8611245a17ced2be032340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IgnorarColisaoElian
---- !u!114 &32764255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32764252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &32764256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,6 +772,28 @@ Transform:
   - {fileID: 1132818132}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &32764264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32764252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 32764262}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &32854551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1035,7 @@ GameObject:
   - component: {fileID: 33735669}
   - component: {fileID: 33735668}
   - component: {fileID: 33735667}
+  - component: {fileID: 33735677}
   m_Layer: 0
   m_Name: Golem (1)
   m_TagString: Inimigo
@@ -1354,6 +1364,28 @@ Transform:
   - {fileID: 54160659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &33735677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33735666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 33735674}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &36074823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,9 +1477,9 @@ GameObject:
   - component: {fileID: 38297827}
   - component: {fileID: 38297826}
   - component: {fileID: 38297825}
-  - component: {fileID: 38297824}
   - component: {fileID: 38297823}
   - component: {fileID: 38297822}
+  - component: {fileID: 38297833}
   m_Layer: 0
   m_Name: "Carca\xE7a (4)"
   m_TagString: Inimigo
@@ -1564,19 +1596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9754dd2b8611245a17ced2be032340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IgnorarColisaoElian
---- !u!114 &38297824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38297821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 2
 --- !u!114 &38297825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,6 +1802,28 @@ Transform:
   - {fileID: 1806600663}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &38297833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38297821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 38297830}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &45302762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,9 +1840,9 @@ GameObject:
   - component: {fileID: 45302764}
   - component: {fileID: 45302763}
   - component: {fileID: 45302769}
-  - component: {fileID: 45302770}
   - component: {fileID: 45302771}
   - component: {fileID: 45302772}
+  - component: {fileID: 45302774}
   m_Layer: 0
   m_Name: GosmaHumanoide
   m_TagString: Inimigo
@@ -2000,19 +2041,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GosmaHumanoideVida
   vidaMaxima: 100
---- !u!114 &45302770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 45302762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &45302771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2137,6 +2165,28 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!114 &45302774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45302762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 45302767}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &50745007
 GameObject:
   m_ObjectHideFlags: 0
@@ -2494,6 +2544,99 @@ Transform:
   m_Children: []
   m_Father: {fileID: 171094411}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &100251304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100251307}
+  - component: {fileID: 100251306}
+  - component: {fileID: 100251305}
+  m_Layer: 0
+  m_Name: DeadZone (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &100251305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100251304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d57dcad5c65554290bfb2fa9c6046d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadZone
+  danoMortal: 1000000
+  intervaloTentativas: 0.2
+--- !u!61 &100251306
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100251304}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -17.046234, y: -24.612041}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 28.774017, y: 4.173744}
+  m_EdgeRadius: 0
+--- !u!4 &100251307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100251304}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 212.6, y: -73.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &105332834
 GameObject:
   m_ObjectHideFlags: 0
@@ -2711,9 +2854,9 @@ GameObject:
   - component: {fileID: 124865435}
   - component: {fileID: 124865434}
   - component: {fileID: 124865433}
-  - component: {fileID: 124865432}
   - component: {fileID: 124865431}
   - component: {fileID: 124865430}
+  - component: {fileID: 124865441}
   m_Layer: 0
   m_Name: GosmaHumanoide (2)
   m_TagString: Inimigo
@@ -2830,19 +2973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9754dd2b8611245a17ced2be032340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IgnorarColisaoElian
---- !u!114 &124865432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 124865429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &124865433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3049,6 +3179,28 @@ Transform:
   - {fileID: 1658055712}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &124865441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124865429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 124865439}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &126626733
 GameObject:
   m_ObjectHideFlags: 0
@@ -3398,7 +3550,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 323.1, y: -95.5, z: 0}
+  m_LocalPosition: {x: 26.9, y: -66, z: 0}
   m_LocalScale: {x: 1.52, y: 1.52, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4677,6 +4829,7 @@ GameObject:
   - component: {fileID: 175657617}
   - component: {fileID: 175657616}
   - component: {fileID: 175657618}
+  - component: {fileID: 175657620}
   m_Layer: 0
   m_Name: "Carca\xE7a"
   m_TagString: Inimigo
@@ -4899,7 +5052,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 2
+  animator: {fileID: 175657613}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!82 &175657618
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5012,6 +5174,28 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!114 &175657620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175657608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 0}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &176296601
 GameObject:
   m_ObjectHideFlags: 0
@@ -5779,6 +5963,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 220934617}
+    - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 220934627}
   m_SourcePrefab: {fileID: 100100000, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
 --- !u!1 &220934616 stripped
 GameObject:
@@ -5912,6 +6099,33 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!95 &220934624 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3546249072720698946, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+  m_PrefabInstance: {fileID: 220934615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &220934627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220934616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 220934624}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1001 &231484200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5989,6 +6203,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2042301438}
+    - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2042301450}
   m_SourcePrefab: {fileID: 100100000, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
 --- !u!1 &238590455
 GameObject:
@@ -6006,9 +6223,9 @@ GameObject:
   - component: {fileID: 238590461}
   - component: {fileID: 238590460}
   - component: {fileID: 238590459}
-  - component: {fileID: 238590458}
   - component: {fileID: 238590457}
   - component: {fileID: 238590456}
+  - component: {fileID: 238590467}
   m_Layer: 0
   m_Name: Cerbero (2)
   m_TagString: Inimigo
@@ -6125,19 +6342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9754dd2b8611245a17ced2be032340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IgnorarColisaoElian
---- !u!114 &238590458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238590455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &238590459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6359,6 +6563,28 @@ Transform:
   - {fileID: 472468772}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &238590467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238590455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 238590465}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &240193159
 GameObject:
   m_ObjectHideFlags: 0
@@ -6408,6 +6634,7 @@ GameObject:
   - component: {fileID: 250740945}
   - component: {fileID: 250740946}
   - component: {fileID: 250740947}
+  - component: {fileID: 250740949}
   m_Layer: 0
   m_Name: Monge
   m_TagString: Inimigo
@@ -6734,6 +6961,28 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!114 &250740949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250740938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 250740943}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &251608786
 GameObject:
   m_ObjectHideFlags: 0
@@ -8096,9 +8345,9 @@ GameObject:
   - component: {fileID: 343142698}
   - component: {fileID: 343142697}
   - component: {fileID: 343142696}
-  - component: {fileID: 343142695}
   - component: {fileID: 343142694}
   - component: {fileID: 343142693}
+  - component: {fileID: 343142704}
   m_Layer: 0
   m_Name: Esqueletico (1)
   m_TagString: Inimigo
@@ -8215,19 +8464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9754dd2b8611245a17ced2be032340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IgnorarColisaoElian
---- !u!114 &343142695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343142692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &343142696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8431,6 +8667,28 @@ Transform:
   - {fileID: 1019934115}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &343142704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343142692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 343142702}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &347835571
 GameObject:
   m_ObjectHideFlags: 0
@@ -9249,8 +9507,8 @@ GameObject:
   - component: {fileID: 409949255}
   - component: {fileID: 409949254}
   - component: {fileID: 409949253}
-  - component: {fileID: 409949252}
   - component: {fileID: 409949251}
+  - component: {fileID: 409949262}
   m_Layer: 0
   m_Name: Restos (1)
   m_TagString: Inimigo
@@ -9355,19 +9613,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &409949252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 409949250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 2
 --- !u!114 &409949253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9587,6 +9832,214 @@ Transform:
   m_Children:
   - {fileID: 549728166}
   - {fileID: 105332835}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &409949262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409949250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 409949259}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
+--- !u!1 &412981709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 412981712}
+  - component: {fileID: 412981711}
+  - component: {fileID: 412981710}
+  m_Layer: 0
+  m_Name: DeadZone (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &412981710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412981709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d57dcad5c65554290bfb2fa9c6046d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadZone
+  danoMortal: 1000000
+  intervaloTentativas: 0.2
+--- !u!61 &412981711
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412981709}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.59277344, y: -0.27887344}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 21.194702, y: 1.5577469}
+  m_EdgeRadius: 0
+--- !u!4 &412981712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412981709}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 274.2, y: -71.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &419214739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 419214742}
+  - component: {fileID: 419214741}
+  - component: {fileID: 419214740}
+  m_Layer: 0
+  m_Name: DeadZone (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &419214740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419214739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d57dcad5c65554290bfb2fa9c6046d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadZone
+  danoMortal: 1000000
+  intervaloTentativas: 0.2
+--- !u!61 &419214741
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419214739}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -254.43341, y: 4.3705025}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 70.830444, y: 1.6028366}
+  m_EdgeRadius: 0
+--- !u!4 &419214742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419214739}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 212.6, y: -73.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &423461902
@@ -10021,7 +10474,7 @@ MonoBehaviour:
   distanciaPressaoLateral: 0.85
   variacaoHorizontal: 0.15
   espacamentoMinimo: 1
-  alturaNascimento: 6
+  alturaNascimento: 5
   velocidadeQueda: 7
   dano: 20
 --- !u!114 &426324713
@@ -10300,6 +10753,7 @@ GameObject:
   - component: {fileID: 454114414}
   - component: {fileID: 454114415}
   - component: {fileID: 454114416}
+  - component: {fileID: 454114418}
   m_Layer: 0
   m_Name: "cabe\xE7a de chama"
   m_TagString: Inimigo
@@ -10522,7 +10976,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
+  animator: {fileID: 454114409}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!114 &454114415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10647,6 +11110,28 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!114 &454114418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454114405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 0}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &455965801
 GameObject:
   m_ObjectHideFlags: 0
@@ -11067,6 +11552,7 @@ GameObject:
   - component: {fileID: 481361530}
   - component: {fileID: 481361529}
   - component: {fileID: 481361528}
+  - component: {fileID: 481361538}
   m_Layer: 0
   m_Name: Sombra (7)
   m_TagString: Inimigo
@@ -11397,6 +11883,28 @@ Transform:
   - {fileID: 1606893574}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &481361538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481361527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 481361535}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &484153893
 GameObject:
   m_ObjectHideFlags: 0
@@ -11536,9 +12044,9 @@ GameObject:
   - component: {fileID: 496970430}
   - component: {fileID: 496970429}
   - component: {fileID: 496970428}
-  - component: {fileID: 496970427}
   - component: {fileID: 496970426}
   - component: {fileID: 496970425}
+  - component: {fileID: 496970436}
   m_Layer: 0
   m_Name: Cerbero (1)
   m_TagString: Inimigo
@@ -11655,19 +12163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9754dd2b8611245a17ced2be032340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IgnorarColisaoElian
---- !u!114 &496970427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496970424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &496970428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11889,6 +12384,28 @@ Transform:
   - {fileID: 152463277}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &496970436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496970424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 496970434}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &498398807
 GameObject:
   m_ObjectHideFlags: 0
@@ -13126,6 +13643,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 533164658}
+    - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 533164668}
   m_SourcePrefab: {fileID: 100100000, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
 --- !u!1 &533164657 stripped
 GameObject:
@@ -13259,6 +13779,33 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!95 &533164665 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3546249072720698946, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+  m_PrefabInstance: {fileID: 533164656}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &533164668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533164657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 533164665}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &539659543
 GameObject:
   m_ObjectHideFlags: 0
@@ -17940,6 +18487,7 @@ GameObject:
   - component: {fileID: 547893223}
   - component: {fileID: 547893222}
   - component: {fileID: 547893221}
+  - component: {fileID: 547893231}
   m_Layer: 0
   m_Name: Sombra (3)
   m_TagString: Inimigo
@@ -18270,6 +18818,28 @@ Transform:
   - {fileID: 1576252470}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &547893231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547893220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 547893228}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &549728165
 GameObject:
   m_ObjectHideFlags: 0
@@ -18502,9 +19072,9 @@ GameObject:
   - component: {fileID: 573414012}
   - component: {fileID: 573414011}
   - component: {fileID: 573414010}
-  - component: {fileID: 573414009}
   - component: {fileID: 573414008}
   - component: {fileID: 573414007}
+  - component: {fileID: 573414019}
   m_Layer: 0
   m_Name: "cabe\xE7a de chama (1)"
   m_TagString: Inimigo
@@ -18621,19 +19191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9754dd2b8611245a17ced2be032340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IgnorarColisaoElian
---- !u!114 &573414009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573414006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &573414010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18852,6 +19409,28 @@ Transform:
   - {fileID: 1253477143}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &573414019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573414006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 573414016}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &575285271
 GameObject:
   m_ObjectHideFlags: 0
@@ -20402,9 +20981,9 @@ GameObject:
   - component: {fileID: 660343767}
   - component: {fileID: 660343758}
   - component: {fileID: 660343763}
-  - component: {fileID: 660343764}
   - component: {fileID: 660343765}
   - component: {fileID: 660343766}
+  - component: {fileID: 660343768}
   m_Layer: 0
   m_Name: Esqueletico
   m_TagString: Inimigo
@@ -20600,19 +21179,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EsqueleticoVida
   vidaMaxima: 100
---- !u!114 &660343764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 660343756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &660343765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20737,6 +21303,28 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!114 &660343768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660343756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 660343762}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &679618805
 GameObject:
   m_ObjectHideFlags: 0
@@ -20901,9 +21489,9 @@ GameObject:
   - component: {fileID: 686700185}
   - component: {fileID: 686700184}
   - component: {fileID: 686700183}
-  - component: {fileID: 686700182}
   - component: {fileID: 686700181}
   - component: {fileID: 686700180}
+  - component: {fileID: 686700191}
   m_Layer: 0
   m_Name: Esqueletico (2)
   m_TagString: Inimigo
@@ -21020,19 +21608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9754dd2b8611245a17ced2be032340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IgnorarColisaoElian
---- !u!114 &686700182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686700179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &686700183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21236,6 +21811,28 @@ Transform:
   - {fileID: 2130192107}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &686700191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686700179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 686700189}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &699485620
 GameObject:
   m_ObjectHideFlags: 0
@@ -22157,6 +22754,7 @@ GameObject:
   - component: {fileID: 751650855}
   - component: {fileID: 751650854}
   - component: {fileID: 751650853}
+  - component: {fileID: 751650863}
   m_Layer: 0
   m_Name: Sombra (5)
   m_TagString: Inimigo
@@ -22487,6 +23085,28 @@ Transform:
   - {fileID: 1396711453}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &751650863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751650852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 751650860}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1001 &754948329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22548,6 +23168,99 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a88e219d4da8d7346848043fc4e9e264, type: 3}
+--- !u!1 &758404909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 758404912}
+  - component: {fileID: 758404911}
+  - component: {fileID: 758404910}
+  m_Layer: 0
+  m_Name: DeadZone (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &758404910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758404909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d57dcad5c65554290bfb2fa9c6046d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadZone
+  danoMortal: 1000000
+  intervaloTentativas: 0.2
+--- !u!61 &758404911
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758404909}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -60.59848, y: -0.27887344}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 5.0101013, y: 1.5577469}
+  m_EdgeRadius: 0
+--- !u!4 &758404912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758404909}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 212.6, y: -73.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &760110054
 GameObject:
   m_ObjectHideFlags: 0
@@ -23717,6 +24430,33 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!95 &800540503 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3546249072720698946, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+  m_PrefabInstance: {fileID: 1057686836501888601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &800540506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800540488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 800540503}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &802313288
 GameObject:
   m_ObjectHideFlags: 0
@@ -23978,8 +24718,8 @@ GameObject:
   - component: {fileID: 826836621}
   - component: {fileID: 826836620}
   - component: {fileID: 826836619}
-  - component: {fileID: 826836618}
   - component: {fileID: 826836617}
+  - component: {fileID: 826836628}
   m_Layer: 0
   m_Name: Restos (3)
   m_TagString: Inimigo
@@ -24084,19 +24824,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &826836618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 826836616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 2
 --- !u!114 &826836619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24318,6 +25045,28 @@ Transform:
   - {fileID: 699485621}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &826836628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826836616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 826836625}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &828809784
 GameObject:
   m_ObjectHideFlags: 0
@@ -24947,9 +25696,9 @@ GameObject:
   - component: {fileID: 911869526}
   - component: {fileID: 911869525}
   - component: {fileID: 911869524}
-  - component: {fileID: 911869523}
   - component: {fileID: 911869522}
   - component: {fileID: 911869521}
+  - component: {fileID: 911869532}
   m_Layer: 0
   m_Name: "Carca\xE7a (1)"
   m_TagString: Inimigo
@@ -25066,19 +25815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9754dd2b8611245a17ced2be032340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IgnorarColisaoElian
---- !u!114 &911869523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 911869520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 2
 --- !u!114 &911869524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25285,6 +26021,28 @@ Transform:
   - {fileID: 828809785}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &911869532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911869520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 911869529}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &912598651
 GameObject:
   m_ObjectHideFlags: 0
@@ -25730,6 +26488,99 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1002067646}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &937901780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 937901783}
+  - component: {fileID: 937901782}
+  - component: {fileID: 937901781}
+  m_Layer: 0
+  m_Name: DeadZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &937901781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937901780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d57dcad5c65554290bfb2fa9c6046d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadZone
+  danoMortal: 1000000
+  intervaloTentativas: 0.2
+--- !u!61 &937901782
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937901780}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 4.6943665, y: -0.27887344}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 12.991516, y: 1.5577469}
+  m_EdgeRadius: 0
+--- !u!4 &937901783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937901780}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 299.18, y: -96.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &938035692
 GameObject:
@@ -26690,6 +27541,7 @@ GameObject:
   - component: {fileID: 1002067639}
   - component: {fileID: 1002067638}
   - component: {fileID: 1002067637}
+  - component: {fileID: 1002067647}
   m_Layer: 0
   m_Name: Monge (1)
   m_TagString: Inimigo
@@ -27016,6 +27868,28 @@ Transform:
   - {fileID: 934448908}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1002067647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002067636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1002067644}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1008808880
 GameObject:
   m_ObjectHideFlags: 0
@@ -27979,6 +28853,7 @@ GameObject:
   - component: {fileID: 1049651137}
   - component: {fileID: 1049651138}
   - component: {fileID: 1049651139}
+  - component: {fileID: 1049651141}
   m_Layer: 0
   m_Name: Sombra
   m_TagString: Inimigo
@@ -28309,6 +29184,28 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!114 &1049651141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049651130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1049651134}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1054302998
 GameObject:
   m_ObjectHideFlags: 0
@@ -28464,6 +29361,7 @@ GameObject:
   - component: {fileID: 1055608246}
   - component: {fileID: 1055608248}
   - component: {fileID: 1055608249}
+  - component: {fileID: 1055608251}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Inimigo
@@ -28792,6 +29690,28 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!114 &1055608251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055608239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1055608243}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1056624671
 GameObject:
   m_ObjectHideFlags: 0
@@ -29092,6 +30012,33 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!95 &1066255489 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3546249072720698946, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+  m_PrefabInstance: {fileID: 1960982782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1066255492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066255479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1066255489}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1067011454
 GameObject:
   m_ObjectHideFlags: 0
@@ -30588,6 +31535,7 @@ GameObject:
   - component: {fileID: 1133022434}
   - component: {fileID: 1133022435}
   - component: {fileID: 1133022436}
+  - component: {fileID: 1133022438}
   m_Layer: 0
   m_Name: rastejador
   m_TagString: Inimigo
@@ -30919,6 +31867,28 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!114 &1133022438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133022427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1133022432}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1138911656
 GameObject:
   m_ObjectHideFlags: 0
@@ -32112,6 +33082,7 @@ GameObject:
   - component: {fileID: 1212647792}
   - component: {fileID: 1212647791}
   - component: {fileID: 1212647790}
+  - component: {fileID: 1212647801}
   m_Layer: 0
   m_Name: "Carca\xE7a (3)"
   m_TagString: Inimigo
@@ -32240,7 +33211,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 2
+  animator: {fileID: 1212647798}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!114 &1212647793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32447,6 +33427,28 @@ Transform:
   - {fileID: 457208874}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1212647801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212647789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 0}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1213929304
 GameObject:
   m_ObjectHideFlags: 0
@@ -32542,8 +33544,8 @@ GameObject:
   - component: {fileID: 1220198801}
   - component: {fileID: 1220198800}
   - component: {fileID: 1220198799}
-  - component: {fileID: 1220198798}
   - component: {fileID: 1220198797}
+  - component: {fileID: 1220198808}
   m_Layer: 0
   m_Name: Restos (2)
   m_TagString: Inimigo
@@ -32648,19 +33650,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1220198798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1220198796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 2
 --- !u!114 &1220198799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32882,6 +33871,28 @@ Transform:
   - {fileID: 1026781910}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1220198808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220198796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1220198805}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1228715506
 GameObject:
   m_ObjectHideFlags: 0
@@ -34353,9 +35364,9 @@ GameObject:
   - component: {fileID: 1289206294}
   - component: {fileID: 1289206298}
   - component: {fileID: 1289206299}
-  - component: {fileID: 1289206300}
   - component: {fileID: 1289206301}
   - component: {fileID: 1289206302}
+  - component: {fileID: 1289206304}
   m_Layer: 0
   m_Name: Estatua
   m_TagString: Inimigo
@@ -34528,19 +35539,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.007352948, y: 0.5}
   m_Size: {x: 0.5147059, y: 0.9411764}
   m_Direction: 0
---- !u!114 &1289206300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289206293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &1289206301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34665,6 +35663,28 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!114 &1289206304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289206293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1289206295}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1291679574
 GameObject:
   m_ObjectHideFlags: 0
@@ -34761,6 +35781,7 @@ GameObject:
   - component: {fileID: 1297334511}
   - component: {fileID: 1297334510}
   - component: {fileID: 1297334509}
+  - component: {fileID: 1297334519}
   m_Layer: 0
   m_Name: rastejador (1)
   m_TagString: Inimigo
@@ -35092,6 +36113,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1297334519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297334508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1297334517}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1299316446
 GameObject:
   m_ObjectHideFlags: 0
@@ -36231,6 +37274,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1391399578}
+    - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1391399588}
   m_SourcePrefab: {fileID: 100100000, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
 --- !u!1 &1391399577 stripped
 GameObject:
@@ -36364,6 +37410,33 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!95 &1391399585 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3546249072720698946, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+  m_PrefabInstance: {fileID: 1391399576}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1391399588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391399577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1391399585}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1396711451
 GameObject:
   m_ObjectHideFlags: 0
@@ -37102,9 +38175,9 @@ GameObject:
   - component: {fileID: 1452001962}
   - component: {fileID: 1452001967}
   - component: {fileID: 1452001963}
-  - component: {fileID: 1452001964}
   - component: {fileID: 1452001965}
   - component: {fileID: 1452001966}
+  - component: {fileID: 1452001968}
   m_Layer: 0
   m_Name: Cerbero
   m_TagString: Inimigo
@@ -37318,19 +38391,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CerberoVida
   vidaMaxima: 100
   tempoDano: 0.5
---- !u!114 &1452001964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452001955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &1452001965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37455,6 +38515,28 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!114 &1452001968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452001955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1452001960}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1457817270
 GameObject:
   m_ObjectHideFlags: 0
@@ -38079,7 +39161,7 @@ Transform:
   m_GameObject: {fileID: 1514097464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.79, y: 1.29, z: 0}
+  m_LocalPosition: {x: 1.79, y: 1.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38102,7 +39184,7 @@ MonoBehaviour:
   vidaSalenthra: {fileID: 1573473955}
   elian: {fileID: 142652950}
   larguraArea: 20
-  quantidadeEspadas: 50
+  quantidadeEspadas: 40
   intervaloEntreEspadas: 0.2
   intervaloEspadaMira: 3
   variacaoMira: 0.5
@@ -38245,6 +39327,7 @@ GameObject:
   - component: {fileID: 1523560727}
   - component: {fileID: 1523560726}
   - component: {fileID: 1523560725}
+  - component: {fileID: 1523560736}
   m_Layer: 0
   m_Name: "Carca\xE7a (2)"
   m_TagString: Inimigo
@@ -38373,7 +39456,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 2
+  animator: {fileID: 1523560733}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!114 &1523560728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38580,6 +39672,28 @@ Transform:
   - {fileID: 1160803235}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1523560736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523560724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 0}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1523860833
 GameObject:
   m_ObjectHideFlags: 0
@@ -38950,6 +40064,7 @@ GameObject:
   - component: {fileID: 1549095574}
   - component: {fileID: 1549095573}
   - component: {fileID: 1549095572}
+  - component: {fileID: 1549095582}
   m_Layer: 0
   m_Name: Golem (2)
   m_TagString: Inimigo
@@ -39278,6 +40393,28 @@ Transform:
   - {fileID: 1056624674}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1549095582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549095571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1549095579}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1557694430
 GameObject:
   m_ObjectHideFlags: 0
@@ -42020,6 +43157,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1672302221}
+    - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1672302231}
   m_SourcePrefab: {fileID: 100100000, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
 --- !u!1 &1672302220 stripped
 GameObject:
@@ -42153,6 +43293,33 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!95 &1672302228 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3546249072720698946, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+  m_PrefabInstance: {fileID: 1672302219}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1672302231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672302220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1672302228}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1676747350
 GameObject:
   m_ObjectHideFlags: 0
@@ -42360,6 +43527,7 @@ GameObject:
   - component: {fileID: 1683190127}
   - component: {fileID: 1683190126}
   - component: {fileID: 1683190125}
+  - component: {fileID: 1683190135}
   m_Layer: 0
   m_Name: Sombra (2)
   m_TagString: Inimigo
@@ -42690,6 +43858,28 @@ Transform:
   - {fileID: 368570473}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1683190135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683190124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1683190132}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1697501548
 GameObject:
   m_ObjectHideFlags: 0
@@ -42825,6 +44015,99 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 48.5, y: 29.8, z: 0}
   m_LocalScale: {x: 45.779465, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1697704149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1697704152}
+  - component: {fileID: 1697704151}
+  - component: {fileID: 1697704150}
+  m_Layer: 0
+  m_Name: DeadZone (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1697704150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697704149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d57dcad5c65554290bfb2fa9c6046d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadZone
+  danoMortal: 1000000
+  intervaloTentativas: 0.2
+--- !u!61 &1697704151
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697704149}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -6.7789917, y: -0.27887344}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 35.938232, y: 1.5577469}
+  m_EdgeRadius: 0
+--- !u!4 &1697704152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697704149}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 212.6, y: -73.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -45176,8 +46459,8 @@ GameObject:
   - component: {fileID: 1851553449}
   - component: {fileID: 1851553439}
   - component: {fileID: 1851553445}
-  - component: {fileID: 1851553446}
   - component: {fileID: 1851553448}
+  - component: {fileID: 1851553450}
   m_Layer: 0
   m_Name: Morcego
   m_TagString: Inimigo
@@ -45376,19 +46659,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MorcegoVida
   vidaMaxima: 100
   tempoDano: 0.5
---- !u!114 &1851553446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851553438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!82 &1851553448
 AudioSource:
   m_ObjectHideFlags: 0
@@ -45501,6 +46771,28 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!114 &1851553450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851553438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1851553443}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1858178819
 GameObject:
   m_ObjectHideFlags: 0
@@ -45656,6 +46948,7 @@ GameObject:
   - component: {fileID: 1865841216}
   - component: {fileID: 1865841215}
   - component: {fileID: 1865841214}
+  - component: {fileID: 1865841224}
   m_Layer: 0
   m_Name: Sombra (1)
   m_TagString: Inimigo
@@ -45986,6 +47279,28 @@ Transform:
   - {fileID: 208299536}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1865841224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865841213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1865841221}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1870283592
 GameObject:
   m_ObjectHideFlags: 0
@@ -46588,6 +47903,7 @@ GameObject:
   - component: {fileID: 1898167136}
   - component: {fileID: 1898167135}
   - component: {fileID: 1898167134}
+  - component: {fileID: 1898167144}
   m_Layer: 0
   m_Name: Sombra (4)
   m_TagString: Inimigo
@@ -46918,6 +48234,28 @@ Transform:
   - {fileID: 590421404}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1898167144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898167133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1898167141}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1900435374
 GameObject:
   m_ObjectHideFlags: 0
@@ -48010,6 +49348,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1066255480}
+    - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1066255492}
   m_SourcePrefab: {fileID: 100100000, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
 --- !u!1 &1963812398
 GameObject:
@@ -48027,8 +49368,8 @@ GameObject:
   - component: {fileID: 1963812403}
   - component: {fileID: 1963812402}
   - component: {fileID: 1963812401}
-  - component: {fileID: 1963812400}
   - component: {fileID: 1963812399}
+  - component: {fileID: 1963812409}
   m_Layer: 0
   m_Name: Morcego (1)
   m_TagString: Inimigo
@@ -48133,19 +49474,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1963812400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963812398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 3
 --- !u!114 &1963812401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48352,6 +49680,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1963812409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963812398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 1963812407}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &1966295769
 GameObject:
   m_ObjectHideFlags: 0
@@ -48944,8 +50294,8 @@ GameObject:
   - component: {fileID: 2003976953}
   - component: {fileID: 2003976959}
   - component: {fileID: 2003976960}
-  - component: {fileID: 2003976961}
   - component: {fileID: 2003976962}
+  - component: {fileID: 2003976964}
   m_Layer: 0
   m_Name: Restos
   m_TagString: Inimigo
@@ -49159,19 +50509,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RestosVida
   vidaMaxima: 100
---- !u!114 &2003976961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003976952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8277faaa86c3ef4b927a9b8ca2cb86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
-  tempoParaDesaparecer: 2
 --- !u!82 &2003976962
 AudioSource:
   m_ObjectHideFlags: 0
@@ -49284,6 +50621,28 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!114 &2003976964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003976952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 2003976956}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &2010063893
 GameObject:
   m_ObjectHideFlags: 0
@@ -796430,6 +797789,33 @@ MonoBehaviour:
   somAtaque: {fileID: 8300000, guid: 4b8eddda58a34934195df372ab430b58, type: 3}
   somDano: {fileID: 8300000, guid: 9d53776ee6975744dbafa3613dc18748, type: 3}
   somMorte: {fileID: 8300000, guid: a626134b3c1777e468be006ff3a8d926, type: 3}
+--- !u!95 &2042301447 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3546249072720698946, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+  m_PrefabInstance: {fileID: 231484200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2042301450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042301437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 2042301447}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &2045924372
 GameObject:
   m_ObjectHideFlags: 0
@@ -796699,6 +798085,99 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &2056960491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2056960494}
+  - component: {fileID: 2056960493}
+  - component: {fileID: 2056960492}
+  m_Layer: 0
+  m_Name: DeadZone (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2056960492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056960491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d57dcad5c65554290bfb2fa9c6046d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadZone
+  danoMortal: 1000000
+  intervaloTentativas: 0.2
+--- !u!61 &2056960493
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056960491}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -117.44235, y: 4.215763}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 76.65985, y: 1.2933578}
+  m_EdgeRadius: 0
+--- !u!4 &2056960494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056960491}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 212.6, y: -73.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2059395981
 GameObject:
   m_ObjectHideFlags: 0
@@ -798756,6 +800235,7 @@ GameObject:
   - component: {fileID: 2139069607}
   - component: {fileID: 2139069606}
   - component: {fileID: 2139069605}
+  - component: {fileID: 2139069615}
   m_Layer: 0
   m_Name: Sombra (6)
   m_TagString: Inimigo
@@ -799086,6 +800566,28 @@ Transform:
   - {fileID: 938035694}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2139069615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139069604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0744fa52a9436e34d8d5208f78c220b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesaparecerAoMorrer
+  animator: {fileID: 2139069612}
+  tempoExtra: 0.2
+  tempoSemAnimacao: 1
+  nomesMorte:
+  - Morte
+  - Morrer
+  - Morrendo
+  - Death
+  - Dead
+  - Die
 --- !u!1 &2139630299
 GameObject:
   m_ObjectHideFlags: 0
@@ -799286,6 +800788,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 800540496}
+    - targetCorrespondingSourceObject: {fileID: 7588911939537747460, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 800540506}
   m_SourcePrefab: {fileID: 100100000, guid: 3574b68a9fc65104d81863b26c7376d5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -799509,3 +801014,10 @@ SceneRoots:
   - {fileID: 2022863373}
   - {fileID: 1045526992}
   - {fileID: 194620739}
+  - {fileID: 937901783}
+  - {fileID: 412981712}
+  - {fileID: 1697704152}
+  - {fileID: 758404912}
+  - {fileID: 2056960494}
+  - {fileID: 419214742}
+  - {fileID: 100251307}
