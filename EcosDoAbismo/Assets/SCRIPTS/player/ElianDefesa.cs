@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System.Collections;
 
@@ -6,6 +5,7 @@ public class ElianDefesa : MonoBehaviour
 {
     private Animator animator;
     private ElianMovimento movimento;
+    private ElianAtaque ataque;
 
     private bool defendendo = false;
 
@@ -18,8 +18,9 @@ public class ElianDefesa : MonoBehaviour
     [Header("Escudo")]
     public int vidaMaximaEscudo = 50;
     private int vidaEscudo;
+
     [Header("Quebra do Escudo")]
-public int danoAoQuebrar = 5;
+    public int danoAoQuebrar = 5;
 
     [Header("Recarga do Escudo")]
     public float tempoRecargaEscudo = 3f;
@@ -33,6 +34,8 @@ public int danoAoQuebrar = 5;
     {
         animator = GetComponent<Animator>();
         movimento = GetComponent<ElianMovimento>();
+        ataque = GetComponent<ElianAtaque>();
+
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -46,7 +49,6 @@ public int danoAoQuebrar = 5;
             IniciarDefesa();
         }
 
-        // Finaliza quando a tecla configurada é solta.
         if (defendendo &&
             !ControlesElian.Segurando(ComandoElian.Defender))
         {
@@ -61,11 +63,28 @@ public int danoAoQuebrar = 5;
             return;
         }
 
+        // CANCELA O COMBO ANTES DE ENTRAR NA DEFESA
+        if (ataque != null &&
+            ataque.EstaNoCombo())
+        {
+            ataque.CancelarComboPorDefesa();
+        }
+
         defendendo = true;
+
+        rb.linearVelocity = new Vector2(
+            0f,
+            rb.linearVelocity.y
+        );
 
         movimento.podeMover = false;
 
         animator.SetFloat("velocidade", 0);
+
+        animator.ResetTrigger("Atacar");
+        animator.ResetTrigger("Ataque2");
+        animator.ResetTrigger("Ataque3");
+
         animator.SetBool("Defendendo", true);
     }
 
@@ -98,7 +117,9 @@ public int danoAoQuebrar = 5;
         {
             animator.SetTrigger("ImpactoEscudo");
 
-            Debug.Log("Vida do escudo: " + vidaEscudo);
+            Debug.Log(
+                "Vida do escudo: " + vidaEscudo
+            );
 
             return 0;
         }
@@ -114,7 +135,8 @@ public int danoAoQuebrar = 5;
 
     public void ReceberImpactoEscudo()
     {
-        float direcao = spriteRenderer.flipX ? 1f : -1f;
+        float direcao =
+            spriteRenderer.flipX ? 1f : -1f;
 
         rb.linearVelocity = new Vector2(
             direcao * forcaKnockbackEscudo,
@@ -131,12 +153,16 @@ public int danoAoQuebrar = 5;
 
         movimento.podeMover = true;
 
-        StartCoroutine(RecarregarEscudo());
+        StartCoroutine(
+            RecarregarEscudo()
+        );
     }
 
     IEnumerator RecarregarEscudo()
     {
-        yield return new WaitForSeconds(tempoRecargaEscudo);
+        yield return new WaitForSeconds(
+            tempoRecargaEscudo
+        );
 
         vidaEscudo = vidaMaximaEscudo;
         escudoDisponivel = true;

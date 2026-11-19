@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class RakthasVida : MonoBehaviour
@@ -121,6 +122,9 @@ public class RakthasVida : MonoBehaviour
     private void Morrer()
     {
         morto = true;
+
+        // NOVO: libera os teletransportes.
+        Teletransporte.LiberarBloqueio();
 
         if (ataques != null)
         {

@@ -149,7 +149,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b36a59cefe8984d4a86348cb95e5e8fb, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -538,6 +538,7 @@ MonoBehaviour:
   nomeCenaMenuPrincipal: Menu
   fadeEntrada: {fileID: 1836782936}
   duracaoFadeEntrada: 1.5
+  duracaoFadeSaida: 0.8
 --- !u!4 &1663005605
 Transform:
   m_ObjectHideFlags: 0

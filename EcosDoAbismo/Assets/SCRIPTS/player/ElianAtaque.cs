@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System.Collections;
 
@@ -9,6 +8,7 @@ public class ElianAtaque : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private ElianColeta coleta;
+    private ElianDefesa defesa;
 
     private bool atacando = false;
     private bool comboAtaque2 = false;
@@ -50,6 +50,7 @@ public class ElianAtaque : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         coleta = GetComponent<ElianColeta>();
+        defesa = GetComponent<ElianDefesa>();
 
         if (audioAtaques != null)
         {
@@ -62,6 +63,12 @@ public class ElianAtaque : MonoBehaviour
     {
         // BLOQUEIA ATAQUES DURANTE A VIAGEM ENTRE ECOS
         if (coleta != null && coleta.MenuViagemAberto)
+        {
+            return;
+        }
+
+        // BLOQUEIA ATAQUES ENQUANTO DEFENDE
+        if (defesa != null && defesa.EstaDefendendo())
         {
             return;
         }
@@ -138,6 +145,23 @@ public class ElianAtaque : MonoBehaviour
             return;
         }
 
+        CancelarCombo();
+    }
+
+    // CANCELA COMBO PARA DEFENDER
+    public void CancelarComboPorDefesa()
+    {
+        if (!atacando)
+        {
+            return;
+        }
+
+        CancelarCombo();
+    }
+
+    // CANCELAMENTO CENTRAL DO COMBO
+    private void CancelarCombo()
+    {
         atacando = false;
         comboAtaque2 = false;
         comboAtaque3 = false;
@@ -294,6 +318,7 @@ public class ElianAtaque : MonoBehaviour
         comboAtaque2 = false;
         comboAtaque3 = false;
 
+        animator.ResetTrigger("Atacar");
         animator.ResetTrigger("Ataque2");
         animator.ResetTrigger("Ataque3");
 
@@ -390,7 +415,6 @@ public class ElianAtaque : MonoBehaviour
         ReproduzirSom(somAtaqueArea);
     }
 
-    // Chamado pela hitbox quando houver acerto real.
     public void TocarSomImpactoEspada()
     {
         ReproduzirSom(somImpactoEspada);

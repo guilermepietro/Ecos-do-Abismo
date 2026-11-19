@@ -310,6 +310,9 @@ public class IshkharothVida : MonoBehaviour
         morto = true;
         morteFinalizada = false;
 
+        // NOVO: libera os teletransportes.
+        Teletransporte.LiberarBloqueio();
+
         Debug.Log(
             "Ishkharoth: morte definitiva iniciada!"
         );

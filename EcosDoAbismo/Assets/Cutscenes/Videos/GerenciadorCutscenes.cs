@@ -113,7 +113,6 @@ public class GerenciadorCutscenes : MonoBehaviour
         }
     }
 
-    // Reproducao normal das cutscenes.
     public bool Reproduzir(
         string id, Action acaoFinal = null)
     {
@@ -139,7 +138,6 @@ public class GerenciadorCutscenes : MonoBehaviour
         return true;
     }
 
-    // NOVO: reproduz o encerramento e troca de cena.
     public bool ReproduzirFinal(
         string id, string cenaDestino)
     {
@@ -192,7 +190,6 @@ public class GerenciadorCutscenes : MonoBehaviour
         Time.timeScale = 0f;
         fundoPreto.raycastTarget = true;
 
-        // Escurece o gameplay.
         float tempoEntradaPreto = ehFinal
             ? tempoEscurecerAntesDoFinal
             : tempoEscurecer;
@@ -261,10 +258,8 @@ public class GerenciadorCutscenes : MonoBehaviour
             AudioListener.pause = true;
 
         imagemVideo.enabled = true;
-
         reprodutor.Play();
 
-        // Fade de entrada do video.
         float tempoEntradaVideo = ehFinal
             ? tempoRevelarVideoFinal
             : tempoRevelarVideo;
@@ -272,7 +267,6 @@ public class GerenciadorCutscenes : MonoBehaviour
         yield return Fade(
             1f, 0f, tempoEntradaVideo);
 
-        // NOVO: tratamento exclusivo do video final.
         if (ehFinal)
         {
             bool fadeSaidaIniciado = false;
@@ -282,8 +276,6 @@ public class GerenciadorCutscenes : MonoBehaviour
                 double duracao = reprodutor.length;
                 double tempoAtual = reprodutor.time;
 
-                // Comeca o fade nos ultimos instantes
-                // para nao cortar o fim do video.
                 if (!fadeSaidaIniciado &&
                     duracao > 0 &&
                     tempoAtual >=
@@ -298,8 +290,6 @@ public class GerenciadorCutscenes : MonoBehaviour
                 yield return null;
             }
 
-            // Garantia caso o tempo do video
-            // nao tenha permitido antecipar o fade.
             if (!fadeSaidaIniciado)
             {
                 yield return Fade(
@@ -314,13 +304,11 @@ public class GerenciadorCutscenes : MonoBehaviour
             if (!videoFalhou)
                 cutscene.aoTerminar?.Invoke();
 
-            // Nao volta ao gameplay.
-            // Vai diretamente para a tela final.
+            // NOVO: passa pela cena de carregamento.
             CarregarCenaFinal(cenaDestino);
             yield break;
         }
 
-        // Funcionamento original das outras cutscenes.
         while (!videoTerminou && !videoFalhou)
             yield return null;
 
@@ -344,7 +332,7 @@ public class GerenciadorCutscenes : MonoBehaviour
         RestaurarGameplay();
     }
 
-    // NOVO: troca de cena mantendo a tela preta.
+    // ALTERADO: usa o carregamento original do jogo.
     private void CarregarCenaFinal(string cenaDestino)
     {
         Time.timeScale = 1f;
@@ -352,7 +340,14 @@ public class GerenciadorCutscenes : MonoBehaviour
 
         EmReproducao = false;
 
-        SceneManager.LoadScene(cenaDestino);
+        GerenciadorCarregamento.proximaCena = cenaDestino;
+
+        Debug.Log(
+            "Carregamento iniciado. Destino: " +
+            cenaDestino
+        );
+
+        SceneManager.LoadScene("Carregamento");
     }
 
     private IEnumerator Fade(

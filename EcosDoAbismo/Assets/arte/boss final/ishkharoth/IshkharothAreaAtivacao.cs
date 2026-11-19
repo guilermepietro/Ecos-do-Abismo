@@ -108,6 +108,11 @@ public class IshkharothAreaAtivacao : MonoBehaviour
 
         movimento.AtivarCombate();
 
+        // NOVO: bloqueia teletransportes.
+        Teletransporte.BloquearDuranteCombate(
+            movimento.gameObject
+        );
+
         if (barraVidaIshkharoth != null)
             barraVidaIshkharoth.Exibir();
 

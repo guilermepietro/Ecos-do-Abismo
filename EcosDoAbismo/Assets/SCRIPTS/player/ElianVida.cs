@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -99,12 +100,6 @@ public class ElianVida : MonoBehaviour
         AtualizarBarraVidaSuave();
 
         AtualizarDrenagemSegundaExistencia();
-
-        // Atalho de teste que ja existia.
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            ReceberDano(20);
-        }
     }
 
     public void ReceberDano(int dano)
@@ -245,6 +240,10 @@ public class ElianVida : MonoBehaviour
             return;
 
         EstaMorto = true;
+
+        // NOVO: libera os teletransportes.
+        Teletransporte.LiberarBloqueio();
+
         segundaExistenciaAtiva = false;
 
         movimento.podeMover = false;

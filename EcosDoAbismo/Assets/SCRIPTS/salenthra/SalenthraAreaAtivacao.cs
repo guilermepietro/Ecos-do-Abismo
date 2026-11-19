@@ -52,6 +52,11 @@ public class SalenthraAreaAtivacao : MonoBehaviour
 
         movimento.Ativar();
 
+        // NOVO: bloqueia teletransportes.
+        Teletransporte.BloquearDuranteCombate(
+            movimento.gameObject
+        );
+
         if (barraVidaSalenthra != null)
             barraVidaSalenthra.Exibir();
 

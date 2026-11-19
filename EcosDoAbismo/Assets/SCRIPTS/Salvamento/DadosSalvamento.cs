@@ -33,6 +33,7 @@ public class DadosSalvamento
     public bool historiaRakthasContada = false;
     public bool historiaSalenthraContada = false;
     public bool historiaGemeosContada = false;
+    public bool primeiroContatoAnciaoConcluido = false;
 
     public List<string> bencaosRecebidas =
         new List<string>();

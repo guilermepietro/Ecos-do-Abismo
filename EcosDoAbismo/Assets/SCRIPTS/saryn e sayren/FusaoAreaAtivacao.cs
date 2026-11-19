@@ -89,6 +89,11 @@ public class FusaoAreaAtivacao : MonoBehaviour
 
         movimento.AtivarCombate();
 
+        // NOVO: bloqueia teletransportes.
+        Teletransporte.BloquearDuranteCombate(
+            movimento.gameObject
+        );
+
         if (barraVidaFusao != null)
             barraVidaFusao.Exibir();
 

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class VoragulVida : MonoBehaviour
@@ -111,6 +112,9 @@ public class VoragulVida : MonoBehaviour
             return;
 
         morto = true;
+
+        // NOVO: libera os teletransportes.
+        Teletransporte.LiberarBloqueio();
 
         VoragulMovimento movimento =
             GetComponent<VoragulMovimento>();

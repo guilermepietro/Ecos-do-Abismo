@@ -100,54 +100,54 @@ public class SalenthraVida : MonoBehaviour
     }
 
     public void ReceberDano(int dano)
-{
-    if (transformando || morta)
-        return;
-
-    // =========================
-    // FASE 1
-    // =========================
-
-    if (faseAtual == 1)
     {
-        vidaAtualFase1 -= dano;
-
-        if (vidaAtualFase1 <= 0)
-        {
-            vidaAtualFase1 = 0;
-
-            if (movimento != null)
-            {
-                movimento.CancelarAtaquesPorDano();
-            }
-
-            IniciarTransformacao();
+        if (transformando || morta)
             return;
+
+        // =========================
+        // FASE 1
+        // =========================
+
+        if (faseAtual == 1)
+        {
+            vidaAtualFase1 -= dano;
+
+            if (vidaAtualFase1 <= 0)
+            {
+                vidaAtualFase1 = 0;
+
+                if (movimento != null)
+                {
+                    movimento.CancelarAtaquesPorDano();
+                }
+
+                IniciarTransformacao();
+                return;
+            }
+        }
+
+        // =========================
+        // FASE 2
+        // =========================
+
+        else if (faseAtual == 2)
+        {
+            vidaAtualFase2 -= dano;
+
+            if (vidaAtualFase2 <= 0)
+            {
+                vidaAtualFase2 = 0;
+
+                if (movimento != null)
+                {
+                    movimento.CancelarAtaquesPorDano();
+                }
+
+                MorrerFase2();
+                return;
+            }
         }
     }
-
-    // =========================
-    // FASE 2
-    // =========================
-
-    else if (faseAtual == 2)
-    {
-        vidaAtualFase2 -= dano;
-
-        if (vidaAtualFase2 <= 0)
-        {
-            vidaAtualFase2 = 0;
-
-            if (movimento != null)
-            {
-                movimento.CancelarAtaquesPorDano();
-            }
-
-            MorrerFase2();
-            return;
-        }
-    }
-}
 
     // =========================
     // TRANSFORMACAO
@@ -266,6 +266,9 @@ public class SalenthraVida : MonoBehaviour
             return;
 
         morta = true;
+
+        // NOVO: libera os teletransportes.
+        Teletransporte.LiberarBloqueio();
 
         if (movimento != null)
         {

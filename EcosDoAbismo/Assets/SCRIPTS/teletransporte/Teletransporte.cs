@@ -19,6 +19,36 @@ public class Teletransporte : MonoBehaviour
 
     private static bool teletransportando;
 
+    // NOVO: chefao que esta em combate.
+    private static GameObject chefaoEmCombate;
+
+    public static void BloquearDuranteCombate(GameObject chefao)
+    {
+        if (chefao == null)
+            return;
+
+        chefaoEmCombate = chefao;
+    }
+
+    public static void LiberarBloqueio()
+    {
+        chefaoEmCombate = null;
+    }
+
+    private static bool CombateAtivo()
+    {
+        if (chefaoEmCombate == null)
+            return false;
+
+        if (!chefaoEmCombate.activeInHierarchy)
+        {
+            LiberarBloqueio();
+            return false;
+        }
+
+        return true;
+    }
+
     private void Awake()
     {
         BoxCollider2D area = GetComponent<BoxCollider2D>();
@@ -45,6 +75,10 @@ public class Teletransporte : MonoBehaviour
 
         if (rbElian == null ||
             rbElian.gameObject.name != "elian")
+            return;
+
+        // NOVO: impede fuga durante combate.
+        if (CombateAtivo())
             return;
 
         Teletransporte destino = EncontrarDestino();

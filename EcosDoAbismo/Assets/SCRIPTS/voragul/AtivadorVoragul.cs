@@ -61,6 +61,11 @@ public class AtivadorVoragul : MonoBehaviour
         // Libera o movimento e os ataques do boss.
         voragul.lutaIniciada = true;
 
+        // NOVO: bloqueia os teletransportes.
+        Teletransporte.BloquearDuranteCombate(
+            voragul.gameObject
+        );
+
         // Exibe a barra de vida.
         if (barraVidaVoragul != null)
             barraVidaVoragul.Exibir();

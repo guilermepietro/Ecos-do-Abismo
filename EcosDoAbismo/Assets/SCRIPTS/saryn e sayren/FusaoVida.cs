@@ -131,6 +131,10 @@ public class FusaoVida : MonoBehaviour
             return;
 
         morto = true;
+
+        // NOVO: libera os teletransportes.
+        Teletransporte.LiberarBloqueio();
+
         morteFinalizada = false;
 
         RegistrarDerrota();
@@ -288,8 +292,6 @@ public class FusaoVida : MonoBehaviour
     }
 
     // Animation Event no ultimo frame da morte.
-    
-    // Animation Event no ultimo frame da morte.
     public void FinalizarMorte()
     {
         if (!morto || morteFinalizada)
@@ -307,7 +309,6 @@ public class FusaoVida : MonoBehaviour
         // Faz o corpo desaparecer apos a animacao.
         gameObject.SetActive(false);
     }
-
 
     [ContextMenu("TESTE - Perder 100 de vida")]
     private void TestarDano()

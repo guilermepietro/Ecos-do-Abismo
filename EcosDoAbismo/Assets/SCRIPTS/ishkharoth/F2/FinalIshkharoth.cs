@@ -19,15 +19,12 @@ public class FinalIshkharoth : MonoBehaviour
 
         finalIniciado = true;
 
-        // Mantem a finalizacao original da morte.
         IshkharothVida vida =
             GetComponent<IshkharothVida>();
 
         if (vida != null)
             vida.FinalizarMorteF2();
 
-        // Reproduz a cutscene com fades exclusivos
-        // e carrega a cena final ao terminar.
         if (GerenciadorCutscenes.Instancia != null)
         {
             bool iniciou =
@@ -48,7 +45,7 @@ public class FinalIshkharoth : MonoBehaviour
 
         Debug.LogWarning(
             "Cutscene final indisponivel. " +
-            "Carregando tela de finalizacao."
+            "Iniciando carregamento da finalizacao."
         );
 
         CarregarTelaFinal();
@@ -59,6 +56,10 @@ public class FinalIshkharoth : MonoBehaviour
         Time.timeScale = 1f;
         AudioListener.pause = false;
 
-        SceneManager.LoadScene(nomeCenaFinalizacao);
+        // Usa a tela de carregamento existente.
+        GerenciadorCarregamento.proximaCena =
+            nomeCenaFinalizacao;
+
+        SceneManager.LoadScene("Carregamento");
     }
 }

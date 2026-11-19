@@ -58,6 +58,11 @@ public class AtivadorRakthas : MonoBehaviour
         // Inicia o combate como antes.
         rakthasMovimento.AtivarRakthas();
 
+        // NOVO: bloqueia teletransportes.
+        Teletransporte.BloquearDuranteCombate(
+            rakthasMovimento.gameObject
+        );
+
         if (barraVidaRakthas != null)
         {
             barraVidaRakthas.Exibir();

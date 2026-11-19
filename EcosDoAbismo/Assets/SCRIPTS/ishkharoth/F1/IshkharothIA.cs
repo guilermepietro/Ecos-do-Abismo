@@ -42,6 +42,10 @@ public class IshkharothIA : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float penalidadeABA = 0.35f;
 
+    [Header("Variedade de Ataques")]
+    [SerializeField, Min(1)]
+    private int limiteAtaquesSemEsfera = 2;
+
     private bool combateIniciado;
     private bool atacando;
 
@@ -52,6 +56,9 @@ public class IshkharothIA : MonoBehaviour
     private int ultimoAtaque = -1;
     private int penultimoAtaque = -1;
     private int ataqueAtual = -1;
+
+    // Evita longas sequencias sem a esfera.
+    private int ataquesSemEsfera;
 
     // Controle especial da esfera.
     private bool aguardandoEsfera;
@@ -88,22 +95,16 @@ public class IshkharothIA : MonoBehaviour
             return;
         }
 
-        // Impede ataques durante a transformacao,
-        // a segunda fase e a morte.
         if (!vida.EstaNaFase1)
             return;
 
-        // O combate so comeca quando Elian
-        // entra na area de ativacao.
         if (!movimento.CombateAtivo)
             return;
 
         if (!combateIniciado)
         {
             combateIniciado = true;
-
-            proximaDecisao =
-                Time.time + esperaInicial;
+            proximaDecisao = Time.time + esperaInicial;
         }
 
         float distancia = Mathf.Abs(
@@ -167,8 +168,6 @@ public class IshkharothIA : MonoBehaviour
             inicioZonaCandidata = Time.time;
         }
 
-        // Evita trocar de estrategia por
-        // pequenas movimentacoes do jogador.
         if (zonaCandidata != zonaAtual &&
             Time.time - inicioZonaCandidata >=
             tempoEstabilidadeZona)
@@ -179,7 +178,7 @@ public class IshkharothIA : MonoBehaviour
     }
 
     // =====================================
-    // ESCOLHA INTELIGENTE DOS ATAQUES
+    // ESCOLHA DOS ATAQUES
     // =====================================
 
     private int EscolherAtaque(float distancia)
@@ -189,21 +188,21 @@ public class IshkharothIA : MonoBehaviour
         switch (zonaAtual)
         {
             case 0:
-                // Elian perto:
-                // espinhos no chao sao favorecidos.
-                pesos = new float[] { 1f, 5f, 3f };
+                // Curta distancia:
+                // esfera e onda equilibradas.
+                pesos = new float[] { 4f, 4f, 2f };
                 break;
 
             case 1:
-                // Distancia media:
-                // variedade equilibrada.
-                pesos = new float[] { 3f, 4f, 3f };
+                // Media distancia:
+                // esfera levemente favorecida.
+                pesos = new float[] { 5f, 3f, 2f };
                 break;
 
             default:
-                // Elian longe:
-                // esfera e chuva favorecidas.
-                pesos = new float[] { 5f, 0f, 4f };
+                // Longa distancia:
+                // esfera favorecida, chuva secundaria.
+                pesos = new float[] { 6f, 0f, 3f };
                 break;
         }
 
@@ -214,26 +213,25 @@ public class IshkharothIA : MonoBehaviour
 
         for (int i = 0; i < pesos.Length; i++)
         {
-            // Respeita a recarga individual.
+            // Respeita o cooldown individual.
             if (Time.time < proximasRecargas[i])
             {
                 pesos[i] = 0f;
             }
 
-            // Nunca repete o ultimo ataque.
+            // Impede repetir imediatamente.
             if (i == ultimoAtaque)
             {
                 pesos[i] = 0f;
             }
 
-            // Reduz padroes A-B-A.
+            // Desestimula sequencias A-B-A.
             if (i == penultimoAtaque)
             {
                 pesos[i] *= penalidadeABA;
             }
 
-            // Espinhos do chao so podem ser
-            // escolhidos dentro de seu alcance.
+            // Onda apenas dentro do alcance.
             if (i == 1 &&
                 distancia > alcanceEspinhosChao)
             {
@@ -243,10 +241,30 @@ public class IshkharothIA : MonoBehaviour
             somaPesos += pesos[i];
         }
 
-        // Quando nenhum ataque esta disponivel,
-        // Ishkharoth aguarda uma nova decisao.
         if (somaPesos <= 0f)
             return -1;
+
+        // =====================================
+        // CONTROLE DE VARIEDADE
+        // =====================================
+
+        // Se Ishkharoth usou dois ataques sem
+        // utilizar a esfera, ela passa a ter
+        // prioridade, desde que esteja disponivel.
+        //
+        // Isso nao ignora o cooldown nem permite
+        // repetir o mesmo ataque imediatamente.
+        if (ataquesSemEsfera >= limiteAtaquesSemEsfera &&
+            Time.time >= proximasRecargas[0] &&
+            ultimoAtaque != 0 &&
+            pesos[0] > 0f)
+        {
+            return 0;
+        }
+
+        // =====================================
+        // SORTEIO NORMAL
+        // =====================================
 
         float sorteio = Random.Range(0f, somaPesos);
 
@@ -261,7 +279,6 @@ public class IshkharothIA : MonoBehaviour
                 return i;
         }
 
-        // Protecao contra arredondamentos.
         for (int i = pesos.Length - 1; i >= 0; i--)
         {
             if (pesos[i] > 0f)
@@ -281,8 +298,6 @@ public class IshkharothIA : MonoBehaviour
 
         if (porcentagem <= 0.35f)
         {
-            // Fase critica: ataques diretos
-            // um pouco mais provaveis.
             pesos[0] *= 1.2f;
             pesos[1] *= 1.1f;
         }
@@ -300,8 +315,7 @@ public class IshkharothIA : MonoBehaviour
     private void AjustarPesosPorComportamento(
         float[] pesos)
     {
-        float tempoNaZona =
-            Time.time - inicioZona;
+        float tempoNaZona = Time.time - inicioZona;
 
         if (tempoNaZona < tempoParaAdaptacao)
             return;
@@ -309,22 +323,23 @@ public class IshkharothIA : MonoBehaviour
         switch (zonaAtual)
         {
             case 0:
-                // Elian permanece proximo:
-                // aumenta a pressao dos espinhos.
-                pesos[1] *= 1.45f;
+                // Se Elian fica perto, Ishkharoth
+                // continua perigoso sem usar
+                // apenas a onda de espinhos.
+                pesos[0] *= 1.25f;
+                pesos[1] *= 1.1f;
                 break;
 
             case 1:
-                // Elian permanece na distancia media:
-                // favorece uma variacao maior.
-                pesos[0] *= 1.2f;
-                pesos[2] *= 1.2f;
+                // Favorece variedade a media distancia.
+                pesos[0] *= 1.15f;
+                pesos[2] *= 1.15f;
                 break;
 
             case 2:
-                // Elian permanece longe:
-                // aumenta a chance da esfera.
-                pesos[0] *= 1.45f;
+                // Pressiona quem fica longe
+                // utilizando mais a esfera.
+                pesos[0] *= 1.3f;
                 break;
         }
     }
@@ -342,11 +357,21 @@ public class IshkharothIA : MonoBehaviour
         animacaoAtaqueTerminou = false;
 
         movimento.BloquearMovimento();
-
         animator.SetBool("Andando", false);
 
         penultimoAtaque = ultimoAtaque;
         ultimoAtaque = indice;
+
+        // Registra quantos ataques ocorreram
+        // desde a ultima esfera.
+        if (indice == 0)
+        {
+            ataquesSemEsfera = 0;
+        }
+        else
+        {
+            ataquesSemEsfera++;
+        }
 
         switch (indice)
         {
@@ -377,16 +402,12 @@ public class IshkharothIA : MonoBehaviour
     // CONTROLE ESPECIAL DA ESFERA
     // =====================================
 
-    // Chamado pelo script de disparo.
     public void AguardarAfastamentoEsfera()
     {
         if (atacando)
-        {
             aguardandoEsfera = true;
-        }
     }
 
-    // Chamado quando a esfera se afasta do corpo.
     public void EsferaAfastou()
     {
         if (!atacando || !aguardandoEsfera)
@@ -402,7 +423,6 @@ public class IshkharothIA : MonoBehaviour
     // FINALIZACAO DOS ATAQUES
     // =====================================
 
-    // Animation Event no fim de cada ataque.
     public void FinalizarAtaque()
     {
         if (!atacando)
@@ -410,8 +430,6 @@ public class IshkharothIA : MonoBehaviour
 
         animacaoAtaqueTerminou = true;
 
-        // A esfera precisa se afastar antes
-        // que Ishkharoth volte a andar.
         if (aguardandoEsfera)
             return;
 
@@ -452,8 +470,6 @@ public class IshkharothIA : MonoBehaviour
             ObterIntervaloAtual() +
             recuperacaoExtra;
 
-        // O boss pode voltar a andar durante
-        // a recuperacao, mas nao pode atacar.
         if (movimento != null &&
             vida != null &&
             vida.EstaNaFase1)
@@ -493,9 +509,6 @@ public class IshkharothIA : MonoBehaviour
 
     private void OnDisable()
     {
-        // Preserva o comportamento anterior:
-        // libera a movimentacao se a IA
-        // for interrompida durante um ataque.
         if (atacando && movimento != null)
         {
             movimento.LiberarMovimento();
