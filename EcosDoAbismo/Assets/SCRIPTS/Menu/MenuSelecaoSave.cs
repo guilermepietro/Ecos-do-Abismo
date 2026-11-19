@@ -30,6 +30,9 @@ public class MenuSelecaoSave : MonoBehaviour
 
     public static int slotPartidaAtual = 0;
 
+    // NOVO: indica se a introdução deve tocar.
+    public static bool introducaoPendente = false;
+
     private bool iniciandoPartida = false;
 
     void Awake()
@@ -79,8 +82,6 @@ public class MenuSelecaoSave : MonoBehaviour
                 indiceSelecionado = 0;
 
             AtualizarSelecao();
-
-            // NOVO: som ao navegar pelos slots
             TocarSomNavegacao();
         }
 
@@ -92,12 +93,9 @@ public class MenuSelecaoSave : MonoBehaviour
                 indiceSelecionado = slots.Length - 1;
 
             AtualizarSelecao();
-
-            // NOVO: som ao navegar pelos slots
             TocarSomNavegacao();
         }
 
-        // Excluir diretamente com K
         if (Input.GetKeyDown(KeyCode.K))
         {
             ExcluirSlot();
@@ -115,7 +113,6 @@ public class MenuSelecaoSave : MonoBehaviour
     {
         int numeroSlot = indiceSelecionado + 1;
 
-        // Não faz nada se o slot estiver vazio
         if (!GerenciadorSalvamento.ExisteSalvamento(numeroSlot))
             return;
 
@@ -126,7 +123,6 @@ public class MenuSelecaoSave : MonoBehaviour
                 " excluída com sucesso."
             );
 
-            // NOVO: som somente após exclusão bem-sucedida
             if (SonsInterface.Instancia != null)
             {
                 SonsInterface.Instancia
@@ -140,6 +136,9 @@ public class MenuSelecaoSave : MonoBehaviour
     void ConfirmarSlot()
     {
         int numeroSlot = indiceSelecionado + 1;
+
+        // NOVO: identifica se estamos criando um jogo.
+        bool novoJogo = false;
 
         DadosSalvamento dados =
             GerenciadorSalvamento.Carregar(numeroSlot);
@@ -162,6 +161,9 @@ public class MenuSelecaoSave : MonoBehaviour
             if (dados == null)
                 return;
 
+            // NOVO: partida recém-criada.
+            novoJogo = true;
+
             Debug.Log(
                 "Nova partida criada no slot " + numeroSlot
             );
@@ -182,6 +184,11 @@ public class MenuSelecaoSave : MonoBehaviour
         }
 
         slotPartidaAtual = numeroSlot;
+
+        // NOVO: comunica ao Gameplay se precisa
+        // reproduzir a introdução.
+        introducaoPendente = novoJogo;
+
         iniciandoPartida = true;
 
         Debug.Log(
@@ -291,7 +298,6 @@ public class MenuSelecaoSave : MonoBehaviour
         }
     }
 
-    // NOVO: som de navegação
     void TocarSomNavegacao()
     {
         if (SonsInterface.Instancia != null)

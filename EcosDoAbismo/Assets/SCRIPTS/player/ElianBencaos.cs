@@ -34,9 +34,9 @@ public class ElianBencaos : MonoBehaviour
 
     private bool possuiAscensao;
     private bool ascensaoAtiva;
-
     private bool possuiInvestidaFlamejante;
     private bool possuiInvestidaCeleste;
+    private bool possuiSegundaExistencia;
 
     public bool PossuiAscensao => possuiAscensao;
     public bool AscensaoAtiva => ascensaoAtiva;
@@ -49,6 +49,9 @@ public class ElianBencaos : MonoBehaviour
 
     public bool PossuiInvestidaCeleste =>
         possuiInvestidaCeleste;
+
+    public bool PossuiSegundaExistencia =>
+        possuiSegundaExistencia;
 
     void Awake()
     {
@@ -81,7 +84,6 @@ public class ElianBencaos : MonoBehaviour
         if (Input.GetKeyDown(teclaAscensao))
         {
             ascensaoAtiva = !ascensaoAtiva;
-
             AplicarAscensao();
 
             Debug.Log(
@@ -97,13 +99,7 @@ public class ElianBencaos : MonoBehaviour
         int slot = MenuSelecaoSave.slotPartidaAtual;
 
         if (slot < 1 || slot > 3)
-        {
-            Debug.LogWarning(
-                "ElianBencaos: nenhum slot valido selecionado."
-            );
-
             return;
-        }
 
         DadosSalvamento dados =
             GerenciadorSalvamento.Carregar(slot);
@@ -112,27 +108,29 @@ public class ElianBencaos : MonoBehaviour
             return;
 
         possuiAscensao =
-            dados.bencaosRecebidas != null &&
-            dados.bencaosRecebidas.Contains("Ascensao");
+            PossuiBencao(dados, "Ascensao");
 
         possuiInvestidaFlamejante =
-            dados.bencaosRecebidas != null &&
-            dados.bencaosRecebidas.Contains(
-                "InvestidaFlamejante"
-            );
+            PossuiBencao(dados, "InvestidaFlamejante");
 
         possuiInvestidaCeleste =
-            dados.bencaosRecebidas != null &&
-            dados.bencaosRecebidas.Contains(
-                "InvestidaCeleste"
-            );
+            PossuiBencao(dados, "InvestidaCeleste");
 
-        // Ascensao comeca desativada.
+        possuiSegundaExistencia =
+            PossuiBencao(dados, "SegundaExistencia");
+
         ascensaoAtiva = false;
 
-        // As outras duas bencaos sao passivas.
         AplicarAscensao();
         AplicarInvestidaCeleste();
+    }
+
+    private bool PossuiBencao(
+        DadosSalvamento dados,
+        string idBencao)
+    {
+        return dados.bencaosRecebidas != null &&
+               dados.bencaosRecebidas.Contains(idBencao);
     }
 
     private void AplicarAscensao()
@@ -153,19 +151,17 @@ public class ElianBencaos : MonoBehaviour
 
         if (possuiInvestidaCeleste)
         {
-            // Aumenta a duracao do dash,
-            // respeitando o limite configurado.
             movimento.tempoDash = Mathf.Min(
-                tempoDashOriginal * multiplicadorDistanciaDash,
+                tempoDashOriginal *
+                multiplicadorDistanciaDash,
                 tempoMaximoDashCeleste
             );
 
-            // Aumenta a velocidade para 10.
-            movimento.velocidadeDash = velocidadeDashCeleste;
+            movimento.velocidadeDash =
+                velocidadeDashCeleste;
         }
         else
         {
-            // Dash normal, sem a bencao.
             movimento.tempoDash = tempoDashOriginal;
             movimento.velocidadeDash = velocidadeDashOriginal;
         }
@@ -181,10 +177,7 @@ public class ElianBencaos : MonoBehaviour
 
         AplicarAscensao();
 
-        Debug.Log(
-            "Bencao da Ascensao adquirida! " +
-            "Pressione 1 para ativar ou desativar."
-        );
+        Debug.Log("Bencao da Ascensao adquirida!");
 
         return true;
     }
@@ -196,10 +189,7 @@ public class ElianBencaos : MonoBehaviour
 
         possuiInvestidaFlamejante = true;
 
-        Debug.Log(
-            "Investida Flamejante adquirida! " +
-            "O dash agora causa dano permanentemente."
-        );
+        Debug.Log("Investida Flamejante adquirida!");
 
         return true;
     }
@@ -217,6 +207,21 @@ public class ElianBencaos : MonoBehaviour
             "Investida Celeste adquirida! " +
             "Velocidade: " + movimento.velocidadeDash +
             " | Duracao: " + movimento.tempoDash
+        );
+
+        return true;
+    }
+
+    public bool ConcederSegundaExistencia()
+    {
+        if (!RegistrarBencao("SegundaExistencia"))
+            return false;
+
+        possuiSegundaExistencia = true;
+
+        Debug.Log(
+            "Segunda Existencia adquirida! " +
+            "Uma morte fatal podera ser evitada por vida."
         );
 
         return true;

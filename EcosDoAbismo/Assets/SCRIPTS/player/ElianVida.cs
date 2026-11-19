@@ -11,7 +11,6 @@ public class ElianVida : MonoBehaviour
 
     private int vidaAtual;
 
-    // Permite verificar se Elian precisa de cura
     public bool PrecisaDeCura =>
         !EstaMorto && vidaAtual < vidaMaxima;
 
@@ -24,8 +23,9 @@ public class ElianVida : MonoBehaviour
     private Animator animator;
     private ElianDefesa defesa;
     private SpriteRenderer spriteRenderer;
-
     private Rigidbody2D rb;
+    private ElianMovimento movimento;
+    private ElianBencaos bencaos;
 
     public bool EstaMorto { get; private set; }
 
@@ -38,12 +38,31 @@ public class ElianVida : MonoBehaviour
 
     public float tempoInvencibilidade = 1f;
 
+    [Header("Segunda Existencia")]
+    [Range(1, 100)]
+    public int porcentagemVidaSegundaExistencia = 50;
+
+    [Min(0.1f)]
+    public float drenagemVidaPorSegundo = 5f;
+
+    private bool segundaExistenciaConsumida = false;
+    private bool segundaExistenciaAtiva = false;
+
+    private float acumuladorDrenagem = 0f;
+
+    public bool SegundaExistenciaAtiva =>
+        segundaExistenciaAtiva;
+
+    public bool SegundaExistenciaDisponivel =>
+        bencaos != null &&
+        bencaos.PossuiSegundaExistencia &&
+        !segundaExistenciaConsumida &&
+        !EstaMorto;
+
     [Header("Renascimento")]
     public TransicaoTela transicaoTela;
 
     private bool renascimentoIniciado = false;
-
-    private ElianMovimento movimento;
 
     [Header("Audio - Vida")]
     public AudioSource audioVida;
@@ -60,8 +79,14 @@ public class ElianVida : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+
         movimento = GetComponent<ElianMovimento>();
         defesa = GetComponent<ElianDefesa>();
+        bencaos = GetComponent<ElianBencaos>();
+
+        segundaExistenciaConsumida = false;
+        segundaExistenciaAtiva = false;
+        acumuladorDrenagem = 0f;
 
         valorVisualVida = 1f;
         AtualizarBarraVidaImediatamente();
@@ -71,6 +96,9 @@ public class ElianVida : MonoBehaviour
     {
         AtualizarBarraVidaSuave();
 
+        AtualizarDrenagemSegundaExistencia();
+
+        // Atalho de teste que ja existia.
         if (Input.GetKeyDown(KeyCode.H))
         {
             ReceberDano(20);
@@ -80,14 +108,10 @@ public class ElianVida : MonoBehaviour
     public void ReceberDano(int dano)
     {
         if (EstaMorto)
-        {
             return;
-        }
 
         if (invencivel || invencivelDash)
-        {
             return;
-        }
 
         // ESCUDO
         if (defesa != null && defesa.EstaDefendendo())
@@ -95,9 +119,7 @@ public class ElianVida : MonoBehaviour
             dano = defesa.ReceberDanoEscudo(dano);
 
             if (dano <= 0)
-            {
                 return;
-            }
         }
 
         // CANCELA ATAQUES INTERROMPIDOS PELO DANO
@@ -111,8 +133,25 @@ public class ElianVida : MonoBehaviour
         vidaAtual -= dano;
 
         if (vidaAtual < 0)
-        {
             vidaAtual = 0;
+
+        // NOVO: impede a primeira morte fatal.
+        if (vidaAtual <= 0 &&
+            TentarAtivarSegundaExistencia())
+        {
+            HitStop.instancia.Executar(0.05f);
+
+            animator.SetTrigger("RecebeuDano");
+
+            AplicarEmpurrao();
+
+            StartCoroutine(TempoInvencibilidade());
+
+            TocarSomDano();
+
+            AtualizarBarraVidaImediatamente();
+
+            return;
         }
 
         Debug.Log("Vida do Elian: " + vidaAtual);
@@ -135,12 +174,75 @@ public class ElianVida : MonoBehaviour
         }
     }
 
+    private bool TentarAtivarSegundaExistencia()
+    {
+        if (!SegundaExistenciaDisponivel)
+            return false;
+
+        segundaExistenciaConsumida = true;
+        segundaExistenciaAtiva = true;
+
+        acumuladorDrenagem = 0f;
+
+        vidaAtual = Mathf.Clamp(
+            Mathf.CeilToInt(
+                vidaMaxima *
+                (porcentagemVidaSegundaExistencia / 100f)
+            ),
+            1,
+            vidaMaxima
+        );
+
+        Debug.Log(
+            "SEGUNDA EXISTENCIA ATIVADA! " +
+            "Vida restaurada: " + vidaAtual
+        );
+
+        return true;
+    }
+
+    private void AtualizarDrenagemSegundaExistencia()
+    {
+        if (!segundaExistenciaAtiva || EstaMorto)
+            return;
+
+        // O Time.deltaTime respeita pausas e tutoriais.
+        acumuladorDrenagem +=
+            drenagemVidaPorSegundo * Time.deltaTime;
+
+        int pontosPerdidos =
+            Mathf.FloorToInt(acumuladorDrenagem);
+
+        if (pontosPerdidos <= 0)
+            return;
+
+        acumuladorDrenagem -= pontosPerdidos;
+
+        // A drenagem ignora escudo e invencibilidade.
+        vidaAtual = Mathf.Max(
+            0,
+            vidaAtual - pontosPerdidos
+        );
+
+        if (vidaAtual <= 0)
+        {
+            segundaExistenciaAtiva = false;
+
+            Debug.Log(
+                "Segunda Existencia esgotada!"
+            );
+
+            Morrer();
+        }
+    }
+
     void Morrer()
     {
         if (EstaMorto)
             return;
 
         EstaMorto = true;
+        segundaExistenciaAtiva = false;
 
         movimento.podeMover = false;
 
@@ -161,7 +263,7 @@ public class ElianVida : MonoBehaviour
             return;
 
         Debug.Log(
-            "Animação de morte do Elian finalizada!"
+            "Animacao de morte do Elian finalizada!"
         );
 
         int slot = MenuSelecaoSave.slotPartidaAtual;
@@ -170,7 +272,7 @@ public class ElianVida : MonoBehaviour
         {
             Debug.LogWarning(
                 "Nenhum slot selecionado. " +
-                "Renascimento não iniciado."
+                "Renascimento nao iniciado."
             );
             return;
         }
@@ -178,7 +280,7 @@ public class ElianVida : MonoBehaviour
         if (GerenciadorSalvamento.Carregar(slot) == null)
         {
             Debug.LogError(
-                "Não foi possível carregar o salvamento. " +
+                "Nao foi possivel carregar o salvamento. " +
                 "Renascimento cancelado."
             );
             return;
@@ -187,7 +289,7 @@ public class ElianVida : MonoBehaviour
         if (transicaoTela == null)
         {
             Debug.LogError(
-                "TransicaoTela não configurada no ElianVida!"
+                "TransicaoTela nao configurada no ElianVida!"
             );
             return;
         }
@@ -246,7 +348,6 @@ public class ElianVida : MonoBehaviour
         }
 
         spriteRenderer.enabled = true;
-
         invencivel = false;
     }
 
@@ -257,7 +358,8 @@ public class ElianVida : MonoBehaviour
 
         movimento.podeMover = false;
 
-        float direcao = spriteRenderer.flipX ? 1f : -1f;
+        float direcao =
+            spriteRenderer.flipX ? 1f : -1f;
 
         rb.linearVelocity = new Vector2(
             direcao * forcaEmpurrao,
@@ -277,24 +379,25 @@ public class ElianVida : MonoBehaviour
 
     public void Curar(int quantidade)
     {
+        if (EstaMorto || quantidade <= 0)
+            return;
+
         vidaAtual += quantidade;
 
         if (vidaAtual > vidaMaxima)
-        {
             vidaAtual = vidaMaxima;
-        }
 
         Debug.Log(
             "Elian foi curado! Vida atual: " + vidaAtual
         );
+
+        // A cura NAO interrompe a drenagem.
     }
 
     void AtualizarBarraVidaSuave()
     {
-        if (barraVida == null)
-        {
+        if (barraVida == null || vidaMaxima <= 0)
             return;
-        }
 
         float alvo =
             (float)vidaAtual / vidaMaxima;
@@ -310,16 +413,13 @@ public class ElianVida : MonoBehaviour
 
     void AtualizarBarraVidaImediatamente()
     {
-        if (barraVida == null)
-        {
+        if (barraVida == null || vidaMaxima <= 0)
             return;
-        }
 
         valorVisualVida =
             (float)vidaAtual / vidaMaxima;
 
-        barraVida.fillAmount =
-            valorVisualVida;
+        barraVida.fillAmount = valorVisualVida;
     }
 
     void TocarSomDano()

@@ -908,6 +908,106 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1573473954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &33416046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 33416049}
+  - component: {fileID: 33416047}
+  - component: {fileID: 33416048}
+  m_Layer: 0
+  m_Name: TutorialBencao_SegundaExistencia
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &33416047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33416046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76b0bbf8a36bcf48a03862eba91bd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaTutorial
+  gerenciador: {fileID: 684198913}
+  titulo: "B\xCAN\xC7\xC3O DA SEGUNDA EXIST\xCANCIA"
+  descricao: "O v\xEDnculo dos Fragmentos G\xEAmeos permite desafiar a morte uma
+    \xFAltima vez.\n\nAo receber dano fatal, Elian recupera parte de sua vida automaticamente.
+    Entretanto, essa segunda exist\xEAncia \xE9 inst\xE1vel e sua vitalidade diminuir\xE1
+    continuamente.\n\nA b\xEAn\xE7\xE3o \xE9 ativada automaticamente, uma vez por
+    vida. Sua utiliza\xE7\xE3o \xE9 restaurada ao renascer."
+  imagem1: {fileID: 0}
+  imagem2: {fileID: 0}
+--- !u!61 &33416048
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33416046}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.14116144, y: -2.8433876}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 6.202794, y: 6.686775}
+  m_EdgeRadius: 0
+--- !u!4 &33416049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33416046}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.27, y: -94, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &33735666
 GameObject:
   m_ObjectHideFlags: 0
@@ -3525,6 +3625,8 @@ MonoBehaviour:
   forcaEmpurrao: 5
   forcaEmpurraoVertical: 4
   tempoInvencibilidade: 1
+  porcentagemVidaSegundaExistencia: 60
+  drenagemVidaPorSegundo: 5
   transicaoTela: {fileID: 164015846}
   audioVida: {fileID: 336047457}
   somDano1: {fileID: 8300000, guid: a9247b077fef7bc479f512a19c675ce3, type: 3}
@@ -27543,6 +27645,7 @@ GameObject:
   - component: {fileID: 1045526992}
   - component: {fileID: 1045526991}
   - component: {fileID: 1045526990}
+  - component: {fileID: 1045526993}
   m_Layer: 0
   m_Name: GerenciadorCutscenes
   m_TagString: Untagged
@@ -27698,6 +27801,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045526993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045526989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f36f4f475e7ca24dba20b7ea2c8ab13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GerenciadorCutscenes
+  reprodutor: {fileID: 1045526991}
+  audioVideo: {fileID: 1045526990}
+  imagemVideo: {fileID: 1600548448}
+  fundoPreto: {fileID: 1934658338}
+  cutscenes:
+  - id: Intro
+    video: {fileID: 32900000, guid: cbf67883e9011e449b37bb5b75a45b9b, type: 3}
+    usarAudioDoVideo: 1
+    pausarAudioDoJogo: 1
+    aoTerminar:
+      m_PersistentCalls:
+        m_Calls: []
+  tempoEscurecer: 0.2
+  tempoRevelarVideo: 0.25
+  tempoClarearJogo: 0.5
+  scriptsDoJogador:
+  - {fileID: 142652953}
+  testarIntroducaoAoIniciar: 0
 --- !u!1 &1049651130
 GameObject:
   m_ObjectHideFlags: 0
@@ -33353,9 +33486,11 @@ MonoBehaviour:
   tutorialAscensao: {fileID: 941532263}
   tutorialInvestidaFlamejante: {fileID: 1812969121}
   tutorialInvestidaCeleste: {fileID: 277461573}
+  tutorialSegundaExistencia: {fileID: 33416047}
   idReliquiaCoroa: CoroaDoAbismo
   idReliquiaCalice: CaliceDeBrasas
   idReliquiaLamina: LaminaCeleste
+  idReliquiaFragmentos: FragmentosGemeos
   dialogosPrimeiroEncontro:
   - Ahh... Malditos bichos! Quase me mandaram para debaixo da terra antes da hora.
   - Devo-lhe minha vida, peregrino. Embora, a julgar pelos meus ossos, ela ja nao
@@ -33503,6 +33638,60 @@ MonoBehaviour:
   - "Bem, meu jovem, n\xE3o vamos ficar aqui alimentando a nostalgia de um velho."
   - "Voc\xEA cumpriu sua parte. Agora \xE9 minha vez de cumprir a minha."
   - "Aproxime-se. Vamos descobrir at\xE9 onde essas pernas podem lev\xE1-lo."
+  dialogosIntroducaoGemeos:
+  - Ora, veja quem voltou! Heh... Se continuar me visitando assim, rapaz, vou acabar
+    cobrando aluguel.
+  - "E ent\xE3o? Aquelas pernas j\xE1 aprenderam a acompanhar seus olhos, ou ainda
+    anda trope\xE7ando por a\xED?"
+  - "Hah! Essa cara de poucos amigos... Est\xE1 bem, est\xE1 bem. N\xE3o vou zombar
+    de voc\xEA hoje."
+  - Sabe, meu jovem... Quanto mais vivo, mais percebo uma coisa curiosa sobre este
+    mundo.
+  - "Algumas coisas simplesmente n\xE3o foram feitas para existir sozinhas."
+  - "Veja estas minhas m\xE3os, por exemplo. Uma treme, a outra tenta ajud\xE1-la...
+    e no fim as duas derrubam minha comida. Hah!"
+  - "Mas nem toda uni\xE3o \xE9 t\xE3o desajeitada quanto a minha, sabe?"
+  - "H\xE1 uma velha hist\xF3ria sobre dois nomes que nunca deveriam ser pronunciados
+    separadamente: Saryn e Sayren."
+  - "J\xE1 ouviu falar deles? Hm... Imaginei que n\xE3o."
+  - "Dizem que eram t\xE3o ligados um ao outro que nem mesmo a morte conseguiu compreender
+    onde um terminava e o outro come\xE7ava."
+  - "N\xE3o pense neles como dois guardi\xF5es, rapaz. Essa \xE9 a primeira coisa
+    que os antigos escritos procuram ensinar."
+  - "Eram uma \xFAnica exist\xEAncia, embora o mundo insistisse em enxergar duas
+    formas."
+  - "Os Fragmentos G\xEAmeos guardam o que restou desse v\xEDnculo. Dois peda\xE7os
+    que n\xE3o aceitam permanecer separados."
+  - "Heh... Parece coisa de poeta, n\xE3o \xE9? Mas j\xE1 vi homens perderem a raz\xE3o
+    tentando entender poderes muito menores."
+  - "Se chegar at\xE9 eles, n\xE3o cometa o erro de procurar uma fraqueza em apenas
+    um. O que amea\xE7a um pertence ao outro."
+  - "Quanto aos fragmentos... H\xE1 algo neles que sempre me intrigou. Uma exist\xEAncia
+    que insiste em continuar, mesmo quando deveria terminar."
+  - "Bem, j\xE1 falei demais por hoje. V\xE1 com cuidado, rapaz. E n\xE3o me fa\xE7a
+    descobrir se essas hist\xF3rias sobre a morte s\xE3o verdadeiras."
+  dialogosFragmentos:
+  - "Ah, rapaz... A\xED est\xE1 voc\xEA. J\xE1 come\xE7ava a achar que teria de conversar
+    com as \xE1rvores para passar o tempo."
+  - "Hm? O que est\xE1 escondendo a\xED? Ora, n\xE3o precisa fazer mist\xE9rio com
+    este velho."
+  - "Espere... Esses fragmentos... N\xE3o pode ser."
+  - "Saryn e Sayren... Ent\xE3o at\xE9 aquele v\xEDnculo foi quebrado? Ou talvez...
+    N\xE3o, n\xE3o importa."
+  - Venha mais perto, meu jovem. Preciso enxergar melhor.
+  - "Ah... Est\xE3o juntos. Mesmo depois de tudo, continuam procurando um ao outro."
+  - "Curioso, n\xE3o \xE9? H\xE1 coisas que nem a morte consegue convencer a se separar."
+  - "O qu\xEA? Estou estranho? Hah! Passe a vida estudando rel\xEDquias e depois
+    me diga se conseguiria manter a calma diante de uma dessas."
+  - "Voc\xEA j\xE1 me trouxe uma coroa, um c\xE1lice e uma l\xE2mina. E agora...
+    isto. Devo admitir, rapaz, que superou todas as minhas expectativas."
+  - "Mas n\xE3o pense que o poder desses fragmentos ser\xE1 t\xE3o simples quanto
+    os anteriores. H\xE1 um pre\xE7o em continuar existindo quando o pr\xF3prio corpo
+    j\xE1 desistiu."
+  - "Ainda assim, talvez esse pequeno f\xF4lego a mais lhe seja \xFAtil. E eu lhe
+    prometi ajuda, n\xE3o prometi?"
+  - "Aproxime-se, meu jovem. Vamos descobrir o que acontece quando a morte \xE9 obrigada
+    a esperar."
   dialogosRetorno:
   - Ah, meu salvador... Vejo que a morte ainda nao conseguiu alcanca-lo.
   - As reliquias continuam a espera de alguem capaz de enfrentar seus guardioes.
@@ -799115,6 +799304,7 @@ SceneRoots:
   - {fileID: 941532264}
   - {fileID: 1812969122}
   - {fileID: 277461574}
+  - {fileID: 33416049}
   - {fileID: 455965803}
   - {fileID: 1254421677}
   - {fileID: 301127980}

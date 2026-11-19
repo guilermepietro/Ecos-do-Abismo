@@ -13,6 +13,8 @@ public class AnciaoInteracao : MonoBehaviour
         Calice,
         IntroducaoSalenthra,
         Lamina,
+        IntroducaoGemeos,
+        FragmentosGemeos,
         Retorno
     }
 
@@ -21,7 +23,8 @@ public class AnciaoInteracao : MonoBehaviour
         Nenhuma,
         Ascensao,
         InvestidaFlamejante,
-        InvestidaCeleste
+        InvestidaCeleste,
+        SegundaExistencia
     }
 
     [Header("Interface")]
@@ -33,11 +36,13 @@ public class AnciaoInteracao : MonoBehaviour
     [SerializeField] private AreaTutorial tutorialAscensao;
     [SerializeField] private AreaTutorial tutorialInvestidaFlamejante;
     [SerializeField] private AreaTutorial tutorialInvestidaCeleste;
+    [SerializeField] private AreaTutorial tutorialSegundaExistencia;
 
     [Header("Identificadores das Reliquias")]
     [SerializeField] private string idReliquiaCoroa = "CoroaAbismo";
     [SerializeField] private string idReliquiaCalice = "CaliceBrasas";
     [SerializeField] private string idReliquiaLamina = "LaminaCeleste";
+    [SerializeField] private string idReliquiaFragmentos = "FragmentosGemeos";
 
     [Header("Primeiro Encontro")]
     [SerializeField, TextArea(2, 5)]
@@ -152,6 +157,74 @@ public class AnciaoInteracao : MonoBehaviour
         "Bem, meu jovem, não vamos ficar aqui alimentando a nostalgia de um velho.",
         "Você cumpriu sua parte. Agora é minha vez de cumprir a minha.",
         "Aproxime-se. Vamos descobrir até onde essas pernas podem levá-lo."
+    };
+
+    [Header("Introducao de Saryn e Sayren")]
+    [SerializeField, TextArea(2, 5)]
+    private string[] dialogosIntroducaoGemeos =
+    {
+        "Ora, veja quem voltou! Heh... Se continuar me visitando assim, rapaz, vou acabar cobrando aluguel.",
+
+        "E então? Aquelas pernas já aprenderam a acompanhar seus olhos, ou ainda anda tropeçando por aí?",
+
+        "Hah! Essa cara de poucos amigos... Está bem, está bem. Não vou zombar de você hoje.",
+
+        "Sabe, meu jovem... Quanto mais vivo, mais percebo uma coisa curiosa sobre este mundo.",
+
+        "Algumas coisas simplesmente não foram feitas para existir sozinhas.",
+
+        "Veja estas minhas mãos, por exemplo. Uma treme, a outra tenta ajudá-la... e no fim as duas derrubam minha comida. Hah!",
+
+        "Mas nem toda união é tão desajeitada quanto a minha, sabe?",
+
+        "Há uma velha história sobre dois nomes que nunca deveriam ser pronunciados separadamente: Saryn e Sayren.",
+
+        "Já ouviu falar deles? Hm... Imaginei que não.",
+
+        "Dizem que eram tão ligados um ao outro que nem mesmo a morte conseguiu compreender onde um terminava e o outro começava.",
+
+        "Não pense neles como dois guardiões, rapaz. Essa é a primeira coisa que os antigos escritos procuram ensinar.",
+
+        "Eram uma única existência, embora o mundo insistisse em enxergar duas formas.",
+
+        "Os Fragmentos Gêmeos guardam o que restou desse vínculo. Dois pedaços que não aceitam permanecer separados.",
+
+        "Heh... Parece coisa de poeta, não é? Mas já vi homens perderem a razão tentando entender poderes muito menores.",
+
+        "Se chegar até eles, não cometa o erro de procurar uma fraqueza em apenas um. O que ameaça um pertence ao outro.",
+
+        "Quanto aos fragmentos... Há algo neles que sempre me intrigou. Uma existência que insiste em continuar, mesmo quando deveria terminar.",
+
+        "Bem, já falei demais por hoje. Vá com cuidado, rapaz. E não me faça descobrir se essas histórias sobre a morte são verdadeiras."
+    };
+
+    [Header("Retorno com os Fragmentos Gemeos")]
+    [SerializeField, TextArea(2, 5)]
+    private string[] dialogosFragmentos =
+    {
+        "Ah, rapaz... Aí está você. Já começava a achar que teria de conversar com as árvores para passar o tempo.",
+
+        "Hm? O que está escondendo aí? Ora, não precisa fazer mistério com este velho.",
+
+        "Espere... Esses fragmentos... Não pode ser.",
+
+        "Saryn e Sayren... Então até aquele vínculo foi quebrado? Ou talvez... Não, não importa.",
+
+        "Venha mais perto, meu jovem. Preciso enxergar melhor.",
+
+        "Ah... Estão juntos. Mesmo depois de tudo, continuam procurando um ao outro.",
+
+        "Curioso, não é? Há coisas que nem a morte consegue convencer a se separar.",
+
+        "O quê? Estou estranho? Hah! Passe a vida estudando relíquias e depois me diga se conseguiria manter a calma diante de uma dessas.",
+
+        "Você já me trouxe uma coroa, um cálice e uma lâmina. E agora... isto. Devo admitir, rapaz, que superou todas as minhas expectativas.",
+
+        "Mas não pense que o poder desses fragmentos será tão simples quanto os anteriores. Há um preço em continuar existindo quando o próprio corpo já desistiu.",
+
+        "Ainda assim, talvez esse pequeno fôlego a mais lhe seja útil. E eu lhe prometi ajuda, não prometi?",
+
+        "Aproxime-se, meu jovem. Vamos descobrir o que acontece quando a morte é obrigada a esperar."
     };
 
     [Header("Visitas Comuns")]
@@ -286,6 +359,9 @@ public class AnciaoInteracao : MonoBehaviour
         bool possuiLamina =
             PossuiReliquia(dados, idReliquiaLamina);
 
+        bool possuiFragmentos =
+            PossuiReliquia(dados, idReliquiaFragmentos);
+
         bool possuiAscensao =
             PossuiBencao(dados, "Ascensao");
 
@@ -294,6 +370,9 @@ public class AnciaoInteracao : MonoBehaviour
 
         bool possuiInvestidaCeleste =
             PossuiBencao(dados, "InvestidaCeleste");
+
+        bool possuiSegundaExistencia =
+            PossuiBencao(dados, "SegundaExistencia");
 
         if (!dados.apresentacaoAnciaoConcluida)
         {
@@ -308,10 +387,14 @@ public class AnciaoInteracao : MonoBehaviour
         else if (possuiAscensao &&
                  !dados.historiaRakthasContada)
         {
-            tipoConversaAtual = TipoConversa.IntroducaoRakthas;
-            dialogosAtuais = dialogosIntroducaoRakthas;
+            tipoConversaAtual =
+                TipoConversa.IntroducaoRakthas;
+
+            dialogosAtuais =
+                dialogosIntroducaoRakthas;
         }
-        else if (possuiCalice && !possuiInvestidaFlamejante)
+        else if (possuiCalice &&
+                 !possuiInvestidaFlamejante)
         {
             tipoConversaAtual = TipoConversa.Calice;
             dialogosAtuais = dialogosCalice;
@@ -319,13 +402,34 @@ public class AnciaoInteracao : MonoBehaviour
         else if (possuiInvestidaFlamejante &&
                  !dados.historiaSalenthraContada)
         {
-            tipoConversaAtual = TipoConversa.IntroducaoSalenthra;
-            dialogosAtuais = dialogosIntroducaoSalenthra;
+            tipoConversaAtual =
+                TipoConversa.IntroducaoSalenthra;
+
+            dialogosAtuais =
+                dialogosIntroducaoSalenthra;
         }
-        else if (possuiLamina && !possuiInvestidaCeleste)
+        else if (possuiLamina &&
+                 !possuiInvestidaCeleste)
         {
             tipoConversaAtual = TipoConversa.Lamina;
             dialogosAtuais = dialogosLamina;
+        }
+        else if (possuiInvestidaCeleste &&
+                 !dados.historiaGemeosContada)
+        {
+            tipoConversaAtual =
+                TipoConversa.IntroducaoGemeos;
+
+            dialogosAtuais =
+                dialogosIntroducaoGemeos;
+        }
+        else if (possuiFragmentos &&
+                 !possuiSegundaExistencia)
+        {
+            tipoConversaAtual =
+                TipoConversa.FragmentosGemeos;
+
+            dialogosAtuais = dialogosFragmentos;
         }
         else
         {
@@ -333,8 +437,11 @@ public class AnciaoInteracao : MonoBehaviour
             dialogosAtuais = dialogosRetorno;
         }
 
-        if (dialogosAtuais == null || dialogosAtuais.Length == 0)
+        if (dialogosAtuais == null ||
+            dialogosAtuais.Length == 0)
+        {
             return;
+        }
 
         indiceDialogo = 0;
         conversaAberta = true;
@@ -346,13 +453,17 @@ public class AnciaoInteracao : MonoBehaviour
         MostrarDialogo();
     }
 
-    private bool PossuiReliquia(DadosSalvamento dados, string id)
+    private bool PossuiReliquia(
+        DadosSalvamento dados,
+        string id)
     {
         return dados.reliquiasObtidas != null &&
                dados.reliquiasObtidas.Contains(id);
     }
 
-    private bool PossuiBencao(DadosSalvamento dados, string id)
+    private bool PossuiBencao(
+        DadosSalvamento dados,
+        string id)
     {
         return dados.bencaosRecebidas != null &&
                dados.bencaosRecebidas.Contains(id);
@@ -360,7 +471,8 @@ public class AnciaoInteracao : MonoBehaviour
 
     private void MostrarDialogo()
     {
-        textoConversa.text = dialogosAtuais[indiceDialogo];
+        textoConversa.text =
+            dialogosAtuais[indiceDialogo];
     }
 
     private void AvancarDialogo()
@@ -376,18 +488,19 @@ public class AnciaoInteracao : MonoBehaviour
         switch (tipoConversaAtual)
         {
             case TipoConversa.Apresentacao:
-                RegistrarProgressoConversa(tipoConversaAtual);
-                FecharConversa();
-                break;
-
             case TipoConversa.IntroducaoRakthas:
             case TipoConversa.IntroducaoSalenthra:
-                RegistrarProgressoConversa(tipoConversaAtual);
+            case TipoConversa.IntroducaoGemeos:
+                RegistrarProgressoConversa(
+                    tipoConversaAtual
+                );
                 FecharConversa();
                 break;
 
             case TipoConversa.Coroa:
-                IniciarEntregaBencao(TipoBencao.Ascensao);
+                IniciarEntregaBencao(
+                    TipoBencao.Ascensao
+                );
                 break;
 
             case TipoConversa.Calice:
@@ -399,6 +512,12 @@ public class AnciaoInteracao : MonoBehaviour
             case TipoConversa.Lamina:
                 IniciarEntregaBencao(
                     TipoBencao.InvestidaCeleste
+                );
+                break;
+
+            case TipoConversa.FragmentosGemeos:
+                IniciarEntregaBencao(
+                    TipoBencao.SegundaExistencia
                 );
                 break;
 
@@ -424,6 +543,7 @@ public class AnciaoInteracao : MonoBehaviour
         tutorialDaBencao = TipoBencao.Nenhuma;
 
         painelConversa.SetActive(false);
+
         elianPerto.IniciarBencao(this);
     }
 
@@ -437,7 +557,10 @@ public class AnciaoInteracao : MonoBehaviour
 
         if (bencaos == null)
         {
-            Debug.LogError("ElianBencaos nao encontrado.");
+            Debug.LogError(
+                "ElianBencaos nao encontrado."
+            );
+
             bencaoPendente = false;
             return;
         }
@@ -447,15 +570,23 @@ public class AnciaoInteracao : MonoBehaviour
         switch (bencaoEmEntrega)
         {
             case TipoBencao.Ascensao:
-                sucesso = bencaos.ConcederAscensao();
+                sucesso =
+                    bencaos.ConcederAscensao();
                 break;
 
             case TipoBencao.InvestidaFlamejante:
-                sucesso = bencaos.ConcederInvestidaFlamejante();
+                sucesso =
+                    bencaos.ConcederInvestidaFlamejante();
                 break;
 
             case TipoBencao.InvestidaCeleste:
-                sucesso = bencaos.ConcederInvestidaCeleste();
+                sucesso =
+                    bencaos.ConcederInvestidaCeleste();
+                break;
+
+            case TipoBencao.SegundaExistencia:
+                sucesso =
+                    bencaos.ConcederSegundaExistencia();
                 break;
         }
 
@@ -464,7 +595,10 @@ public class AnciaoInteracao : MonoBehaviour
             tutorialDaBencao = bencaoEmEntrega;
             tutorialPendente = true;
 
-            Debug.Log("Bencao concedida: " + bencaoEmEntrega);
+            Debug.Log(
+                "Bencao concedida: " +
+                bencaoEmEntrega
+            );
         }
 
         bencaoPendente = false;
@@ -495,23 +629,33 @@ public class AnciaoInteracao : MonoBehaviour
             case TipoBencao.InvestidaCeleste:
                 tutorial = tutorialInvestidaCeleste;
                 break;
+
+            case TipoBencao.SegundaExistencia:
+                tutorial = tutorialSegundaExistencia;
+                break;
         }
 
         tutorialDaBencao = TipoBencao.Nenhuma;
 
-        if (gerenciadorTutoriais == null || tutorial == null)
+        if (gerenciadorTutoriais == null ||
+            tutorial == null)
         {
-            Debug.LogWarning("Configure o tutorial desta bencao.");
+            Debug.LogWarning(
+                "Configure o tutorial desta bencao."
+            );
             return;
         }
 
         if (!gerenciadorTutoriais.AbrirTutorial(tutorial))
         {
-            Debug.LogWarning("Nao foi possivel abrir o tutorial.");
+            Debug.LogWarning(
+                "Nao foi possivel abrir o tutorial."
+            );
         }
     }
 
-    private void RegistrarProgressoConversa(TipoConversa tipo)
+    private void RegistrarProgressoConversa(
+        TipoConversa tipo)
     {
         DadosSalvamento dados =
             GerenciadorSalvamento.Carregar(slotAtual);
@@ -531,6 +675,10 @@ public class AnciaoInteracao : MonoBehaviour
 
             case TipoConversa.IntroducaoSalenthra:
                 dados.historiaSalenthraContada = true;
+                break;
+
+            case TipoConversa.IntroducaoGemeos:
+                dados.historiaGemeosContada = true;
                 break;
         }
 
