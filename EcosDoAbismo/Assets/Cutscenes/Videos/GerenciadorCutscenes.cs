@@ -194,6 +194,8 @@ private void Start()
                 "Falha ao preparar: " + cutscene.id);
 
             reprodutor.Stop();
+            
+            acaoFinal?.Invoke();
 
             yield return Fade(
                 1f, 0f, tempoClarearJogo);
@@ -225,16 +227,21 @@ private void Start()
         AudioListener.pause = audioPausadoAnterior;
 
         // Retorna ao gameplay.
+        
+        // Executa a ação enquanto a tela está preta.
+        if (!videoFalhou)
+        {
+            cutscene.aoTerminar?.Invoke();
+        }
+
+        acaoFinal?.Invoke();
+
+        // Agora revela o gameplay já atualizado.
         yield return Fade(
             1f, 0f, tempoClarearJogo);
 
         RestaurarGameplay();
 
-        if (!videoFalhou)
-        {
-            cutscene.aoTerminar?.Invoke();
-            acaoFinal?.Invoke();
-        }
     }
 
     private IEnumerator Fade(

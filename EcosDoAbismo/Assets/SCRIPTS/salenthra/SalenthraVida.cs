@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class SalenthraVida : MonoBehaviour
@@ -9,20 +10,31 @@ public class SalenthraVida : MonoBehaviour
     private int vidaAtualFase1;
     private int vidaAtualFase2;
 
-    [Header("Referências")]
+    [Header("Referencias")]
     public Animator animator;
 
-    [Header("Relíquia")]
+    [Header("Reliquia")]
     public GameObject laminaCelesteDropPrefab;
     public Transform pontoDropReliquia;
+
+    [Header("Cutscenes")]
+    public string idCutsceneTransformacao =
+        "Salenthra_Transformacao";
+
+    public string idCutsceneMorte =
+        "Salenthra_Morte";
 
     private SalenthraMovimento movimento;
 
     private int faseAtual = 1;
     private bool transformando = false;
     private bool morta = false;
-
     private bool reliquiaSolta = false;
+
+    // Evita cutscenes repetidas.
+    private bool cutsceneTransformacaoIniciada = false;
+    private bool cutsceneMorteIniciada = false;
+    private bool morteFinalizada = false;
 
     public bool EstaMorta
     {
@@ -35,6 +47,9 @@ public class SalenthraVida : MonoBehaviour
         vidaAtualFase2 = vidaMaximaFase2;
 
         movimento = GetComponent<SalenthraMovimento>();
+
+        if (animator == null)
+            animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -58,7 +73,7 @@ public class SalenthraVida : MonoBehaviour
         if (dados.chefesDerrotados.Contains("Salenthra"))
         {
             Debug.Log(
-                "Salenthra já foi derrotada no slot " + slot
+                "Salenthra ja foi derrotada no slot " + slot
             );
 
             bool possuiLaminaCeleste = false;
@@ -71,32 +86,18 @@ public class SalenthraVida : MonoBehaviour
                     );
             }
 
-            // A Salenthra morreu, mas o jogador
-            // ainda não coletou a relíquia.
             if (!possuiLaminaCeleste)
             {
                 SoltarReliquia();
 
                 Debug.Log(
-                    "Lâmina Celeste ainda não foi coletada. " +
-                    "Relíquia restaurada na arena."
+                    "Lamina Celeste restaurada na arena."
                 );
             }
 
             gameObject.SetActive(false);
         }
     }
-
-    private void Update()
-{
-    if (
-        transformando &&
-        animator.GetCurrentAnimatorStateInfo(0).IsName("Idle Fase 2")
-    )
-    {
-        IniciarFase2();
-    }
-}
 
     public void ReceberDano(int dano)
     {
@@ -112,9 +113,7 @@ public class SalenthraVida : MonoBehaviour
             vidaAtualFase1 -= dano;
 
             if (movimento != null)
-            {
                 movimento.CancelarAtaquesPorDano();
-            }
 
             if (vidaAtualFase1 <= 0)
             {
@@ -124,9 +123,7 @@ public class SalenthraVida : MonoBehaviour
             }
 
             if (movimento != null)
-            {
                 movimento.podeMover = false;
-            }
 
             animator.SetTrigger("Dano");
         }
@@ -139,54 +136,103 @@ public class SalenthraVida : MonoBehaviour
         {
             vidaAtualFase2 -= dano;
 
-            // MORTE SEMPRE TEM PRIORIDADE
+            // A morte tem prioridade.
             if (vidaAtualFase2 <= 0)
             {
                 vidaAtualFase2 = 0;
 
                 if (movimento != null)
-                {
                     movimento.CancelarAtaquesPorDano();
-                }
 
                 MorrerFase2();
                 return;
             }
 
-            // SE ESTIVER ATACANDO:
-            // RECEBE DANO, MAS CONTINUA O ATAQUE
-            if (
-                movimento != null &&
-                movimento.EstaAtacandoFase2
-            )
+            // Recebe dano sem interromper
+            // os ataques da fase 2.
+            if (movimento != null &&
+                movimento.EstaAtacandoFase2)
             {
                 return;
             }
 
             if (movimento != null)
-            {
                 movimento.podeMover = false;
-            }
 
             animator.SetTrigger("DanoFase2");
         }
     }
 
+    // =========================
+    // TRANSFORMACAO
+    // =========================
+
     private void IniciarTransformacao()
     {
+        if (transformando || morta)
+            return;
+
         transformando = true;
 
         if (movimento != null)
-        {
             movimento.podeMover = false;
-        }
 
+        animator.speed = 1f;
         animator.SetBool("Andando", false);
         animator.SetTrigger("Transformar");
+
+        Debug.Log(
+            "Salenthra: animacao de transformacao iniciada."
+        );
+
+        // O Animation Event iniciara a cutscene.
     }
 
+    // NOVO: Animation Event no final
+    // do clip Transformar.
+    public void IniciarCutsceneTransformacao()
+    {
+        if (!transformando ||
+            faseAtual != 1 ||
+            cutsceneTransformacaoIniciada ||
+            morta)
+            return;
+
+        cutsceneTransformacaoIniciada = true;
+
+        if (GerenciadorCutscenes.Instancia != null)
+        {
+            bool iniciou =
+                GerenciadorCutscenes.Instancia.Reproduzir(
+                    idCutsceneTransformacao,
+                    IniciarFase2
+                );
+
+            if (iniciou)
+            {
+                Debug.Log(
+                    "Salenthra: cutscene de transformacao iniciada."
+                );
+                return;
+            }
+        }
+
+        Debug.LogWarning(
+            "Cutscene de transformacao indisponivel. " +
+            "Iniciando fase 2 normalmente."
+        );
+
+        IniciarFase2();
+    }
+
+    // Agora so inicia depois da cutscene.
     public void IniciarFase2()
     {
+        if (!transformando ||
+            morta ||
+            faseAtual != 1)
+            return;
+
         faseAtual = 2;
         transformando = false;
         vidaAtualFase2 = vidaMaximaFase2;
@@ -196,7 +242,15 @@ public class SalenthraVida : MonoBehaviour
             movimento.EntrarFase2();
             movimento.podeMover = true;
         }
+
+        Debug.Log(
+            "Salenthra: fase 2 liberada apos a cutscene!"
+        );
     }
+
+    // =========================
+    // DANO
+    // =========================
 
     public void FinalizarDano()
     {
@@ -204,40 +258,125 @@ public class SalenthraVida : MonoBehaviour
             return;
 
         if (movimento != null)
-        {
             movimento.podeMover = true;
-        }
     }
 
     public void FinalizarDanoFase2()
     {
-        if (morta)
+        if (morta || transformando)
             return;
 
         if (movimento != null)
-        {
             movimento.podeMover = true;
-        }
     }
+
+    // =========================
+    // MORTE DA FASE 2
+    // =========================
 
     private void MorrerFase2()
     {
+        if (morta)
+            return;
+
         morta = true;
 
         if (movimento != null)
         {
             movimento.podeMover = false;
+
+            // Impede novos comandos de movimento.
+            movimento.enabled = false;
         }
 
+        // Congela a fisica, impedindo a queda.
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.simulated = false;
+        }
+
+        // Desativa os colliders do boss morto.
+        Collider2D[] colliders =
+            GetComponentsInChildren<Collider2D>();
+
+        foreach (Collider2D collider in colliders)
+            collider.enabled = false;
+
+        animator.speed = 1f;
         animator.SetBool("Andando", false);
         animator.SetTrigger("MorteFase2");
 
-        // Registra apenas a morte definitiva
+        // Mantem o salvamento imediato.
         RegistrarDerrota();
+
+        Debug.Log(
+            "Salenthra: animacao de morte da fase 2 iniciada."
+        );
+
+        // O Animation Event iniciara a cutscene.
+    }
+
+    // NOVO: Animation Event no final
+    // do clip MorteFase2.
+    public void IniciarCutsceneMorte()
+    {
+        if (!morta ||
+            morteFinalizada ||
+            cutsceneMorteIniciada)
+            return;
+
+        cutsceneMorteIniciada = true;
+
+        if (GerenciadorCutscenes.Instancia != null)
+        {
+            bool iniciou =
+                GerenciadorCutscenes.Instancia.Reproduzir(
+                    idCutsceneMorte,
+                    FinalizarMorte
+                );
+
+            if (iniciou)
+            {
+                Debug.Log(
+                    "Salenthra: cutscene de morte iniciada."
+                );
+                return;
+            }
+        }
+
+        Debug.LogWarning(
+            "Cutscene de morte indisponivel. " +
+            "Finalizando morte normalmente."
+        );
+
+        FinalizarMorte();
+    }
+
+    // Executado ao finalizar a cutscene.
+    public void FinalizarMorte()
+    {
+        if (!morta || morteFinalizada)
+            return;
+
+        morteFinalizada = true;
+
+        // Cria a reliquia antes de esconder o boss.
+        SoltarReliquia();
+
+        Debug.Log(
+            "Salenthra: morte finalizada! " +
+            "Lamina Celeste deixada na arena."
+        );
+
+        gameObject.SetActive(false);
     }
 
     // =========================
-    // DROP DA RELÍQUIA
+    // DROP DA RELIQUIA
     // =========================
 
     public void SoltarReliquia()
@@ -248,18 +387,16 @@ public class SalenthraVida : MonoBehaviour
         if (laminaCelesteDropPrefab == null)
         {
             Debug.LogWarning(
-                "Prefab da Lâmina Celeste não foi atribuído."
+                "Prefab da Lamina Celeste nao foi atribuido."
             );
-
             return;
         }
 
         if (pontoDropReliquia == null)
         {
             Debug.LogWarning(
-                "Ponto de drop da Lâmina Celeste não foi atribuído."
+                "Ponto de drop da Lamina Celeste nao foi atribuido."
             );
-
             return;
         }
 
@@ -272,6 +409,10 @@ public class SalenthraVida : MonoBehaviour
         );
     }
 
+    // =========================
+    // SALVAMENTO
+    // =========================
+
     private void RegistrarDerrota()
     {
         int slot = MenuSelecaoSave.slotPartidaAtual;
@@ -280,7 +421,7 @@ public class SalenthraVida : MonoBehaviour
         {
             Debug.LogWarning(
                 "Salenthra derrotada sem slot selecionado. " +
-                "A derrota não será salva."
+                "A derrota nao sera salva."
             );
             return;
         }
@@ -291,7 +432,7 @@ public class SalenthraVida : MonoBehaviour
         if (dados == null)
         {
             Debug.LogError(
-                "Não foi possível carregar o salvamento " +
+                "Nao foi possivel carregar o salvamento " +
                 "para registrar a derrota da Salenthra."
             );
             return;
@@ -300,7 +441,7 @@ public class SalenthraVida : MonoBehaviour
         if (dados.chefesDerrotados == null)
         {
             Debug.LogError(
-                "Lista de chefes derrotados indisponível."
+                "Lista de chefes derrotados indisponivel."
             );
             return;
         }
@@ -309,7 +450,6 @@ public class SalenthraVida : MonoBehaviour
         {
             dados.chefesDerrotados.Add("Salenthra");
 
-            // Atualiza o tempo antes de salvar a derrota
             if (ContadorTempoJogo.instancia != null)
             {
                 ContadorTempoJogo.instancia
@@ -334,6 +474,10 @@ public class SalenthraVida : MonoBehaviour
             }
         }
     }
+
+    // =========================
+    // CALCULO DE DANO
+    // =========================
 
     public int CalcularDano(int danoBase)
     {
@@ -367,6 +511,10 @@ public class SalenthraVida : MonoBehaviour
             danoBase * multiplicador
         );
     }
+
+    // =========================
+    // PORCENTAGEM DE VIDA
+    // =========================
 
     public float ObterPorcentagemVidaAtual()
     {

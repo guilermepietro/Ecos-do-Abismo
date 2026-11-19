@@ -15,6 +15,7 @@ public class AnciaoInteracao : MonoBehaviour
         Lamina,
         IntroducaoGemeos,
         FragmentosGemeos,
+        Revelacao,
         Retorno
     }
 
@@ -28,21 +29,44 @@ public class AnciaoInteracao : MonoBehaviour
     }
 
     [Header("Interface")]
-    [SerializeField] private GameObject painelConversa;
-    [SerializeField] private TMP_Text textoConversa;
+    [SerializeField]
+    private GameObject painelConversa;
+
+    [SerializeField]
+    private TMP_Text textoConversa;
 
     [Header("Tutoriais")]
-    [SerializeField] private GerenciadorTutoriais gerenciadorTutoriais;
-    [SerializeField] private AreaTutorial tutorialAscensao;
-    [SerializeField] private AreaTutorial tutorialInvestidaFlamejante;
-    [SerializeField] private AreaTutorial tutorialInvestidaCeleste;
-    [SerializeField] private AreaTutorial tutorialSegundaExistencia;
+    [SerializeField]
+    private GerenciadorTutoriais gerenciadorTutoriais;
+
+    [SerializeField]
+    private AreaTutorial tutorialAscensao;
+
+    [SerializeField]
+    private AreaTutorial tutorialInvestidaFlamejante;
+
+    [SerializeField]
+    private AreaTutorial tutorialInvestidaCeleste;
+
+    [SerializeField]
+    private AreaTutorial tutorialSegundaExistencia;
+
+    [Header("Evento Final")]
+    [SerializeField]
+    private TransporteFinalAnciao transporteFinalAnciao;
 
     [Header("Identificadores das Reliquias")]
-    [SerializeField] private string idReliquiaCoroa = "CoroaAbismo";
-    [SerializeField] private string idReliquiaCalice = "CaliceBrasas";
-    [SerializeField] private string idReliquiaLamina = "LaminaCeleste";
-    [SerializeField] private string idReliquiaFragmentos = "FragmentosGemeos";
+    [SerializeField]
+    private string idReliquiaCoroa = "CoroaAbismo";
+
+    [SerializeField]
+    private string idReliquiaCalice = "CaliceBrasas";
+
+    [SerializeField]
+    private string idReliquiaLamina = "LaminaCeleste";
+
+    [SerializeField]
+    private string idReliquiaFragmentos = "FragmentosGemeos";
 
     [Header("Primeiro Encontro")]
     [SerializeField, TextArea(2, 5)]
@@ -164,37 +188,21 @@ public class AnciaoInteracao : MonoBehaviour
     private string[] dialogosIntroducaoGemeos =
     {
         "Ora, veja quem voltou! Heh... Se continuar me visitando assim, rapaz, vou acabar cobrando aluguel.",
-
         "E então? Aquelas pernas já aprenderam a acompanhar seus olhos, ou ainda anda tropeçando por aí?",
-
         "Hah! Essa cara de poucos amigos... Está bem, está bem. Não vou zombar de você hoje.",
-
         "Sabe, meu jovem... Quanto mais vivo, mais percebo uma coisa curiosa sobre este mundo.",
-
         "Algumas coisas simplesmente não foram feitas para existir sozinhas.",
-
         "Veja estas minhas mãos, por exemplo. Uma treme, a outra tenta ajudá-la... e no fim as duas derrubam minha comida. Hah!",
-
         "Mas nem toda união é tão desajeitada quanto a minha, sabe?",
-
         "Há uma velha história sobre dois nomes que nunca deveriam ser pronunciados separadamente: Saryn e Sayren.",
-
         "Já ouviu falar deles? Hm... Imaginei que não.",
-
         "Dizem que eram tão ligados um ao outro que nem mesmo a morte conseguiu compreender onde um terminava e o outro começava.",
-
         "Não pense neles como dois guardiões, rapaz. Essa é a primeira coisa que os antigos escritos procuram ensinar.",
-
         "Eram uma única existência, embora o mundo insistisse em enxergar duas formas.",
-
         "Os Fragmentos Gêmeos guardam o que restou desse vínculo. Dois pedaços que não aceitam permanecer separados.",
-
         "Heh... Parece coisa de poeta, não é? Mas já vi homens perderem a razão tentando entender poderes muito menores.",
-
         "Se chegar até eles, não cometa o erro de procurar uma fraqueza em apenas um. O que ameaça um pertence ao outro.",
-
         "Quanto aos fragmentos... Há algo neles que sempre me intrigou. Uma existência que insiste em continuar, mesmo quando deveria terminar.",
-
         "Bem, já falei demais por hoje. Vá com cuidado, rapaz. E não me faça descobrir se essas histórias sobre a morte são verdadeiras."
     };
 
@@ -203,28 +211,44 @@ public class AnciaoInteracao : MonoBehaviour
     private string[] dialogosFragmentos =
     {
         "Ah, rapaz... Aí está você. Já começava a achar que teria de conversar com as árvores para passar o tempo.",
-
         "Hm? O que está escondendo aí? Ora, não precisa fazer mistério com este velho.",
-
         "Espere... Esses fragmentos... Não pode ser.",
-
         "Saryn e Sayren... Então até aquele vínculo foi quebrado? Ou talvez... Não, não importa.",
-
         "Venha mais perto, meu jovem. Preciso enxergar melhor.",
-
         "Ah... Estão juntos. Mesmo depois de tudo, continuam procurando um ao outro.",
-
         "Curioso, não é? Há coisas que nem a morte consegue convencer a se separar.",
-
         "O quê? Estou estranho? Hah! Passe a vida estudando relíquias e depois me diga se conseguiria manter a calma diante de uma dessas.",
-
         "Você já me trouxe uma coroa, um cálice e uma lâmina. E agora... isto. Devo admitir, rapaz, que superou todas as minhas expectativas.",
-
         "Mas não pense que o poder desses fragmentos será tão simples quanto os anteriores. Há um preço em continuar existindo quando o próprio corpo já desistiu.",
-
         "Ainda assim, talvez esse pequeno fôlego a mais lhe seja útil. E eu lhe prometi ajuda, não prometi?",
-
         "Aproxime-se, meu jovem. Vamos descobrir o que acontece quando a morte é obrigada a esperar."
+    };
+
+    [Header("Revelacao Final")]
+    [SerializeField, TextArea(2, 5)]
+    private string[] dialogosRevelacao =
+    {
+        "Ah, rapaz... Aí está você. Sabe, estava justamente pensando em quanto tempo levaria para voltar.",
+        "Uma coroa, um cálice, uma lâmina... e, por fim, os fragmentos. Heh... Quem diria que conseguiríamos reunir todos?",
+        "Ah, não me olhe assim. Você fez um trabalho extraordinário, meu jovem. Melhor do que eu poderia ter imaginado.",
+        "Sabe o que é curioso? Passei tantos anos procurando esses artefatos... E bastou encontrar um rapaz com uma espada e uma boa dose de coragem.",
+        "Hah! Não faça essa cara. Precisa admitir que foi uma bela parceria.",
+        "Mas chega de brincadeiras. Há algo que devo lhe contar.",
+        "Você nunca se perguntou por que um velho tão fraco conhecia tantos segredos? Como sabia despertar poderes que nem os próprios guardiões compreendiam?",
+        "Não? Hm... Talvez devesse ter perguntado.",
+        "Eu lhe disse que precisava manter as relíquias comigo para realizar os rituais. Isso não era exatamente uma mentira.",
+        "O que não lhe contei, rapaz, é que cada uma delas também fazia parte de um ritual muito maior.",
+        "A Coroa do Abismo. O Cálice de Brasas. A Lâmina Celeste. Os Fragmentos Gêmeos. Quatro peças de um selo que jamais deveria ser rompido.",
+        "E agora... estão todas aqui.",
+        "Você não percebeu, não é? A cada guardião derrotado, a cada relíquia entregue, estávamos um passo mais perto deste momento.",
+        "Ah, não se preocupe. As bênçãos são verdadeiras. Eu jamais poderia ter trazido você até aqui oferecendo apenas palavras vazias.",
+        "Mas há alguém aguardando há muito mais tempo do que nós dois. Alguém que o mundo tentou apagar da própria história.",
+        "Ishkharoth.",
+        "Sim, rapaz. Eu o sirvo. E tudo o que fiz foi para preparar o seu retorno.",
+        "E quanto a você... Heh. Desde o primeiro instante percebi que havia algo diferente dentro desse corpo.",
+        "Uma luz antiga... Tão familiar. Talvez nem você compreenda o que realmente carrega.",
+        "Mas isso já não importa. Meu trabalho está concluído. As relíquias estão reunidas, e o caminho finalmente pode ser aberto.",
+        "Vá, meu jovem. Seu verdadeiro destino está à sua espera."
     };
 
     [Header("Visitas Comuns")]
@@ -262,21 +286,26 @@ public class AnciaoInteracao : MonoBehaviour
             painelConversa.SetActive(false);
     }
 
-    void Update()
-    {
-        if (!conversaAberta)
-            return;
+    
 
-        if (Input.GetKeyDown(KeyCode.Return) ||
-            Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
-            AvancarDialogo();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            FecharConversa();
-        }
+void Update()
+{
+    if (!conversaAberta)
+        return;
+
+    if (Input.GetKeyDown(KeyCode.Return) ||
+        Input.GetKeyDown(KeyCode.KeypadEnter))
+    {
+        AvancarDialogo();
     }
+    else if (Input.GetKeyDown(KeyCode.Escape))
+    {
+        FecharConversa();
+    }
+}
+
+
+
 
     void OnTriggerEnter2D(Collider2D outro)
     {
@@ -324,7 +353,8 @@ public class AnciaoInteracao : MonoBehaviour
             return;
         }
 
-        if (painelConversa == null || textoConversa == null)
+        if (painelConversa == null ||
+            textoConversa == null)
         {
             Debug.LogWarning(
                 "Configure o painel e o texto do Anciao."
@@ -338,7 +368,8 @@ public class AnciaoInteracao : MonoBehaviour
         animatorElian =
             elianPerto.GetComponent<Animator>();
 
-        if (movimento == null || animatorElian == null)
+        if (movimento == null ||
+            animatorElian == null)
             return;
 
         if (slotAtual < 1 || slotAtual > 3)
@@ -429,7 +460,20 @@ public class AnciaoInteracao : MonoBehaviour
             tipoConversaAtual =
                 TipoConversa.FragmentosGemeos;
 
-            dialogosAtuais = dialogosFragmentos;
+            dialogosAtuais =
+                dialogosFragmentos;
+        }
+        else if (
+            possuiAscensao &&
+            possuiInvestidaFlamejante &&
+            possuiInvestidaCeleste &&
+            possuiSegundaExistencia)
+        {
+            tipoConversaAtual =
+                TipoConversa.Revelacao;
+
+            dialogosAtuais =
+                dialogosRevelacao;
         }
         else
         {
@@ -447,7 +491,11 @@ public class AnciaoInteracao : MonoBehaviour
         conversaAberta = true;
 
         movimento.podeMover = false;
-        animatorElian.SetFloat("velocidade", 0f);
+
+        animatorElian.SetFloat(
+            "velocidade",
+            0f
+        );
 
         painelConversa.SetActive(true);
         MostrarDialogo();
@@ -521,13 +569,41 @@ public class AnciaoInteracao : MonoBehaviour
                 );
                 break;
 
+            case TipoConversa.Revelacao:
+                IniciarTransporteFinal();
+                break;
+
             default:
                 FecharConversa();
                 break;
         }
     }
 
-    private void IniciarEntregaBencao(TipoBencao tipo)
+    private void IniciarTransporteFinal()
+    {
+        if (transporteFinalAnciao == null)
+        {
+            Debug.LogError(
+                "Configure TransporteFinalAnciao!"
+            );
+            return;
+        }
+
+        if (!transporteFinalAnciao.IniciarTransporte(movimento))
+        {
+            return;
+        }
+
+        conversaAberta = false;
+
+        painelConversa.SetActive(false);
+
+        // Nao libera movimento aqui.
+        // TransporteFinalAnciao fara isso ao fim do fade.
+    }
+
+    private void IniciarEntregaBencao(
+        TipoBencao tipo)
     {
         if (elianPerto == null)
         {
@@ -549,7 +625,8 @@ public class AnciaoInteracao : MonoBehaviour
 
     public void ConcederBencao()
     {
-        if (!bencaoPendente || movimento == null)
+        if (!bencaoPendente ||
+            movimento == null)
             return;
 
         ElianBencaos bencaos =
@@ -602,7 +679,8 @@ public class AnciaoInteracao : MonoBehaviour
         }
 
         bencaoPendente = false;
-        bencaoEmEntrega = TipoBencao.Nenhuma;
+        bencaoEmEntrega =
+            TipoBencao.Nenhuma;
     }
 
     public void FinalizarRecebimentoBencao()
@@ -623,15 +701,18 @@ public class AnciaoInteracao : MonoBehaviour
                 break;
 
             case TipoBencao.InvestidaFlamejante:
-                tutorial = tutorialInvestidaFlamejante;
+                tutorial =
+                    tutorialInvestidaFlamejante;
                 break;
 
             case TipoBencao.InvestidaCeleste:
-                tutorial = tutorialInvestidaCeleste;
+                tutorial =
+                    tutorialInvestidaCeleste;
                 break;
 
             case TipoBencao.SegundaExistencia:
-                tutorial = tutorialSegundaExistencia;
+                tutorial =
+                    tutorialSegundaExistencia;
                 break;
         }
 
@@ -711,7 +792,8 @@ public class AnciaoInteracao : MonoBehaviour
             ElianVida vida =
                 movimento.GetComponent<ElianVida>();
 
-            if (vida == null || !vida.EstaMorto)
+            if (vida == null ||
+                !vida.EstaMorto)
             {
                 movimento.podeMover = true;
             }

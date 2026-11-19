@@ -19,7 +19,17 @@ public class RakthasVida : MonoBehaviour
     public GameObject prefabReliquia;
     public Transform pontoDropReliquia;
 
+    [Header("Cutscene de Morte")]
+    public string idCutsceneMorte = "Rakthas_Morte";
+
+    [Header("Interface")]
+    public GameObject barraVidaVisual;
+
     private bool reliquiaDropada = false;
+
+    // NOVO: impede cutscenes e drops repetidos.
+    private bool cutsceneMorteIniciada = false;
+    private bool morteFinalizada = false;
 
     public bool EstaTomandoDano => tomandoDano;
     public bool EstaMorto => morto;
@@ -63,8 +73,6 @@ public class RakthasVida : MonoBehaviour
                     );
             }
 
-            // Rakthas morreu, mas o jogador
-            // ainda não coletou a relíquia.
             if (!possuiCaliceDeBrasas)
             {
                 DroparReliquia();
@@ -75,18 +83,14 @@ public class RakthasVida : MonoBehaviour
                 );
             }
 
+            if (barraVidaVisual != null)
+                barraVidaVisual.SetActive(false);
+
             gameObject.SetActive(false);
         }
     }
 
-    private void Update()
-    {
-        // TECLA TEMPORÁRIA PARA TESTE
-        if (Input.GetKeyDown(KeyCode.Alpha2) && !morto)
-        {
-            ReceberDano(vidaAtual);
-        }
-    }
+    
 
     public void ReceberDano(int dano)
     {
@@ -103,8 +107,8 @@ public class RakthasVida : MonoBehaviour
             return;
         }
 
-        // Durante um ataque, Rakthas recebe dano,
-        // mas o ataque não é interrompido.
+        // Durante ataques, recebe dano normalmente,
+        // mas não interrompe a animação de ataque.
         if (ataques != null && ataques.EstaAtacando)
         {
             return;
@@ -136,17 +140,41 @@ public class RakthasVida : MonoBehaviour
 
     private void Morrer()
     {
+        if (morto)
+            return;
+
         morto = true;
         tomandoDano = false;
 
+        // Cancela o ataque atual.
         if (ataques != null)
         {
             ataques.CancelarAtaque();
         }
 
-        // DESATIVA TODOS OS COLLIDERS
-        // PARA O CORPO MORTO NÃO ATRAPALHAR
-        // O ELIAN NEM A RELÍQUIA.
+        // NOVO: impede o script de movimentação
+        // de alterar a animação de morte.
+        RakthasMovimento movimento =
+            GetComponent<RakthasMovimento>();
+
+        if (movimento != null)
+        {
+            movimento.enabled = false;
+        }
+
+        // NOVO: congela a física do boss.
+        // Assim ele não cai da arena.
+        Rigidbody2D rb =
+            GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.simulated = false;
+        }
+
+        // Desativa os colliders do corpo e ataques.
         Collider2D[] colliders =
             GetComponentsInChildren<Collider2D>();
 
@@ -155,6 +183,7 @@ public class RakthasVida : MonoBehaviour
             collider.enabled = false;
         }
 
+        // Prepara a animação de morte.
         animator.speed = 1f;
 
         animator.SetBool(
@@ -162,24 +191,94 @@ public class RakthasVida : MonoBehaviour
             false
         );
 
+        // Mantém o salvamento imediato.
+        RegistrarDerrota();
+
+        // NOVO: a animação de morte toca primeiro.
         animator.SetTrigger("Morte");
 
-        Rigidbody2D rb =
-            GetComponent<Rigidbody2D>();
+        Debug.Log(
+            "Rakthas iniciou sua animação de morte."
+        );
 
-        if (rb != null)
-        {
-            rb.linearVelocity =
-                Vector2.zero;
-        }
-
-        // REGISTRA A DERROTA DEFINITIVA
-        RegistrarDerrota();
+        // O Animation Event chamará FinalizarMorte()
+        // somente quando a animação terminar.
     }
 
     public void FinalizarDano()
     {
+        if (morto)
+            return;
+
         tomandoDano = false;
+    }
+
+    // =========================
+    // CUTSCENE DE MORTE
+    // =========================
+
+    // Chamado pelo Animation Event
+    // no último frame da animação Morte.
+    public void FinalizarMorte()
+    {
+        if (!morto || cutsceneMorteIniciada)
+            return;
+
+        cutsceneMorteIniciada = true;
+
+        // A animação terminou.
+        // Agora começa a cutscene.
+        if (GerenciadorCutscenes.Instancia != null)
+        {
+            bool iniciou =
+                GerenciadorCutscenes.Instancia.Reproduzir(
+                    idCutsceneMorte,
+                    ConcluirMorte
+                );
+
+            if (iniciou)
+            {
+                Debug.Log(
+                    "Animação de morte concluída! " +
+                    "Cutscene de morte do Rakthas iniciada."
+                );
+
+                return;
+            }
+        }
+
+        // Segurança se a cutscene estiver indisponível.
+        Debug.LogWarning(
+            "Cutscene de morte do Rakthas " +
+            "indisponível. Finalizando derrota."
+        );
+
+        ConcluirMorte();
+    }
+
+    // Chamado ao terminar a cutscene,
+    // enquanto a tela ainda está preta.
+    private void ConcluirMorte()
+    {
+        if (!morto || morteFinalizada)
+            return;
+
+        morteFinalizada = true;
+
+        // Primeiro cria a relíquia.
+        DroparReliquia();
+
+        // Esconde a interface do boss.
+        if (barraVidaVisual != null)
+            barraVidaVisual.SetActive(false);
+
+        // Depois faz Rakthas desaparecer.
+        gameObject.SetActive(false);
+
+        Debug.Log(
+            "Rakthas desapareceu após a cutscene. " +
+            "Cálice de Brasas deixado na arena."
+        );
     }
 
     // =========================
@@ -292,15 +391,6 @@ public class RakthasVida : MonoBehaviour
                 );
             }
         }
-    }
-
-    // =========================
-    // FINAL DA MORTE
-    // =========================
-
-    public void FinalizarMorte()
-    {
-        gameObject.SetActive(false);
     }
 
     // =========================

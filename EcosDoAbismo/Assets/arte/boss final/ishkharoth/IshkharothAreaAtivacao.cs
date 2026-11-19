@@ -8,6 +8,10 @@ public class IshkharothAreaAtivacao : MonoBehaviour
     [SerializeField] private IshkharothMovimento movimento;
     [SerializeField] private BarraVidaIshkharoth barraVidaIshkharoth;
 
+    [Header("Cutscene")]
+    [SerializeField] private string idCutscene =
+        "Ishkharoth_Apresentacao";
+
     private BoxCollider2D area;
     private bool ativada;
 
@@ -28,9 +32,6 @@ public class IshkharothAreaAtivacao : MonoBehaviour
         if (ativada || movimento == null)
             return;
 
-        // Verifica se Elian esta dentro da area.
-        // Funciona mesmo que OnTriggerEnter2D
-        // nao tenha sido executado.
         Collider2D[] encontrados =
             Physics2D.OverlapBoxAll(
                 area.bounds.center,
@@ -59,7 +60,9 @@ public class IshkharothAreaAtivacao : MonoBehaviour
 
     private void VerificarElian(Collider2D outro)
     {
-        if (ativada || outro == null || movimento == null)
+        if (ativada || outro == null ||
+            movimento == null ||
+            !movimento.gameObject.activeInHierarchy)
             return;
 
         ElianVida vidaElian =
@@ -68,15 +71,40 @@ public class IshkharothAreaAtivacao : MonoBehaviour
         if (vidaElian == null)
             return;
 
-        AtivarCombate();
+        AtivarApresentacao();
     }
 
-    private void AtivarCombate()
+    private void AtivarApresentacao()
     {
         if (ativada)
             return;
 
         ativada = true;
+
+        if (GerenciadorCutscenes.Instancia != null)
+        {
+            bool iniciou =
+                GerenciadorCutscenes.Instancia.Reproduzir(
+                    idCutscene,
+                    IniciarCombate
+                );
+
+            if (iniciou)
+                return;
+        }
+
+        Debug.LogWarning(
+            "Cutscene do Ishkharoth indisponível."
+        );
+
+        IniciarCombate();
+    }
+
+    private void IniciarCombate()
+    {
+        if (movimento == null ||
+            !movimento.gameObject.activeInHierarchy)
+            return;
 
         movimento.AtivarCombate();
 
@@ -84,7 +112,8 @@ public class IshkharothAreaAtivacao : MonoBehaviour
             barraVidaIshkharoth.Exibir();
 
         Debug.Log(
-            "Ishkharoth: combate ativado pela area!"
+            "Ishkharoth: apresentação concluída! " +
+            "Combate iniciado."
         );
     }
 }

@@ -3142,6 +3142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IshkharothAreaAtivacao
   movimento: {fileID: 426324706}
   barraVidaIshkharoth: {fileID: 298967320}
+  idCutscene: Ishkharoth_Apresentacao
 --- !u!1 &128758763
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,7 +3398,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -114.5, y: -65.1, z: 0}
+  m_LocalPosition: {x: 323.1, y: -95.5, z: 0}
   m_LocalScale: {x: 1.52, y: 1.52, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4288,6 +4289,7 @@ GameObject:
   - component: {fileID: 171094415}
   - component: {fileID: 171094416}
   - component: {fileID: 171094417}
+  - component: {fileID: 171094418}
   m_Layer: 0
   m_Name: FusaoSarynSayren
   m_TagString: Inimigo
@@ -4495,13 +4497,25 @@ MonoBehaviour:
   ataque1: {fileID: 171094413}
   ataque2: {fileID: 171094414}
   ataque3: {fileID: 171094415}
+  vidaFusao: {fileID: 0}
   elian: {fileID: 142652950}
   distanciaMaximaAtaque: 7
-  intervaloEntreAtaques: 3.5
   atrasoInicial: 1.5
   distanciaCurta: 3
   distanciaLonga: 5
   penalidadeRetorno: 0.4
+  chanceSequenciaNormal: 0.2
+  chanceSequenciaPressao: 0.5
+  chanceSequenciaDesespero: 0.75
+  pausaNormal: 0.45
+  pausaPressao: 0.3
+  pausaDesespero: 0.2
+  recuperacaoNormal: 1.6
+  recuperacaoPressao: 1.3
+  recuperacaoDesespero: 1.1
+  extraAposChuva: 0.85
+  extraAposSequenciaDupla: 0.25
+  mostrarLogs: 0
 --- !u!114 &171094413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4630,6 +4644,20 @@ MonoBehaviour:
   volumeGrito: 0.8
   volumePedras: 0.45
   intervaloSomPedras: 0.12
+--- !u!114 &171094418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171094405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ea523a4a616584f90d299f55b0b5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CutsceneMorteFusao
+  vidaFusao: {fileID: 171094416}
+  idCutscene: Fusao_Morte
 --- !u!1 &175657608
 GameObject:
   m_ObjectHideFlags: 0
@@ -5274,6 +5302,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1269647429}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &194620738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 194620739}
+  m_Layer: 0
+  m_Name: PontoChegadaLuminar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &194620739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194620738}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 106.99, y: -116.23, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &208299534
 GameObject:
@@ -19197,6 +19256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AtivadorVoragul
   voragul: {fileID: 2121363422}
   barraVidaVoragul: {fileID: 1097332986}
+  idCutscene: Voragul_Apresentacao
 --- !u!61 &605545643
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19231,7 +19291,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0000014305115, y: 0.5292921}
+  m_Offset: {x: -3.2037117, y: 0.5292921}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -19241,7 +19301,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.601605, y: 2.058584}
+  m_Size: {x: 5.8594623, y: 2.058584}
   m_EdgeRadius: 0
 --- !u!4 &605545644
 Transform:
@@ -27825,6 +27885,76 @@ MonoBehaviour:
     aoTerminar:
       m_PersistentCalls:
         m_Calls: []
+  - id: Voragul_Apresentacao
+    video: {fileID: 32900000, guid: 64b4ff70c9a46d84482bbdbfd1e41825, type: 3}
+    usarAudioDoVideo: 0
+    pausarAudioDoJogo: 0
+    aoTerminar:
+      m_PersistentCalls:
+        m_Calls: []
+  - id: Voragul_Morte
+    video: {fileID: 32900000, guid: 417b9d61ac26acd419b02f554b252c02, type: 3}
+    usarAudioDoVideo: 0
+    pausarAudioDoJogo: 0
+    aoTerminar:
+      m_PersistentCalls:
+        m_Calls: []
+  - id: Rakthas_Apresentacao
+    video: {fileID: 32900000, guid: 04fc89aee6d1274498860c1d12af9f3f, type: 3}
+    usarAudioDoVideo: 0
+    pausarAudioDoJogo: 0
+    aoTerminar:
+      m_PersistentCalls:
+        m_Calls: []
+  - id: Rakthas_Morte
+    video: {fileID: 32900000, guid: 7175f5a1ff0cbff4a99e58e9df202396, type: 3}
+    usarAudioDoVideo: 0
+    pausarAudioDoJogo: 0
+    aoTerminar:
+      m_PersistentCalls:
+        m_Calls: []
+  - id: Fusao_Apresentacao
+    video: {fileID: 32900000, guid: f28934ce84953444b95fed16ad60f9d9, type: 3}
+    usarAudioDoVideo: 0
+    pausarAudioDoJogo: 0
+    aoTerminar:
+      m_PersistentCalls:
+        m_Calls: []
+  - id: Fusao_Morte
+    video: {fileID: 32900000, guid: 3410b6a0c0da6204a893cd79c4bd183c, type: 3}
+    usarAudioDoVideo: 0
+    pausarAudioDoJogo: 0
+    aoTerminar:
+      m_PersistentCalls:
+        m_Calls: []
+  - id: Ishkharoth_Apresentacao
+    video: {fileID: 32900000, guid: 9ccfb4a91467b564e8f3531253da427f, type: 3}
+    usarAudioDoVideo: 0
+    pausarAudioDoJogo: 0
+    aoTerminar:
+      m_PersistentCalls:
+        m_Calls: []
+  - id: Salenthra_Apresentacao
+    video: {fileID: 32900000, guid: b6cf6e3e52a6f5747b3a4e50b76081b6, type: 3}
+    usarAudioDoVideo: 0
+    pausarAudioDoJogo: 0
+    aoTerminar:
+      m_PersistentCalls:
+        m_Calls: []
+  - id: Salenthra_Transformacao
+    video: {fileID: 32900000, guid: deb76a5a5b750f544a461e42649e8721, type: 3}
+    usarAudioDoVideo: 0
+    pausarAudioDoJogo: 0
+    aoTerminar:
+      m_PersistentCalls:
+        m_Calls: []
+  - id: Salenthra_Morte
+    video: {fileID: 32900000, guid: 3d830d65b52b5ab4289313166a8f946a, type: 3}
+    usarAudioDoVideo: 0
+    pausarAudioDoJogo: 0
+    aoTerminar:
+      m_PersistentCalls:
+        m_Calls: []
   tempoEscurecer: 0.2
   tempoRevelarVideo: 0.25
   tempoClarearJogo: 0.5
@@ -33487,6 +33617,7 @@ MonoBehaviour:
   tutorialInvestidaFlamejante: {fileID: 1812969121}
   tutorialInvestidaCeleste: {fileID: 277461573}
   tutorialSegundaExistencia: {fileID: 33416047}
+  transporteFinalAnciao: {fileID: 2026298579}
   idReliquiaCoroa: CoroaDoAbismo
   idReliquiaCalice: CaliceDeBrasas
   idReliquiaLamina: LaminaCeleste
@@ -33692,6 +33823,42 @@ MonoBehaviour:
     prometi ajuda, n\xE3o prometi?"
   - "Aproxime-se, meu jovem. Vamos descobrir o que acontece quando a morte \xE9 obrigada
     a esperar."
+  dialogosRevelacao:
+  - "Ah, rapaz... A\xED est\xE1 voc\xEA. Sabe, estava justamente pensando em quanto
+    tempo levaria para voltar."
+  - "Uma coroa, um c\xE1lice, uma l\xE2mina... e, por fim, os fragmentos. Heh...
+    Quem diria que conseguir\xEDamos reunir todos?"
+  - "Ah, n\xE3o me olhe assim. Voc\xEA fez um trabalho extraordin\xE1rio, meu jovem.
+    Melhor do que eu poderia ter imaginado."
+  - "Sabe o que \xE9 curioso? Passei tantos anos procurando esses artefatos... E
+    bastou encontrar um rapaz com uma espada e uma boa dose de coragem."
+  - "Hah! N\xE3o fa\xE7a essa cara. Precisa admitir que foi uma bela parceria."
+  - "Mas chega de brincadeiras. H\xE1 algo que devo lhe contar."
+  - "Voc\xEA nunca se perguntou por que um velho t\xE3o fraco conhecia tantos segredos?
+    Como sabia despertar poderes que nem os pr\xF3prios guardi\xF5es compreendiam?"
+  - "N\xE3o? Hm... Talvez devesse ter perguntado."
+  - "Eu lhe disse que precisava manter as rel\xEDquias comigo para realizar os rituais.
+    Isso n\xE3o era exatamente uma mentira."
+  - "O que n\xE3o lhe contei, rapaz, \xE9 que cada uma delas tamb\xE9m fazia parte
+    de um ritual muito maior."
+  - "A Coroa do Abismo. O C\xE1lice de Brasas. A L\xE2mina Celeste. Os Fragmentos
+    G\xEAmeos. Quatro pe\xE7as de um selo que jamais deveria ser rompido."
+  - "E agora... est\xE3o todas aqui."
+  - "Voc\xEA n\xE3o percebeu, n\xE3o \xE9? A cada guardi\xE3o derrotado, a cada rel\xEDquia
+    entregue, est\xE1vamos um passo mais perto deste momento."
+  - "Ah, n\xE3o se preocupe. As b\xEAn\xE7\xE3os s\xE3o verdadeiras. Eu jamais poderia
+    ter trazido voc\xEA at\xE9 aqui oferecendo apenas palavras vazias."
+  - "Mas h\xE1 algu\xE9m aguardando h\xE1 muito mais tempo do que n\xF3s dois. Algu\xE9m
+    que o mundo tentou apagar da pr\xF3pria hist\xF3ria."
+  - Ishkharoth.
+  - Sim, rapaz. Eu o sirvo. E tudo o que fiz foi para preparar o seu retorno.
+  - "E quanto a voc\xEA... Heh. Desde o primeiro instante percebi que havia algo
+    diferente dentro desse corpo."
+  - "Uma luz antiga... T\xE3o familiar. Talvez nem voc\xEA compreenda o que realmente
+    carrega."
+  - "Mas isso j\xE1 n\xE3o importa. Meu trabalho est\xE1 conclu\xEDdo. As rel\xEDquias
+    est\xE3o reunidas, e o caminho finalmente pode ser aberto."
+  - "V\xE1, meu jovem. Seu verdadeiro destino est\xE1 \xE0 sua espera."
   dialogosRetorno:
   - Ah, meu salvador... Vejo que a morte ainda nao conseguiu alcanca-lo.
   - As reliquias continuam a espera de alguem capaz de enfrentar seus guardioes.
@@ -39688,6 +39855,8 @@ MonoBehaviour:
   animator: {fileID: 1573473952}
   laminaCelesteDropPrefab: {fileID: 5450866377598040113, guid: 0e765ae729db7f440b0e4a27e909531f, type: 3}
   pontoDropReliquia: {fileID: 261453648}
+  idCutsceneTransformacao: Salenthra_Transformacao
+  idCutsceneMorte: Salenthra_Morte
 --- !u!114 &1573473956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43474,6 +43643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FusaoAreaAtivacao
   movimento: {fileID: 171094410}
   barraVidaFusao: {fileID: 1744438808}
+  idCutscene: Fusao_Apresentacao
 --- !u!1 &1769950195
 GameObject:
   m_ObjectHideFlags: 0
@@ -47552,7 +47722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1934658337
 RectTransform:
   m_ObjectHideFlags: 0
@@ -49491,6 +49661,7 @@ GameObject:
   - component: {fileID: 2026298575}
   - component: {fileID: 2026298574}
   - component: {fileID: 2026298578}
+  - component: {fileID: 2026298579}
   m_Layer: 0
   m_Name: Anciao
   m_TagString: Untagged
@@ -49642,6 +49813,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.90625, y: 0.84375}
   m_EdgeRadius: 0
+--- !u!114 &2026298579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026298573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dbb0b7d6e91ee3488f97875f6ed19bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TransporteFinalAnciao
+  pontoChegadaLuminar: {fileID: 194620739}
+  transicaoTela: {fileID: 164015846}
+  tempoTelaEscura: 3
 --- !u!1 &2027420535
 GameObject:
   m_ObjectHideFlags: 0
@@ -796744,6 +796930,8 @@ MonoBehaviour:
   animator: {fileID: 2059395985}
   prefabReliquia: {fileID: 203640241205803011, guid: d943d0909b2035643b7396a5395deb06, type: 3}
   pontoDropReliquia: {fileID: 138036201}
+  idCutsceneMorte: Rakthas_Morte
+  barraVidaVisual: {fileID: 1922744612}
 --- !u!114 &2059395990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797731,6 +797919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SalenthraAreaAtivacao
   movimento: {fileID: 1573473949}
   barraVidaSalenthra: {fileID: 1566294055}
+  idCutscene: Salenthra_Apresentacao
 --- !u!61 &2121076980
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -798004,6 +798193,8 @@ MonoBehaviour:
   vidaMaxima: 20
   prefabReliquia: {fileID: 177253702791687700, guid: c8cf44d84a0a4ba47b97540b5a4b6e1b, type: 3}
   pontoDropReliquia: {fileID: 307728015}
+  idCutsceneMorte: Voragul_Morte
+  barraVidaVisual: {fileID: 0}
 --- !u!114 &2121363430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798260,6 +798451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AtivadorRakthas
   rakthasMovimento: {fileID: 2059395982}
   barraVidaRakthas: {fileID: 1908161004}
+  idCutscene: Rakthas_Apresentacao
 --- !u!61 &2122699215
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -799316,3 +799508,4 @@ SceneRoots:
   - {fileID: 1935402552}
   - {fileID: 2022863373}
   - {fileID: 1045526992}
+  - {fileID: 194620739}
