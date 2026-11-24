@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class CutsceneMorteFusao : MonoBehaviour
@@ -30,13 +29,16 @@ public class CutsceneMorteFusao : MonoBehaviour
 
         cutsceneIniciada = true;
 
-        if (GerenciadorCutscenes.Instancia != null)
+        if (
+            GerenciadorCutscenes.Instancia != null
+        )
         {
             bool iniciou =
-                GerenciadorCutscenes.Instancia.Reproduzir(
-                    idCutscene,
-                    ConcluirMorte
-                );
+                GerenciadorCutscenes.Instancia
+                    .Reproduzir(
+                        idCutscene,
+                        ConcluirMorte
+                    );
 
             if (iniciou)
                 return;

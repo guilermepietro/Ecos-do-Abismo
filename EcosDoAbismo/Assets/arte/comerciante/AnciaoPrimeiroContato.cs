@@ -33,6 +33,9 @@ public class AnciaoPrimeiroContato : MonoBehaviour
     private bool conversaAberta;
     private int indiceDialogo;
 
+    // NOVO: guarda o tempo anterior do jogo.
+    private float escalaTempoAnterior = 1f;
+
     private void Awake()
     {
         GetComponent<BoxCollider2D>().isTrigger = true;
@@ -59,12 +62,9 @@ public class AnciaoPrimeiroContato : MonoBehaviour
         if (dados == null)
             return;
 
-        // Nao repete apos concluir o primeiro contato.
         if (dados.primeiroContatoAnciaoConcluido)
             return;
 
-        // Nao aparece se o Anciao ja foi resgatado
-        // ou sua apresentacao ja aconteceu.
         if (dados.resgateAnciaoConcluido ||
             dados.apresentacaoAnciaoConcluida)
         {
@@ -103,6 +103,10 @@ public class AnciaoPrimeiroContato : MonoBehaviour
 
         textoConversa.text = dialogos[indiceDialogo];
         painelConversa.SetActive(true);
+
+        // NOVO: pausa todo o jogo.
+        escalaTempoAnterior = Time.timeScale;
+        Time.timeScale = 0f;
 
         Debug.Log(
             "Primeiro contato com o Anciao iniciado."
@@ -165,6 +169,9 @@ public class AnciaoPrimeiroContato : MonoBehaviour
             }
         }
 
+        // NOVO: restaura o tempo do jogo.
+        Time.timeScale = escalaTempoAnterior;
+
         if (movimento != null)
         {
             ElianVida vida =
@@ -179,5 +186,16 @@ public class AnciaoPrimeiroContato : MonoBehaviour
         Debug.Log(
             "Primeiro contato concluido."
         );
+    }
+
+    // NOVO: evita deixar o jogo pausado
+    // caso o objeto seja desativado durante a conversa.
+    private void OnDisable()
+    {
+        if (conversaAberta)
+        {
+            Time.timeScale = escalaTempoAnterior;
+            conversaAberta = false;
+        }
     }
 }

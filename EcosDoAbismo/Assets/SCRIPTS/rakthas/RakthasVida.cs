@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class RakthasVida : MonoBehaviour
@@ -18,7 +17,15 @@ public class RakthasVida : MonoBehaviour
     public GameObject prefabReliquia;
     public Transform pontoDropReliquia;
 
+    [Header("Cutscene de Morte")]
+    public string idCutsceneMorte = "Rakthas_Morte";
+
+    [Header("Interface")]
+    public GameObject barraVidaVisual;
+
     private bool reliquiaDropada = false;
+    private bool cutsceneMorteIniciada = false;
+    private bool morteFinalizada = false;
 
     public bool EstaMorto => morto;
 
@@ -47,7 +54,9 @@ public class RakthasVida : MonoBehaviour
             dados == null ||
             dados.chefesDerrotados == null
         )
+        {
             return;
+        }
 
         if (
             dados.chefesDerrotados.Contains(
@@ -83,19 +92,30 @@ public class RakthasVida : MonoBehaviour
                 );
             }
 
+            if (barraVidaVisual != null)
+            {
+                barraVidaVisual.SetActive(
+                    false
+                );
+            }
+
             gameObject.SetActive(false);
         }
     }
 
     private void Update()
     {
-        // TECLA TEMPORÁRIA DE TESTE
+        // TECLA TEMPORÁRIA PARA TESTE
         if (
-            Input.GetKeyDown(KeyCode.Alpha2) &&
+            Input.GetKeyDown(
+                KeyCode.Alpha2
+            ) &&
             !morto
         )
         {
-            ReceberDano(vidaAtual);
+            ReceberDano(
+                vidaAtual
+            );
         }
     }
 
@@ -115,24 +135,60 @@ public class RakthasVida : MonoBehaviour
             return;
         }
 
-        // Rakthas não possui mais animação
-        // nem interrupção ao receber dano.
+        // Rakthas recebe dano normalmente,
+        // mas não possui animação de dano
+        // e não interrompe movimento ou ataques.
     }
 
     private void Morrer()
     {
+        if (morto)
+            return;
+
         morto = true;
 
-        // NOVO: libera os teletransportes.
+        // Libera os teletransportes.
         Teletransporte.LiberarBloqueio();
 
+        // Cancela qualquer ataque atual.
         if (ataques != null)
         {
             ataques.CancelarAtaque();
         }
 
+        // Impede o movimento de continuar
+        // alterando o Animator durante a morte.
+        RakthasMovimento movimento =
+            GetComponent<RakthasMovimento>();
+
+        if (movimento != null)
+        {
+            movimento.enabled = false;
+        }
+
+        // Congela completamente a física.
+        // Assim Rakthas não cai da arena
+        // depois que os colliders forem desligados.
+        Rigidbody2D rb =
+            GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+        {
+            rb.linearVelocity =
+                Vector2.zero;
+
+            rb.angularVelocity =
+                0f;
+
+            rb.simulated =
+                false;
+        }
+
+        // Desativa corpo e hitboxes.
         Collider2D[] colliders =
-            GetComponentsInChildren<Collider2D>();
+            GetComponentsInChildren<
+                Collider2D
+            >();
 
         foreach (
             Collider2D collider
@@ -142,27 +198,114 @@ public class RakthasVida : MonoBehaviour
             collider.enabled = false;
         }
 
-        animator.speed = 1f;
-
-        animator.SetBool(
-            "estaCorrendo",
-            false
-        );
-
-        animator.SetTrigger(
-            "Morte"
-        );
-
-        Rigidbody2D rb =
-            GetComponent<Rigidbody2D>();
-
-        if (rb != null)
+        // Prepara a animação de morte.
+        if (animator != null)
         {
-            rb.linearVelocity =
-                Vector2.zero;
+            animator.speed = 1f;
+
+            animator.SetBool(
+                "estaCorrendo",
+                false
+            );
         }
 
+        // A derrota continua sendo
+        // registrada imediatamente.
         RegistrarDerrota();
+
+        // Inicia a animação de morte.
+        if (animator != null)
+        {
+            animator.SetTrigger(
+                "Morte"
+            );
+        }
+
+        Debug.Log(
+            "Rakthas iniciou sua animação de morte."
+        );
+
+        // O Animation Event no final do clip
+        // chamará FinalizarMorte().
+    }
+
+    // =========================
+    // CUTSCENE DE MORTE
+    // =========================
+
+    public void FinalizarMorte()
+    {
+        if (
+            !morto ||
+            cutsceneMorteIniciada
+        )
+        {
+            return;
+        }
+
+        cutsceneMorteIniciada = true;
+
+        if (
+            GerenciadorCutscenes.Instancia != null
+        )
+        {
+            bool iniciou =
+                GerenciadorCutscenes
+                    .Instancia
+                    .Reproduzir(
+                        idCutsceneMorte,
+                        ConcluirMorte
+                    );
+
+            if (iniciou)
+            {
+                Debug.Log(
+                    "Animação de morte concluída! " +
+                    "Cutscene de morte do Rakthas iniciada."
+                );
+
+                return;
+            }
+        }
+
+        Debug.LogWarning(
+            "Cutscene de morte do Rakthas " +
+            "indisponível. Finalizando derrota."
+        );
+
+        ConcluirMorte();
+    }
+
+    private void ConcluirMorte()
+    {
+        if (
+            !morto ||
+            morteFinalizada
+        )
+        {
+            return;
+        }
+
+        morteFinalizada = true;
+
+        // Primeiro cria a relíquia.
+        DroparReliquia();
+
+        // Esconde a barra de vida.
+        if (barraVidaVisual != null)
+        {
+            barraVidaVisual.SetActive(
+                false
+            );
+        }
+
+        // Depois remove o Rakthas.
+        gameObject.SetActive(false);
+
+        Debug.Log(
+            "Rakthas desapareceu após a cutscene. " +
+            "Cálice de Brasas deixado na arena."
+        );
     }
 
     // =========================
@@ -208,7 +351,7 @@ public class RakthasVida : MonoBehaviour
     }
 
     // =========================
-    // SALVAMENTO
+    // SALVAMENTO DA DERROTA
     // =========================
 
     private void RegistrarDerrota()
@@ -302,16 +445,7 @@ public class RakthasVida : MonoBehaviour
     }
 
     // =========================
-    // FINAL DA MORTE
-    // =========================
-
-    public void FinalizarMorte()
-    {
-        gameObject.SetActive(false);
-    }
-
-    // =========================
-    // PORCENTAGEM DE VIDA
+    // HUD DE VIDA
     // =========================
 
     public float ObterPorcentagemVida()
@@ -319,8 +453,9 @@ public class RakthasVida : MonoBehaviour
         if (vidaMaxima <= 0)
             return 0f;
 
-        return
+        return Mathf.Clamp01(
             (float)vidaAtual /
-            vidaMaxima;
+            vidaMaxima
+        );
     }
 }

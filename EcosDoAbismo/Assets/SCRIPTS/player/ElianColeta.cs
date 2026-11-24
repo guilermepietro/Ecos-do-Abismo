@@ -5,6 +5,8 @@ public class ElianColeta : MonoBehaviour
 {
     private Animator animator;
     private ElianMovimento movimento;
+    private Rigidbody2D rb;
+
     private ItemColetavel itemPerto;
     private ReliquiaColetavel reliquiaPerto;
     private CheckpointArvore arvorePerto;
@@ -41,6 +43,7 @@ public class ElianColeta : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         movimento = GetComponent<ElianMovimento>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -81,6 +84,13 @@ public class ElianColeta : MonoBehaviour
                 interagindo = true;
 
                 movimento.podeMover = false;
+
+                // Impede o Elian de deslizar na coleta.
+                rb.linearVelocity = new Vector2(
+                    0f,
+                    rb.linearVelocity.y
+                );
+
                 animator.SetFloat("velocidade", 0);
                 animator.SetTrigger("Coletar");
             }
@@ -136,6 +146,13 @@ public class ElianColeta : MonoBehaviour
         anciaoDaBencao = anciao;
 
         movimento.podeMover = false;
+
+        // Impede o Elian de deslizar ao receber bênçãos.
+        rb.linearVelocity = new Vector2(
+            0f,
+            rb.linearVelocity.y
+        );
+
         animator.SetFloat("velocidade", 0f);
         animator.SetTrigger("Coletar");
     }

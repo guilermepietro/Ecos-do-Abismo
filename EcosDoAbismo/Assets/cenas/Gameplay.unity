@@ -3778,6 +3778,98 @@ Transform:
   m_Children: []
   m_Father: {fileID: 409949261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &110051863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 110051866}
+  - component: {fileID: 110051865}
+  - component: {fileID: 110051864}
+  m_Layer: 0
+  m_Name: Area_Floresta (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &110051864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110051863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1dafe9ae9ee8364ab4315faa38add12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaMapa
+  nomeArea: Floresta
+--- !u!61 &110051865
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110051863}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -2.6592941, y: -47.497585}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 80.95613, y: 43.68873}
+  m_EdgeRadius: 0
+--- !u!4 &110051866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110051863}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 42.5, y: -77.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &111039427
 GameObject:
   m_ObjectHideFlags: 0
@@ -4919,7 +5011,7 @@ Transform:
   m_GameObject: {fileID: 142652946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.4, y: -100.05, z: 0}
+  m_LocalPosition: {x: 308.2, y: -66.4, z: 0}
   m_LocalScale: {x: 1.52, y: 1.52, z: 1.9408507}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6503,7 +6595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25df7d495ca5fdc42a290d9df97a2492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FusaoVida
-  vidaMaxima: 500
+  vidaMaxima: 1250
   vidaAtual: 0
   animator: {fileID: 171094407}
   corpo: {fileID: 171094409}
@@ -6512,7 +6604,6 @@ MonoBehaviour:
   ataque1: {fileID: 171094413}
   ataque2: {fileID: 171094414}
   ataque3: {fileID: 171094415}
-  usarAnimacaoMorte: 1
   prefabReliquia: {fileID: 177253702791687700, guid: 3ec931213b94e5f4a96253b6d495df70, type: 3}
   pontoDropReliquia: {fileID: 86798998}
 --- !u!114 &171094417
@@ -7966,7 +8057,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.035399348, y: -0.12979269}
+  m_Offset: {x: -0.16484344, y: -0.12979269}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7976,7 +8067,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.64601487, y: 0.7404146}
+  m_Size: {x: 0.90490305, y: 0.7404146}
   m_EdgeRadius: 0
 --- !u!4 &217436912
 Transform:
@@ -13911,9 +14002,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba9835e1189bba4ba9f71d508ef5ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IshkharothVida
-  vidaMaxima: 500
+  vidaMaxima: 1300
   vidaAtual: 0
-  vidaMaximaFase2: 870
+  vidaMaximaFase2: 1700
   vidaAtualFase2: 0
   animator: {fileID: 426324708}
   corpo: {fileID: 426324703}
@@ -13931,6 +14022,7 @@ MonoBehaviour:
   ataque1Fase2: {fileID: 426324717}
   ataque2Fase2: {fileID: 426324716}
   ataque3Fase2: {fileID: 426324718}
+  finalIshkharoth: {fileID: 426324720}
 --- !u!114 &426324711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15411,7 +15503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23b951a1e39d8a4296857661bec9452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitboxAtaque
-  danoAtual: 15
+  danoAtual: 13
   forcaKnockback: 3
   duracaoTremorAtaque: 0.08
   intensidadeTremorAtaque: 0.06
@@ -17314,7 +17406,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -36.84967, y: -19.089231}
+  m_Offset: {x: 46.637314, y: -14.374289}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -17324,7 +17416,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 12.575363, y: 6.8761635}
+  m_Size: {x: 181.82553, y: 18.907398}
   m_EdgeRadius: 0
 --- !u!4 &509933882
 Transform:
@@ -26080,7 +26172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce9635bbc8bbe74c8ad2f1235529134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitboxArea
-  dano: 30
+  dano: 20
 --- !u!1 &639533105
 GameObject:
   m_ObjectHideFlags: 0
@@ -48728,7 +48820,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.035399348, y: -0.12979269}
+  m_Offset: {x: -0.10539736, y: -0.12979269}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -48738,7 +48830,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.64601487, y: 0.7404146}
+  m_Size: {x: 0.78601086, y: 0.7404146}
   m_EdgeRadius: 0
 --- !u!1 &1477154104
 GameObject:
@@ -48805,7 +48897,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.035399348, y: -0.12979269}
+  m_Offset: {x: -0.20733052, y: -0.12979269}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -48815,7 +48907,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.64601487, y: 0.7404146}
+  m_Size: {x: 0.9898772, y: 0.7404146}
   m_EdgeRadius: 0
 --- !u!4 &1477154107
 Transform:
@@ -51953,8 +52045,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be38db17e070d24e99698dad33efb46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SalenthraVida
-  vidaMaximaFase1: 150
-  vidaMaximaFase2: 400
+  vidaMaximaFase1: 850
+  vidaMaximaFase2: 1300
   animator: {fileID: 1573473952}
   laminaCelesteDropPrefab: {fileID: 5450866377598040113, guid: 0e765ae729db7f440b0e4a27e909531f, type: 3}
   pontoDropReliquia: {fileID: 261453648}
@@ -56857,7 +56949,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -36.84967, y: -19.089231}
+  m_Offset: {x: 34.208847, y: -12.503323}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56867,7 +56959,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 12.575363, y: 6.8761635}
+  m_Size: {x: 29.906708, y: 15.888466}
   m_EdgeRadius: 0
 --- !u!4 &1748169100
 Transform:
@@ -58668,7 +58760,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -36.84967, y: -19.089231}
+  m_Offset: {x: -90.519646, y: -15.595919}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -58678,7 +58770,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 12.575363, y: 6.8761635}
+  m_Size: {x: 125.63167, y: 13.862789}
   m_EdgeRadius: 0
 --- !u!4 &1837287335
 Transform:
@@ -59321,8 +59413,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.49699855}
-  m_Size: {x: 0.49999994, y: 0.9622292}
+  m_Offset: {x: 0, y: 0.50518656}
+  m_Size: {x: 0.49999994, y: 0.9458532}
   m_Direction: 0
 --- !u!212 &1851553442
 SpriteRenderer:
@@ -63474,8 +63566,8 @@ Transform:
   m_GameObject: {fileID: 1999679218}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 109.82, y: -90.4134, z: 0}
-  m_LocalScale: {x: 1, y: 1.4178, z: 1}
+  m_LocalPosition: {x: 111.2664, y: -90.4134, z: 0}
+  m_LocalScale: {x: 1.1469402, y: 1.4178, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -807741,10 +807833,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0adcacc02e84314da6c862ed636c21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RakthasVida
-  vidaMaxima: 450
+  vidaMaxima: 1000
   animator: {fileID: 2059395985}
   prefabReliquia: {fileID: 203640241205803011, guid: d943d0909b2035643b7396a5395deb06, type: 3}
   pontoDropReliquia: {fileID: 138036201}
+  idCutsceneMorte: Rakthas_Morte
+  barraVidaVisual: {fileID: 0}
 --- !u!114 &2059395990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809178,7 +809272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 840d7d5fb24fce849ad07ce5a691058c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoragulVida
-  vidaMaxima: 650
+  vidaMaxima: 1100
   prefabReliquia: {fileID: 177253702791687700, guid: c8cf44d84a0a4ba47b97540b5a4b6e1b, type: 3}
   pontoDropReliquia: {fileID: 307728015}
   idCutsceneMorte: Voragul_Morte
@@ -810561,6 +810655,7 @@ SceneRoots:
   - {fileID: 778114942}
   - {fileID: 2124022959}
   - {fileID: 2027420538}
+  - {fileID: 110051866}
   - {fileID: 1796155098}
   - {fileID: 1837287335}
   - {fileID: 509933882}

@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class IshkharothVida : MonoBehaviour
@@ -37,6 +36,9 @@ public class IshkharothVida : MonoBehaviour
     [SerializeField] private IshkharothAtaque1Fase2 ataque1Fase2;
     [SerializeField] private IshkharothAtaque2Fase2 ataque2Fase2;
     [SerializeField] private IshkharothAtaque3Fase2 ataque3Fase2;
+
+    [Header("Final do Jogo")]
+    [SerializeField] private FinalIshkharoth finalIshkharoth;
 
     private bool transicaoIniciada;
     private bool claraoFinalIniciado;
@@ -108,23 +110,40 @@ public class IshkharothVida : MonoBehaviour
             efeitoTela = GetComponent<IshkharothPiscarTela>();
 
         if (movimentoFase2 == null)
+        {
             movimentoFase2 =
                 GetComponent<IshkharothMovimentoFase2>();
+        }
 
         if (iaFase2 == null)
-            iaFase2 = GetComponent<IshkharothIAFase2>();
+        {
+            iaFase2 =
+                GetComponent<IshkharothIAFase2>();
+        }
 
         if (ataque1Fase2 == null)
+        {
             ataque1Fase2 =
                 GetComponent<IshkharothAtaque1Fase2>();
+        }
 
         if (ataque2Fase2 == null)
+        {
             ataque2Fase2 =
                 GetComponent<IshkharothAtaque2Fase2>();
+        }
 
         if (ataque3Fase2 == null)
+        {
             ataque3Fase2 =
                 GetComponent<IshkharothAtaque3Fase2>();
+        }
+
+        if (finalIshkharoth == null)
+        {
+            finalIshkharoth =
+                GetComponent<FinalIshkharoth>();
+        }
 
         vidaAtual = vidaMaxima;
         vidaAtualFase2 = 0;
@@ -139,15 +158,21 @@ public class IshkharothVida : MonoBehaviour
 
     public void ReceberDano(int dano)
     {
-        if (dano <= 0 || !PodeReceberDano)
+        if (
+            dano <= 0 ||
+            !PodeReceberDano
+        )
+        {
             return;
+        }
 
         if (EstaNaFase1)
         {
-            vidaAtual = Mathf.Max(
-                0,
-                vidaAtual - dano
-            );
+            vidaAtual =
+                Mathf.Max(
+                    0,
+                    vidaAtual - dano
+                );
 
             Debug.Log(
                 "Ishkharoth Fase 1 - Vida: " +
@@ -155,89 +180,141 @@ public class IshkharothVida : MonoBehaviour
             );
 
             if (vidaAtual <= 0)
+            {
                 IniciarTransicaoFase2();
+            }
 
             return;
         }
 
         if (EstaNaFase2)
         {
-            vidaAtualFase2 = Mathf.Max(
-                0,
-                vidaAtualFase2 - dano
-            );
+            vidaAtualFase2 =
+                Mathf.Max(
+                    0,
+                    vidaAtualFase2 - dano
+                );
 
             Debug.Log(
                 "Ishkharoth Fase 2 - Vida: " +
-                vidaAtualFase2 + "/" + vidaMaximaFase2
+                vidaAtualFase2 + "/" +
+                vidaMaximaFase2
             );
 
             if (vidaAtualFase2 <= 0)
+            {
                 IniciarMorteDefinitiva();
+            }
         }
     }
 
+    // =========================
+    // TRANSICAO PARA FASE 2
+    // =========================
+
     private void IniciarTransicaoFase2()
     {
-        if (transicaoIniciada || fase2Iniciada || morto)
+        if (
+            transicaoIniciada ||
+            fase2Iniciada ||
+            morto
+        )
+        {
             return;
+        }
 
         transicaoIniciada = true;
         claraoFinalIniciado = false;
 
-        // Interrompe a IA da primeira fase.
         if (ia != null)
+        {
             ia.enabled = false;
+        }
 
-        // Bloqueia a movimentacao.
         if (movimento != null)
+        {
             movimento.BloquearMovimento();
+        }
 
-        // Interrompe os ataques da primeira fase.
         if (ataque1 != null)
+        {
             ataque1.enabled = false;
+        }
 
         if (ataque2 != null)
+        {
             ataque2.enabled = false;
+        }
 
         if (ataque3 != null)
+        {
             ataque3.enabled = false;
+        }
 
         if (corpo != null)
         {
-            corpo.linearVelocity = new Vector2(
-                0f,
-                corpo.linearVelocity.y
-            );
+            corpo.linearVelocity =
+                new Vector2(
+                    0f,
+                    corpo.linearVelocity.y
+                );
         }
 
         if (animator != null)
         {
-            animator.SetBool("Andando", false);
+            animator.SetBool(
+                "Andando",
+                false
+            );
 
-            animator.ResetTrigger("Ataque1");
-            animator.ResetTrigger("Ataque2");
-            animator.ResetTrigger("Ataque3");
+            animator.ResetTrigger(
+                "Ataque1"
+            );
 
-            animator.ResetTrigger("EntrarLoopAtaque3");
-            animator.ResetTrigger("EncerrarAtaque3");
+            animator.ResetTrigger(
+                "Ataque2"
+            );
 
-            animator.SetTrigger("TransicaoFase2");
+            animator.ResetTrigger(
+                "Ataque3"
+            );
+
+            animator.ResetTrigger(
+                "EntrarLoopAtaque3"
+            );
+
+            animator.ResetTrigger(
+                "EncerrarAtaque3"
+            );
+
+            animator.SetTrigger(
+                "TransicaoFase2"
+            );
         }
 
         if (efeitoTela != null)
+        {
             efeitoTela.IniciarPiscadas();
+        }
 
         Debug.Log(
             "Ishkharoth: transformacao iniciada!"
         );
     }
 
-    // Animation Event na ultima key da transformacao.
+    // =========================
+    // CLARAO DA TRANSFORMACAO
+    // =========================
+
     public void IniciarClaraoFinal()
     {
-        if (!transicaoIniciada || claraoFinalIniciado)
+        if (
+            !transicaoIniciada ||
+            claraoFinalIniciado
+        )
+        {
             return;
+        }
 
         claraoFinalIniciado = true;
 
@@ -253,22 +330,41 @@ public class IshkharothVida : MonoBehaviour
         }
     }
 
-    // Chamado quando a tela fica totalmente coberta.
+    // =========================
+    // INICIO DA FASE 2
+    // =========================
+
     public void FinalizarTransicaoFase2()
     {
-        if (!transicaoIniciada || fase2Iniciada || morto)
+        if (
+            !transicaoIniciada ||
+            fase2Iniciada ||
+            morto
+        )
+        {
             return;
+        }
 
         bool encontrouIdleFase2 = false;
 
-        if (animator != null &&
-            !string.IsNullOrEmpty(estadoIdleFase2))
-        {
-            int hashEstado = Animator.StringToHash(
+        if (
+            animator != null &&
+            !string.IsNullOrEmpty(
                 estadoIdleFase2
-            );
+            )
+        )
+        {
+            int hashEstado =
+                Animator.StringToHash(
+                    estadoIdleFase2
+                );
 
-            if (animator.HasState(0, hashEstado))
+            if (
+                animator.HasState(
+                    0,
+                    hashEstado
+                )
+            )
             {
                 animator.Play(
                     hashEstado,
@@ -280,38 +376,50 @@ public class IshkharothVida : MonoBehaviour
             }
         }
 
-        if (!encontrouIdleFase2 &&
+        if (
+            !encontrouIdleFase2 &&
             spriteFinalFase2 != null &&
-            visual != null)
+            visual != null
+        )
         {
             if (animator != null)
+            {
                 animator.enabled = false;
+            }
 
-            visual.sprite = spriteFinalFase2;
+            visual.sprite =
+                spriteFinalFase2;
         }
 
-        // Inicia a vida independente da segunda fase.
-        vidaAtualFase2 = vidaMaximaFase2;
+        vidaAtualFase2 =
+            vidaMaximaFase2;
 
         transicaoIniciada = false;
         fase2Iniciada = true;
 
         Debug.Log(
             "Ishkharoth: segunda fase iniciada! Vida: " +
-            vidaAtualFase2 + "/" + vidaMaximaFase2
+            vidaAtualFase2 + "/" +
+            vidaMaximaFase2
         );
     }
 
+    // =========================
+    // MORTE DEFINITIVA
+    // =========================
+
     private void IniciarMorteDefinitiva()
     {
-        if (morto || !fase2Iniciada)
+        if (
+            morto ||
+            !fase2Iniciada
+        )
+        {
             return;
+        }
 
         morto = true;
         morteFinalizada = false;
-
-        // NOVO: libera os teletransportes.
-        Teletransporte.LiberarBloqueio();
 
         Debug.Log(
             "Ishkharoth: morte definitiva iniciada!"
@@ -319,69 +427,147 @@ public class IshkharothVida : MonoBehaviour
 
         // Interrompe a IA da segunda fase.
         if (iaFase2 != null)
+        {
             iaFase2.enabled = false;
+        }
 
-        // Bloqueia e desativa a movimentacao.
+        // Bloqueia completamente
+        // o movimento da segunda fase.
         if (movimentoFase2 != null)
         {
             movimentoFase2.BloquearMovimento();
             movimentoFase2.enabled = false;
         }
 
-        // Garante que a primeira fase nao volte.
+        // Garante que a primeira fase
+        // nao volte a executar.
         if (ia != null)
-            ia.enabled = false;
-
-        if (movimento != null)
-            movimento.enabled = false;
-
-        // Interrompe as invocacoes da segunda fase.
-        if (ataque1Fase2 != null)
-            ataque1Fase2.enabled = false;
-
-        if (ataque2Fase2 != null)
-            ataque2Fase2.enabled = false;
-
-        if (ataque3Fase2 != null)
-            ataque3Fase2.enabled = false;
-
-        if (corpo != null)
         {
-            corpo.linearVelocity = new Vector2(
-                0f,
-                corpo.linearVelocity.y
-            );
+            ia.enabled = false;
         }
 
+        if (movimento != null)
+        {
+            movimento.enabled = false;
+        }
+
+        // Interrompe todos os ataques
+        // da segunda fase.
+        if (ataque1Fase2 != null)
+        {
+            ataque1Fase2.enabled = false;
+        }
+
+        if (ataque2Fase2 != null)
+        {
+            ataque2Fase2.enabled = false;
+        }
+
+        if (ataque3Fase2 != null)
+        {
+            ataque3Fase2.enabled = false;
+        }
+
+        // Congela completamente a fisica.
+        // Assim Ishkharoth nao cai
+        // durante a animacao de morte.
+        if (corpo != null)
+        {
+            corpo.linearVelocity =
+                Vector2.zero;
+
+            corpo.angularVelocity =
+                0f;
+
+            corpo.simulated =
+                false;
+        }
+
+        // Desativa corpo e hitboxes
+        // durante a morte.
+        Collider2D[] colliders =
+            GetComponentsInChildren<Collider2D>();
+
+        foreach (
+            Collider2D collider
+            in colliders
+        )
+        {
+            collider.enabled = false;
+        }
+
+        // Prepara a animacao definitiva.
         if (animator != null)
         {
             animator.enabled = true;
+            animator.speed = 1f;
 
-            animator.SetBool("Andando", false);
+            animator.SetBool(
+                "Andando",
+                false
+            );
 
-            // Cancela ataques pendentes.
-            animator.ResetTrigger("Ataque1");
-            animator.ResetTrigger("Ataque2");
-            animator.ResetTrigger("Ataque3");
+            animator.ResetTrigger(
+                "Ataque1"
+            );
 
-            animator.ResetTrigger("Ataque1F2");
-            animator.ResetTrigger("Ataque2F2");
-            animator.ResetTrigger("Ataque3F2");
+            animator.ResetTrigger(
+                "Ataque2"
+            );
 
-            animator.ResetTrigger("EntrarLoopAtaque3");
-            animator.ResetTrigger("EncerrarAtaque3");
-            animator.ResetTrigger("EncerrarAtaque3F2");
+            animator.ResetTrigger(
+                "Ataque3"
+            );
 
-            // Executa a morte definitiva.
-            animator.SetTrigger("MorteF2");
+            animator.ResetTrigger(
+                "Ataque1F2"
+            );
+
+            animator.ResetTrigger(
+                "Ataque2F2"
+            );
+
+            animator.ResetTrigger(
+                "Ataque3F2"
+            );
+
+            animator.ResetTrigger(
+                "EntrarLoopAtaque3"
+            );
+
+            animator.ResetTrigger(
+                "EncerrarAtaque3"
+            );
+
+            animator.ResetTrigger(
+                "EncerrarAtaque3F2"
+            );
+
+            animator.SetTrigger(
+                "MorteF2"
+            );
+        }
+        else
+        {
+            FinalizarMorteF2();
         }
     }
 
-    // Animation Event no ultimo frame de Morte_F2.
+    // =========================
+    // FINAL DA MORTE
+    // =========================
+
+    // Chamado pelo Animation Event
+    // no ultimo frame de Morte_F2.
     public void FinalizarMorteF2()
     {
-        if (!morto || morteFinalizada)
+        if (
+            !morto ||
+            morteFinalizada
+        )
+        {
             return;
+        }
 
         morteFinalizada = true;
 
@@ -389,14 +575,30 @@ public class IshkharothVida : MonoBehaviour
             "Ishkharoth: morte definitiva concluida!"
         );
 
-        // Permanece no ultimo frame da animacao.
-        // Salvamento e recompensa serao integrados depois.
+        // Depois da animacao de morte,
+        // inicia a cutscene final do jogo.
+        if (finalIshkharoth != null)
+        {
+            finalIshkharoth.IniciarFinalDoJogo();
+        }
+        else
+        {
+            Debug.LogWarning(
+                "FinalIshkharoth nao foi encontrado."
+            );
+        }
     }
+
+    // =========================
+    // TESTE
+    // =========================
 
     [ContextMenu("TESTE - Perder 100 de vida")]
     private void TestarDano()
     {
         if (Application.isPlaying)
+        {
             ReceberDano(100);
+        }
     }
 }

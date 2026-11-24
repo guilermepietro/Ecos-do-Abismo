@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -18,9 +17,6 @@ public class FusaoVida : MonoBehaviour
     [SerializeField] private FusaoAtaque1 ataque1;
     [SerializeField] private FusaoAtaque2 ataque2;
     [SerializeField] private FusaoAtaque3 ataque3;
-
-    [Header("Morte")]
-    [SerializeField] private bool usarAnimacaoMorte = false;
 
     [Header("Reliquia - Fragmentos Gemeos")]
     [SerializeField] private GameObject prefabReliquia;
@@ -79,7 +75,8 @@ public class FusaoVida : MonoBehaviour
 
     private void VerificarSalvamento()
     {
-        int slot = MenuSelecaoSave.slotPartidaAtual;
+        int slot =
+            MenuSelecaoSave.slotPartidaAtual;
 
         if (slot < 1 || slot > 3)
             return;
@@ -87,11 +84,19 @@ public class FusaoVida : MonoBehaviour
         DadosSalvamento dados =
             GerenciadorSalvamento.Carregar(slot);
 
-        if (dados == null ||
-            dados.chefesDerrotados == null)
+        if (
+            dados == null ||
+            dados.chefesDerrotados == null
+        )
+        {
             return;
+        }
 
-        if (dados.chefesDerrotados.Contains("Fusao"))
+        if (
+            dados.chefesDerrotados.Contains(
+                "Fusao"
+            )
+        )
         {
             bool reliquiaColetada =
                 dados.reliquiasObtidas != null &&
@@ -100,7 +105,9 @@ public class FusaoVida : MonoBehaviour
                 );
 
             if (!reliquiaColetada)
+            {
                 DroparReliquia();
+            }
 
             gameObject.SetActive(false);
         }
@@ -108,13 +115,19 @@ public class FusaoVida : MonoBehaviour
 
     public void ReceberDano(int dano)
     {
-        if (dano <= 0 || !PodeReceberDano)
+        if (
+            dano <= 0 ||
+            !PodeReceberDano
+        )
+        {
             return;
+        }
 
-        vidaAtual = Mathf.Max(
-            0,
-            vidaAtual - dano
-        );
+        vidaAtual =
+            Mathf.Max(
+                0,
+                vidaAtual - dano
+            );
 
         Debug.Log(
             "Fusao Saryn & Sayren - Vida: " +
@@ -122,7 +135,9 @@ public class FusaoVida : MonoBehaviour
         );
 
         if (vidaAtual <= 0)
+        {
             IniciarMorte();
+        }
     }
 
     private void IniciarMorte()
@@ -131,21 +146,25 @@ public class FusaoVida : MonoBehaviour
             return;
 
         morto = true;
-
-        // NOVO: libera os teletransportes.
-        Teletransporte.LiberarBloqueio();
-
         morteFinalizada = false;
 
+        // Libera os teletransportes.
+        Teletransporte.LiberarBloqueio();
+
+        // Salva imediatamente a derrota.
         RegistrarDerrota();
 
         Debug.Log(
             "Fusao Saryn & Sayren: morte iniciada!"
         );
 
+        // Desativa a IA.
         if (ia != null)
+        {
             ia.enabled = false;
+        }
 
+        // Para completamente o movimento.
         if (movimento != null)
         {
             movimento.DesativarCombate();
@@ -153,8 +172,11 @@ public class FusaoVida : MonoBehaviour
             movimento.enabled = false;
         }
 
+        // Desativa os ataques.
         if (ataque1 != null)
+        {
             ataque1.enabled = false;
+        }
 
         if (ataque2 != null)
         {
@@ -168,59 +190,90 @@ public class FusaoVida : MonoBehaviour
             ataque3.enabled = false;
         }
 
+        // Congela completamente a física
+        // para impedir que a Fusão caia
+        // após desligarmos os colliders.
         if (corpo != null)
         {
-            corpo.linearVelocity = Vector2.zero;
-            corpo.gravityScale = 0f;
-            corpo.bodyType = RigidbodyType2D.Kinematic;
+            corpo.linearVelocity =
+                Vector2.zero;
+
+            corpo.angularVelocity =
+                0f;
+
+            corpo.simulated =
+                false;
         }
 
-        // Impede colisoes com o boss morto.
+        // Desativa corpo e hitboxes.
         Collider2D[] colliders =
             GetComponentsInChildren<Collider2D>();
 
-        foreach (Collider2D col in colliders)
+        foreach (
+            Collider2D col
+            in colliders
+        )
+        {
             col.enabled = false;
+        }
 
+        // Prepara e inicia a animação de morte.
         if (animator != null)
         {
-            animator.SetBool("Andando", false);
+            animator.speed = 1f;
 
-            animator.ResetTrigger("Ataque1");
-            animator.ResetTrigger("Ataque2");
-            animator.ResetTrigger("Ataque3");
+            animator.SetBool(
+                "Andando",
+                false
+            );
 
-            animator.SetBool("ChuvaTerminou", false);
+            animator.ResetTrigger(
+                "Ataque1"
+            );
 
-            if (usarAnimacaoMorte)
-            {
-                animator.SetTrigger("Morte");
-            }
-            else
-            {
-                DroparReliquia();
-                FinalizarMorte();
-            }
+            animator.ResetTrigger(
+                "Ataque2"
+            );
+
+            animator.ResetTrigger(
+                "Ataque3"
+            );
+
+            animator.SetBool(
+                "ChuvaTerminou",
+                false
+            );
+
+            animator.SetTrigger(
+                "Morte"
+            );
         }
         else
         {
-            DroparReliquia();
+            // Segurança caso o Animator
+            // esteja ausente.
             FinalizarMorte();
         }
     }
 
-    // Animation Event durante a morte.
+    // =========================
+    // DROP DA RELIQUIA
+    // =========================
+
     public void DroparReliquia()
     {
         if (reliquiaDropada)
             return;
 
-        if (prefabReliquia == null ||
-            pontoDropReliquia == null)
+        if (
+            prefabReliquia == null ||
+            pontoDropReliquia == null
+        )
         {
             Debug.LogWarning(
                 "Fusao: prefab ou ponto de drop nao configurado!"
             );
+
             return;
         }
 
@@ -243,7 +296,8 @@ public class FusaoVida : MonoBehaviour
 
     private void RegistrarDerrota()
     {
-        int slot = MenuSelecaoSave.slotPartidaAtual;
+        int slot =
+            MenuSelecaoSave.slotPartidaAtual;
 
         if (slot < 1 || slot > 3)
             return;
@@ -260,23 +314,37 @@ public class FusaoVida : MonoBehaviour
                 new List<string>();
         }
 
-        if (!dados.chefesDerrotados.Contains("Fusao"))
+        if (
+            !dados.chefesDerrotados.Contains(
+                "Fusao"
+            )
+        )
         {
-            dados.chefesDerrotados.Add("Fusao");
+            dados.chefesDerrotados.Add(
+                "Fusao"
+            );
 
-            // Atualiza o tempo antes de salvar a derrota.
-            if (ContadorTempoJogo.instancia != null)
+            if (
+                ContadorTempoJogo.instancia != null
+            )
             {
                 ContadorTempoJogo.instancia
-                    .AtualizarTempoNosDados(dados);
+                    .AtualizarTempoNosDados(
+                        dados
+                    );
             }
 
-            // Verifica se a gravacao foi bem-sucedida.
-            if (GerenciadorSalvamento.Salvar(slot, dados))
+            if (
+                GerenciadorSalvamento.Salvar(
+                    slot,
+                    dados
+                )
+            )
             {
                 Debug.Log(
                     "Fusao Saryn & Sayren derrotada permanentemente!" +
-                    "\nSlot: " + slot +
+                    "\nSlot: " +
+                    slot +
                     "\nTempo: " +
                     dados.tempoTotalJogado.ToString("F1") +
                     " segundos"
@@ -291,13 +359,22 @@ public class FusaoVida : MonoBehaviour
         }
     }
 
-    // Animation Event no ultimo frame da morte.
+    // =========================
+    // FINAL DA MORTE
+    // =========================
+
     public void FinalizarMorte()
     {
-        if (!morto || morteFinalizada)
+        if (
+            !morto ||
+            morteFinalizada
+        )
+        {
             return;
+        }
 
-        // Garante que os Fragmentos Gemeos aparecam.
+        // Garante que os Fragmentos
+        // Gêmeos apareçam.
         DroparReliquia();
 
         morteFinalizada = true;
@@ -306,7 +383,6 @@ public class FusaoVida : MonoBehaviour
             "Fusao Saryn & Sayren: morte finalizada!"
         );
 
-        // Faz o corpo desaparecer apos a animacao.
         gameObject.SetActive(false);
     }
 
@@ -314,6 +390,8 @@ public class FusaoVida : MonoBehaviour
     private void TestarDano()
     {
         if (Application.isPlaying)
+        {
             ReceberDano(100);
+        }
     }
 }
