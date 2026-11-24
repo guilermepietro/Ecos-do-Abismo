@@ -57,6 +57,20 @@ public class SalenthraVida : MonoBehaviour
         VerificarSalvamento();
     }
 
+    private void Update()
+{
+    if (
+        transformando &&
+        faseAtual == 1 &&
+        !cutsceneTransformacaoIniciada &&
+        !morta &&
+        animator.GetCurrentAnimatorStateInfo(0).IsName("Idle Fase 2")
+    )
+    {
+        IniciarCutsceneTransformacao();
+    }
+}
+
     private void VerificarSalvamento()
     {
         int slot = MenuSelecaoSave.slotPartidaAtual;

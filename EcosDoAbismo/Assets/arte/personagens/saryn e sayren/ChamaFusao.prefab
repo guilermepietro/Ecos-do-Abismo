@@ -83,7 +83,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 104
   m_MaskInteraction: 0
   m_Sprite: {fileID: -736890354102190887, guid: 0c904712d3f6d164e9c51941dc6c9cbf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChamaFusao
   velocidade: 8
-  dano: 20
+  dano: 15
   tempoVida: 5
   spriteOlhaDireita: 1
   camadasCenario:

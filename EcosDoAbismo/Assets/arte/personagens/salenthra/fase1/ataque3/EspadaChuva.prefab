@@ -83,7 +83,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 104
   m_MaskInteraction: 0
   m_Sprite: {fileID: -262145844672359230, guid: a4c9dd6af6383bb4ba50f17f546f2495, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EspadaChuva
   velocidadeQueda: 10
-  dano: 20
+  dano: 3
   tempoDestruir: 4
   chuvaEspadas: {fileID: 0}
   vidaSalenthra: {fileID: 0}

@@ -106,7 +106,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 98
+  m_SortingOrder: 104
   m_MaskInteraction: 0
   m_Sprite: {fileID: -4596467713555434555, guid: ec67be6f5ef8d234ea909b50265a029d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PedraFusao
   velocidadeQueda: 8
   tempoVida: 5
-  dano: 20
+  dano: 15
   camadaChao:
     serializedVersion: 2
     m_Bits: 8

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -43,6 +44,10 @@ public class AreaTutorial : MonoBehaviour
     private void TentarAtivarTutorial(Collider2D outro)
     {
         if (jaExibido || gerenciador == null)
+            return;
+
+        if (GerenciadorCutscenes.Instancia != null &&
+            GerenciadorCutscenes.Instancia.EmReproducao)
             return;
 
         bool ehElian =

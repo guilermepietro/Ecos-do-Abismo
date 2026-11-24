@@ -83,7 +83,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 104
   m_MaskInteraction: 0
   m_Sprite: {fileID: 990080300340514696, guid: 6cf4274051d5dc049add1185dc5871e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjetilLua
   velocidade: 13
-  dano: 25
+  dano: 10
   tempoDestruir: 6
   direcao: 0
   vidaSalenthra: {fileID: 0}
