@@ -103,21 +103,7 @@ public class RakthasVida : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        // TECLA TEMPORÁRIA PARA TESTE
-        if (
-            Input.GetKeyDown(
-                KeyCode.Alpha2
-            ) &&
-            !morto
-        )
-        {
-            ReceberDano(
-                vidaAtual
-            );
-        }
-    }
+    
 
     public void ReceberDano(int dano)
     {
